@@ -253,13 +253,13 @@ inline double DurToFloat(DurationType dur)
 SCLANG_DLLEXPORT_C void schedInit()
 {
 	using namespace std::chrono;
-	hrTimeOfInitialization     = high_resolution_clock::now();
+	hrTimeOfInitialization     = high_resolution_clock::now(); // ????
 
-	syncOSCOffsetWithTimeOfDay();
-	gResyncThread = std::thread(resyncThread);
+	syncOSCOffsetWithTimeOfDay(); // might have sub-optimal code
+	gResyncThread = std::thread(resyncThread); // ????
 
-	gHostStartNanos = duration_cast<nanoseconds>(hrTimeOfInitialization.time_since_epoch()).count();
-	gElapsedOSCoffset = (int64)(gHostStartNanos * kNanosToOSC) + gHostOSCoffset;
+	gHostStartNanos = duration_cast<nanoseconds>(hrTimeOfInitialization.time_since_epoch()).count(); // ????
+	gElapsedOSCoffset = (int64)(gHostStartNanos * kNanosToOSC) + gHostOSCoffset; // ????
 }
 
 SCLANG_DLLEXPORT_C void schedCleanup()

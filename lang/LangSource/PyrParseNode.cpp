@@ -4506,7 +4506,7 @@ void initSpecialSelectors()
 	sel[opNotNil] = getsym("notNil");
 	sel[opBitNot] = getsym("bitNot");
 	sel[opAbs] = getsym("abs");
-	sel[opAsFloat] = getsym("asFloat");
+	sel[opAsFloat] = getsym("asFloat"); // BH: update line counts or just separate by groups of 5
 	sel[opAsInt] = getsym("asInt");
 	sel[opCeil] = getsym("ceil");			//5
 	sel[opFloor] = getsym("floor");
@@ -4580,8 +4580,8 @@ void initSpecialSelectors()
 	sel[opGT] = getsym(">");
 	sel[opLE] = getsym("<=");
 	sel[opGE] = getsym(">=");
-	//sel[opIdentical] = getsym("===");
-	//sel[opNotIdentical] = getsym("!==");
+	//sel[opIdentical] = getsym("==="); // BH: can delete, defined as special selector below
+	//sel[opNotIdentical] = getsym("!=="); // BH: can delete, defined as special selector below
 	sel[opMin] = getsym("min");
 	sel[opMax] = getsym("max");
 	sel[opBitAnd] = getsym("bitAnd");

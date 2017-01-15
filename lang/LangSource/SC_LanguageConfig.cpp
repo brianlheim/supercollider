@@ -102,6 +102,7 @@ void SC_LanguageConfig::postExcludedDirectories(void)
 
 bool SC_LanguageConfig::forEachIncludedDirectory(bool (*func)(const char *, int))
 {
+	// compile the basic directories first - BH
 	for (DirVector::iterator it=mDefaultClassLibraryDirectories.begin(); it!=mDefaultClassLibraryDirectories.end(); ++it) {
 		if (!pathIsExcluded(it->c_str())) {
 			if (!func(it->c_str(), 0))
@@ -109,6 +110,7 @@ bool SC_LanguageConfig::forEachIncludedDirectory(bool (*func)(const char *, int)
 		}
 	}
 
+	// compile extension directories one by one - BH
 	for (DirVector::iterator it=mIncludedDirectories.begin(); it!=mIncludedDirectories.end(); ++it) {
 		if (!pathIsExcluded(it->c_str())) {
 			if (!func(it->c_str(), 0))

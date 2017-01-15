@@ -20,12 +20,13 @@
 
 #include "SC_LanguageClient.h"
 
+// main of sclang (this isn't apparent)
 int main(int argc, char** argv)
 {
-	SC_LanguageClient * client = createLanguageClient("sclang");
+	SC_LanguageClient * client = createLanguageClient("sclang"); // ????
 	if (!client)
 		return 1;
-	int returnCode = client->run(argc, argv);
+	int returnCode = client->run(argc, argv); // main launch method
 	destroyLanguageClient(client);
 	return returnCode;
 }

@@ -230,57 +230,60 @@ bool SC_TerminalClient::parseOptions(int& argc, char**& argv, Options& opt)
 
 int SC_TerminalClient::run(int argc, char** argv)
 {
-	Options& opt = mOptions;
+	Options& opt = mOptions; // what is mOptions?
 
-	if (!parseOptions(argc, argv, opt)) {
-		return mReturnCode;
+	if (!parseOptions(argc, argv, opt)) { // what does parseOptions do?
+		return mReturnCode; // what is the mReturnCode?
 	}
 
 	// finish argv processing
 	const char* codeFile = 0;
 
-	if (argc > 0) {
+	if (argc > 0) { // when is this condition true?
 		codeFile = argv[0];
-		opt.mDaemon = true;
+		opt.mDaemon = true; // what is this?
 		argv++; argc--;
 	}
 
 	opt.mArgc = argc;
 	opt.mArgv = argv;
 
+	//// ????
 	// read library configuration file
 	if (opt.mLibraryConfigFile)
 		SC_LanguageConfig::setConfigFile(opt.mLibraryConfigFile);
 	SC_LanguageConfig::readLibraryConfig(opt.mStandalone);
 
 	// initialize runtime
+	//// ???? prints "init_OSC"
 	initRuntime(opt);
 
 	// startup library
-	compileLibrary(opt.mStandalone);
+	//// gets us to the welcome message
+	compileLibrary(opt.mStandalone); // passes thru LanguageClient
 
 	// enter main loop
-	if (codeFile) executeFile(codeFile);
-	if (opt.mCallRun) runMain();
+	if (codeFile) executeFile(codeFile); // ????
+	if (opt.mCallRun) runMain(); /// ????
 
-	if (opt.mDaemon) {
-		daemonLoop();
+	if (opt.mDaemon) { // ????
+		daemonLoop(); // ????
 	}
 	else {
-		initInput();
-		startInput();
-		commandLoop();
-		endInput();
-		cleanupInput();
+		initInput(); // ????
+		startInput(); // ????
+		commandLoop(); // gives us the command line, blocking method
+		endInput(); // ????
+		cleanupInput(); // ????
 	}
 
-	if (opt.mCallStop) stopMain();
+	if (opt.mCallStop) stopMain(); // ???? can we ever reach this?
 
 	// shutdown library
-	shutdownLibrary();
-	flush();
+	shutdownLibrary(); // ????
+	flush(); // ????
 
-	shutdownRuntime();
+	shutdownRuntime(); // ???? prints "cleaning up OSC"
 
 	return mReturnCode;
 }

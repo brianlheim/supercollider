@@ -1779,7 +1779,7 @@ void traverseFullDepTree2()
 			post("\tByte Code Size %d\n", totalByteCodes);
 			//elapsed = TickCount() - compileStartTime;
 			//elapsed = 0;
-			elapsed = elapsedTime() - compileStartTime;
+			elapsed = elapsedTime() - compileStartTime; // why isn't this in compileLibrary?
 			post("\tcompiled %d files in %.2f seconds\n",
 				 gNumCompiledFiles, elapsed );
 			if(numOverwrites == 1){
@@ -1890,7 +1890,7 @@ void pyrmath_init_globs();
 void initPassOne()
 {
 	post("initPassOne started\n");
-	aboutToFreeRuntime();
+	aboutToFreeRuntime(); // no-op
 
 	//dump_pool_histo(pyr_pool_runtime);
 	pyr_pool_runtime->FreeAllInternal();
@@ -1899,27 +1899,27 @@ void initPassOne()
 	sClassExtFiles = 0;
 
 	void *ptr = pyr_pool_runtime->Alloc(sizeof(SymbolTable));
-	gMainVMGlobals->symbolTable  = new (ptr) SymbolTable(pyr_pool_runtime, 65536);
+	gMainVMGlobals->symbolTable  = new (ptr) SymbolTable(pyr_pool_runtime, 65536); // BH: ????
 
-	//gFileSymbolTable = newSymbolTable(512);
+	//gFileSymbolTable = newSymbolTable(512); // BH: can safely delete
 
-	pyrmath_init_globs();
+	pyrmath_init_globs(); // BH: no-op, this is never used
 
 	initSymbols(); // initialize symbol globals
-	//init_graph_compile();
+	//init_graph_compile(); // BH: can safely delete
 	initSpecialSelectors();
 	initSpecialClasses();
 	initClasses();
 	initParserPool();
-	initParseNodes();
-	initPrimitives();
+	initParseNodes(); // no-op
+	initPrimitives(); // ???? inits primitives, prints "NumPrimitives = x"
 	//tellPlugInsAboutToCompile();
-	initLexer();
+	initLexer(); // no-op
 	compileErrors = 0;
 	numClassDeps = 0;
 	compiledOK = false;
 	compiledDirectories.clear();
-	sc_InitCompileDirectory();
+	sc_InitCompileDirectory(); // ????
 	post("initPassOne done\n");
 }
 
@@ -1984,7 +1984,7 @@ bool passOne()
 		if (!passOne_ProcessDir(gCompileDir, 0))
 			return false;
 	} else
-		if (!gLanguageConfig->forEachIncludedDirectory(passOne_ProcessDir))
+		if (!gLanguageConfig->forEachIncludedDirectory(passOne_ProcessDir)) // ????
 			return false;
 
 	finiPassOne();
@@ -2130,15 +2130,15 @@ void shutdownLibrary()
 SCLANG_DLLEXPORT_C bool compileLibrary(bool standalone)
 {
 	//printf("->compileLibrary\n");
-	shutdownLibrary();
+	shutdownLibrary(); // ????
 
-	gLangMutex.lock();
+	gLangMutex.lock(); // ????
 	gNumCompiledFiles = 0;
-	compiledOK = false;
+	compiledOK = false; // ???? should this be a global variable
 
 	SC_LanguageConfig::readLibraryConfig(standalone);
 
-	compileStartTime = elapsedTime();
+	compileStartTime = elapsedTime(); // init compile start time
 
 	totalByteCodes = 0;
 
@@ -2155,9 +2155,9 @@ SCLANG_DLLEXPORT_C bool compileLibrary(bool standalone)
 
 		if (!compileErrors) {
 			buildDepTree();
-			traverseFullDepTree();
-			traverseFullDepTree2();
-			flushPostBuf();
+			traverseFullDepTree(); // sometimes prints errors
+			traverseFullDepTree2(); // prints more things, "compile done"
+			flushPostBuf(); // ????
 
 			if (!compileErrors && gShowWarnings) {
 				SymbolTable* symbolTable = gMainVMGlobals->symbolTable;

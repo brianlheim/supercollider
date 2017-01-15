@@ -107,7 +107,7 @@ SC_LanguageClient::~SC_LanguageClient()
 void SC_LanguageClient::initRuntime(const Options& opt)
 {
 	// start virtual machine
-	if (!mHiddenClient->mRunning) {
+	if (!mHiddenClient->mRunning) { // ????
 #ifdef __linux__
 		char deprecatedSupportDirectory[PATH_MAX];
 		sc_GetUserHomeDirectory(deprecatedSupportDirectory, PATH_MAX);
@@ -124,15 +124,15 @@ void SC_LanguageClient::initRuntime(const Options& opt)
 #endif
 
 		mHiddenClient->mRunning = true;
-		if (opt.mRuntimeDir) {
+		if (opt.mRuntimeDir) { // ????
 			int err = chdir(opt.mRuntimeDir);
 			if (err)
 				error("Cannot change to runtime directory: %s", strerror(errno));
 		}
-		pyr_init_mem_pools(opt.mMemSpace, opt.mMemGrow);
-		init_OSC(opt.mPort);
-		schedInit();
-		onInitRuntime();
+		pyr_init_mem_pools(opt.mMemSpace, opt.mMemGrow); // ????
+		init_OSC(opt.mPort); // ???? mPort is 57120
+		schedInit(); // ????
+		onInitRuntime(); // no-op
 	}
 }
 

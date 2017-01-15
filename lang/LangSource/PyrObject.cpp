@@ -1613,15 +1613,17 @@ void initClasses()
 
 	// build intrinsic classes
 	class_class = NULL;
+	// className, superClassName, numInstVars, numClassVars
 	class_object = makeIntrinsicClass(s_object, 0, 0, 4);
-	class_class = makeIntrinsicClass(s_class, s_object, classClassNumInstVars, 1);
+	class_class = makeIntrinsicClass(s_class, s_object, classClassNumInstVars, 1); // BH: this is 19, but why is that defined here??
 
 	// now fix class_class ptrs that were just previously installed erroneously
-	class_object->classptr->classptr = class_class;
-	class_class->classptr->classptr = class_class;
+	class_object->classptr->classptr = class_class; // object's metaclass is class
+	class_class->classptr->classptr = class_class; // class's metaclass is class
 	class_object_meta = class_object->classptr;
 	class_object_meta->superclass = class_class->name;
 
+	// class, varname, initial object
 		addIntrinsicClassVar(class_object, "dependantsDictionary", &o_nil);
 		addIntrinsicClassVar(class_object, "currentEnvironment", &o_nil);
 		addIntrinsicClassVar(class_object, "topEnvironment", &o_nil);

@@ -4306,7 +4306,7 @@ void initOpenGLPrimitives();
 
 	initSCDocPrimitives();
 
-	s_recvmsg = getsym("receiveMsg");
+	s_recvmsg = getsym("receiveMsg"); // ???? why is this defined here????
 	post("\tNumPrimitives = %d\n", nextPrimitiveIndex());
 }
 
