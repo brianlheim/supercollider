@@ -14,9 +14,9 @@ PR.registerLangHandler(
         [PR.PR_ATTRIB_NAME, /^'(?:[^\\']|\\.)*'/],
         [PR.PR_ATTRIB_VALUE, /^~\w+/],
         /* special variables */
-        [PR.PR_KEYWORD,         /^(?:false|inf|nil|true|thisFunction|thisFunctionDef|thisMethod|thisProcess|thisThread|currentEnvironment|topEnvironment)\b/],
+        [PR.PR_KEYWORD,         /^\b(?:false|inf|nil|true|thisFunction|thisFunctionDef|thisMethod|thisProcess|thisThread|currentEnvironment|topEnvironment)\b/],
         /* variable declarations */
-        [PR.PR_DECLARATION, /^(?:var|classvar|const|arg|super|this)\b/],
+        [PR.PR_DECLARATION, /^\b(?:var|classvar|const|arg|super|this)\b/],
 //        [PR.PR_DECLARATION, /^\|/],
         /* class names */
         [PR.PR_TYPE,        /^\b([A-Z][A-Za-z_0-9]+)\b/],
