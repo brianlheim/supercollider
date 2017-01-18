@@ -8,7 +8,7 @@ PR.registerLangHandler(
     ],
     [
         /* char literal */
-        [PR.PR_LITERAL,     /^\$(\\)?./],
+        [PR.PR_LITERAL,     /^\$\\?./],
         /* symbols */
         [PR.PR_ATTRIB_NAME, /^\\\w+/],
         [PR.PR_ATTRIB_NAME, /^'[^']+'/],
