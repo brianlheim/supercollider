@@ -11,7 +11,7 @@ PR.registerLangHandler(
         [PR.PR_LITERAL,     /^\$\\?./],
         /* symbols */
         [PR.PR_ATTRIB_NAME, /^\\\w*/],
-        [PR.PR_ATTRIB_NAME, /^'[^']+'/],
+        [PR.PR_ATTRIB_NAME, /^'(?:[^\\']|\\.)*'/],
         [PR.PR_ATTRIB_VALUE, /^~\w+/],
         /* special variables */
         [PR.PR_TAG,         /^(?:super|thisFunctionDef|thisFunction|thisMethod|thisProcess|thisThread|this)\b/],
