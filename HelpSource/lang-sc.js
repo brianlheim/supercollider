@@ -14,11 +14,11 @@ PR.registerLangHandler(
         [PR.PR_ATTRIB_NAME, /^'(?:[^\\']|\\.)*'/],
         [PR.PR_ATTRIB_VALUE, /^~\w+/],
         /* special variables */
-        [PR.PR_TAG,         /^(?:super|thisFunctionDef|thisFunction|thisMethod|thisProcess|thisThread|this)\b/],
+        [PR.PR_TAG,         /^(?:false|inf|nil|true|thisFunction|thisFunctionDef|thisMethod|thisProcess|thisThread|currentEnvironment|topEnvironment)\b/],
         /* special values */
         [PR.PR_KEYWORD,     /^(?:true|false|nil|inf)\b/],
         /* variable declarations */
-        [PR.PR_DECLARATION, /^(?:var|classvar|const|arg)\b/],
+        [PR.PR_DECLARATION, /^(?:var|classvar|const|arg|super|this)\b/],
 //        [PR.PR_DECLARATION, /^\|/],
         /* class names */
         [PR.PR_TYPE,        /^\b([A-Z][A-Za-z_0-9]+)\b/],
