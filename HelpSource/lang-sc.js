@@ -2,7 +2,7 @@ PR.registerLangHandler(
     PR.createSimpleLexer(
     [
         /* whitespace */
-        [PR.PR_PLAIN,       /^[\t\n\r \xA0]+/, null, '\t\n\r \xA0'],
+        [PR.PR_PLAIN,       /^\s+/, null, '\s'],
         /* strings */
         [PR.PR_STRING,      /^"(?:[^\\"]|\\.)*(?:"|$)/, null, '"'],
     ],
