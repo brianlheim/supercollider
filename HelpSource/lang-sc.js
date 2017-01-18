@@ -10,7 +10,7 @@ PR.registerLangHandler(
         /* char literal */
         [PR.PR_LITERAL,     /^\$\\?./],
         /* symbols */
-        [PR.PR_ATTRIB_NAME, /^\\\w+/],
+        [PR.PR_ATTRIB_NAME, /^\\\w*/],
         [PR.PR_ATTRIB_NAME, /^'[^']+'/],
         [PR.PR_ATTRIB_VALUE, /^~\w+/],
         /* special variables */
