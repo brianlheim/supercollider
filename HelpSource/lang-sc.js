@@ -19,7 +19,7 @@ PR.registerLangHandler(
         [PR.PR_DECLARATION, /^\b(?:var|classvar|const|arg|super|this)\b/],
 //        [PR.PR_DECLARATION, /^\|/],
         /* class names */
-        [PR.PR_TYPE,        /^\b([A-Z][A-Za-z_0-9]+)\b/],
+        [PR.PR_TYPE,        /^\b([A-Z][A-Za-z_0-9]*)\b/],
         [PR.PR_COMMENT,     /^\/(?:\/.*|\*(?:\/|\**[^*/])*(?:\*+\/?)?)/], //fixme: nested comments
         /* numbers */
         [PR.PR_LITERAL,     /^-?\d+r[\da-zA-Z]+(\.[\da-zA-Z]+)?/],
