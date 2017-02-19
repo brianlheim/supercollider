@@ -194,7 +194,7 @@ void compileNodeList(PyrParseNode *node, bool onTailBranch)
 
 void nodePostErrorLine(PyrParseNode* node)
 {
-	postErrorLine(node->mLineno, linestarts[node->mLineno], node->mCharno);
+	//postErrorLine(node->mLineno, linestarts[node->mLineno], node->mCharno);
 }
 
 PyrPushNameNode* newPyrPushNameNode(PyrSlotNode *slotNode)
@@ -213,7 +213,7 @@ void compilePushVar(PyrParseNode *node, PyrSymbol *varName)
 	classobj = gCompilingClass;
 	if (varName->name[0] >= 'A' && varName->name[0] <= 'Z') {
 		if (compilingCmdLine && varName->u.classobj == NULL) {
-			error("Class not defined.\n");
+			//error("Class not defined.\n");
 			nodePostErrorLine(node);
 			compileErrors++;
 		} else {
@@ -278,7 +278,7 @@ void compilePushVar(PyrParseNode *node, PyrSymbol *varName)
 				break;
 		}
 	} else {
-		error("Variable '%s' not defined.\n", varName->name);
+		//error("Variable '%s' not defined.\n", varName->name);
 		nodePostErrorLine(node);
 		compileErrors++;
 		//Debugger();
@@ -296,7 +296,7 @@ void PyrCurryArgNode::compile(PyrSlot *result)
 	if (gPartiallyAppliedFunction) {
 		compileOpcode(opPushTempZeroVar, mArgNum);
 	} else {
-		error("found _ argument outside of a call.\n");
+		//error("found _ argument outside of a call.\n");
 		nodePostErrorLine((PyrParseNode*)this);
 		compileErrors++;
 	}
@@ -2720,7 +2720,7 @@ void compileSwitchMsg(PyrCallNode* node)
 		numArgs = nodeListLength(argnode);
 
 		if (numArgs <= 2) {
-			error("Missing argument in switch statement");
+			//error("Missing argument in switch statement");
 			nodePostErrorLine(node);
 			compileErrors++;
 		};
@@ -3435,7 +3435,7 @@ void compileAssignVar(PyrParseNode* node, PyrSymbol* varName, bool drop)
 	classobj = gCompilingClass;
 	if (varName == s_this || varName == s_super || varName == s_curProcess || varName == s_curThread || varName == s_curMethod ||
 		varName == s_curBlock || varName == s_curClosure) {
-		error("You may not assign to '%s'.", varName->name);
+		//error("You may not assign to '%s'.", varName->name);
 		nodePostErrorLine(node);
 		compileErrors++;
 	} else if (varName->name[0] >= 'A' && varName->name[0] <= 'Z') {

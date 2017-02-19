@@ -416,7 +416,7 @@ void postChar(char c)
 
 void error(const char *fmt, ...)
 {
-	char buf[512];
+	/*char buf[512];
 	va_list ap;
 	va_start(ap, fmt);
 	int n = vsnprintf(buf, sizeof(buf), fmt, ap);
@@ -424,7 +424,7 @@ void error(const char *fmt, ...)
 		SC_LanguageClient *client = SC_LanguageClient::lockedInstance();
 		if (client) client->postError(buf, sc_min(n, sizeof(buf) - 1));
 		SC_LanguageClient::unlockInstance();
-	}
+	}*/
 }
 
 void flushPostBuf(void)
