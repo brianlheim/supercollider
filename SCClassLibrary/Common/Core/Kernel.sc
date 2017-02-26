@@ -611,6 +611,7 @@ Interpreter {
 		// attempts to parse as cmd-line.
 
 		// TODO: write .schelp documentation
+		^this.primitiveFailed
 	}
 
 	clearAll {
