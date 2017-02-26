@@ -2707,7 +2707,7 @@ int prParseString(struct VMGlobals *g, int numArgsPushed)
 
 	//assert(g->gc->SanityCheck());
 	parseFailed = yyparse();
-	parseFailed ? SetFalse(a) : SetTrue(a);
+	parseFailed ? slotCopy(a,&o_false) : slotCopy(a,&o_true);
 	//assert(g->gc->SanityCheck());
 
 	finiLexer();
