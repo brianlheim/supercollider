@@ -2683,20 +2683,25 @@ int prParseString(struct VMGlobals *g, int numArgsPushed)
 	b = g->sp - 1; // string to parse
 	c = g->sp;     // TRUE to parse as class library, FALSE to parse as cmd line
 
+	postfl("in parseString");
+
 	// check b is a string
 	if (NotObj(b)) return errWrongType;
 	if (!isKindOf(slotRawObject(b),  class_string)) return errWrongType;
 
-	// check c is boolean
-	if (NotObj(c)) return errWrongType;
-	if (!isKindOf(slotRawObject(c), class_boolean)) return errWrongType;
-
 	string = slotRawString(b);
 
+	postfl("got past check 1");
+
+	// check c is boolean
 	if(IsTrue(c))
 		parseClasslike = true;
-	else
+	else if(IsFalse(c))
 		parseClasslike = false;
+	else
+		return errWrongType;
+
+	postfl("got past checks");
 
 	gRootParseNode = NULL;
 	initParserPool();
@@ -2706,11 +2711,14 @@ int prParseString(struct VMGlobals *g, int numArgsPushed)
 //	compilingCmdLineErrorWindow = false;
 
 	//assert(g->gc->SanityCheck());
+	postfl("doing parse");
 	parseFailed = yyparse();
 	if(parseFailed)
 		slotCopy((g->sp - numArgsPushed + 1),&o_false);
 	else
 		slotCopy((g->sp - numArgsPushed + 1),&o_true);
+
+	postfl(parseFailed ? "parse failed" : "parse succeeded");
 	//assert(g->gc->SanityCheck());
 
 	finiLexer();
