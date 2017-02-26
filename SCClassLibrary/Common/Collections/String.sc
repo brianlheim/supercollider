@@ -314,6 +314,7 @@ String[char] : RawArray {
 		^this.as(Array).rotate(n).as(String)
 	}
 
+	parse { arg classlike = false; ^thisProcess.interpreter.compile(this, classlike); }
 	compile { ^thisProcess.interpreter.compile(this); }
 	interpret { ^thisProcess.interpreter.interpret(this); }
 	interpretPrint { ^thisProcess.interpreter.interpretPrint(this); }
