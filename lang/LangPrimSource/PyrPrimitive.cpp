@@ -2671,6 +2671,53 @@ int prCompileString(struct VMGlobals *g, int numArgsPushed)
 
 	return !(parseFailed || compileErrors) ? errNone : errFailed;
 }
+
+int prParseString(struct VMGlobals *g, int numArgsPushed)
+{
+	PyrSlot *a, *b, *c;
+	PyrString *string;
+//	PyrMethod *meth;
+	bool parseClasslike;
+
+	a = g->sp - 2; // this
+	b = g->sp - 1; // string to parse
+	c = g->sp;     // TRUE to parse as class library, FALSE to parse as cmd line
+
+	// check b is a string
+	if (NotObj(b)) return errWrongType;
+	if (!isKindOf(slotRawObject(b),  class_string)) return errWrongType;
+
+	// check c is boolean
+	if (NotObj(c)) return errWrongType;
+	if (!isKindOf(slotRawObject(c), class_boolean)) return errWrongType;
+
+	string = slotRawString(b);
+
+	if(IsTrue(c))
+		parseClasslike = true;
+	else
+		parseClasslike = false;
+
+	gRootParseNode = NULL;
+	initParserPool();
+	//assert(g->gc->SanityCheck());
+	startLexerCmdLine(string->s, string->size);
+	lexCmdLine = !parseClasslike; // naughty: override lexer's own knowledge
+//	compilingCmdLineErrorWindow = false;
+
+	//assert(g->gc->SanityCheck());
+	parseFailed = yyparse();
+	parseFailed ? SetFalse(a) : SetTrue(a);
+	//assert(g->gc->SanityCheck());
+
+	finiLexer();
+	freeParserPool();
+	pyr_pool_compile->FreeAll();
+
+	//flushErrors();
+//	compilingCmdLine = false;
+	return errNone;
+}
 #endif
 
 char sCodeStringIn[8192];
@@ -4146,6 +4193,7 @@ void initPrimitives()
 
 #if !SCPLAYER
 	definePrimitive(base, index++, "_CompileExpression", prCompileString, 2, 0);
+	definePrimitive(base, index++, "_ParseExpression", prParseString, 3, 0);
 #endif
 	definePrimitive(base, index++, "_GetBackTrace", prGetBackTrace, 1, 0);
 	definePrimitive(base, index++, "_DumpBackTrace", prDumpBackTrace, 1, 0);
