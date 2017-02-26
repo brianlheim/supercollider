@@ -603,6 +603,17 @@ Interpreter {
 		^nil
 	}
 
+	parse { arg string, classlike = false;
+		_ParseExpression
+		// attempts to parse an expression. If
+		// 'classlike' is true then attempts to
+		// parse as a class file; otherwise,
+		// attempts to parse as cmd-line.
+
+		// TODO: write .schelp documentation
+		^nil
+	}
+
 	clearAll {
 		a = b = c = d = e = f = g = h = i = j = k = l = m =
 		n = o = p = q = r = s = t = u = v = w = x = y = z = nil;
