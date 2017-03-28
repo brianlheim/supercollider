@@ -124,15 +124,8 @@ bool sc_DirectoryExists(const char *dirname)
 
 bool sc_IsSymlink(const char* path)
 {
-#if defined(_WIN32)
-	// FIXME
-	return false;
-#else
-	struct stat buf;
-
-	return ((stat(path, &buf) == 0) &&
-			S_ISLNK(buf.st_mode));
-#endif
+	bfs::path dirPath(path);
+	return bfs::is_symlink(dirPath);
 }
 
 bool sc_IsNonHostPlatformDir(const char *name)
