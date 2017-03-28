@@ -822,7 +822,7 @@ int prArrayAdd(struct VMGlobals *g, int numArgsPushed)
 	if (array->IsImmutable()) return errImmutableObject;
 
 	format = slotRawObject(a)->obj_format;
-	tag = gFormatElemTag[format];
+	/*tag =*/ gFormatElemTag[format];
 	/*if (tag > 0) {
 		if (GetTag(b) != tag) return errWrongType;
 	} else if (tag == 0) {
@@ -895,7 +895,7 @@ int prArrayInsert(struct VMGlobals *g, int numArgsPushed)
 
 	array = slotRawObject(a);
 	const int format = slotRawObject(a)->obj_format;
-	const int tag = gFormatElemTag[format];
+	// const int tag = gFormatElemTag[format];
 
 	const int size = array->size;
 	int index = slotRawInt(b);
@@ -1204,7 +1204,6 @@ int prArrayPop(struct VMGlobals *g, int numArgsPushed)
 int prArrayExtend(struct VMGlobals *g, int numArgsPushed)
 {
 	int numbytes, elemsize, format;
-	int err;
 
 	PyrSlot *a = g->sp - 2; // array
 	PyrSlot *b = g->sp - 1; // size
@@ -1236,6 +1235,7 @@ int prArrayExtend(struct VMGlobals *g, int numArgsPushed)
 	int32 ival;
 	float fval;
 	double dval;
+	int err = errNone;
 
 	PyrSlot *slots = aobj->slots;
 	switch (format) {
@@ -1243,50 +1243,78 @@ int prArrayExtend(struct VMGlobals *g, int numArgsPushed)
 			fillSlots(slots + aobj->size, fillSize, c);
 			g->gc->GCWrite(aobj, c);
 			break;
+
 		case obj_int32 : {
 			int32* ptr = (int32*)slots + aobj->size;
 			err = slotIntVal(c, &ival);
-			if (err) return err;
-			for (int i=0; i<fillSize; ++i) ptr[i] = ival;
-		} break;
+			if (err)
+				return err;
+			for (int i=0; i<fillSize; ++i)
+				ptr[i] = ival;
+		}
+			break;
+
 		case obj_int16 : {
 			int16* ptr = (int16*)slots + aobj->size;
 			err = slotIntVal(c, &ival);
-			if (err) return err;
-			for (int i=0; i<fillSize; ++i) ptr[i] = ival;
-		} break;
+			if (err)
+				return err;
+			for (int i=0; i<fillSize; ++i)
+				ptr[i] = ival;
+		}
+			break;
+
 		case obj_int8 : {
 			int8* ptr = (int8*)slots + aobj->size;
 			err = slotIntVal(c, &ival);
-			if (err) return err;
-			for (int i=0; i<fillSize; ++i) ptr[i] = ival;
-		} break;
+			if (err)
+				return err;
+			for (int i=0; i<fillSize; ++i)
+				ptr[i] = ival;
+		}
+			break;
+
 		case obj_char : {
 			char* ptr = (char*)slots + aobj->size;
-			if (NotChar(c)) return errWrongType;
+			if (NotChar(c))
+				return errWrongType;
 			ival = slotRawChar(c);
 			for (int i=0; i<fillSize; ++i) ptr[i] = ival;
-		} break;
+		}
+			break;
+
 		case obj_symbol : {
 			PyrSymbol** ptr = (PyrSymbol**)slots + aobj->size;
-			if (NotSym(c)) return errWrongType;
+			if (NotSym(c))
+				return errWrongType;
 			PyrSymbol *sym = slotRawSymbol(c);
 			for (int i=0; i<fillSize; ++i) ptr[i] = sym;
-		} break;
+		}
+			break;
+
 		case obj_float : {
 			float* ptr = (float*)slots + aobj->size;
 			err = slotFloatVal(c, &fval);
-			for (int i=0; i<fillSize; ++i) ptr[i] = fval;
-		} break;
+			if (err)
+				return err;
+			for (int i=0; i<fillSize; ++i)
+				ptr[i] = fval;
+		}
+			break;
+
 		case obj_double : {
 			double* ptr = (double*)slots + aobj->size;
 			err = slotDoubleVal(c, &dval);
-			for (int i=0; i<fillSize; ++i) ptr[i] = dval;
-		} break;
+			if (err)
+				return err;
+			for (int i=0; i<fillSize; ++i)
+				ptr[i] = dval;
+		}
+			break;
 	}
 
 	aobj->size = slotRawInt(b);
-	return errNone;
+	return err;
 }
 
 int prArrayGrow(struct VMGlobals *g, int numArgsPushed)
@@ -2300,7 +2328,6 @@ int prArrayIndexOfGreaterThan(struct VMGlobals *g, int numArgsPushed)
 	obj = slotRawObject(a);
 
 	size = obj->size;
-	slots = obj->slots;
 
 	err = slotDoubleVal(b, &s);
 	if (err) return err;
