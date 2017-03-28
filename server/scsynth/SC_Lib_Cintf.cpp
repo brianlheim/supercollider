@@ -30,6 +30,7 @@
 #include "SC_InterfaceTable.h"
 #include "SC_DirUtils.h"
 #include <stdexcept>
+#include <cstring> // strncpy
 
 #include <boost/filesystem/path.hpp> // path
 #include <boost/filesystem/operations.hpp> // is_directory
@@ -200,7 +201,7 @@ void initialize_library(const char *uGensPluginPath)
 		sc_GetResourceDirectory(pluginDir, MAXPATHLEN);
 		bfs::path dirPath(pluginDir);
 		dirPath /= SC_PLUGIN_DIR_NAME;
-		strncpy(pluginDir, dirPath, MAXPATHLEN);
+		std::strncpy(pluginDir, dirPath.c_str(), MAXPATHLEN);
 		pluginDir[MAXPATHLEN-1] = '\0';
 
 		if (bfs::is_directory(dirPath)) {
