@@ -54,23 +54,19 @@
 #endif
 #endif
 
+#include <boost/filesystem/path.hpp>
+
+namespace bfs = boost::filesystem;
+
 const char * gIdeName = "none";
 
 // Add a component to a path.
 
 void sc_AppendToPath(char *path, size_t max_size, const char *component)
 {
-	size_t currentLength = strlen(path);
-	if (currentLength >= max_size-1)
-		return;
-	path[currentLength] = SC_PATH_DELIMITER[0];
-	path[currentLength+1] = 0;
-	++currentLength;
-
-	char * tail = path + currentLength;
-	size_t remain = max_size - currentLength;
-
-	strncat(tail, component, remain);
+	bfs::path thePath(path);
+	thePath /= component;
+	strncpy(path, thePath.c_str(), max_size);
 }
 
 
