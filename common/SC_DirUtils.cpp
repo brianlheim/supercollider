@@ -119,7 +119,7 @@ char *sc_StandardizePath(const char *path, char *newpath2)
 bool sc_DirectoryExists(const char *dirname)
 {
 	bfs::path dirPath(dirname);
-	return bfs::exists(dirPath) && bfs::is_directory(dirPath);
+	return bfs::is_directory(dirPath);
 }
 
 bool sc_IsSymlink(const char* path)
