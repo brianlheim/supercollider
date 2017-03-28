@@ -54,7 +54,7 @@
 #endif
 #endif
 
-#include <boost/filesystem/path.hpp>
+#include <boost/filesystem/path.hpp> // path
 
 namespace bfs = boost::filesystem;
 
@@ -67,6 +67,7 @@ void sc_AppendToPath(char *path, size_t max_size, const char *component)
 	bfs::path thePath(path);
 	thePath /= component;
 	strncpy(path, thePath.c_str(), max_size);
+	path[max_size-1] = '\0';
 }
 
 
