@@ -2149,9 +2149,9 @@ int prArrayNormalizeSum(struct VMGlobals *g, int numArgsPushed)
 
 int prArrayWIndex(struct VMGlobals *g, int numArgsPushed)
 {
-	PyrSlot *a, *slots;
+	PyrSlot *a;
 	PyrObject *obj;
-	int i, j, size, err;
+	int i, size, err;
 	double r, w, sum;
 
 	a = g->sp;
@@ -2160,18 +2160,15 @@ int prArrayWIndex(struct VMGlobals *g, int numArgsPushed)
 	r = g->rgen->frand();
 	obj = slotRawObject(a);
 	size = obj->size;
-	j = size - 1;
-	slots = obj->slots;
-	for (i=0; i<size; ++i) {
+
+	for (i = 0; i < size && sum < r; ++i) {
 		err = getIndexedDouble(obj, i, &w);
-		if (err) return err;
+		if (err)
+			return err;
 		sum += w;
-		if (sum >= r) {
-			j = i;
-			break;
-		}
 	}
-	SetInt(a, j);
+
+	SetInt(a, i);
 	return errNone;
 }
 
