@@ -32,6 +32,7 @@
 #include <stdexcept>
 
 #include <boost/filesystem/path.hpp> // path
+#include <boost/filesystem/operations.hpp> // is_directory
 
 #ifndef _MSC_VER
 #include <dirent.h>
@@ -202,7 +203,7 @@ void initialize_library(const char *uGensPluginPath)
 		strncpy(pluginDir, dirPath, MAXPATHLEN);
 		pluginDir[MAXPATHLEN-1] = '\0';
 
-		if (sc_DirectoryExists(pluginDir)) {
+		if (bfs::is_directory(dirPath)) {
 			PlugIn_LoadDir(pluginDir, true);
 		}
 	}
@@ -377,8 +378,6 @@ static bool PlugIn_Load(const char *filename)
 
 static bool PlugIn_LoadDir(const char *dirname, bool reportError)
 {
-	bool success = true;
-
 	SC_DirHandle *dir = sc_OpenDir(dirname);
 	if (!dir) {
 		if (reportError) {
@@ -388,26 +387,31 @@ static bool PlugIn_LoadDir(const char *dirname, bool reportError)
 	}
 
 	int firstCharOffset = strlen(dirname)+1;
+	bool success = true;
 
 	for (;;) {
-		char diritem[MAXPATHLEN];
+		char dirItem[MAXPATHLEN];
 		bool skipItem = true;
-		bool validItem = sc_ReadDir(dir, dirname, diritem, skipItem);
-		if (!validItem) break;
-		if (skipItem || (*(diritem+firstCharOffset) == '.')) continue;  // skip files+folders whose first char is a dot
+		bool validItem = sc_ReadDir(dir, dirname, dirItem, skipItem);
+		if (!validItem)
+			break;
+		if (skipItem || (*(dirItem+firstCharOffset) == '.'))
+			continue;  // skip files+folders whose first char is a dot
 
-	if (sc_DirectoryExists(diritem)) {
-			success = PlugIn_LoadDir(diritem, reportError);
-	} else {
-			int dnamelen = strlen(diritem);
+		bfs::path dirPath(dirItem);
+		if (bfs::is_directory(dirPath)) {
+			success = PlugIn_LoadDir(dirItem, reportError);
+		} else {
+			int dnamelen = strlen(dirItem);
 			int extlen = strlen(SC_PLUGIN_EXT);
-			char *extptr = diritem+dnamelen-extlen;
+			char *extptr = dirItem+dnamelen-extlen;
 			if (strncmp(extptr, SC_PLUGIN_EXT, extlen) == 0) {
-				success = PlugIn_Load(diritem);
+				success = PlugIn_Load(dirItem);
 			}
-	}
+		}
 
-		if (!success) continue;
+		if (!success)
+			break;
 	}
 
 	sc_CloseDir(dir);

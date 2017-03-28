@@ -44,6 +44,9 @@
 #include <stdexcept>
 #include <string>
 
+#include <boost/filesystem/path.hpp> // path
+#include <boost/filesystem/operations.hpp> // is_directory
+
 extern Malloc gMalloc;
 
 int32 GetHash(ParamSpec* inParamSpec)
@@ -699,18 +702,19 @@ GraphDef* GraphDef_LoadDir(World *inWorld, char *dirname, GraphDef *inList)
 	}
 
 	for (;;) {
-		char diritem[MAXPATHLEN];
+		char dirItem[MAXPATHLEN];
 		bool skipItem = false;
-		bool validItem = sc_ReadDir(dir, dirname, diritem, skipItem);
+		bool validItem = sc_ReadDir(dir, dirname, dirItem, skipItem);
 		if (!validItem) break;
 		if (skipItem) continue;
 
-		if (sc_DirectoryExists(diritem)) {
-			inList = GraphDef_LoadDir(inWorld, diritem, inList);
+		bfs::path dirPath(dirItem);
+		if (bfs::is_directory(dirPath)) {
+			inList = GraphDef_LoadDir(inWorld, dirItem, inList);
 		} else {
-			int dnamelen = strlen(diritem);
-			if (strncmp(diritem+dnamelen-9, ".scsyndef", 9) == 0) {
-				inList = GraphDef_Load(inWorld, diritem, inList);
+			int dnamelen = strlen(dirItem);
+			if (strncmp(dirItem+dnamelen-9, ".scsyndef", 9) == 0) {
+				inList = GraphDef_Load(inWorld, dirItem, inList);
 			}
 		}
 	}

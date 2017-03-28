@@ -55,7 +55,7 @@
 #endif
 
 #include <boost/filesystem/path.hpp> // path
-#include <boost/filesystem/operations.hpp> // exists, is_directory
+#include <boost/filesystem/operations.hpp> // is_directory
 
 namespace bfs = boost::filesystem;
 

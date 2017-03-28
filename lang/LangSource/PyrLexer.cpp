@@ -36,7 +36,7 @@
 #endif
 
 #include <boost/filesystem/path.hpp> // path
-
+#include <boost/filesystem/operations.hpp> // is_directory
 
 #include "PyrParseNode.h"
 #include "Bison/lang11d_tab.h"
@@ -1937,7 +1937,8 @@ void finiPassOne()
 
 static bool passOne_ProcessDir(const char *dirname, int level)
 {
-	if (!sc_DirectoryExists(dirname))
+	bfs::path dirPath(dirname);
+	if (!bfs::is_directory(dirPath)))
 		return true;
 
 	if (compiledDirectories.find(std::string(dirname)) != compiledDirectories.end())
@@ -1960,19 +1961,24 @@ static bool passOne_ProcessDir(const char *dirname, int level)
 	}
 
 	for (;;) {
-		char diritem[MAXPATHLEN];
+		char dirItem[MAXPATHLEN];
 		bool skipItem = true;
-		bool validItem = sc_ReadDir(dir, dirname, diritem, skipItem);
-		if (!validItem) break;
-		if (skipItem) continue;
+		bool validItem = sc_ReadDir(dir, dirname, dirItem, skipItem);
+		if (!validItem)
+			break;
+		if (skipItem)
+			continue;
 
-		if (sc_DirectoryExists(diritem)) {
-			success = passOne_ProcessDir(diritem, level + 1);
+		bfs::path dirItemPath(dirItem);
+
+		if (bfs::is_directory(dirItem)) {
+			success = passOne_ProcessDir(dirItem, level + 1);
 		} else {
-			success = passOne_ProcessOneFile(diritem, level + 1);
+			success = passOne_ProcessOneFile(dirItem, level + 1);
 		}
 
-		if (!success) break;
+		if (!success)
+			break;
 	}
 
 	compiledDirectories.insert(std::string(dirname));
@@ -2045,7 +2051,8 @@ bool passOne_ProcessOneFile(const char * filenamearg, int level)
 			success = false;
 		}
 	} else {
-		if (sc_DirectoryExists(filename))
+		bfs::path filepath(filename);
+		if (bfs::is_directory(filepath))
 			success = passOne_ProcessDir(filename, level);
 	}
 	return success;
