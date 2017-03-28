@@ -151,7 +151,8 @@ bool sc_IsNonHostPlatformDir(const char *name)
 
 inline static bool sc_IsSpecialDirectory(const char* name)
 {
-	return (strcmp(name, ".") == 0) || (strcmp(name, "..")  == 0);
+	bfs::path path(name);
+	return path.filename_is_dot() || path.filename_is_dot_dot();
 }
 
 // Returns TRUE iff 'name' is to be ignored during compilation.
