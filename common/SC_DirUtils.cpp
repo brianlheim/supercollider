@@ -55,6 +55,7 @@
 #endif
 
 #include <boost/filesystem/path.hpp> // path
+#include <boost/filesystem/operations.hpp> // exists, is_directory
 
 namespace bfs = boost::filesystem;
 
@@ -117,15 +118,8 @@ char *sc_StandardizePath(const char *path, char *newpath2)
 
 bool sc_DirectoryExists(const char *dirname)
 {
-#if defined(_WIN32)
-	DWORD attr = GetFileAttributes(dirname);
-	return ((attr != INVALID_FILE_ATTRIBUTES) &&
-			(attr & FILE_ATTRIBUTE_DIRECTORY));
-#else
-	struct stat buf;
-	return ((stat(dirname, &buf) == 0) &&
-			S_ISDIR(buf.st_mode));
-#endif
+	bfs::path dirPath(dirname);
+	return bfs::exists(dirPath) && bfs::is_directory(dirPath);
 }
 
 bool sc_IsSymlink(const char* path)
