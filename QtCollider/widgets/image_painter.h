@@ -84,10 +84,10 @@ struct ImagePainter
             return;
         }
 
-        const QPixmap & pixmap = image->pixmap();
-
         if (sourceRect.isNull() || targetRect.isNull())
             return;
+
+        const QPixmap & pixmap = image->pixmap();
 
         painter->save();
         painter->setOpacity(opacity);
@@ -144,7 +144,7 @@ struct ImagePainter
         bool tileVertically = verticalMode == TileVertically;
         bool tileHorizontally = horizontalMode == TileHorizontally;
 
-        qreal x_origin = rect.left();
+        // qreal x_origin = rect.left();
         qreal y_origin = rect.top();
         do {
             do {
@@ -154,7 +154,7 @@ struct ImagePainter
                     rect.moveTop( rect.top() + rect.height() );
                 else
                     break;
-            } while( rect.top() <= targetRect.bottom() );
+            } while ( rect.top() <= targetRect.bottom() );
 
             if (tileHorizontally) {
                 rect.moveTop( y_origin );
@@ -162,7 +162,7 @@ struct ImagePainter
             }
             else
                 break;
-        } while (rect.left() <= targetRect.right());
+        } while ( rect.left() <= targetRect.right() );
 
         painter->restore();
     }

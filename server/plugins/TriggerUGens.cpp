@@ -2000,7 +2000,7 @@ static inline float Peak_unroll_body(Peak *unit, int inNumSamples, float & level
 {
 	float *out = OUT(0);
 	float *in = IN(0);
-	float inlevel;
+	float inlevel = 0;
 
 	using namespace std;
 	for (int i = 0; i != inNumSamples; i += 8, out += 8, in += 8)
@@ -2130,9 +2130,9 @@ void Peak_next_ai_k_nova(Peak *unit, int inNumSamples)
 	float *out = ZOUT(0);
 	float *in = ZIN(0);
 	float level = unit->mLevel;
-	float inlevel;
+	//float inlevel;
 	inNumSamples = INBUFLENGTH(0);
-	inlevel = nova::peak_vec_simd(in, &level, inNumSamples);
+	/*inlevel =*/ nova::peak_vec_simd(in, &level, inNumSamples);
 	ZXP(out) = level;
 	unit->mLevel = level;
 }

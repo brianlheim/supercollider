@@ -65,9 +65,9 @@ static FILE* gPostDest = stdout;
 SC_TerminalClient::SC_TerminalClient(const char* name)
 	: SC_LanguageClient(name),
 	  mReturnCode(0),
-	  mUseReadline(false),
-      mWork(mIoService),
+	  mWork(mIoService),
 	  mTimer(mIoService),
+	  mUseReadline(false),
 #ifndef _WIN32
 	  mStdIn(mInputService, STDIN_FILENO)
 #else

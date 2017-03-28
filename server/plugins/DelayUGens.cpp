@@ -1882,7 +1882,8 @@ void Pitch_next_a(Pitch *unit, int inNumSamples)
 				float threshold = zerolagval * unit->m_peakthresh;
 
 				// skip until drop below threshold
-				int binstep, peakbinstep = 0;
+				int binstep;
+				// int peakbinstep = 0;
 				int i;
 				for (i = 1; i <= maxperiod; i += binstep) {
 					// compute sum of one lag
@@ -1916,7 +1917,7 @@ void Pitch_next_a(Pitch *unit, int inNumSamples)
 							if (ampsum > maxsum) {
 								foundPeak = true;
 								maxsum = ampsum;
-								peakbinstep = binstep;
+								// peakbinstep = binstep;
 								period = i;
 							}
 						} else if (foundPeak) break;
@@ -2084,7 +2085,8 @@ void Pitch_next_k(Pitch *unit, int inNumSamples)
 				float threshold = zerolagval * unit->m_peakthresh;
 
 				// skip until drop below threshold
-				int binstep, peakbinstep = 0;
+				int binstep;
+				// int peakbinstep = 0;
 				int i;
 				for (i = 1; i <= maxperiod; i += binstep) {
 					// compute sum of one lag
@@ -2118,7 +2120,7 @@ void Pitch_next_k(Pitch *unit, int inNumSamples)
 							if (ampsum > maxsum) {
 								foundPeak = true;
 								maxsum = ampsum;
-								peakbinstep = binstep;
+								// peakbinstep = binstep;
 								period = i;
 							}
 						} else if (foundPeak) break;
@@ -2202,7 +2204,7 @@ void Pitch_next_k(Pitch *unit, int inNumSamples)
 							hasfreq = 1.f;
 
 						// nescivi: not sure about this one?
-						startperiod = 1; // (ksamps+downsamp-1)/downsamp;
+						// startperiod = 1; // (ksamps+downsamp-1)/downsamp;
 					}
 				}
 			}/* else {
@@ -2512,7 +2514,7 @@ struct DelayC_helper<true>
 				d1 = d2 = d3 = 0.f;
 				d0 = bufData[irdphase0 & mask];
 			} else if (irdphase2 < 0) {
-				d1 = d2 = d3 = 0.f;
+				d2 = d3 = 0.f;
 				d0 = bufData[irdphase0 & mask];
 				d1 = bufData[irdphase1 & mask];
 			} else if (irdphase3 < 0) {
@@ -2679,7 +2681,7 @@ struct CombC_helper<true>
 				d1 = d2 = d3 = 0.f;
 				d0 = bufData[irdphase0 & mask];
 			} else if (irdphase2 < 0) {
-				d1 = d2 = d3 = 0.f;
+				d2 = d3 = 0.f;
 				d0 = bufData[irdphase0 & mask];
 				d1 = bufData[irdphase1 & mask];
 			} else if (irdphase3 < 0) {
@@ -2854,7 +2856,7 @@ struct AllpassC_helper<true>
 				d1 = d2 = d3 = 0.f;
 				d0 = bufData[irdphase0 & mask];
 			} else if (irdphase2 < 0) {
-				d1 = d2 = d3 = 0.f;
+				d2 = d3 = 0.f;
 				d0 = bufData[irdphase0 & mask];
 				d1 = bufData[irdphase1 & mask];
 			} else if (irdphase3 < 0) {
@@ -6468,7 +6470,7 @@ void Pluck_next_aa_z(Pluck *unit, int inNumSamples)
 					d1 = d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 				} else if (irdphase2 < 0) {
-					d1 = d2 = d3 = 0.f;
+					d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 					d1 = dlybuf[irdphase1 & mask];
 				} else if (irdphase3 < 0) {
@@ -6525,7 +6527,7 @@ void Pluck_next_aa_z(Pluck *unit, int inNumSamples)
 					d1 = d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 				} else if (irdphase2 < 0) {
-					d1 = d2 = d3 = 0.f;
+					d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 					d1 = dlybuf[irdphase1 & mask];
 				} else if (irdphase3 < 0) {
@@ -6711,7 +6713,7 @@ void Pluck_next_kk_z(Pluck *unit, int inNumSamples)
 					d1 = d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 				} else if (irdphase2 < 0) {
-					d1 = d2 = d3 = 0.f;
+					d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 					d1 = dlybuf[irdphase1 & mask];
 				} else if (irdphase3 < 0) {
@@ -6765,7 +6767,7 @@ void Pluck_next_kk_z(Pluck *unit, int inNumSamples)
 					d1 = d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 				} else if (irdphase2 < 0) {
-					d1 = d2 = d3 = 0.f;
+					d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 					d1 = dlybuf[irdphase1 & mask];
 				} else if (irdphase3 < 0) {
@@ -6957,7 +6959,7 @@ void Pluck_next_ak_z(Pluck *unit, int inNumSamples)
 					d1 = d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 				} else if (irdphase2 < 0) {
-					d1 = d2 = d3 = 0.f;
+					d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 					d1 = dlybuf[irdphase1 & mask];
 				} else if (irdphase3 < 0) {
@@ -7016,7 +7018,7 @@ void Pluck_next_ak_z(Pluck *unit, int inNumSamples)
 					d1 = d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 				} else if (irdphase2 < 0) {
-					d1 = d2 = d3 = 0.f;
+					d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 					d1 = dlybuf[irdphase1 & mask];
 				} else if (irdphase3 < 0) {
@@ -7200,7 +7202,7 @@ void Pluck_next_ka_z(Pluck *unit, int inNumSamples)
 					d1 = d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 				} else if (irdphase2 < 0) {
-					d1 = d2 = d3 = 0.f;
+					d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 					d1 = dlybuf[irdphase1 & mask];
 				} else if (irdphase3 < 0) {
@@ -7252,7 +7254,7 @@ void Pluck_next_ka_z(Pluck *unit, int inNumSamples)
 					d1 = d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 				} else if (irdphase2 < 0) {
-					d1 = d2 = d3 = 0.f;
+					d2 = d3 = 0.f;
 					d0 = dlybuf[irdphase0 & mask];
 					d1 = dlybuf[irdphase1 & mask];
 				} else if (irdphase3 < 0) {

@@ -418,6 +418,8 @@ static int prNetAddr_Disconnect(VMGlobals *g, int numArgsPushed)
 	if (comPort) {
 		err = comPort->Close();
 		SetPtr(netAddrObj->slots + ivxNetAddr_Socket, NULL);
+	} else {
+		err = errNone;
 	}
 
 	return err;

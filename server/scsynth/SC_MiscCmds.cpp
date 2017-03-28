@@ -1790,7 +1790,7 @@ SCErr meth_s_getn(World *inWorld, int inSize, char *inData, ReplyAddress* inRepl
 
 	while (msg.remain()) {
 		if (msg.nextTag('i') == 's') {
-			int32* name = msg.gets4();
+			int32* name = msg.gets4(0);
 			int32 hash = Hash(name);
 			int32 n = msg.geti();
 			packet.addtag('s');

@@ -445,15 +445,16 @@ void QcGraph::setIndexSelected( int index, bool select )
   Q_ASSERT( index >= 0 && index < _model.elementCount() );
 
   QcGraphElement *e = _model.elementAt( index );
-  if( e->selected == select ) return;
+  if( e->selected == select )
+    return;
 
   if( select ) {
     e->selected = true;
-    int c = _model.elementCount();
     int si = 0;
     int i = 0;
     while( i < index ) {
-      if( _model.elementAt(i)->selected ) ++si;
+      if( _model.elementAt(i)->selected )
+        ++si;
       ++i;
     }
     _selection.elems.insert( si, SelectedElement(e) );
@@ -743,7 +744,6 @@ void QcGraph::addCurve( QPainterPath &path, QcGraphElement *e1, QcGraphElement *
 
     path.moveTo( pt1 );
 
-    float dx = (pt2.x() - pt1.x());
     float dy = (pt2.y() - pt1.y());
 
     // prevent NaN, optimize

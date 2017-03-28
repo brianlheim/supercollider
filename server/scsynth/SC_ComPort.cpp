@@ -52,7 +52,7 @@ bool ProcessOSCPacket(World *inWorld, OSC_Packet *inPacket);
 
 namespace scsynth {
 
-const size_t kMaxUDPSize = 65535;
+// const size_t kMaxUDPSize = 65535;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
