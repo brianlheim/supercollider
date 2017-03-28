@@ -61,10 +61,13 @@
 
 #include "SCDocPrim.h"
 
+#include <boost/filesystem/path.hpp> // path
 
 #ifdef __clang__
 #pragma clang diagnostic ignored "-Warray-bounds"
 #endif
+
+namespace bfs = boost::filesystem;
 
 int yyparse();
 
@@ -3573,7 +3576,10 @@ static int prLanguageConfig_writeConfigFile(struct VMGlobals * g, int numArgsPus
 			return errWrongType;
 	} else {
 		sc_GetUserConfigDirectory(path, PATH_MAX);
-		sc_AppendToPath(path, MAXPATHLEN, "sclang_conf.yaml");
+		bfs::path thePath(path);
+		thePath /= "sclang_conf.yaml";
+		strncpy(path, thePath.c_str(), MAXPATHLEN);
+		path[MAXPATHLEN-1] = '\0';
 	}
 
 	gLanguageConfig->writeLibraryConfigYAML(path);

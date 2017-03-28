@@ -30,15 +30,15 @@
 #include "SC_InterfaceTable.h"
 #include "SC_DirUtils.h"
 #include <stdexcept>
+
+#include <boost/filesystem/path.hpp> // path
+
 #ifndef _MSC_VER
 #include <dirent.h>
 #endif //_MSC_VER
 
 #ifndef _WIN32
 #include <dlfcn.h>
-#endif
-
-#ifdef _WIN32
 #include "SC_Win32Utils.h"
 #else
 #include <libgen.h>
@@ -64,6 +64,8 @@ extern "C" {
 }
 char gTempVal;
 #endif
+
+namespace bfs = boost::filesystem;
 
 Malloc gMalloc;
 HashTable<SC_LibCmd, Malloc> *gCmdLib;
@@ -195,7 +197,10 @@ void initialize_library(const char *uGensPluginPath)
 		// load default plugin directory
 		char pluginDir[MAXPATHLEN];
 		sc_GetResourceDirectory(pluginDir, MAXPATHLEN);
-		sc_AppendToPath(pluginDir, MAXPATHLEN, SC_PLUGIN_DIR_NAME);
+		bfs::path dirPath(pluginDir);
+		dirPath /= SC_PLUGIN_DIR_NAME;
+		strncpy(pluginDir, dirPath, MAXPATHLEN);
+		pluginDir[MAXPATHLEN-1] = '\0';
 
 		if (sc_DirectoryExists(pluginDir)) {
 			PlugIn_LoadDir(pluginDir, true);

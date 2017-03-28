@@ -41,10 +41,13 @@
 
 #include <fstream>
 
-#include <boost/filesystem.hpp>
+#include <boost/filesystem/path.hpp>       // path
+#include <boost/filesystem/operations.hpp> // absolute
+
 #include "yaml-cpp/yaml.h"
 
 using namespace std;
+namespace bfs = boost::filesystem;
 
 SC_LanguageConfig *gLanguageConfig = 0;
 string SC_LanguageConfig::gConfigFile;
@@ -55,12 +58,11 @@ static bool findPath( SC_LanguageConfig::DirVector & vec, const char * path, boo
 	sc_StandardizePath(path, standardPath);
 
 	for ( SC_LanguageConfig::DirVector::iterator it = vec.begin(); it != vec.end(); ++it) {
-		typedef boost::filesystem::path Path;
-		Path stdPath(standardPath), thisPath(it->c_str());
+		bfs::path stdPath(standardPath), thisPath(it->c_str());
 		stdPath = stdPath / ".";
 		thisPath = thisPath / ".";
 
-		if (boost::filesystem::absolute(stdPath) == boost::filesystem::absolute(thisPath))
+		if (bfs::absolute(stdPath) == bfs::absolute(thisPath))
 			return true;
 	}
 
@@ -78,7 +80,10 @@ SC_LanguageConfig::SC_LanguageConfig(bool optStandalone)
 
 	if( !optStandalone ) {
 		sc_GetResourceDirectory(classLibraryDir, MAXPATHLEN-32);
-		sc_AppendToPath(classLibraryDir, MAXPATHLEN, "SCClassLibrary");
+		bfs::path dirPath(classLibraryDir);
+		dirPath /= "SCClassLibrary";
+		strncpy(classLibraryDir, dirPath, MAXPATHLEN);
+		classLibraryDir[MAXPATHLEN-1] = '\0';
 		findPath(mDefaultClassLibraryDirectories, classLibraryDir, true);
 	}
 

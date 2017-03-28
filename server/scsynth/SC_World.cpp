@@ -285,7 +285,10 @@ void World_LoadGraphDefs(World* world)
 			sc_GetResourceDirectory(resourceDir, MAXPATHLEN);
 		else
 			sc_GetUserAppSupportDirectory(resourceDir, MAXPATHLEN);
-		sc_AppendToPath(resourceDir, MAXPATHLEN, "synthdefs");
+		bfs::path dirPath(resourceDir);
+		dirPath /= "synthdefs";
+		strncpy(resourceDir, dirPath, MAXPATHLEN);
+		resourceDir[MAXPATHLEN-1] = '\0';
 		if(world->mVerbosity > 0)
 			scprintf("Loading synthdefs from default path: %s\n", resourceDir);
 		list = GraphDef_LoadDir(world, resourceDir, list);

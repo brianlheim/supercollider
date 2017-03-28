@@ -35,7 +35,7 @@
 # include <sys/param.h>
 #endif
 
-#include <boost/filesystem/path.hpp>
+#include <boost/filesystem/path.hpp> // path
 
 
 #include "PyrParseNode.h"
@@ -68,6 +68,8 @@
 
 #include "SC_DirUtils.h"
 #include "SC_TextUtils.hpp"
+
+namespace bfs = boost::filesystem;
 
 int yyparse();
 int processaccidental1(char *s);
@@ -161,7 +163,10 @@ static void sc_InitCompileDirectory(void)
 {
 	// main class library folder: only used for relative path resolution
 	sc_GetResourceDirectory(gCompileDir, MAXPATHLEN-32);
-	sc_AppendToPath(gCompileDir, MAXPATHLEN, "SCClassLibrary");
+	bfs::path thePath(gCompileDir);
+	thePath /= "SCClassLibrary";
+	strncpy(gCompileDir, thePath.c_str(), MAXPATHLEN);
+	gCompileDir[MAXPATHLEN-1] = '\0';
 }
 
 extern void asRelativePath(char *inPath, char *outPath)
