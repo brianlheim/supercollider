@@ -230,7 +230,7 @@ endif()
 
 if(SYSTEM_BOOST)
   set(Boost_USE_MULTITHREADED      ON)
-  find_package( Boost 1.50.0 COMPONENTS  thread system filesystem program_options regex test_exec_monitor )
+  find_package( Boost 1.63.0 COMPONENTS  thread system filesystem program_options regex test_exec_monitor )
 endif()
 
 if (Boost_FOUND)
