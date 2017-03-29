@@ -68,6 +68,9 @@
 
 #include "server_shm.hpp"
 
+#include <boost/filesystem/path.hpp> // path
+
+namespace bfs = boost::filesystem;
 
 InterfaceTable gInterfaceTable;
 PrintFunc gPrint = 0;
@@ -287,7 +290,7 @@ void World_LoadGraphDefs(World* world)
 			sc_GetUserAppSupportDirectory(resourceDir, MAXPATHLEN);
 		bfs::path dirPath(resourceDir);
 		dirPath /= "synthdefs";
-		strncpy(resourceDir, dirPath, MAXPATHLEN);
+		strncpy(resourceDir, dirPath.c_str(), MAXPATHLEN);
 		resourceDir[MAXPATHLEN-1] = '\0';
 		if(world->mVerbosity > 0)
 			scprintf("Loading synthdefs from default path: %s\n", resourceDir);

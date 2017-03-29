@@ -1938,7 +1938,7 @@ void finiPassOne()
 static bool passOne_ProcessDir(const char *dirname, int level)
 {
 	bfs::path dirPath(dirname);
-	if (!bfs::is_directory(dirPath)))
+	if (!bfs::is_directory(dirPath))
 		return true;
 
 	if (compiledDirectories.find(std::string(dirname)) != compiledDirectories.end())

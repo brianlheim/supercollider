@@ -47,6 +47,8 @@
 #include <boost/filesystem/path.hpp> // path
 #include <boost/filesystem/operations.hpp> // is_directory
 
+namespace bfs = boost::filesystem;
+
 extern Malloc gMalloc;
 
 int32 GetHash(ParamSpec* inParamSpec)

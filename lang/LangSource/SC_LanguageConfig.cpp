@@ -82,7 +82,7 @@ SC_LanguageConfig::SC_LanguageConfig(bool optStandalone)
 		sc_GetResourceDirectory(classLibraryDir, MAXPATHLEN-32);
 		bfs::path dirPath(classLibraryDir);
 		dirPath /= "SCClassLibrary";
-		strncpy(classLibraryDir, dirPath, MAXPATHLEN);
+		strncpy(classLibraryDir, dirPath.c_str(), MAXPATHLEN);
 		classLibraryDir[MAXPATHLEN-1] = '\0';
 		findPath(mDefaultClassLibraryDirectories, classLibraryDir, true);
 	}
