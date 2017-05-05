@@ -3807,6 +3807,7 @@ void doPrimitive(VMGlobals* g, PyrMethod* meth, int numArgsPushed)
 	} catch (std::exception& ex) {
 		post("caught exception in primitive %s:%s\n", slotRawSymbol(&slotRawClass(&meth->ownerclass)->name)->name, slotRawSymbol(&meth->name)->name);
 		error(ex.what());
+		post("\n");
 		err = errException;
 	} catch (...) {
 		post("caught exception in primitive %s:%s\n", slotRawSymbol(&slotRawClass(&meth->ownerclass)->name)->name, slotRawSymbol(&meth->name)->name);
