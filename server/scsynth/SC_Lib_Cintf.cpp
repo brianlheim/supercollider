@@ -293,78 +293,64 @@ bool checkServerVersion(void * f, const char * filename)
 static bool PlugIn_Load(const SC_Filesystem::Path& filename)
 {
 #ifdef _WIN32
-	HINSTANCE hinstance = LoadLibraryW( filename.wstring().c_str() );
+	typedef HINSTANCE handle_t;
+#else
+	typedef void* handle_t;
+#endif
+
+	typedef int (*free_library_func)(handle_t);
+	typedef handle_t (*proc_addr_func)(handle_t, const char *);
+#ifdef _WIN32
+	free_library_func free_library = FreeLibrary;
+	proc_addr_func get_proc_addr = GetProcAddress;
+	handle_t handle = LoadLibraryW( filename.wstring().c_str() );
+#else
+	free_library_func free_library = dlclose;
+	proc_addr_func get_proc_addr = dlsym;
+	handle_t handle = dlopen(filename.c_str(), RTLD_NOW);
+#endif
 	// here, we have to use a utf-8 version of the string for printing
 	// because the native encoding on Windows is utf-16.
 	const std::string filename_utf8_str = SC_Codecvt::path_to_utf8_str(filename);
-	if (!hinstance) {
-		char *s;
-		DWORD lastErr = GetLastError();
-		FormatMessage( FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-			NULL, lastErr , MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (char*)&s, 0, NULL );
-		scprintf("*** ERROR: LoadLibrary '%s' err '%s'\n", filename_utf8_str.c_str(), s);
-		LocalFree( s );
-		return false;
-	}
-
-	void *apiVersionPtr = (void *)GetProcAddress( hinstance, "api_version" );
-	if (!checkAPIVersion(apiVersionPtr, filename_utf8_str.c_str())) {
-		FreeLibrary(hinstance);
-		return false;
-	}
-
-	void *serverCheckPtr = (void *)GetProcAddress( hinstance, "server_type" );
-	if (!checkServerVersion(serverCheckPtr , filename_utf8_str.c_str())) {
-		FreeLibrary(hinstance);
-		return false;
-	}
-
-	void *ptr = (void *)GetProcAddress( hinstance, "load" );
-	if (!ptr) {
-		char *s;
-		FormatMessage( FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-			NULL, GetLastError() , MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (char*)&s, 0, NULL );
-		scprintf("*** ERROR: GetProcAddress err '%s'\n", s);
-		LocalFree( s );
-
-		FreeLibrary(hinstance);
-		return false;
-	}
-
-	LoadPlugInFunc loadFunc = (LoadPlugInFunc)ptr;
-	(*loadFunc)(&gInterfaceTable);
-
-	// FIXME: at the moment we never call FreeLibrary() on a loaded plugin
-	open_handles.push_back(hinstance);
-	return true;
-
-#else // (ifndef _WIN32)
-
-	// @TODO: double check this
-	void* handle = dlopen(filename.c_str(), RTLD_NOW);
 
 	if (!handle) {
-		scprintf("*** ERROR: dlopen '%s' err '%s'\n", filename.c_str(), dlerror());
-		dlclose(handle);
+#ifdef _WIN32
+		char *s;
+		FormatMessage( FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+					  NULL, GetLastError() , MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (char*)&s, 0, NULL );
+		scprintf("*** ERROR: LoadLibrary '%s' err '%s'\n", filename_utf8_str.c_str(), s);
+		LocalFree( s );
+#else
+		scprintf("*** ERROR: loading library '%s', error: '%s'\n", filename_utf8_str.c_str(), dlerror());
+#endif
+		free_library(handle);
 		return false;
 	}
 
-	void *apiVersionPtr = (void *)dlsym( handle, "api_version" );
-	if (!checkAPIVersion(apiVersionPtr, filename.c_str())) {
-		dlclose(handle);
+	void *apiVersionPtr = (void *)get_proc_addr( handle, "api_version" );
+	if (!checkAPIVersion(apiVersionPtr, filename_utf8_str.c_str())) {
+		free_library(handle);
 		return false;
 	}
 
-	void *serverCheckPtr = (void *)dlsym( handle, "server_type" );
-	if (!checkServerVersion(serverCheckPtr , filename.c_str())) {
-		dlclose(handle);
+	void *serverCheckPtr = (void *)get_proc_addr( handle, "server_type" );
+	if (!checkServerVersion(serverCheckPtr, filename_utf8_str.c_str())) {
+		free_library(handle);
 		return false;
 	}
 
-	void *ptr = dlsym(handle, "load");
+	void *ptr = get_proc_addr(handle, "load");
 	if (!ptr) {
-		scprintf("*** ERROR: dlsym load err '%s'\n", dlerror());
-		dlclose(handle);
+#ifdef _WIN32
+		char *s;
+		FormatMessage( FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+					  NULL, GetLastError() , MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (char*)&s, 0, NULL );
+		scprintf("*** ERROR: GetProcAddress err '%s'\n", s);
+		LocalFree( s );
+#else
+		scprintf("*** ERROR: getting process address, error: '%s'\n", dlerror());
+#endif
+		free_library(handle);
 		return false;
 	}
 
@@ -373,8 +359,6 @@ static bool PlugIn_Load(const SC_Filesystem::Path& filename)
 
 	open_handles.push_back(handle);
 	return true;
-
-#endif // _WIN32
 }
 
 static bool PlugIn_LoadDir(const SC_Filesystem::Path& dir, bool reportError)
