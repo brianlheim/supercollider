@@ -44,6 +44,18 @@ ServerStatusWatcher {
 
 		// flag true requests notification, false turns it off
 		notified = flag;
+		if(server.userSpecifiedClientID.not) {
+			doneOSCFunc = OSCFunc({|msg|
+				if(flag) { server.options.maxLogins = msg[3]; server.clientID = msg[2] }; // will trigger new allocators
+				failOSCFunc.free;
+			}, '/done', server.addr, argTemplate:['/notify', nil]).oneShot;
+
+			failOSCFunc = OSCFunc({|msg|
+				doneOSCFunc.free;
+				Error(
+					"Failed to register with server '%' for notifications: %\n"
+					"To recover, please reboot the server.".format(server.name, msg)).throw;
+			}, '/fail', server.addr, argTemplate:['/notify', nil, nil]).oneShot;
 
 		// set up oscfuncs for possible server responses, \done or \failed
 		doneOSCFunc = OSCFunc({|msg|
