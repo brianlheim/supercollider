@@ -49,7 +49,7 @@ script:
  - $TRAVIS_BUILD_DIR/.travis/script-$TRAVIS_OS_NAME.sh
  - $TRAVIS_BUILD_DIR/.travis/test.sh
  - if [[ $TRAVIS_OS_NAME == osx ]]; then $TRAVIS_BUILD_DIR/.travis/package-osx.sh; fi
- - if [[ $DEPLOY_DOCS == true ]]; then cd $TRAVIS_BUILD_DIR; chmod +x .travis/gen-and-deploy-cpp-docs.sh; .travis/gen-and-deploy-cpp-docs.sh; fi
+ - if [[ $DEPLOY_DOCS == true ]]; then $TRAVIS_BUILD_DIR/.travis/gen-and-deploy-cpp-docs.sh; fi
 
 before_deploy:
  # required for github releases
