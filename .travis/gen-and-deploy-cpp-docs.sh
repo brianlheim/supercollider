@@ -76,6 +76,9 @@ cd docs
 # both exist. This is a good indication that Doxygen did it's work.
 if [ -d "html" ] && [ -f "html/index.html" ]; then
 
+  # Move everything into root
+  mv html/* .
+
   echo 'Uploading documentation to the gh-pages branch...'
   # Add everything in this directory (the Doxygen code documentation) to the
   # gh-pages branch.
@@ -88,9 +91,6 @@ if [ -d "html" ] && [ -f "html/index.html" ]; then
   git commit -m "Deploy code docs to GitHub Pages Travis build: ${TRAVIS_BUILD_NUMBER}" -m "Commit: ${TRAVIS_COMMIT}"
 
   # Force push to the remote gh-pages branch.
-  # The ouput is redirected to /dev/null to hide any sensitive credential data
-  # that might otherwise be exposed.
-  echo "https://${GH_REPO_TOKEN}@${GH_REPO_REF}"
   git push --force "https://${GH_REPO_TOKEN}@${GH_REPO_REF}" 2>&1
 else
   echo '' >&2
