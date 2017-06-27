@@ -37,13 +37,9 @@ echo 'Setting up the script...'
 # Exit with nonzero exit code if anything fails
 set -e
 
-# Create a clean working directory for this script.
-mkdir docs
-cd docs
-
 # Get the current gh-pages branch
-git clone --depth 1 -b gh-pages https://git@$GH_REPO_REF
-cd supercollider
+git clone --depth 1 -b gh-pages https://git@$GH_REPO_REF docs
+cd docs
 
 ##### Configure git.
 # Set the push default to simple i.e. push only the current branch.
@@ -65,14 +61,13 @@ rm -rf *
 # to NO, which it is by default. So creating the file just in case.
 echo "" > .nojekyll
 
-echo "ls -a:"
-ls -a
-
 ################################################################################
 ##### Generate the Doxygen code documentation and log the output.          #####
 echo 'Generating Doxygen code documentation...'
+cd $TRAVIS_BUILD_DIR
 # Redirect both stderr and stdout to the log file AND the console.
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
+cd docs
 
 ################################################################################
 ##### Upload the documentation to the gh-pages branch of the repository.   #####
