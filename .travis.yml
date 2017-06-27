@@ -1,5 +1,10 @@
 language: cpp
 
+env:
+  global:
+    - GH_REPO_NAME: supercollider
+    - GH_REPO_REF: www.github.com/brianlheim/supercollider.git
+
 matrix:
   fast_finish: true
   include:
@@ -16,6 +21,10 @@ matrix:
     - os: osx
       osx_image: xcode8.3
       env: QT=true
+
+branches:
+  except:
+    - gh-pages
 
 # use ccache to speed up build times. on osx,
 # we install it during the the before_install step
@@ -38,7 +47,11 @@ script:
  - $TRAVIS_BUILD_DIR/.travis/script-$TRAVIS_OS_NAME.sh
  - $TRAVIS_BUILD_DIR/.travis/test.sh
  - if [[ $TRAVIS_OS_NAME == osx ]]; then $TRAVIS_BUILD_DIR/.travis/package-osx.sh; fi
- - if [[ $DEPLOY_DOCS == true ]]; then $TRAVIS_BUILD_DIR/.travis/gen-and-deploy-cpp-docs.sh; fi
+ - if [[ $DEPLOY_DOCS == true ]]
+ -   cd $TRAVIS_BUILD_DIR
+ -   chmod +x .travis/gen-and-deploy-cpp-docs.sh
+ -   .travis/gen-and-deploy-cpp-docs.sh
+ - fi
 
 before_deploy:
  # required for github releases
