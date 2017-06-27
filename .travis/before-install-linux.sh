@@ -8,5 +8,8 @@ sudo apt-get install --yes build-essential gcc-4.9 g++-4.9 cmake pkg-config libj
 if [[ -n "$1" && "$1" == "--qt=true" ]]; then
 	sudo apt-get install --yes libgl1-mesa-dev qt59base qt59location qt59declarative qt59tools qt59webengine qt59webchannel qt59xmlpatterns qt59svg
 fi
+if [[ $DEPLOY_DOCS == true ]]; then
+  sudo apt-get install --yes doxygen
+fi
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9
 sudo update-alternatives --auto gcc
