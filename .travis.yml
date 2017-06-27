@@ -7,12 +7,11 @@ matrix:
       sudo: required
       dist: trusty
       env: QT=true
-      env: DEPLOY_DOCS=true
       group: edge
     - os: linux
       sudo: required
       dist: trusty
-      env: QT=false
+      env: QT=false DEPLOY_DOCS=true
       group: edge
     - os: osx
       osx_image: xcode8.3
