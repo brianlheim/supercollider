@@ -42,7 +42,7 @@ mkdir docs
 cd docs
 
 # Get the current gh-pages branch
-git clone -b gh-pages https://git@$GH_REPO_REF
+git clone --depth 1 -b gh-pages https://git@$GH_REPO_REF
 cd supercollider
 
 ##### Configure git.
