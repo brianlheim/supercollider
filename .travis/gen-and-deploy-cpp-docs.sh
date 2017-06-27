@@ -38,7 +38,7 @@ echo 'Setting up the script...'
 set -e
 
 # Get the current gh-pages branch
-git clone --depth 1 -b gh-pages https://git@$GH_REPO_REF docs
+git clone -b gh-pages --single-branch https://git@$GH_REPO_REF docs
 cd docs
 
 ##### Configure git.
@@ -90,7 +90,7 @@ if [ -d "html" ] && [ -f "html/index.html" ]; then
   # Force push to the remote gh-pages branch.
   # The ouput is redirected to /dev/null to hide any sensitive credential data
   # that might otherwise be exposed.
-  git push --force "https://${GH_REPO_TOKEN}@${GH_REPO_REF}" > /dev/null 2>&1
+  git push --force "https://${GH_REPO_TOKEN}@${GH_REPO_REF}" 2>&1
 else
   echo '' >&2
   echo 'Warning: No documentation (html) files have been found!' >&2
