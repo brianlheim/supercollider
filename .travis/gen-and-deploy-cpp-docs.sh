@@ -57,6 +57,7 @@ echo "https://${GH_REPO_TOKEN}:@github.com" > .git/credentials
 # documentation.
 ls -a
 rm -rf `ls -A | grep -v \\\.git`
+ls -a
 
 # Need to create a .nojekyll file to allow filenames starting with an underscore
 # to be seen on the gh-pages site. Therefore creating an empty .nojekyll file.
