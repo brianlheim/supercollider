@@ -55,6 +55,7 @@ echo "https://${GH_REPO_TOKEN}:@github.com" > .git/credentials
 # stayed the same and will only update the changed files. So the gh-pages branch
 # can be safely cleaned, and it is sure that everything pushed later is the new
 # documentation.
+ls -a
 rm -rf `ls -A | grep -v \\\.git`
 
 # Need to create a .nojekyll file to allow filenames starting with an underscore
@@ -70,6 +71,8 @@ cd $TRAVIS_BUILD_DIR
 # Redirect both stderr and stdout to the log file AND the console.
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
 cd docs
+
+ls -a
 
 ################################################################################
 ##### Upload the documentation to the gh-pages branch of the repository.   #####
