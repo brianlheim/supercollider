@@ -52,14 +52,12 @@ git config user.email "travis@travis-ci.org"
 git config credential.helper "store --file=.git/credentials"
 echo "https://${GH_REPO_TOKEN}:@github.com" > .git/credentials
 
-# Remove everything currently in the gh-pages branch.
+# Remove everything currently in the gh-pages branch (except for .git)
 # GitHub is smart enough to know which files have changed and which files have
 # stayed the same and will only update the changed files. So the gh-pages branch
 # can be safely cleaned, and it is sure that everything pushed later is the new
 # documentation.
-ls -a
 rm -rf `ls -A | grep -v \\\.git`
-ls -a
 
 # Need to create a .nojekyll file to allow filenames starting with an underscore
 # to be seen on the gh-pages site. Therefore creating an empty .nojekyll file.
@@ -73,13 +71,8 @@ echo 'Generating Doxygen code documentation...'
 cd $TRAVIS_BUILD_DIR
 # Redirect both stderr and stdout to the log file AND the console.
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
-ls -a docs
-ls -a docs/html
-ls -a gh-pages
-ls -a
 mkdir gh-pages/html
 mv docs/html/* gh-pages/html
-ls -a gh-pages
 cd gh-pages
 
 ################################################################################
