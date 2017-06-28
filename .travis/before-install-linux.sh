@@ -10,8 +10,6 @@ if [[ -n "$1" && "$1" == "--qt=true" ]]; then
 fi
 if [[ $DEPLOY_DOCS == true ]]; then
   sudo apt-get install --yes doxygen
-  sudo apt-get upgrade doxygen
-  sudo apt-get upgrade
 fi
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9
 sudo update-alternatives --auto gcc
