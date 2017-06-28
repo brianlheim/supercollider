@@ -38,7 +38,7 @@ echo 'Setting up the script...'
 set -e
 
 # Get the current gh-pages branch
-git clone -b gh-pages --single-branch https://git@$GH_REPO_REF docs
+git clone --verbose -b gh-pages --single-branch https://git@$GH_REPO_REF docs
 cd docs
 
 ##### Configure git.
@@ -77,9 +77,6 @@ cd docs
 # Check this by verifying that the html directory and the file html/index.html
 # both exist. This is a good indication that Doxygen did it's work.
 if [ -d "html" ] && [ -f "html/index.html" ]; then
-
-  echo 'ls -a:'
-  ls -a
 
   echo 'Uploading documentation to the gh-pages branch...'
   # Add everything in this directory (the Doxygen code documentation) to the
