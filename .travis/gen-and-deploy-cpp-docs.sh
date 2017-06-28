@@ -71,10 +71,11 @@ echo 'Generating Doxygen code documentation...'
 cd $TRAVIS_BUILD_DIR
 # Redirect both stderr and stdout to the log file AND the console.
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
-mv docs/* gh-pages
+ls -a docs
+ls -a docs/html
+mv docs/html gh-pages
+ls -a gh-pages
 cd gh-pages
-
-ls -a
 
 ################################################################################
 ##### Upload the documentation to the gh-pages branch of the repository.   #####
