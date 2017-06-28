@@ -37,6 +37,8 @@ echo 'Setting up the script...'
 # Exit with nonzero exit code if anything fails
 set -e
 
+cd $TRAVIS_BUILD_DIR
+
 # Get the current gh-pages branch
 git clone --verbose -b gh-pages --single-branch https://git@$GH_REPO_REF gh-pages
 cd gh-pages
@@ -73,6 +75,8 @@ cd $TRAVIS_BUILD_DIR
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
 ls -a docs
 ls -a docs/html
+ls -a gh-pages
+ls -a
 mkdir gh-pages/html
 mv docs/html/* gh-pages/html
 ls -a gh-pages
