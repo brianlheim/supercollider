@@ -38,8 +38,8 @@ echo 'Setting up the script...'
 set -e
 
 # Get the current gh-pages branch
-git clone --verbose -b gh-pages --single-branch https://git@$GH_REPO_REF docs
-cd docs
+git clone --verbose -b gh-pages --single-branch https://git@$GH_REPO_REF gh-pages
+cd gh-pages
 
 ##### Configure git.
 # Set the push default to simple i.e. push only the current branch.
@@ -71,7 +71,8 @@ echo 'Generating Doxygen code documentation...'
 cd $TRAVIS_BUILD_DIR
 # Redirect both stderr and stdout to the log file AND the console.
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
-cd docs
+mv docs/* gh-pages
+cd gh-pages
 
 ls -a
 
