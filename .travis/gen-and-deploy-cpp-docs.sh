@@ -71,9 +71,7 @@ echo 'Generating Doxygen code documentation...'
 cd $TRAVIS_BUILD_DIR
 # Redirect both stderr and stdout to the log file AND the console.
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
-mkdir gh-pages/html
-mv docs/html/* gh-pages/html
-cd gh-pages
+cd docs
 
 ################################################################################
 ##### Upload the documentation to the gh-pages branch of the repository.   #####
@@ -81,6 +79,9 @@ cd gh-pages
 # Check this by verifying that the html directory and the file html/index.html
 # both exist. This is a good indication that Doxygen did it's work.
 if [ -d "html" ] && [ -f "html/index.html" ]; then
+  cd $TRAVIS_BUILD_DIR
+  mv docs/html/* gh-pages
+  cd gh-pages
 
   echo 'Uploading documentation to the gh-pages branch...'
   # Add everything in this directory (the Doxygen code documentation) to the
