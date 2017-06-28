@@ -78,12 +78,8 @@ cd docs
 # both exist. This is a good indication that Doxygen did it's work.
 if [ -d "html" ] && [ -f "html/index.html" ]; then
 
-  # Move everything into root
-  mv html/* .
-  rm -rf html
-
-  # Move the license in here
-  cp ../COPYING .
+  echo 'ls -a:'
+  ls -a
 
   echo 'Uploading documentation to the gh-pages branch...'
   # Add everything in this directory (the Doxygen code documentation) to the
