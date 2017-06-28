@@ -73,7 +73,8 @@ cd $TRAVIS_BUILD_DIR
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
 ls -a docs
 ls -a docs/html
-mv docs/html gh-pages/html
+mkdir gh-pages/html
+mv docs/html/* gh-pages/html
 ls -a gh-pages
 cd gh-pages
 
