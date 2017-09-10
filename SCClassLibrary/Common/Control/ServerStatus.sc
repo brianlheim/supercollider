@@ -44,18 +44,6 @@ ServerStatusWatcher {
 
 		// flag true requests notification, false turns it off
 		notified = flag;
-		if(server.userSpecifiedClientID.not) {
-			doneOSCFunc = OSCFunc({|msg|
-				if(flag) { server.options.maxLogins = msg[3]; server.clientID = msg[2] }; // will trigger new allocators
-				failOSCFunc.free;
-			}, '/done', server.addr, argTemplate:['/notify', nil]).oneShot;
-
-			failOSCFunc = OSCFunc({|msg|
-				doneOSCFunc.free;
-				Error(
-					"Failed to register with server '%' for notifications: %\n"
-					"To recover, please reboot the server.".format(server.name, msg)).throw;
-			}, '/fail', server.addr, argTemplate:['/notify', nil, nil]).oneShot;
 
 		// set up oscfuncs for possible server responses, \done or \failed
 		doneOSCFunc = OSCFunc({|msg|
@@ -86,7 +74,57 @@ ServerStatusWatcher {
 		} {
 			"Switched off notification messages from server '%'\n".postf(server.name);
 		};
-		server.sendMsg("/notify", flag.binaryValue, if(server.userSpecifiedClientID, { server.clientID }, {-1}));
+	}
+
+	prHandleClientLoginInfoFromServer { |newClientID, newMaxLogins|
+		if (newMaxLogins.notNil) {
+			if (newMaxLogins != server.options.maxLogins) {
+				"%: scsynth has maxLogins % - adjusting my options accordingly.\n"
+				.postf(server, newMaxLogins);
+				server.options.maxLogins = newMaxLogins;
+			} {
+				"%: scsynth maxLogins % match with my options.\n".postf(server, newMaxLogins);
+			};
+		} {
+			"%: no maxLogins info from scsynth.\n".postf(server, newMaxLogins);
+		};
+
+		if (newClientID == server.clientID) {
+			"%: keeping clientID % as confirmed from scsynth.\n"
+			.postf(server, newClientID);
+			server.clientID = newClientID;
+		} {
+			if (server.userSpecifiedClientID.not) {
+				"%: setting clientID to %, as obtained from scsynth.\n"
+				.postf(server, newClientID);
+				server.clientID = newClientID;
+			} {
+				("% - userSpecifiedClientID % is not free!\n"
+					" Switching to free clientID obtained from scsynth: %.\n"
+					"If that is problematic, please set clientID by hand before booting.")
+				.format(server, server.clientID, newClientID).warn;
+				server.clientID = newClientID;
+			};
+		}
+	}
+
+	prHandleNotifyFailString {|failString, msg|
+
+		// post info on some known error cases
+		case
+		{ failString.asString.contains("already registered") } {
+			"% - already registered with clientID %.\n".postf(server, msg[3])
+		} { failString.asString.contains("not registered") } {
+			// unregister when already not registered:
+			"% - not registered.\n".postf(server)
+		} { failString.asString.contains("too many users") } {
+			"% - could not register, too many users.\n".postf(server)
+		} {
+			// throw error if unknown failure
+			Error(
+				"Failed to register with server '%' for notifications: %\n"
+				"To recover, please reboot the server.".format(server.name, msg)).throw;
+		};
 	}
 
 	doWhenBooted { |onComplete, limit = 100, onFailure|
