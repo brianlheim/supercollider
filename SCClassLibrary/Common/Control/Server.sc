@@ -279,6 +279,7 @@ Server {
 	var <window, <>scopeWindow, <emacsbuf;
 	var <volume, <recorder, <statusWatcher;
 	var <pid, serverInterface;
+	var <>freeAllFreesRootNode = true;
 
 	*initClass {
 		Class.initClassTree(ServerOptions);
@@ -363,6 +364,7 @@ Server {
 		inProcess = addr.addr == 0;
 		isLocal = inProcess || { addr.isLocal };
 		remoteControlled = isLocal.not;
+		freeAllFreesRootNode = isLocal;
 	}
 
 	name_ { |argName|
@@ -725,25 +727,15 @@ Server {
 		^Buffer.cachedBufferAt(this, bufnum)
 	}
 
-	// defaultGroups for all clients on this server:
+	defaultGroupIDForClientID { |id| ^nodeAllocator.numIDs * id + 1 }
 
-	allClientIDs { ^(0..options.maxLogins-1) }
-
-	// keep defaultGroups for all clients on this server:
-	makeDefaultGroups {
-		defaultGroups = this.allClientIDs.collect { |clientID|
-			Group.basicNew(this, nodeAllocator.numIDs * clientID + 1);
-		};
-		defaultGroup = defaultGroups[clientID];
+	sendDefaultGroupsFor { |ids|
+		ids.do { |id|
+			this.sendMsg("g_new", this.defaultGroupIDForClientID(id));
+		}
 	}
 
-	defaultGroupID { ^defaultGroup.nodeID }
-
-	sendDefaultGroups {
-		defaultGroups.do { |defGrp|
-			this.sendMsg("/g_new", defGrp.nodeID);
-		};
-	}
+	defaultGroupID { ^nodeAllocator.idOffset + 1 }
 
 	sendDefaultGroupsForClientIDs { |clientIDs|
 		defaultGroups[clientIDs].do { |defGrp|
@@ -969,7 +961,10 @@ Server {
 	}
 
 	freeAll {
-		this.sendMsg("/g_freeAll", 0);
+		this.sendMsg("/g_freeAll", this.defaultGroupID);
+		if (freeAllFreesRootNode) {
+			this.sendMsg("/g_freeAll", 0);
+		};
 		this.sendMsg("/clearSched");
 		this.initTree;
 	}
