@@ -938,16 +938,15 @@ SCDocHTMLRenderer {
 	*renderFooter {|stream, doc|
 		stream << "<div class='doclink'>";
 		doc.fullPath !? {
-			stream << "helpfile source: <a href='" << URI.fromLocalPath(doc.fullPath).asString << "'>"
-			<< doc.fullPath << "</a><br>"
+			stream << "Help source: <a href='" << URI.fromLocalPath(doc.fullPath).asString << "'>"
+			<< doc.title << ".schelp" << "</a>"
 		};
-		stream << "link::" << doc.path << "::<br>"
-		<< "</div>";
-
 		// Add a link to edit on GitHub if possible.
 		if(doc.isExtension.not) {
 			stream << this.prGitHubLink(doc.path, doc.isUndocumentedClass);
 		};
+
+		stream << "</div>";
 
 		stream << "</div></body></html>";
 	}
@@ -999,12 +998,12 @@ SCDocHTMLRenderer {
 	*prGitHubLink { |docPath, isUndocumented|
 		var url = this.prGitHubLinkURL(docPath, isUndocumented);
 		var message = if(isUndocumented) {
-			"Create this file on GitHub"
+			"Create Help File"
 		} {
-			"Edit this file on GitHub"
+			"Edit Help File"
 		};
 		var divTag = "<div class='githubedit'>%</div>";
-		var aTag = "<a href=\"%\" target=\"_blank\">%</a>";
+		var aTag = " <a href=\"%\" target=\"_blank\">%</a>";
 		aTag = aTag.format(url, message);
 		^divTag.format(aTag);
 	}

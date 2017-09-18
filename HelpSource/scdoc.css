@@ -449,13 +449,29 @@ td p {
 .doclink {
     font-size: 9pt;
     color: #888;
-    text-align: right;
+    text-align: left;
     margin-top: 2em;
     margin-bottom: 2em;
     border-top: 1px solid #ddd;
 }
+/*
 .doclink a {
     color: #444;
+}
+*/
+
+.githubedit {
+    font-size: 9pt;
+    color: #888;
+    text-align: left;
+    margin-top: 0.5em;
+    margin-bottom: 2em;
+    padding-left: 1.3em;
+
+    background-image: url("images/GitHub_icon.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 1em;
 }
 
 #sidetoc {
