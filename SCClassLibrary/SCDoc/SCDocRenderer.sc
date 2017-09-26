@@ -938,7 +938,7 @@ SCDocHTMLRenderer {
 	*renderFooter {|stream, doc|
 		stream << "<div class='doclink'>";
 		doc.fullPath !? {
-			stream << "Help source: <a href='" << URI.fromLocalPath(doc.fullPath).asString << "'>"
+			stream << "Help file: <a href='" << URI.fromLocalPath(doc.fullPath).asString << "'>"
 			<< doc.title << ".schelp" << "</a>"
 		};
 		// Add a link to edit on GitHub if possible.
@@ -998,14 +998,20 @@ SCDocHTMLRenderer {
 	*prGitHubLink { |docPath, isUndocumented|
 		var url = this.prGitHubLinkURL(docPath, isUndocumented);
 		var message = if(isUndocumented) {
-			"Create Help File"
+			"Create help"
 		} {
-			"Edit Help File"
+			"Edit on Github"
 		};
-		var divTag = "<div class='githubedit'>%</div>";
+		var spanTag = "<span class='githubedit'>%</span>";
 		var aTag = " <a href=\"%\" target=\"_blank\">%</a>";
 		aTag = aTag.format(url, message);
-		^divTag.format(aTag);
+
+		if(isUndocumented){
+			aTag = aTag ++ " for this class on Github.";
+		}	{
+			spanTag = " | " ++ spanTag;
+		};
+		^spanTag.format(aTag);
 	}
 
 	*prGitHubLinkURL { |docPath, isUndocumented|
