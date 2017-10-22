@@ -29,6 +29,7 @@
 #include <cerrno>
 #include <limits>
 #include <set>
+#include <functional>
 
 #ifdef _WIN32
 # include <direct.h>
@@ -90,6 +91,9 @@ using DirName = SC_Filesystem::DirName;
 PyrSymbol *gCompilingFileSym = 0;
 VMGlobals *gCompilingVMGlobals = 0;
 static bfs::path gCompileDir;
+static std::string gResourceDirectory;
+static std::string gSystemExtensionDirectory;
+static std::string gUserExtensionDirectory;
 
 //#define DEBUGLEX 1
 bool gDebugLexer = false;
@@ -1801,6 +1805,9 @@ void initPassOne()
 
 	// main class library folder: only used for relative path resolution
 	gCompileDir = SC_Filesystem::instance().getDirectory(DirName::Resource) / "SCClassLibrary";
+	gResourceDirectory = SC_Codecvt::path_to_utf8_str(SC_Filesystem::instance().getDirectory(DirName::Resource));
+	gSystemExtensionDirectory = SC_Codecvt::path_to_utf8_str(SC_Filesystem::instance().getDirectory(DirName::SystemExtension));
+	gUserExtensionDirectory = SC_Codecvt::path_to_utf8_str(SC_Filesystem::instance().getDirectory(DirName::UserExtension));
 }
 
 void finiPassOne()
@@ -1853,13 +1860,43 @@ static bool passOne_ShouldSkipDirectory(const bfs::path& dir)
  */
 static bool passOne_ProcessDir(const bfs::path& dir)
 {
+
+	if (passOne_ShouldSkipDirectory(dir)) {
+		// If we should skip the directory, just return success now.
+		return true;
+	}
+
+	std::string dir_s = SC_Codecvt::path_to_utf8_str(dir);
+	auto compareAndReplaceStringPrefix = [](std::string &a, const std::string &b, const std::string &replace)
+	{
+		size_t l = b.length();
+		if( a.length() >= l && a.compare(0, l, b) == 0 )
+			a.replace(0, l, replace);
+	};
+
+	compareAndReplaceStringPrefix(dir_s, "%ResourceDirectory%", gResourceDirectory);
+	compareAndReplaceStringPrefix(dir_s, "%SystemExtensionDirectory%", gSystemExtensionDirectory);
+	compareAndReplaceStringPrefix(dir_s, "%UserExtensionDirectory%", gUserExtensionDirectory);
+
+	bfs::path dir2 = SC_Codecvt::utf8_str_to_path(dir_s);
+	bool isProjectDir = false;
+
+	if( gLanguageConfig->getProject() ) {
+		if( !dir2.is_absolute() ){
+			isProjectDir = true;
+			bfs::path temp(dir2);
+			dir2 = gLanguageConfig->getConfigFileDirectory();
+			dir2 /= temp;
+		}
+	}
+
 	// Prefer non-throwing versions of filesystem functions, since they are actually not unexpected
 	// and because it's faster to use error codes.
 	boost::system::error_code ec;
 
 	// Using a recursive_directory_iterator is much faster than actually calling this function
 	// recursively. Speedup from the switch was about 1.5x. _Do_ recurse on symlinks.
-	bfs::recursive_directory_iterator rditer(dir, bfs::symlink_option::recurse, ec);
+	bfs::recursive_directory_iterator rditer(dir2, bfs::symlink_option::recurse, ec);
 
 	// Check preconditions: are we able to access the file, and should we compile it according to
 	// the language configuration?
@@ -1883,16 +1920,14 @@ static bool passOne_ProcessDir(const bfs::path& dir)
 
 			return false;
 		}
-	} else if (passOne_ShouldSkipDirectory(dir)) {
-		// If we should skip the directory, just return success now.
-		return true;
-	} else {
-		// Let the user know we are in fact compiling this directory.
-		post("\tCompiling directory '%s'\n", SC_Codecvt::path_to_utf8_str(dir).c_str());
+	}  else {
+		std::string msg = std::string("compiling dir");
+		if(isProjectDir){ msg += " from project"; }
+		post("%s: %s\n", msg.c_str(), SC_Codecvt::path_to_utf8_str(dir).c_str());
 	}
 
 	// Record that we have touched this directory already.
-	compiledDirectories.insert(dir);
+	compiledDirectories.insert(dir2);
 
 	// Invariant: we have processed (or begun to process) every directory or file already
 	// touched by the iterator.
@@ -2074,7 +2109,7 @@ void shutdownLibrary()
 	SC_LanguageConfig::freeLibraryConfig();
 }
 
-SCLANG_DLLEXPORT_C bool compileLibrary(bool standalone)
+SCLANG_DLLEXPORT_C bool compileLibrary()
 {
 	//printf("->compileLibrary\n");
 	shutdownLibrary();
@@ -2083,7 +2118,7 @@ SCLANG_DLLEXPORT_C bool compileLibrary(bool standalone)
 	gNumCompiledFiles = 0;
 	compiledOK = false;
 
-	SC_LanguageConfig::readLibraryConfig(standalone);
+	SC_LanguageConfig::readLibraryConfig();
 
 	compileStartTime = elapsedTime();
 
