@@ -386,6 +386,7 @@ endif()
 
 
 configure_file(common/SC_Version.hpp.in common/SC_Version.hpp)
+configure_file(HelpSource/Browse.html.in HelpSource/Browse.html)
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/common)
 
 file(GLOB_RECURSE ClassLibrary SCClassLibrary/*sc)
