@@ -98,6 +98,19 @@ void Document::applySettings( Settings::Manager *settings )
     setIndentWidth(indentWidth);
 }
 
+// add a newline to the end of the document (which was removed when reading it in)
+// mainly to play nice with git.
+void Document::addFinalNewline()
+{
+    QTextCursor cursor(textDocument());
+
+    cursor.beginEditBlock();
+    cursor.movePosition(QTextCursor::End);
+    cursor.insertText("\n");
+    cursor.endEditBlock();
+}
+
+// remove trailing spaces from all lines
 void Document::deleteTrailingSpaces()
 {
     QTextCursor cursor (textDocument());
@@ -518,6 +531,7 @@ bool DocumentManager::doSaveAs( Document *doc, const QString & path )
 {
     Q_ASSERT(doc);
 
+    doc->addFinalNewline();
     doc->deleteTrailingSpaces();
 
 

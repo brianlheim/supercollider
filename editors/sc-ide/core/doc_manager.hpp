@@ -71,7 +71,8 @@ public:
     int indentWidth() const { return mIndentWidth; }
     void setIndentWidth( int numSpaces );
 
-    void deleteTrailingSpaces();
+    void addFinalNewline(void);
+    void deleteTrailingSpaces(void);
 
     bool isPlainText() const { return mHighlighter == NULL; }
     bool isModified() const  { return mDoc->isModified(); }
