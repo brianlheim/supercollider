@@ -33,6 +33,7 @@
 #include <QStack>
 #include <QMimeData>
 #include <QUrl>
+#include <QDebug>
 
 namespace ScIDE {
 
@@ -62,6 +63,7 @@ void ScCodeEditor::applySettings( Settings::Manager *settings )
 
     mSpaceIndent = settings->value("spaceIndent").toBool();
     mBlinkDuration = settings->value("blinkDuration").toInt();
+    mTabWithNoSelectionPolicy = settings->value("tabWithNoSelectionPolicy").toInt();
     mBracketHighlight = settings->getThemeVal("matchingBrackets");
     mBracketMismatchFormat = settings->getThemeVal("mismatchedBrackets");
     mStepForwardEvaluation = settings->value("stepForwardEvaluation").toBool();
@@ -82,8 +84,7 @@ bool ScCodeEditor::event( QEvent *e )
         QKeyEvent *ke = static_cast<QKeyEvent*>(e);
         switch (ke->key()) {
         case Qt::Key_Tab:
-            if (!tabChangesFocus()) {
-                indent();
+            if (handleTabEvent(ke)) {
                 e->accept();
                 return true;
             }
@@ -97,6 +98,36 @@ bool ScCodeEditor::event( QEvent *e )
     }
 
     return GenericCodeEditor::event(e);
+}
+
+bool ScCodeEditor::handleTabEvent( QKeyEvent *e )
+{
+    // TODO: integrate into tab policy
+    if (tabChangesFocus()) {
+        return false;
+    }
+
+    // TODO: create enum for tab policy
+    switch ( mTabWithNoSelectionPolicy ) {
+    case 0:
+        indent();
+        return true;
+
+    case 1:
+        // only indent if there's a selection
+        // FIXME: fallback always inserts a Tab character
+        if ( textCursor().hasSelection() ) {
+            indent();
+            return true;
+        }
+        break;
+
+    default:
+        qDebug() << "ScCodeEditor: Unknown mTabWithNoSelectionPolicy: "
+            << mTabWithNoSelectionPolicy;
+    }
+
+    return false;
 }
 
 void ScCodeEditor::keyPressEvent( QKeyEvent *e )

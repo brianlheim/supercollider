@@ -106,6 +106,9 @@ private:
     void addSingleLineComment( QTextCursor, int indentationLevel );
     void removeSingleLineComment( QTextCursor );
 
+    /// Handles a tab press according to the tabWithNoSelectionPolicy
+    bool handleTabEvent( QKeyEvent * );
+
     int indentedStartOfLine( const QTextBlock & );
     void indent( const QTextCursor &, EditBlockMode = NewEditBlock );
     QTextBlock indent( const QTextBlock & b, int level );
@@ -118,6 +121,7 @@ private:
 
     int mIndentWidth;
     bool mSpaceIndent;
+    int mTabWithNoSelectionPolicy;
     bool mStepForwardEvaluation;
     int mBlinkDuration;
     bool mInsertMatchingTokens;
