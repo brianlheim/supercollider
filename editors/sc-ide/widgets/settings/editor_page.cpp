@@ -87,6 +87,7 @@ void EditorPage::load( Manager *s )
     // Behavior tab
     ui->indentWidth->setValue( s->value("indentWidth").toInt() );
     ui->spaceIndent->setChecked( s->value("spaceIndent").toBool() );
+    ui->tabWithNoSelectionPolicy->setCurrentIndex( s->value("tabWithNoSelectionPolicy").toInt() );
 
     ui->blinkDuration->setValue( s->value("blinkDuration").toInt() );
     ui->stepForwardEvaluation->setChecked( s->value("stepForwardEvaluation").toBool() );
@@ -258,6 +259,7 @@ void EditorPage::store( Manager *s )
     // Behavior tab
     s->setValue("spaceIndent", ui->spaceIndent->isChecked());
     s->setValue("indentWidth", ui->indentWidth->value());
+    s->setValue("tabWithNoSelectionPolicy", ui->tabWithNoSelectionPolicy->currentIndex());
 
     s->setValue("blinkDuration", ui->blinkDuration->value());
     s->setValue("stepForwardEvaluation", ui->stepForwardEvaluation->isChecked());

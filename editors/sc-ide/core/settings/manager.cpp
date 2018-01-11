@@ -68,6 +68,7 @@ void Manager::initDefaults()
     // Behavior tab
     setDefault("indentWidth", 4);
     setDefault("spaceIndent", false);
+    setDefault("tabWithNoSelectionPolicy", 0); // reindent current line
 
     setDefault("blinkDuration", 600);
     setDefault("stepForwardEvaluation", false);
