@@ -49,31 +49,40 @@ Manager::Manager( const QString & filename, QObject * parent ):
 
 void Manager::initDefaults()
 {
+    // General page
     beginGroup("IDE");
 
     setDefault("startWithSession", "last");
 
+    // Interpreter page
     beginGroup("interpreter");
     setDefault("autoStart", true);
     endGroup();
 
+    // Editor page
+    // Display tab (post window settings)
     setDefault("postWindow/scrollback", 1000);
 
     beginGroup("editor");
 
-    setDefault("spaceIndent", false);
+    // Behavior tab
     setDefault("indentWidth", 4);
+    setDefault("spaceIndent", false);
+
+    setDefault("blinkDuration", 600);
     setDefault("stepForwardEvaluation", false);
+
+    setDefault("insertMatchingTokens", false);
+
+    // Display tab (non-post window settings)
     setDefault("lineWrap", true);
     setDefault("disableBlinkingCursor", false);
     setDefault("highlightBracketContents", true);
     setDefault("inactiveEditorFadeAlpha", 64);
-    setDefault("insertMatchingTokens", false);
     setDefault("showLinenumber", true);
     setDefault("showAutocompleteHelp", true);
 
-    setDefault("blinkDuration", 600);
-
+    // Font & Colors tab
     setDefault("font/family", "monospace");
     setDefault("font/antialias", true);
 

@@ -84,19 +84,27 @@ void EditorPage::load( Manager *s )
 {
     s->beginGroup("IDE/editor");
 
-    ui->spaceIndent->setChecked( s->value("spaceIndent").toBool() );
+    // Behavior tab
     ui->indentWidth->setValue( s->value("indentWidth").toInt() );
+    ui->spaceIndent->setChecked( s->value("spaceIndent").toBool() );
+
+    ui->blinkDuration->setValue( s->value("blinkDuration").toInt() );
     ui->stepForwardEvaluation->setChecked( s->value("stepForwardEvaluation").toBool() );
+
+    ui->insertMatchingTokens->setChecked( s->value("insertMatchingTokens").toBool() );
+
+    // Display tab (non-post window settings)
     ui->editorLineWrap->setChecked( s->value("lineWrap").toBool() );
     ui->disableBlinkingCursor->setChecked( s->value("disableBlinkingCursor").toBool() );
-    ui->insertMatchingTokens->setChecked( s->value("insertMatchingTokens").toBool() );
-    ui->blinkDuration->setValue( s->value("blinkDuration").toInt() );
     ui->highlightCurrentLine->setChecked( s->value("highlightCurrentLine").toBool() );
     ui->highlightBracketContents->setChecked( s->value("highlightBracketContents").toBool() );
+
     ui->inactiveEditorFadeAlpha->setValue( s->value("inactiveEditorFadeAlpha").toInt() );
+
     ui->useComboBox->setChecked( s->value("useComboBox").toBool() );
     ui->useComboBoxWhenSplitting->setChecked( s->value("useComboBoxWhenSplitting").toBool() );
 
+    // Fonts & Colors tab
     s->beginGroup("font");
     QString fontFamily = s->value("family").toString();
     int fontSize = s->value("size").toInt();
@@ -129,6 +137,7 @@ void EditorPage::load( Manager *s )
     updateTheme(themeName);
     populateThemeList(themeName);
 
+    // Display tab (post window settings)
     s->beginGroup("IDE/postWindow");
     ui->postWindowScrollback->setValue( s->value("scrollback").toInt() );
     ui->postWindowLineWrap->setChecked( s->value("lineWrap").toBool() );
@@ -246,20 +255,27 @@ void EditorPage::store( Manager *s )
 {
     s->beginGroup("IDE/editor");
 
+    // Behavior tab
     s->setValue("spaceIndent", ui->spaceIndent->isChecked());
     s->setValue("indentWidth", ui->indentWidth->value());
+
+    s->setValue("blinkDuration", ui->blinkDuration->value());
     s->setValue("stepForwardEvaluation", ui->stepForwardEvaluation->isChecked());
+
+    s->setValue("insertMatchingTokens", ui->insertMatchingTokens->isChecked());
+
+    // Display tab (non-post window settings)
     s->setValue("lineWrap", ui->editorLineWrap->isChecked());
     s->setValue("disableBlinkingCursor", ui->disableBlinkingCursor->isChecked());
-    s->setValue("insertMatchingTokens", ui->insertMatchingTokens->isChecked());
     s->setValue("highlightCurrentLine", ui->highlightCurrentLine->isChecked());
     s->setValue("highlightBracketContents", ui->highlightBracketContents->isChecked());
+
     s->setValue("inactiveEditorFadeAlpha", ui->inactiveEditorFadeAlpha->value());
+
     s->setValue("useComboBox", ui->useComboBox->isChecked());
     s->setValue("useComboBoxWhenSplitting", ui->useComboBoxWhenSplitting->isChecked());
 
-    s->setValue("blinkDuration", ui->blinkDuration->value());
-
+    // Fonts & Colors tab
     s->beginGroup("font");
     QString fontFamily = ui->fontCombo->currentText();
     if (!fontFamily.isEmpty())
@@ -272,6 +288,7 @@ void EditorPage::store( Manager *s )
 
     s->endGroup();
 
+    // Display tab (post window settings)
     s->beginGroup("IDE/postWindow");
     s->setValue("scrollback", ui->postWindowScrollback->value());
     s->setValue("lineWrap", ui->postWindowLineWrap->isChecked());
