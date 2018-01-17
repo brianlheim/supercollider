@@ -60,9 +60,10 @@ install:
 - cmd: echo %VCINSTALLDIR%
 - cmd: dir "C:/Program Files (x86)/Microsoft Visual Studio"
 - cmd: dir "C:/Program Files (x86)/Microsoft Visual Studio/2017"
-- cmd: dir "C:/Program Files (x86)/Microsoft Visual Studio/Shared"
+- cmd: dir "C:/Program Files (x86)/Microsoft Visual Studio/Shared/Common"
 - cmd: dir "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC"
 - cmd: dir "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools"
+- cmd: dir "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC"
 
 - cmd: "\"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/bin/lib\" /machine:%ARCH% /def:libfftw3f-3.def"
 - cmd: cd ..
