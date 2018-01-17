@@ -56,7 +56,7 @@ install:
 # can't use appveyor DownloadFile because it's FTP
 - ps: Invoke-WebRequest $env:FFTW_URL -OutFile fftw.zip
 - ps: 7z x fftw.zip -y
-- cmd: "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.12.25827/bin/Hostx64/x64/lib" /machine:$env:ARCH /def:libfftw3f-3.def
+- cmd: "\"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.12.25827/bin/Hostx64/x64/lib\" /machine:$env:ARCH /def:libfftw3f-3.def"
 - cmd: cd ..
 - cmd: move fftw "C:/%PROGFILES%/fftw"
 - cmd: echo "Done installing fftw"
