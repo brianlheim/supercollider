@@ -57,8 +57,8 @@ install:
 - ps: Invoke-WebRequest $env:FFTW_URL -OutFile fftw.zip
 - ps: 7z x fftw.zip -y
 - cmd: set LIB_EXE=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\Hostx64
-- cmd: set LIB_EXE=%LIB_EXE\%ARCH%\lib
-- cmd: %LIB_EXE% /machine:%ARCH% /def:libfftw3f-3.def
+- cmd: set LIB_EXE=%LIB_EXE%\%ARCH%\lib
+- ps: $env:LIB_EXE /machine:$env:ARCH /def:libfftw3f-3.def
 - cmd: cd ..
 - cmd: move fftw "C:/%PROGFILES%/fftw"
 - cmd: echo "Done installing fftw"
