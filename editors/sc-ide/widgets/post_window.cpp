@@ -200,33 +200,30 @@ void PostWindow::post(const QString &text)
     bool scroll = mActions[AutoScroll]->isChecked();
     QTextCursor cursor(document());
     QChar linebreak = QChar('\n');
-  
-    int startPos = 0, position = 0;
-    foreach(const QChar chr, text) {
-        if (previousChar == linebreak) {
-            cursor.movePosition(QTextCursor::End);
-            cursor.insertText(QStringRef(&text, startPos, position - startPos).toString(), currentFormat);
-            startPos = position;
-            
-            QStringRef newLine(&text, position, text.length() - 1);
-            currentFormat = formatForPostLine(newLine);
-        }
-        
-        previousChar = chr;
-        position++;
-    }
-  
-    // handle remaining chars if not \n terminated
-    if (startPos < text.length()) {
+
+    int startPos = 0;
+    int position = text.indexOf(linebreak, startPos);
+    while (position != -1) {
+        ++position;
         cursor.movePosition(QTextCursor::End);
-        cursor.insertText(QStringRef(&text, startPos, text.length() - startPos).toString(), currentFormat);
+        cursor.insertText(QStringRef(&text, startPos, position - startPos).toString(), currentFormat);
+
+        // operations with the line after the newline
+        startPos = position;
+        QStringRef newLine(&text, position, text.length() - position);
+        currentFormat = formatForPostLine(newLine);
+        position = text.indexOf(linebreak, startPos);
     }
+
+    // handle remaining chars if not \n terminated
+    cursor.movePosition(QTextCursor::End);
+    cursor.insertText(QStringRef(&text, startPos, text.length() - startPos).toString(), currentFormat);
 
     if (scroll)
         emit(scrollToBottomRequest());
 }
-    
-QTextCharFormat PostWindow::formatForPostLine(QStringRef line)
+
+QTextCharFormat PostWindow::formatForPostLine(QStringRef const& line)
 {
     Settings::Manager *settings = Main::settings();
     QTextCharFormat postWindowError = settings->getThemeVal("postwindowerror");
