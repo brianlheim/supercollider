@@ -225,24 +225,20 @@ void PostWindow::post(const QString &text)
 
 QTextCharFormat PostWindow::formatForPostLine(QStringRef const& line)
 {
-    Settings::Manager *settings = Main::settings();
-    QTextCharFormat postWindowError = settings->getThemeVal("postwindowerror");
-    QTextCharFormat postWindowWarning = settings->getThemeVal("postwindowwarning");
-    QTextCharFormat postWindowSuccess = settings->getThemeVal("postwindowsuccess");
-    QTextCharFormat postWindowEmphasis = settings->getThemeVal("postwindowemphasis");
-    
+    Settings::Manager const* settings = Main::settings();
+
     QTextCharFormat format;
-    
+
     if (line.startsWith("ERROR:", Qt::CaseInsensitive) || line.startsWith("!"))
-        format.merge(postWindowError);
+        format.merge(settings->getThemeVal("postwindowerror"));
     else if (line.startsWith("WARNING:", Qt::CaseInsensitive) || line.startsWith("?"))
-        format.merge(postWindowWarning);
+        format.merge(settings->getThemeVal("postwindowwarning"));
     else if (line.startsWith("->"))
-        format.merge(postWindowSuccess);
+        format.merge(settings->getThemeVal("postwindowsuccess"));
     else if (line.startsWith("***"))
-        format.merge(postWindowEmphasis);
+        format.merge(settings->getThemeVal("postwindowemphasis"));
     // else no format
-    
+
     return format;
 }
 
