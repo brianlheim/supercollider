@@ -168,7 +168,7 @@ void Manager::setThemeVal(QString key, const QTextCharFormat &val)
     mTheme->setFormat(key, val);
 }
 
-const QTextCharFormat & Manager::getThemeVal(QString key)
+const QTextCharFormat & Manager::getThemeVal(QString key) const
 {
     return mTheme->format(key);
 }

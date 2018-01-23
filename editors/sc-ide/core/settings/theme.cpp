@@ -262,9 +262,9 @@ void Theme::setFormat(const QString & key, const QTextCharFormat & newFormat)
                                                     newFormat.fontItalic());
 }
 
-const QTextCharFormat & Theme::format(const QString & key)
+const QTextCharFormat & Theme::format(const QString & key) const
 {
-    QMap<QString, QTextCharFormat *>::iterator i = mFormats.find(key);
+    auto i = mFormats.find(key);
 
     if (i == mFormats.end())
         qDebug() << "Failed to find key " << key;

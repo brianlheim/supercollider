@@ -41,7 +41,7 @@ public:
     ~Theme();
 
     void setFormat(const QString & key, const QTextCharFormat & format);
-    const QTextCharFormat & format(const QString & key);
+    const QTextCharFormat & format(const QString & key) const;
     QString & name();
     bool locked();
     QList<QString> availableThemes();
