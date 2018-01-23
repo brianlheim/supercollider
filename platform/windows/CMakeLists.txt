@@ -47,3 +47,5 @@ add_custom_target( installer
     COMMENT "Building the installer..."
     VERBATIM
 )
+
+add_dependencies(installer install)
