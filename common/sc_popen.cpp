@@ -104,7 +104,7 @@ sc_popen_argv(const char *filename, char *const argv[], pid_t *pidp, const char 
 			(void)close(pdes[1]);
 		}
 
-		execve(filename, argv, environ);
+		execvpe(filename, argv, environ);
 		exit(127);
 		/* NOTREACHED */
 	}
