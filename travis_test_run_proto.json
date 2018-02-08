@@ -71,6 +71,6 @@
     {
       "suite": "TestMixedBundleTester", "test": "test_defNames",
       "skip": true, "skipReason": "Unidentified UnitTest bug"
-    },
+    }
   ]
 }
