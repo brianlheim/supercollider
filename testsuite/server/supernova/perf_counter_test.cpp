@@ -3,6 +3,7 @@
 
 #include "../../external_libraries/nova-simd/benchmarks/perf_counter.hpp"
 
+BOOST_AUTO_TEST_CASE_EXPECTED_FAILURES( perf_count_test, 1 )
 BOOST_AUTO_TEST_CASE( perf_count_test )
 {
     perf_counter pc;
