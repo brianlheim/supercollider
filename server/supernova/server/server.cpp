@@ -269,27 +269,42 @@ static bool set_realtime_priority(int thread_index)
 #ifdef NOVA_TT_PRIORITY_RT
 
 #ifdef JACK_BACKEND
+#ifndef _WIN32 //JACK_BACKEND not win32 (should be linux-jack)
         int priority = instance->realtime_priority();
         if (priority >= 0)
             success = true;
-
-#elif _WIN32
+#else   // JACK_BACKEND win32
         int priority = thread_priority_interval_rt().second;
-#else
+        success = true;
+#endif
+#elif _WIN32 // not JACK_BACKEND and _WIN32 (win32 portaudio)
+        int priority = thread_priority_interval_rt().second;
+        success = true;
+#else   // not JACK_BACKEND not _WIN32 (should be APPLE portaudio)
         int min, max;
         boost::tie(min, max) = thread_priority_interval_rt();
         int priority = max - 3;
         priority = std::max(min, priority);
 #endif
 
-        if (success)
+        if (success) {
             success = thread_set_priority_rt(priority);
-#endif
+        }
+#endif //NOVA_TT_PRIORITY_RT
     }
 
-    if (!success)
-        std::cout << "Warning: cannot raise thread priority" << std::endl;
+    if (!success) {
+#ifdef _WIN32
+        std::cout << "win32 error setting thread priority " << std::endl;
+        char *s;
+        FormatMessage( FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+                       nullptr, GetLastError() , MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (char*)&s, 0, NULL );
 
+        std::cout << "*** ERROR: GetProcAddress err " << s << std::endl;
+        LocalFree( s );
+#endif //_WIN32
+        std::cout << "Warning: cannot raise thread priority" << std::endl;
+    }
     return success;
 }
 
