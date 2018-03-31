@@ -6,7 +6,7 @@
     <message>
         <location filename="../forms/settings_dialog.ui" line="14"/>
         <source>SuperCollider IDE Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>SuperCollider IDE 配置</translation>
     </message>
 </context>
 <context>
@@ -14,12 +14,12 @@
     <message>
         <location filename="../forms/settings_editor.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>窗体</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="37"/>
         <source>Indentation</source>
-        <translation type="unfinished"></translation>
+        <translation>缩进</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="92"/>
@@ -34,12 +34,12 @@
     <message>
         <location filename="../forms/settings_editor.ui" line="31"/>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>行为</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="61"/>
         <source> spaces</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"> 空格</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="102"/>
@@ -54,7 +54,7 @@
     <message>
         <location filename="../forms/settings_editor.ui" line="123"/>
         <source>ms</source>
-        <translation type="unfinished"></translation>
+        <translation>毫秒</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="154"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="../forms/settings_editor.ui" line="164"/>
         <source>Completion</source>
-        <translation type="unfinished"></translation>
+        <translation>完成</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="170"/>
@@ -74,7 +74,7 @@
     <message>
         <location filename="../forms/settings_editor.ui" line="194"/>
         <source>Display</source>
-        <translation type="unfinished"></translation>
+        <translation>显示</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="200"/>
@@ -94,7 +94,7 @@
     <message>
         <location filename="../forms/settings_editor.ui" line="221"/>
         <source>Highlight current line</source>
-        <translation type="unfinished"></translation>
+        <translation>突出显示当前行</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="228"/>
@@ -114,7 +114,7 @@
     <message>
         <location filename="../forms/settings_editor.ui" line="253"/>
         <source> lines</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"> 行</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="289"/>
@@ -134,73 +134,73 @@
     <message>
         <location filename="../forms/settings_editor.ui" line="352"/>
         <source>Font &amp;&amp; Colors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">字体和颜色</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="358"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>字体</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="378"/>
         <source>Show only monospaced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">仅显示</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="401"/>
         <source>Family:</source>
-        <translation type="unfinished"></translation>
+        <translation>家族:</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="408"/>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>大小:</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="431"/>
         <source>Antialias</source>
-        <translation type="unfinished"></translation>
+        <translation>反失真</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="460"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>颜色</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="489"/>
         <source>Background:</source>
-        <translation type="unfinished"></translation>
+        <translation>背景色:</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="518"/>
         <location filename="../forms/settings_editor.ui" line="554"/>
         <source>X</source>
-        <translation type="unfinished"></translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="525"/>
         <source>Foreground:</source>
-        <translation type="unfinished"></translation>
+        <translation>前景色:</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="565"/>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>斜体</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="572"/>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>粗体</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="602"/>
         <source>copy ...</source>
-        <translation type="unfinished"></translation>
+        <translation>复制  ...</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="609"/>
         <source>delete</source>
-        <translation type="unfinished"></translation>
+        <translation>删除</translation>
     </message>
 </context>
 <context>
@@ -208,27 +208,30 @@
     <message>
         <location filename="../forms/settings_general.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>窗体</translation>
     </message>
     <message>
         <location filename="../forms/settings_general.ui" line="20"/>
         <source>On application start:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Kind of means &quot;at the time of application startup&quot;?</translatorcomment>
+        <translation>于应用程序启动:</translation>
     </message>
     <message>
         <location filename="../forms/settings_general.ui" line="27"/>
         <source>Start a new session</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>&quot;New session&quot;</translatorcomment>
+        <translation>新建会话</translation>
     </message>
     <message>
         <location filename="../forms/settings_general.ui" line="37"/>
         <source>Load last session</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>&quot;Load previous session&quot;</translatorcomment>
+        <translation>加载上一个会话</translation>
     </message>
     <message>
         <location filename="../forms/settings_general.ui" line="49"/>
         <source>Load session:</source>
-        <translation type="unfinished"></translation>
+        <translation>加载会话:</translation>
     </message>
 </context>
 <context>
@@ -236,12 +239,13 @@
     <message>
         <location filename="../core/sc_introspection.cpp" line="213"/>
         <source>Sclang Introspection not available, yet!</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Doesn&apos;t include &quot;yet!&quot; or translation for &quot;introspection&quot;</translatorcomment>
+        <translation>Sclang introspection 不可用</translation>
     </message>
     <message>
         <location filename="../core/sc_introspection.cpp" line="227"/>
         <source>Class not defined!</source>
-        <translation type="unfinished"></translation>
+        <translation>类没有定义</translation>
     </message>
 </context>
 <context>
@@ -250,28 +254,28 @@
         <location filename="../widgets/util/docklet.cpp" line="149"/>
         <location filename="../widgets/util/docklet.cpp" line="305"/>
         <source>Undock</source>
-        <translation type="unfinished"></translation>
+        <translation>取消停靠</translation>
     </message>
     <message>
         <location filename="../widgets/util/docklet.cpp" line="153"/>
         <location filename="../widgets/util/docklet.cpp" line="275"/>
         <source>Detach</source>
-        <translation type="unfinished"></translation>
+        <translation>分离</translation>
     </message>
     <message>
         <location filename="../widgets/util/docklet.cpp" line="157"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../widgets/util/docklet.cpp" line="275"/>
         <source>Attach</source>
-        <translation type="unfinished"></translation>
+        <translation>附加</translation>
     </message>
     <message>
         <location filename="../widgets/util/docklet.cpp" line="305"/>
         <source>Dock</source>
-        <translation type="unfinished"></translation>
+        <translation>停靠</translation>
     </message>
 </context>
 <context>
@@ -279,7 +283,7 @@
     <message>
         <location filename="../core/doc_manager.cpp" line="67"/>
         <source>Untitled</source>
-        <translation type="unfinished"></translation>
+        <translation>无标题</translation>
     </message>
 </context>
 <context>
@@ -287,24 +291,24 @@
     <message>
         <location filename="../core/doc_manager.cpp" line="316"/>
         <source>Cannot open file: %1 (file does not exist)</source>
-        <translation type="unfinished"></translation>
+        <translation>无法打开文件: %1 (文件不存在)</translation>
     </message>
     <message>
         <location filename="../core/doc_manager.cpp" line="334"/>
         <location filename="../core/doc_manager.cpp" line="393"/>
         <location filename="../core/doc_manager.cpp" line="435"/>
         <source>Cannot open file for reading: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>无法打开文件: %1</translation>
     </message>
     <message>
         <location filename="../core/doc_manager.cpp" line="349"/>
         <source>Opening RTF File</source>
-        <translation type="unfinished"></translation>
+        <translation>正在打开 RTF 文件</translation>
     </message>
     <message>
         <location filename="../core/doc_manager.cpp" line="350"/>
         <source>Warning: RTF file will be converted to plain-text scd file.</source>
-        <translation type="unfinished"></translation>
+        <translation>警告: RTF 文件会被转换为纯文本文件</translation>
     </message>
 </context>
 <context>
@@ -312,18 +316,18 @@
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="61"/>
         <source>Document</source>
-        <translation type="unfinished"></translation>
+        <translation>文档</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="61"/>
         <source>Path</source>
         <comment>File path.</comment>
-        <translation type="unfinished"></translation>
+        <translation>路径</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="63"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>状态</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="74"/>
@@ -352,57 +356,57 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="92"/>
         <source>&amp;Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>重新加载(&amp;R)</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="96"/>
         <source>Over&amp;write</source>
-        <translation type="unfinished"></translation>
+        <translation>覆盖(&amp;W)</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="100"/>
         <source>&amp;Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>忽略(&amp;I)</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="104"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭(&amp;C)</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="109"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>保存(&amp;S)</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="113"/>
         <source>&amp;Discard</source>
-        <translation type="unfinished"></translation>
+        <translation>放弃(&amp;D)</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="117"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="122"/>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>全选(&amp;A)</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="125"/>
         <source>Select N&amp;one</source>
-        <translation type="unfinished"></translation>
+        <translation>选择“无”(&amp;O)</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="275"/>
         <source>Removed</source>
-        <translation type="unfinished"></translation>
+        <translation>已删除</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="279"/>
         <source>Modified</source>
-        <translation type="unfinished"></translation>
+        <translation>修改于</translation>
     </message>
 </context>
 <context>
@@ -410,7 +414,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/doc_list.cpp" line="158"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>文档</translation>
     </message>
 </context>
 <context>
@@ -418,22 +422,22 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="249"/>
         <source>Close All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭​​所有选项卡</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="252"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="253"/>
         <source>Close Other Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭其他选项卡</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="254"/>
         <source>Close Tabs to the Right</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭右侧的标签页</translation>
     </message>
 </context>
 <context>
@@ -441,12 +445,13 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/lookup_dialog.cpp" line="114"/>
         <source>Cannot open file: %1 (file does not exist)</source>
-        <translation type="unfinished"></translation>
+        <translation>无法打开文件: %1 (文件不存在)</translation>
     </message>
     <message>
         <location filename="../widgets/lookup_dialog.cpp" line="122"/>
         <source>Cannot open file for reading: %1</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Just says &quot;cannot open file&quot;</translatorcomment>
+        <translation>无法打开文件: %1</translation>
     </message>
 </context>
 <context>
@@ -454,12 +459,12 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/goto_line_tool.hpp" line="52"/>
         <source>Go</source>
-        <translation type="unfinished"></translation>
+        <translation>开始</translation>
     </message>
     <message>
         <location filename="../widgets/goto_line_tool.hpp" line="55"/>
         <source>Line:</source>
-        <translation type="unfinished"></translation>
+        <translation>行:</translation>
     </message>
 </context>
 <context>
@@ -467,42 +472,44 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/help_browser.cpp" line="116"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>主页</translation>
     </message>
     <message>
         <location filename="../widgets/help_browser.cpp" line="119"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../widgets/help_browser.cpp" line="123"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>放大</translation>
     </message>
     <message>
         <location filename="../widgets/help_browser.cpp" line="127"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>缩小</translation>
     </message>
     <message>
         <location filename="../widgets/help_browser.cpp" line="131"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>重置缩放</translation>
     </message>
     <message>
         <location filename="../widgets/help_browser.cpp" line="135"/>
         <source>Evaluate as Code</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Stuck together &quot;evaluate&quot; from &quot;evaluate file&quot;, &quot;as&quot; from &quot;As:&quot;, &quot;Code&quot;</translatorcomment>
+        <translation>估算作为代码</translation>
     </message>
     <message>
         <location filename="../widgets/help_browser.cpp" line="306"/>
         <source>Can not use help - interpreter not running!</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>&quot;Help not available - interpreter not operational&quot;</translatorcomment>
+        <translation>帮助不可用 - 解释器未运行!</translation>
     </message>
     <message>
         <location filename="../widgets/help_browser.cpp" line="311"/>
         <source>Sending request</source>
-        <translation type="unfinished"></translation>
+        <translation>正在发送请求</translation>
     </message>
 </context>
 <context>
@@ -510,7 +517,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/help_browser.cpp" line="466"/>
         <source>Help browser</source>
-        <translation type="unfinished"></translation>
+        <translation>帮助浏览器</translation>
     </message>
 </context>
 <context>
@@ -518,7 +525,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/help_browser.cpp" line="421"/>
         <source>Find in page...</source>
-        <translation type="unfinished"></translation>
+        <translation>查找位于页...</translation>
     </message>
 </context>
 <context>
@@ -526,17 +533,18 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/lang_status_box.cpp" line="54"/>
         <source>Inactive</source>
-        <translation type="unfinished"></translation>
+        <translation>非活动</translation>
     </message>
     <message>
         <location filename="../widgets/lang_status_box.cpp" line="59"/>
         <source>Booting</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Used &quot;Loading&quot;</translatorcomment>
+        <translation>加载</translation>
     </message>
     <message>
         <location filename="../widgets/lang_status_box.cpp" line="64"/>
         <source>Active</source>
-        <translation type="unfinished"></translation>
+        <translation>活动</translation>
     </message>
 </context>
 <context>
@@ -544,7 +552,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/help_browser.hpp" line="45"/>
         <source>Loading</source>
-        <translation type="unfinished"></translation>
+        <translation>加载</translation>
     </message>
 </context>
 <context>
@@ -552,22 +560,24 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/lookup_dialog.cpp" line="239"/>
         <source>Look Up Implementations</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Look up + implementations</translatorcomment>
+        <translation>查阅实施次数</translation>
     </message>
     <message>
         <location filename="../widgets/lookup_dialog.cpp" line="241"/>
         <source>Enter class or method name...</source>
-        <translation type="unfinished"></translation>
+        <translation>输入类名称或方法名称...</translation>
     </message>
     <message>
         <location filename="../widgets/lookup_dialog.cpp" line="256"/>
         <source>Introspection data not yet available</source>
-        <translation type="unfinished"></translation>
+        <translation>Sclang introspection 不可用</translation>
     </message>
     <message>
         <location filename="../widgets/lookup_dialog.cpp" line="430"/>
         <source>No result for query</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>&quot;No result&quot;</translatorcomment>
+        <translation>无结果</translation>
     </message>
 </context>
 <context>
@@ -580,70 +590,70 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="117"/>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>服务器:</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="125"/>
         <source>Command Line:</source>
-        <translation type="unfinished"></translation>
+        <translation>命令行:</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="256"/>
         <source>Text Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>文本编辑器</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="257"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>帮助</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="261"/>
         <source>&amp;Quit...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">退出(&amp;Q)...</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="262"/>
         <source>Ctrl+Q</source>
         <comment>Quit application</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="263"/>
         <source>Quit SuperCollider IDE</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">退出 SuperCollider IDE</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="268"/>
         <source>&amp;New</source>
-        <translation type="unfinished"></translation>
+        <translation>新建(&amp;N)</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="269"/>
         <source>Ctrl+N</source>
         <comment>New document</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="270"/>
         <source>Create a new document</source>
-        <translation type="unfinished"></translation>
+        <translation>创建新文档</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="275"/>
         <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
+        <translation>打开(&amp;O)...</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="276"/>
         <source>Ctrl+O</source>
         <comment>Open document</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="277"/>
         <source>Open an existing file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开现有文件</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="282"/>
@@ -660,29 +670,29 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="294"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>保存(&amp;S)</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="295"/>
         <source>Ctrl+S</source>
         <comment>Save document</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="296"/>
         <source>Save the current document</source>
-        <translation type="unfinished"></translation>
+        <translation>保存当前文档</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="301"/>
         <source>Save &amp;As...</source>
-        <translation type="unfinished"></translation>
+        <translation>另存为(&amp;A)...</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="302"/>
         <source>Ctrl+Shift+S</source>
         <comment>Save &amp;As...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="303"/>
@@ -702,13 +712,13 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="314"/>
         <source>Save All...</source>
-        <translation type="unfinished"></translation>
+        <translation>全部保存...</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="315"/>
         <source>Ctrl+Alt+S</source>
         <comment>Save all documents</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+S</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="316"/>
@@ -724,7 +734,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
         <location filename="../widgets/main_window.cpp" line="322"/>
         <source>Ctrl+Shift+W</source>
         <comment>Close all documents</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="323"/>
@@ -734,13 +744,13 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="328"/>
         <source>&amp;Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>重新加载(&amp;R)</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="329"/>
         <source>F5</source>
         <comment>Reload document</comment>
-        <translation type="unfinished"></translation>
+        <translation>F5</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="330"/>
@@ -751,7 +761,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
         <location filename="../widgets/main_window.cpp" line="334"/>
         <source>Clear</source>
         <comment>Clear recent documents</comment>
-        <translation type="unfinished"></translation>
+        <translation>清除</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="335"/>
@@ -761,7 +771,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="342"/>
         <source>&amp;New Session</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新会话(&amp;N)</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="343"/>
@@ -792,18 +802,18 @@ Apply desired actions to selected documents, until the list is empty.</source>
         <location filename="../widgets/main_window.cpp" line="361"/>
         <source>Ctrl+Shift+Q</source>
         <comment>Switch Session</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Q</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="366"/>
         <source>&amp;Find...</source>
-        <translation type="unfinished"></translation>
+        <translation>查找...</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="367"/>
         <source>Ctrl+F</source>
         <comment>Find</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+F</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="368"/>
@@ -813,13 +823,13 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="373"/>
         <source>&amp;Replace...</source>
-        <translation type="unfinished"></translation>
+        <translation>替换(&amp;R)...</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="374"/>
         <source>Ctrl+R</source>
         <comment>Replace</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="375"/>
@@ -829,7 +839,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="380"/>
         <source>&amp;Command Line</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">命令行(&amp;C)</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="381"/>
@@ -840,7 +850,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
         <location filename="../widgets/main_window.cpp" line="382"/>
         <source>Ctrl+E</source>
         <comment>Show command line</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="386"/>
@@ -851,7 +861,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
         <location filename="../widgets/main_window.cpp" line="387"/>
         <source>Ctrl+Shift+E</source>
         <comment>Fill command line with current selection</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+E</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="392"/>
@@ -867,7 +877,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
         <location filename="../widgets/main_window.cpp" line="394"/>
         <source>Ctrl+L</source>
         <comment>Show go-to-line tool</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="399"/>
@@ -883,18 +893,18 @@ Apply desired actions to selected documents, until the list is empty.</source>
         <location filename="../widgets/main_window.cpp" line="401"/>
         <source>Esc</source>
         <comment>Close tool box</comment>
-        <translation type="unfinished"></translation>
+        <translation>Esc</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="405"/>
         <source>&amp;Full Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>全屏显示(&amp;F)</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="407"/>
         <source>Ctrl+Shift+F</source>
         <comment>Show ScIDE in Full Screen</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+F</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="411"/>
@@ -910,7 +920,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
         <location filename="../widgets/main_window.cpp" line="413"/>
         <source>Ctrl+P</source>
         <comment>Focus post window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="419"/>
@@ -921,7 +931,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
         <location filename="../widgets/main_window.cpp" line="420"/>
         <source>Ctrl+Shift+I</source>
         <comment>Look Up Implementations</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="421"/>
@@ -937,7 +947,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
         <location filename="../widgets/main_window.cpp" line="426"/>
         <source>Ctrl+I</source>
         <comment>Look Up Implementations for Cursor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="427"/>
@@ -953,7 +963,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
         <location filename="../widgets/main_window.cpp" line="433"/>
         <source>Ctrl+Shift+U</source>
         <comment>Look Up References</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+U</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="434"/>
@@ -969,7 +979,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
         <location filename="../widgets/main_window.cpp" line="439"/>
         <source>Ctrl+U</source>
         <comment>Look Up References For Selection</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="440"/>
@@ -979,7 +989,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="445"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>首选项</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="454"/>
@@ -1009,7 +1019,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="466"/>
         <source>Report a bug</source>
-        <translation type="unfinished"></translation>
+        <translation>报告 bug</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="1043"/>
@@ -1065,7 +1075,7 @@ Do you want to restore files saved as temporary backups?</source>
         <location filename="../widgets/main_window.cpp" line="471"/>
         <source>Ctrl+D</source>
         <comment>Look Up Documentation for Cursor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+D</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="472"/>
@@ -1081,7 +1091,7 @@ Do you want to restore files saved as temporary backups?</source>
         <location filename="../widgets/main_window.cpp" line="478"/>
         <source>Ctrl+Shift+D</source>
         <comment>Look Up Documentation</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+D</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="479"/>
@@ -1116,13 +1126,13 @@ Do you want to restore files saved as temporary backups?</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="549"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>文件(&amp;F)</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="552"/>
         <source>Open Recent</source>
         <comment>Open a recent document</comment>
-        <translation type="unfinished"></translation>
+        <translation>打开最近的文件</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="571"/>
@@ -1137,12 +1147,12 @@ Do you want to restore files saved as temporary backups?</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="585"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑(&amp;E)</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="610"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>查看(&amp;V)</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="611"/>
@@ -1157,17 +1167,17 @@ Do you want to restore files saved as temporary backups?</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="650"/>
         <source>&amp;Language</source>
-        <translation type="unfinished"></translation>
+        <translation>语言(&amp;L)</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="669"/>
         <source>Se&amp;rver</source>
-        <translation type="unfinished"></translation>
+        <translation>服务器​​(&amp;R)</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="690"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>帮助(&amp;H)</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="806"/>
@@ -1228,7 +1238,7 @@ Do you want to reload it?</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="1349"/>
         <source>Untitled</source>
-        <translation type="unfinished"></translation>
+        <translation>无标题</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="1477"/>
@@ -1258,18 +1268,18 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/multi_editor.cpp" line="376"/>
         <source>Text Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>文本编辑器</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="381"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>撤消(&amp;U)</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="382"/>
         <source>Ctrl+Z</source>
         <comment>Undo</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Z</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="383"/>
@@ -1285,7 +1295,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="390"/>
         <source>Ctrl+Shift+Z</source>
         <comment>Redo</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Z</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="391"/>
@@ -1295,13 +1305,13 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/multi_editor.cpp" line="397"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"></translation>
+        <translation>剪切(&amp;T)</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="398"/>
         <source>Ctrl+X</source>
         <comment>Cut</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="400"/>
@@ -1311,29 +1321,29 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/multi_editor.cpp" line="406"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>复制(&amp;C)</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="407"/>
         <source>Ctrl+C</source>
         <comment>Copy</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="409"/>
         <source>Copy text to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>将文本复制到剪贴板</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="415"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>粘贴(&amp;P)</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="416"/>
         <source>Ctrl+V</source>
         <comment>Paste</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+V</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="418"/>
@@ -1360,7 +1370,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="431"/>
         <source>Ctrl+Space</source>
         <comment>Trigger Autocompletion</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+空格键</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="437"/>
@@ -1376,7 +1386,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="439"/>
         <source>Ctrl+Shift+Space</source>
         <comment>Trigger Method Call Aid</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Space</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="446"/>
@@ -1387,7 +1397,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="447"/>
         <source>Ctrl+/</source>
         <comment>Toggle Comment</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+/</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="449"/>
@@ -1403,12 +1413,12 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="456"/>
         <source>Insert</source>
         <comment>Toggle Overwrite Mode</comment>
-        <translation type="unfinished"></translation>
+        <translation>插入</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="462"/>
         <source>Copy Line Up</source>
-        <translation type="unfinished"></translation>
+        <translation>向上复制行</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="463"/>
@@ -1419,7 +1429,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/multi_editor.cpp" line="469"/>
         <source>Copy Line Down</source>
-        <translation type="unfinished"></translation>
+        <translation>向下复制行</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="470"/>
@@ -1430,29 +1440,29 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/multi_editor.cpp" line="476"/>
         <source>Move Line Up</source>
-        <translation type="unfinished"></translation>
+        <translation>向上移动行</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="477"/>
         <source>Ctrl+Shift+Up</source>
         <comment>Move Line Up</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+向上键</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="483"/>
         <source>Move Line Down</source>
-        <translation type="unfinished"></translation>
+        <translation>向下移动行</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="484"/>
         <source>Ctrl+Shift+Down</source>
         <comment>Move Line Up</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+向下键</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="490"/>
         <source>Delete Word</source>
-        <translation type="unfinished"></translation>
+        <translation>删除单词</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="492"/>
@@ -1469,7 +1479,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="500"/>
         <source>Ctrl+[</source>
         <comment>Go to Previous Block</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+[</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="507"/>
@@ -1480,7 +1490,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="508"/>
         <source>Ctrl+]</source>
         <comment>Go to Next Block</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+]</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="514"/>
@@ -1491,7 +1501,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="515"/>
         <source>Ctrl+Shift+B</source>
         <comment>Select Enclosing Block</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+B</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="517"/>
@@ -1519,7 +1529,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="643"/>
         <source>Alt+Tab</source>
         <comment>Switch Document</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Tab</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="531"/>
@@ -1535,7 +1545,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="539"/>
         <source>Ctrl+Up</source>
         <comment>Go to Previous Empty Line</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+向上键</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="544"/>
@@ -1546,34 +1556,34 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="545"/>
         <source>Ctrl+Down</source>
         <comment>Go to Next Empty Line</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+向下键</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="550"/>
         <source>Select Region</source>
-        <translation type="unfinished"></translation>
+        <translation>选择区域</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="551"/>
         <source>Ctrl+Shift+R</source>
         <comment>Select Region</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+R</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="560"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭(&amp;C)</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="561"/>
         <source>Ctrl+W</source>
         <comment>Close document</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="563"/>
         <source>Close the current document</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭当前文档</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="568"/>
@@ -1584,7 +1594,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="569"/>
         <source>Ctrl++</source>
         <comment>Enlarge font</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl++</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="571"/>
@@ -1594,13 +1604,13 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/multi_editor.cpp" line="576"/>
         <source>&amp;Shrink Font</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;缩小字体</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="577"/>
         <source>Ctrl+-</source>
         <comment>Shrink font</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+-</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="579"/>
@@ -1616,7 +1626,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="585"/>
         <source>Ctrl+0</source>
         <comment>Reset font</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+0</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="586"/>
@@ -1663,13 +1673,13 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="623"/>
         <source>Alt+Right</source>
         <comment>Next Document</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Right</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="625"/>
         <source>Ctrl+Alt+Right</source>
         <comment>Next Document</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+Right</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="630"/>
@@ -1680,13 +1690,13 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="632"/>
         <source>Alt+Left</source>
         <comment>Previous Document</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Left</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="634"/>
         <source>Ctrl+Alt+Left</source>
         <comment>Previous Document</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+Left</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="639"/>
@@ -1697,7 +1707,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="641"/>
         <source>Ctrl+Tab</source>
         <comment>Switch Document</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Tab</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="648"/>
@@ -1722,7 +1732,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/multi_editor.cpp" line="671"/>
         <source>Evaluate &amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>估算文件(&amp;F)</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="672"/>
@@ -1738,7 +1748,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="680"/>
         <source>Ctrl+Return</source>
         <comment>Evaluate region</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Return</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="681"/>
@@ -1754,7 +1764,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/multi_editor.cpp" line="689"/>
         <source>Shift+Return</source>
         <comment>Evaluate selection/line</comment>
-        <translation type="unfinished"></translation>
+        <translation>Shift+Return</translation>
     </message>
     <message>
         <location filename="../widgets/multi_editor.cpp" line="690"/>
@@ -1767,7 +1777,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/post_window.cpp" line="393"/>
         <source>Post window</source>
-        <translation type="unfinished"></translation>
+        <translation>日志窗口</translation>
     </message>
 </context>
 <context>
@@ -1780,12 +1790,12 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/post_window.cpp" line="72"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>复制</translation>
     </message>
     <message>
         <location filename="../widgets/post_window.cpp" line="80"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>清除</translation>
     </message>
     <message>
         <location filename="../widgets/post_window.cpp" line="81"/>
@@ -1796,17 +1806,17 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../widgets/post_window.cpp" line="83"/>
         <source>Ctrl+Shift+P</source>
         <comment>Clear post window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
         <location filename="../widgets/post_window.cpp" line="92"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../widgets/post_window.cpp" line="93"/>
         <source>Close the current document</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭当前文档</translation>
     </message>
     <message>
         <location filename="../widgets/post_window.cpp" line="97"/>
@@ -1821,7 +1831,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/post_window.cpp" line="103"/>
         <source>Shrink Font</source>
-        <translation type="unfinished"></translation>
+        <translation>缩小字体</translation>
     </message>
     <message>
         <location filename="../widgets/post_window.cpp" line="105"/>
@@ -1836,7 +1846,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/post_window.cpp" line="117"/>
         <source>Wrap Text</source>
-        <translation type="unfinished"></translation>
+        <translation>自动换行</translation>
     </message>
     <message>
         <location filename="../widgets/post_window.cpp" line="118"/>
@@ -1846,7 +1856,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/post_window.cpp" line="124"/>
         <source>Auto Scroll</source>
-        <translation type="unfinished"></translation>
+        <translation>自动滚动</translation>
     </message>
     <message>
         <location filename="../widgets/post_window.cpp" line="125"/>
@@ -1859,17 +1869,19 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/lookup_dialog.cpp" line="502"/>
         <source>Look Up References</source>
-        <translation type="unfinished"></translation>
+        <translation>查阅参考资料</translation>
     </message>
     <message>
         <location filename="../widgets/lookup_dialog.cpp" line="504"/>
         <source>Enter class or method name...</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>&quot;input class name or method name&quot;</translatorcomment>
+        <translation>输入类名称或方法名称...</translation>
     </message>
     <message>
         <location filename="../widgets/lookup_dialog.cpp" line="540"/>
         <source>Introspection data not yet available</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Used existing translation, not as precise but still close</translatorcomment>
+        <translation>Sclang introspection 不可用</translation>
     </message>
 </context>
 <context>
@@ -1877,54 +1889,54 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../core/sc_process.cpp" line="65"/>
         <source>Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../core/sc_process.cpp" line="67"/>
         <source>Boot or Quit Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>启动或退出解释器</translation>
     </message>
     <message>
         <location filename="../core/sc_process.cpp" line="72"/>
         <source>Boot Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>启动解释器</translation>
     </message>
     <message>
         <location filename="../core/sc_process.cpp" line="77"/>
         <source>Quit Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>退出解释器</translation>
     </message>
     <message>
         <location filename="../core/sc_process.cpp" line="82"/>
         <source>Reboot Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translation>重新启动解释器</translation>
     </message>
     <message>
         <location filename="../core/sc_process.cpp" line="87"/>
         <source>Recompile Class Library</source>
-        <translation type="unfinished"></translation>
+        <translation>重新编译类库</translation>
     </message>
     <message>
         <location filename="../core/sc_process.cpp" line="88"/>
         <source>Ctrl+Shift+l</source>
         <comment>Recompile Class Library)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+L</translation>
     </message>
     <message>
         <location filename="../core/sc_process.cpp" line="93"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>停止</translation>
     </message>
     <message>
         <location filename="../core/sc_process.cpp" line="94"/>
         <source>Ctrl+.</source>
         <comment>Stop (a.k.a. cmd-period)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+.</translation>
     </message>
     <message>
         <location filename="../core/sc_process.cpp" line="99"/>
         <source>Quarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Quarks</translation>
     </message>
     <message>
         <location filename="../core/sc_process.cpp" line="132"/>
@@ -1982,7 +1994,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../core/sc_server.cpp" line="72"/>
         <source>Ctrl+B</source>
         <comment>Boot default server</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+B</translation>
     </message>
     <message>
         <location filename="../core/sc_server.cpp" line="82"/>
@@ -2008,7 +2020,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../core/sc_server.cpp" line="97"/>
         <source>Ctrl+Shift+M</source>
         <comment>Show scope</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+M</translation>
     </message>
     <message>
         <location filename="../core/sc_server.cpp" line="101"/>
@@ -2019,7 +2031,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../core/sc_server.cpp" line="102"/>
         <source>Ctrl+Alt+M</source>
         <comment>Show freqscope</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+M</translation>
     </message>
     <message>
         <location filename="../core/sc_server.cpp" line="106"/>
@@ -2050,18 +2062,18 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../core/sc_server.cpp" line="126"/>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>静音</translation>
     </message>
     <message>
         <location filename="../core/sc_server.cpp" line="127"/>
         <source>Ctrl+Alt+End</source>
         <comment>Mute sound output.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+End</translation>
     </message>
     <message>
         <location filename="../core/sc_server.cpp" line="146"/>
         <source>Increase Volume</source>
-        <translation type="unfinished"></translation>
+        <translation>提高音量</translation>
     </message>
     <message>
         <location filename="../core/sc_server.cpp" line="147"/>
@@ -2072,7 +2084,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../core/sc_server.cpp" line="151"/>
         <source>Decrease Volume</source>
-        <translation type="unfinished"></translation>
+        <translation>降低音量</translation>
     </message>
     <message>
         <location filename="../core/sc_server.cpp" line="152"/>
@@ -2089,35 +2101,35 @@ The file has an unrecognized extension. It may be a binary file. Would you still
         <location filename="../core/sc_server.cpp" line="157"/>
         <source>Ctrl+Alt+Home</source>
         <comment>Restore volume</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+Home</translation>
     </message>
     <message>
         <location filename="../core/sc_server.cpp" line="161"/>
         <source>Recording</source>
-        <translation type="unfinished"></translation>
+        <translation>录制</translation>
     </message>
     <message>
         <location filename="../core/sc_server.cpp" line="167"/>
         <source>Pause Recording</source>
-        <translation type="unfinished"></translation>
+        <translation>暂停录制</translation>
     </message>
     <message>
         <location filename="../core/sc_server.cpp" line="92"/>
         <source>Ctrl+M</source>
         <comment>Show server meter</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <location filename="../core/sc_server.cpp" line="107"/>
         <source>Ctrl+T</source>
         <comment>Dump node tree</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <location filename="../core/sc_server.cpp" line="112"/>
         <source>Ctrl+Shift+T</source>
         <comment>Dump node tree with controls</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+T</translation>
     </message>
     <message>
         <location filename="../core/sc_server.cpp" line="77"/>
@@ -2135,7 +2147,8 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/session_switch_dialog.cpp" line="35"/>
         <source>Switch Session</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Not totally sure, but a google search indicates this is at least close</translatorcomment>
+        <translation>开关会话</translation>
     </message>
 </context>
 <context>
@@ -2143,32 +2156,34 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/sessions_dialog.hpp" line="50"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="../widgets/sessions_dialog.hpp" line="51"/>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名...</translation>
     </message>
     <message>
         <location filename="../widgets/sessions_dialog.hpp" line="88"/>
         <source>Delete Session</source>
-        <translation type="unfinished"></translation>
+        <translation>删除会话</translation>
     </message>
     <message>
         <location filename="../widgets/sessions_dialog.hpp" line="89"/>
         <source>Are you sure you want to delete session &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Do you want to delete session xxx?</translatorcomment>
+        <translation>要删除会话 ‘%1&apos; 吗？</translation>
     </message>
     <message>
         <location filename="../widgets/sessions_dialog.hpp" line="108"/>
         <source>Rename Session</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名会话</translation>
     </message>
     <message>
         <location filename="../widgets/sessions_dialog.hpp" line="109"/>
         <source>Enter a new name for the session:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>&quot;Enter a new name&quot;</translatorcomment>
+        <translation>输入新名称:</translation>
     </message>
 </context>
 <context>
@@ -2176,22 +2191,23 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/settings/dialog.cpp" line="53"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>常规</translation>
     </message>
     <message>
         <location filename="../widgets/settings/dialog.cpp" line="60"/>
         <source>Interpreter</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Taken from Baidu</translatorcomment>
+        <translation>解释器</translation>
     </message>
     <message>
         <location filename="../widgets/settings/dialog.cpp" line="67"/>
         <source>Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑器</translation>
     </message>
     <message>
         <location filename="../widgets/settings/dialog.cpp" line="74"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>快捷方式</translation>
     </message>
 </context>
 <context>
@@ -2199,22 +2215,22 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="172"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>文本</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="188"/>
         <source>Line Numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>行号</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="188"/>
         <source>Selected Text</source>
-        <translation type="unfinished"></translation>
+        <translation>所选文字</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="186"/>
         <source>Search Result</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索结果</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="186"/>
@@ -2224,7 +2240,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="186"/>
         <source>Current Line</source>
-        <translation type="unfinished"></translation>
+        <translation>当前行</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="187"/>
@@ -2244,12 +2260,12 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="189"/>
         <source>Whitespace</source>
-        <translation type="unfinished"></translation>
+        <translation>空白</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="190"/>
         <source>Keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>关键字</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="190"/>
@@ -2259,42 +2275,42 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="190"/>
         <source>Environment Variable</source>
-        <translation type="unfinished"></translation>
+        <translation>环境变量</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="191"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>类</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="191"/>
         <source>Number</source>
-        <translation type="unfinished"></translation>
+        <translation>数字</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="191"/>
         <source>Symbol</source>
-        <translation type="unfinished"></translation>
+        <translation>符号</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="191"/>
         <source>String</source>
-        <translation type="unfinished"></translation>
+        <translation>字符串</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="191"/>
         <source>Char</source>
-        <translation type="unfinished"></translation>
+        <translation>字符</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="192"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>评论</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="192"/>
         <source>Primitive</source>
-        <translation type="unfinished"></translation>
+        <translation>原始</translation>
     </message>
     <message>
         <location filename="../widgets/settings/editor_page.cpp" line="193"/>
@@ -2373,7 +2389,7 @@ The file has an unrecognized extension. It may be a binary file. Would you still
     <message>
         <location filename="../widgets/settings/sclang_page.cpp" line="285"/>
         <source>File Already Exists</source>
-        <translation type="unfinished"></translation>
+        <translation>文件已存在</translation>
     </message>
     <message>
         <location filename="../widgets/settings/sclang_page.cpp" line="286"/>
@@ -2401,12 +2417,14 @@ This action is immediate and cannot be undone.
         <source>Shortcut &apos;%1&apos; has already been assigned to &apos;%2&apos;.
 
 Would you like to override it?</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>A bit dubious.. I&apos;m not sure if that&apos;s the correct &quot;Assigned to&quot;</translatorcomment>
+        <translation>快捷方式 &apos;%1&apos; 已经已分配给 ‘%2’</translation>
     </message>
     <message>
         <location filename="../widgets/settings/shortcuts_page.cpp" line="233"/>
         <source>Duplicate Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Don&apos;t know if this is the right &quot;duplicate&quot;...</translatorcomment>
+        <translation>副本的快捷方式</translation>
     </message>
 </context>
 <context>
@@ -2415,78 +2433,78 @@ Would you like to override it?</source>
         <location filename="../widgets/find_replace_tool.cpp" line="46"/>
         <location filename="../widgets/find_replace_tool.cpp" line="126"/>
         <source>Find Next</source>
-        <translation type="unfinished"></translation>
+        <translation>查找下一个</translation>
     </message>
     <message>
         <location filename="../widgets/find_replace_tool.cpp" line="50"/>
         <location filename="../widgets/find_replace_tool.cpp" line="131"/>
         <source>Find Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>查找上一个</translation>
     </message>
     <message>
         <location filename="../widgets/find_replace_tool.cpp" line="53"/>
         <source>Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>替换</translation>
     </message>
     <message>
         <location filename="../widgets/find_replace_tool.cpp" line="55"/>
         <source>Replace All</source>
-        <translation type="unfinished"></translation>
+        <translation>全部替换</translation>
     </message>
     <message>
         <location filename="../widgets/find_replace_tool.cpp" line="58"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>选项</translation>
     </message>
     <message>
         <location filename="../widgets/find_replace_tool.cpp" line="63"/>
         <source>Match Case</source>
-        <translation type="unfinished"></translation>
+        <translation>区分大小写</translation>
     </message>
     <message>
         <location filename="../widgets/find_replace_tool.cpp" line="65"/>
         <source>Regular Expression</source>
-        <translation type="unfinished"></translation>
+        <translation>正则表达式</translation>
     </message>
     <message>
         <location filename="../widgets/find_replace_tool.cpp" line="67"/>
         <source>Whole Words</source>
-        <translation type="unfinished"></translation>
+        <translation>全字匹配</translation>
     </message>
     <message>
         <location filename="../widgets/find_replace_tool.cpp" line="71"/>
         <source>Find:</source>
-        <translation type="unfinished"></translation>
+        <translation>查找:</translation>
     </message>
     <message>
         <location filename="../widgets/find_replace_tool.cpp" line="73"/>
         <source>Replace:</source>
-        <translation type="unfinished"></translation>
+        <translation>替换:</translation>
     </message>
     <message>
         <location filename="../widgets/find_replace_tool.cpp" line="127"/>
         <source>Ctrl+G</source>
         <comment>Find Next</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+G</translation>
     </message>
     <message>
         <location filename="../widgets/find_replace_tool.cpp" line="129"/>
         <location filename="../widgets/find_replace_tool.cpp" line="134"/>
         <source>Text Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>文本编辑器</translation>
     </message>
     <message>
         <location filename="../widgets/find_replace_tool.cpp" line="132"/>
         <source>Ctrl+Shift+G</source>
         <comment>Find Previous</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+G</translation>
     </message>
     <message numerus="yes">
         <location filename="../widgets/find_replace_tool.cpp" line="299"/>
         <source>%n matches found.</source>
         <comment>Find text in document...</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n 发现匹配条目.</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -2503,17 +2521,17 @@ Would you like to override it?</source>
     <message>
         <location filename="../widgets/util/text_format_list_widget.cpp" line="86"/>
         <source>Role</source>
-        <translation type="unfinished"></translation>
+        <translation>角色</translation>
     </message>
     <message>
         <location filename="../widgets/util/text_format_list_widget.cpp" line="86"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>颜色</translation>
     </message>
     <message>
         <location filename="../widgets/util/text_format_list_widget.cpp" line="86"/>
         <source>Background</source>
-        <translation type="unfinished"></translation>
+        <translation>背景</translation>
     </message>
 </context>
 <context>
@@ -2521,7 +2539,7 @@ Would you like to override it?</source>
     <message>
         <location filename="../forms/settings_sclang.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>窗体</translation>
     </message>
     <message>
         <location filename="../forms/settings_sclang.ui" line="33"/>
@@ -2536,12 +2554,12 @@ Would you like to override it?</source>
     <message>
         <location filename="../forms/settings_sclang.ui" line="123"/>
         <source>Include:</source>
-        <translation type="unfinished"></translation>
+        <translation>包括:</translation>
     </message>
     <message>
         <location filename="../forms/settings_sclang.ui" line="172"/>
         <source>Exclude:</source>
-        <translation type="unfinished"></translation>
+        <translation>排除:</translation>
     </message>
     <message>
         <location filename="../forms/settings_sclang.ui" line="220"/>
@@ -2588,42 +2606,42 @@ Would you like to override it?</source>
     <message>
         <location filename="../forms/settings_shortcuts.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>窗体</translation>
     </message>
     <message>
         <location filename="../forms/settings_shortcuts.ui" line="22"/>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>筛选:</translation>
     </message>
     <message>
         <location filename="../forms/settings_shortcuts.ui" line="35"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>操作</translation>
     </message>
     <message>
         <location filename="../forms/settings_shortcuts.ui" line="40"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>快捷方式</translation>
     </message>
     <message>
         <location filename="../forms/settings_shortcuts.ui" line="45"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>说明</translation>
     </message>
     <message>
         <location filename="../forms/settings_shortcuts.ui" line="58"/>
         <source>Default:</source>
-        <translation type="unfinished"></translation>
+        <translation>默认:</translation>
     </message>
     <message>
         <location filename="../forms/settings_shortcuts.ui" line="68"/>
         <source>Custom:</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义:</translation>
     </message>
     <message>
         <location filename="../forms/settings_shortcuts.ui" line="84"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>清除</translation>
     </message>
 </context>
 </TS>
