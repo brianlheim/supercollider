@@ -6,7 +6,8 @@
     <message>
         <location filename="../forms/settings_dialog.ui" line="14"/>
         <source>SuperCollider IDE Configuration</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Not sure if 的 is necessary</translatorcomment>
+        <translation type="unfinished">SuperCollider集成开发环境的组态</translation>
     </message>
 </context>
 <context>
@@ -54,7 +55,7 @@
     <message>
         <location filename="../forms/settings_editor.ui" line="123"/>
         <source>ms</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ms</translation>
     </message>
     <message>
         <location filename="../forms/settings_editor.ui" line="154"/>
@@ -279,7 +280,7 @@
     <message>
         <location filename="../core/doc_manager.cpp" line="67"/>
         <source>Untitled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无标题</translation>
     </message>
 </context>
 <context>
@@ -387,7 +388,7 @@ Apply desired actions to selected documents, until the list is empty.</source>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="122"/>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">全&amp;选</translation>
     </message>
     <message>
         <location filename="../widgets/documents_dialog.cpp" line="125"/>
@@ -1228,12 +1229,12 @@ Do you want to reload it?</source>
     <message>
         <location filename="../widgets/main_window.cpp" line="1349"/>
         <source>Untitled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无标题</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="1477"/>
         <source>About SuperCollider IDE</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关于SuperCollider集成开发环境</translation>
     </message>
     <message>
         <location filename="../widgets/main_window.cpp" line="1573"/>
