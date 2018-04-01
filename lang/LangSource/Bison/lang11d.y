@@ -1266,6 +1266,7 @@ slotliteral
 		| falseobj	{ $$ = (intptr_t)newPyrLiteralNode((PyrSlotNode*)$1, NULL); }
 		| nilobj	{ $$ = (intptr_t)newPyrLiteralNode((PyrSlotNode*)$1, NULL); }
 		| listlit	{ $$ = (intptr_t)newPyrLiteralNode(NULL, (PyrParseNode*)$1); }
+		| name		{ $$ = (intptr_t)newPyrLiteralNode((PyrSlotNode*)$1, NULL); }
 		;
 
 blockliteral : block	{ $$ = (intptr_t)newPyrPushLitNode(NULL, (PyrParseNode*)$1); }
