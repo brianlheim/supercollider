@@ -1256,7 +1256,20 @@ mavarlist	: name
 					{ $$ = (intptr_t)linkNextNode((PyrParseNode*)$1, (PyrParseNode*)$3); }
 			;
 
+/* can be used to initialize a slot in a class */
 slotliteral
+		: pureliteral
+		| listlit	{ $$ = (intptr_t)newPyrLiteralNode(NULL, (PyrParseNode*)$1); }
+		| name		{ $$ = (intptr_t)newPyrLiteralNode((PyrSlotNode*)$1, NULL); }
+		;
+
+/* can be used to initialize an arg in pipe notation */
+argslotliteral
+		: pureliteral
+		| listlit	{ $$ = (intptr_t)newPyrLiteralNode(NULL, (PyrParseNode*)$1); }
+		;
+
+pureliteral
 		: integer	{ $$ = (intptr_t)newPyrLiteralNode((PyrSlotNode*)$1, NULL); }
 		| floatp	{ $$ = (intptr_t)newPyrLiteralNode((PyrSlotNode*)$1, NULL); }
 		| ascii		{ $$ = (intptr_t)newPyrLiteralNode((PyrSlotNode*)$1, NULL); }
@@ -1265,8 +1278,6 @@ slotliteral
 		| trueobj	{ $$ = (intptr_t)newPyrLiteralNode((PyrSlotNode*)$1, NULL); }
 		| falseobj	{ $$ = (intptr_t)newPyrLiteralNode((PyrSlotNode*)$1, NULL); }
 		| nilobj	{ $$ = (intptr_t)newPyrLiteralNode((PyrSlotNode*)$1, NULL); }
-		| listlit	{ $$ = (intptr_t)newPyrLiteralNode(NULL, (PyrParseNode*)$1); }
-		| name		{ $$ = (intptr_t)newPyrLiteralNode((PyrSlotNode*)$1, NULL); }
 		;
 
 blockliteral : block	{ $$ = (intptr_t)newPyrPushLitNode(NULL, (PyrParseNode*)$1); }
@@ -1330,11 +1341,11 @@ argdecls	: { $$ = 0; }
 				{
 					$$ = (intptr_t)newPyrArgListNode((PyrVarDefNode*)$2, (PyrSlotNode*)$4);
 				}
-			| '|' slotdeflist '|'
+			| '|' argslotdeflist '|'
 				{
 					$$ = (intptr_t)newPyrArgListNode((PyrVarDefNode*)$2, NULL);
 				}
-			| '|' slotdeflist0 ELLIPSIS name '|'
+			| '|' argslotdeflist0 ELLIPSIS name '|'
 				{
 					$$ = (intptr_t)newPyrArgListNode((PyrVarDefNode*)$2, (PyrSlotNode*)$4);
 				}
@@ -1349,18 +1360,18 @@ constdef	: rspec name '=' slotliteral
 				{ $$ = (intptr_t)newPyrVarDefNode((PyrSlotNode*)$2, (PyrParseNode*)$4, $1); }
 			;
 
-slotdeflist0 	: { $$ = 0; }
-				| slotdeflist
+argslotdeflist0 : { $$ = 0; }
+				| argslotdeflist
 				;
 
-slotdeflist	: slotdef
-			| slotdeflist optcomma slotdef
-				{ $$ = (intptr_t)linkNextNode((PyrParseNode*)$1, (PyrParseNode*)$3); }
-			;
+argslotdeflist	: argslotdef
+				| argslotdeflist optcomma argslotdef
+					{ $$ = (intptr_t)linkNextNode((PyrParseNode*)$1, (PyrParseNode*)$3); }
+				;
 
-slotdef		: name
+argslotdef	: name
 				{ $$ = (intptr_t)newPyrVarDefNode((PyrSlotNode*)$1, NULL, 0); }
-			| name optequal slotliteral
+			| name optequal argslotliteral
 				{ $$ = (intptr_t)newPyrVarDefNode((PyrSlotNode*)$1, (PyrParseNode*)$3, 0); }
 			| name optequal '(' exprseq ')'
 				{

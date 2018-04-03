@@ -663,7 +663,24 @@ void fillClassPrototypes(PyrClassNode *node, PyrClass *classobj, PyrClass *super
 				vardef = varlist->mVarDefs;
 				for (; vardef; vardef = (PyrVarDefNode*)vardef->mNext) {
 					PyrSlot litslot;
+
 					compilePyrLiteralNode((PyrLiteralNode*)vardef->mDefVal, &litslot);
+					int idx = -1;
+					if (slotRawSymbolArray(&classobj->constNames)) {
+					for (int ki = 1; ki <= slotRawSymbolArray(&classobj->constNames)->size; ++ki) {
+						auto s1 =(knameslot[-ki])->name;
+						if (IsSym(&litslot)) {
+							auto rs1 =slotRawSymbol(&litslot);
+							auto s2 = rs1->name;
+							if (!strcmp(s1, s2)) {
+								idx = ki;
+							}
+						}
+					}
+					}
+					if (idx >= 0) {
+						litslot = kslot[-idx];
+					}
 					*cslot++ = litslot;
 					slotRawObject(&classobj->cprototype)->size++;
 					*cnameslot++ = slotRawSymbol(&vardef->mVarName->mSlot);
@@ -799,6 +816,10 @@ void PyrClassNode::compile(PyrSlot *result)
 	bool varsDiffer, superclassesDiffer, indexTypesDiffer;
 	bool shouldRecompileSubclasses = false;
 	int indexType;
+
+	if (!strncmp(slotRawSymbol(&mClassName->mSlot)->name, "Foo", 3)) {
+		indexType = 3;
+	}
 
 	// find num instvars in superclass
 	//postfl("class '%s'\n", slotRawSymbol(&mClassName->mSlot)->name);
