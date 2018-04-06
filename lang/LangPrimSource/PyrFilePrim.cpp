@@ -183,14 +183,18 @@ int prFileMkDir(struct VMGlobals * g, int numArgsPushed)
 
 int prFileCopy(struct VMGlobals * g, int numArgsPushed)
 {
-	PyrSlot *b = g->sp - 1, *c = g->sp;
+	PyrSlot *fromSlot = g->sp - 3;
+	PyrSlot *toSlot = g->sp -2;
+	PyrSlot *recursiveSlot = g->sp - 1;
+	PyrSlot *clobberSlot = g->sp;
+
 	char filename1[PATH_MAX];
 	char filename2[PATH_MAX];
 	int error;
-	error = slotStrVal(b, filename1, PATH_MAX);
+	error = slotStrVal(fromSlot, filename1, PATH_MAX);
 	if (error != errNone)
 		return error;
-	error = slotStrVal(c, filename2, PATH_MAX);
+	error = slotStrVal(toSlot, filename2, PATH_MAX);
 	if (error != errNone)
 		return error;
 
@@ -1810,7 +1814,7 @@ void initFilePrimitives()
 	definePrimitive(base, index++, "_FileExists", prFileExists, 2, 0);
 	definePrimitive(base, index++, "_FileRealPath", prFileRealPath, 2, 0);
 	definePrimitive(base, index++, "_FileMkDir", prFileMkDir, 2, 0);
-	definePrimitive(base, index++, "_FileCopy", prFileCopy, 3, 0);
+	definePrimitive(base, index++, "_FileCopy", prFileCopy, 5, 0);
 	definePrimitive(base, index++, "_FileType", prFileType, 2, 0);
 	definePrimitive(base, index++, "_FileSize", prFileSize, 2, 0);
 
