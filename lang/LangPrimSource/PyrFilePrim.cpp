@@ -215,7 +215,7 @@ int prFileCopy(struct VMGlobals * g, int numArgsPushed)
 		s << error_code.message() << ": copy from \"" << filename1 << "\" to \"" << filename2 << "\"";
 		throw std::runtime_error(s.str());
 	}
-	
+
 	return errNone;
 }
 
