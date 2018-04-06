@@ -200,6 +200,13 @@ int prFileCopy(struct VMGlobals * g, int numArgsPushed)
 
 	const bfs::path& p1 = SC_Codecvt::utf8_str_to_path(filename1);
 	const bfs::path& p2 = SC_Codecvt::utf8_str_to_path(filename2);
+
+	// if p2 exists
+	//   if no clobber throw
+	//   else remove p2
+	// copy base
+	// if recursive and p1 is directory
+	//   recursively copy p1
 	boost::system::error_code error_code;
 	bfs::copy(p1, p2, error_code);
 	if (error_code)
