@@ -12,7 +12,7 @@ Event : Environment {
 		^Event.new(8, nil, defaultParentEvent, true);
 	}
 
-	*silent { |dur(1.0), inEvent|
+	*silent { |dur=(1.0), inEvent|
 		var delta;
 		if(inEvent.isNil) { inEvent = Event.new }
 		{ inEvent = inEvent.copy };

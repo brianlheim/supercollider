@@ -27,13 +27,13 @@ SerialPort {
 
 	*new {
 		| port,
-			baudrate(9600),
-			databits(8),
-			stopbit(true),
-			parity(nil),
-			crtscts(false),
-			xonxoff(false)
-			exclusive(false) |
+			baudrate=(9600),
+			databits=(8),
+			stopbit=(true),
+			parity=(nil),
+			crtscts=(false),
+			xonxoff=(false)
+			exclusive=(false) |
 
 		if (port.isNumber) {
 			port = this.devices[port] ?? {

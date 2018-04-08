@@ -639,7 +639,7 @@ Document {
 		ScIDE.getTextByQUuid(quuid, funcID, start, range);
 	}*/
 
-	getText {|action, start = 0, range -1|
+	getText {|action, start = 0, range = -1|
 		^prGetTextFromMirror(quuid, start, range);
 	}
 
@@ -649,7 +649,7 @@ Document {
 	}
 
 	// asynchronous set
-	prSetText {|text, action, start = 0, range -1|
+	prSetText {|text, action, start = 0, range = -1|
 		var funcID;
 		// first set the back end mirror
 		this.prSetTextMirror(quuid, text, start, range);

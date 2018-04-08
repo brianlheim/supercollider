@@ -2,7 +2,7 @@
 RingBuffer : SequenceableCollection {
 	var <array, <readPos, <writePos;
 
-	*new { | size, collectionClass(Array) |
+	*new { | size, collectionClass = (Array) |
 		^this.newCopyArgs(collectionClass.newClear(size), 0, 0)
 	}
 
