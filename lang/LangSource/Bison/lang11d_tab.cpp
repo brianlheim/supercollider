@@ -83,7 +83,7 @@ extern LongStack generatorStack;
 
 
 
-#line 88 "lang11d_tab.cpp" /* yacc.c:339  */
+#line 87 "lang11d_tab.cpp" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -168,7 +168,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 173 "lang11d_tab.cpp" /* yacc.c:358  */
+#line 172 "lang11d_tab.cpp" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -468,36 +468,36 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    40,    40,    42,    44,    48,    49,    53,    54,    58,
-      62,    69,    75,    76,    79,    80,    84,    85,    89,    91,
-      93,    97,    98,   102,   105,   108,   111,   116,   117,   120,
-     121,   124,   129,   132,   133,   137,   139,   141,   145,   146,
-     150,   151,   156,   157,   162,   163,   167,   168,   174,   175,
-     178,   179,   182,   186,   190,   194,   199,   203,   208,   226,
-     239,   241,   252,   263,   274,   287,   308,   317,   326,   331,
-     344,   364,   368,   374,   392,   398,   398,   408,   408,   415,
-     436,   440,   474,   512,   526,   537,   541,   566,   567,   568,
-     569,   570,   571,   572,   578,   588,   590,   592,   594,   596,
-     598,   611,   614,   641,   659,   686,   714,   733,   761,   788,
-     806,   831,   859,   878,   906,   925,   944,   961,   975,   996,
-    1015,  1033,  1050,  1066,  1082,  1083,  1084,  1085,  1086,  1099,
-    1113,  1118,  1122,  1133,  1138,  1148,  1153,  1167,  1183,  1184,
-    1185,  1186,  1189,  1190,  1196,  1199,  1200,  1204,  1205,  1207,
-    1212,  1214,  1221,  1229,  1230,  1234,  1236,  1240,  1241,  1245,
-    1249,  1250,  1253,  1255,  1259,  1260,  1265,  1266,  1267,  1268,
-    1269,  1270,  1271,  1272,  1273,  1276,  1279,  1282,  1283,  1284,
-    1285,  1286,  1287,  1288,  1289,  1290,  1293,  1294,  1295,  1296,
-    1297,  1298,  1299,  1300,  1301,  1302,  1303,  1306,  1309,  1314,
-    1315,  1319,  1320,  1324,  1328,  1329,  1333,  1337,  1341,  1347,
-    1348,  1352,  1356,  1357,  1360,  1361,  1365,  1367,  1369,  1377,
-    1378,  1381,  1382,  1386,  1388,  1390,  1398,  1400,  1407,  1408,
-    1412,  1413,  1416,  1417,  1421,  1423,  1427,  1431,  1433,  1440,
-    1441,  1445,  1446,  1451,  1453,  1457,  1459,  1463,  1464,  1467,
-    1468,  1472,  1473,  1475,  1477,  1481,  1482,  1486,  1487,  1496,
-    1497,  1506,  1507,  1518,  1521,  1522,  1523,  1529,  1537,  1544,
-    1553,  1554,  1557,  1560,  1563,  1566,  1569,  1572,  1575,  1578,
-    1581,  1584,  1585,  1586,  1587,  1588,  1589,  1590,  1591,  1594,
-    1597,  1598,  1601
+       0,    39,    39,    41,    43,    47,    48,    52,    53,    57,
+      61,    68,    74,    75,    78,    79,    83,    84,    88,    90,
+      92,    96,    97,   101,   104,   107,   110,   115,   116,   119,
+     120,   123,   128,   131,   132,   136,   138,   140,   144,   145,
+     149,   150,   155,   156,   161,   162,   166,   167,   173,   174,
+     177,   178,   181,   185,   189,   193,   198,   202,   207,   225,
+     238,   240,   251,   262,   273,   286,   307,   316,   325,   330,
+     343,   363,   367,   373,   391,   397,   397,   407,   407,   414,
+     435,   439,   473,   511,   525,   536,   540,   565,   566,   567,
+     568,   569,   570,   571,   577,   587,   589,   591,   593,   595,
+     597,   610,   613,   640,   658,   685,   713,   732,   760,   787,
+     805,   830,   858,   877,   905,   924,   943,   960,   974,   995,
+    1014,  1032,  1049,  1065,  1081,  1082,  1083,  1084,  1085,  1098,
+    1112,  1117,  1121,  1132,  1137,  1147,  1152,  1166,  1182,  1183,
+    1184,  1185,  1188,  1189,  1195,  1198,  1199,  1203,  1204,  1206,
+    1211,  1213,  1220,  1228,  1229,  1233,  1235,  1239,  1240,  1244,
+    1248,  1249,  1252,  1254,  1258,  1259,  1264,  1265,  1266,  1267,
+    1268,  1269,  1270,  1271,  1272,  1275,  1278,  1281,  1282,  1283,
+    1284,  1285,  1286,  1287,  1288,  1289,  1292,  1293,  1294,  1295,
+    1296,  1297,  1298,  1299,  1300,  1301,  1302,  1305,  1308,  1313,
+    1314,  1318,  1319,  1323,  1327,  1328,  1332,  1336,  1340,  1346,
+    1347,  1351,  1355,  1356,  1359,  1360,  1364,  1366,  1368,  1376,
+    1377,  1380,  1381,  1385,  1387,  1389,  1397,  1399,  1406,  1407,
+    1411,  1412,  1415,  1416,  1420,  1422,  1426,  1430,  1432,  1439,
+    1440,  1444,  1445,  1450,  1452,  1456,  1458,  1462,  1463,  1466,
+    1467,  1471,  1472,  1474,  1476,  1480,  1481,  1485,  1486,  1495,
+    1496,  1505,  1506,  1517,  1520,  1521,  1522,  1528,  1536,  1543,
+    1552,  1553,  1556,  1559,  1562,  1565,  1568,  1571,  1574,  1577,
+    1580,  1583,  1584,  1585,  1586,  1587,  1588,  1589,  1590,  1593,
+    1596,  1597,  1600
 };
 #endif
 
@@ -1908,296 +1908,296 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 41 "lang11d" /* yacc.c:1661  */
+#line 40 "lang11d" /* yacc.c:1661  */
     { gRootParseNode = (PyrParseNode*)(yyvsp[0]); gParserResult = 1; }
-#line 1915 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1914 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 3:
-#line 43 "lang11d" /* yacc.c:1661  */
+#line 42 "lang11d" /* yacc.c:1661  */
     { gRootParseNode = (PyrParseNode*)(yyvsp[0]); gParserResult = 1; }
-#line 1921 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1920 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 4:
-#line 45 "lang11d" /* yacc.c:1661  */
+#line 44 "lang11d" /* yacc.c:1661  */
     { gRootParseNode = (PyrParseNode*)(yyvsp[0]); gParserResult = 2; }
-#line 1927 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1926 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 5:
-#line 48 "lang11d" /* yacc.c:1661  */
+#line 47 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 1933 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1932 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 6:
-#line 50 "lang11d" /* yacc.c:1661  */
+#line 49 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[0])); }
-#line 1939 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1938 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 8:
-#line 55 "lang11d" /* yacc.c:1661  */
+#line 54 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[0])); }
-#line 1945 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1944 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 9:
-#line 59 "lang11d" /* yacc.c:1661  */
+#line 58 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrClassNode((PyrSlotNode*)(yyvsp[-5]), (PyrSlotNode*)(yyvsp[-4]),
 					(PyrVarListNode*)(yyvsp[-2]), (PyrMethodNode*)(yyvsp[-1]), 0);
 				}
-#line 1953 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1952 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 10:
-#line 63 "lang11d" /* yacc.c:1661  */
+#line 62 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrClassNode((PyrSlotNode*)(yyvsp[-8]), (PyrSlotNode*)(yyvsp[-4]),
 					(PyrVarListNode*)(yyvsp[-2]), (PyrMethodNode*)(yyvsp[-1]),
 					(PyrSlotNode*)(yyvsp[-6]));
 				}
-#line 1962 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1961 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 11:
-#line 70 "lang11d" /* yacc.c:1661  */
+#line 69 "lang11d" /* yacc.c:1661  */
     {
 					(yyval) = (intptr_t)newPyrClassExtNode((PyrSlotNode*)(yyvsp[-3]), (PyrMethodNode*)(yyvsp[-1]));
 				}
-#line 1970 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1969 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 12:
-#line 75 "lang11d" /* yacc.c:1661  */
+#line 74 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 1976 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1975 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 14:
-#line 79 "lang11d" /* yacc.c:1661  */
+#line 78 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 1982 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1981 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 15:
-#line 81 "lang11d" /* yacc.c:1661  */
+#line 80 "lang11d" /* yacc.c:1661  */
     { (yyval) = (yyvsp[0]); }
-#line 1988 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1987 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 16:
-#line 84 "lang11d" /* yacc.c:1661  */
+#line 83 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 1994 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1993 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 17:
-#line 86 "lang11d" /* yacc.c:1661  */
+#line 85 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[0])); }
-#line 2000 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 1999 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 18:
-#line 90 "lang11d" /* yacc.c:1661  */
+#line 89 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrVarListNode((PyrVarDefNode*)(yyvsp[-1]), varClass); }
-#line 2006 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2005 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 19:
-#line 92 "lang11d" /* yacc.c:1661  */
+#line 91 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrVarListNode((PyrVarDefNode*)(yyvsp[-1]), varInst); }
-#line 2012 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2011 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 20:
-#line 94 "lang11d" /* yacc.c:1661  */
+#line 93 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrVarListNode((PyrVarDefNode*)(yyvsp[-1]), varConst); }
-#line 2018 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2017 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 21:
-#line 97 "lang11d" /* yacc.c:1661  */
+#line 96 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 2024 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2023 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 22:
-#line 99 "lang11d" /* yacc.c:1661  */
+#line 98 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[0])); }
-#line 2030 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2029 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 23:
-#line 103 "lang11d" /* yacc.c:1661  */
+#line 102 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrMethodNode((PyrSlotNode*)(yyvsp[-6]), (PyrSlotNode*)(yyvsp[-2]),
 					(PyrArgListNode*)(yyvsp[-4]), (PyrVarListNode*)(yyvsp[-3]), (PyrParseNode*)(yyvsp[-1]), 0); }
-#line 2037 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2036 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 24:
-#line 106 "lang11d" /* yacc.c:1661  */
+#line 105 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrMethodNode((PyrSlotNode*)(yyvsp[-6]), (PyrSlotNode*)(yyvsp[-2]),
 					(PyrArgListNode*)(yyvsp[-4]), (PyrVarListNode*)(yyvsp[-3]), (PyrParseNode*)(yyvsp[-1]), 1); }
-#line 2044 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2043 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 25:
-#line 109 "lang11d" /* yacc.c:1661  */
+#line 108 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrMethodNode((PyrSlotNode*)(yyvsp[-6]), (PyrSlotNode*)(yyvsp[-2]),
 					(PyrArgListNode*)(yyvsp[-4]), (PyrVarListNode*)(yyvsp[-3]), (PyrParseNode*)(yyvsp[-1]), 0); }
-#line 2051 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2050 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 26:
-#line 112 "lang11d" /* yacc.c:1661  */
+#line 111 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrMethodNode((PyrSlotNode*)(yyvsp[-6]), (PyrSlotNode*)(yyvsp[-2]),
 					(PyrArgListNode*)(yyvsp[-4]), (PyrVarListNode*)(yyvsp[-3]), (PyrParseNode*)(yyvsp[-1]), 1); }
-#line 2058 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2057 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 31:
-#line 124 "lang11d" /* yacc.c:1661  */
+#line 123 "lang11d" /* yacc.c:1661  */
     { post("WARNING: Pipe arg notation without using equals (=) for initialization\n"
-					 "    is deprecated and will be removed in a future version of sclang.\n"
-					 "    In file: %s\n"
-					 "        Line %d, column %d\n",
+					 "WARNING: is deprecated and will be removed in a future version of sclang.\n"
+					 "WARNING:   In file: %s\n"
+					 "WARNING:     Line %d, column %d\n",
 					gCompilingFileSym->name, lineno, linepos); }
-#line 2068 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2067 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 34:
-#line 134 "lang11d" /* yacc.c:1661  */
+#line 133 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrDropNode((PyrParseNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[0])); }
-#line 2074 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2073 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 35:
-#line 138 "lang11d" /* yacc.c:1661  */
+#line 137 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrBlockNode(NULL, (PyrVarListNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[-1]), false); }
-#line 2080 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2079 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 36:
-#line 140 "lang11d" /* yacc.c:1661  */
+#line 139 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrBlockNode(NULL, (PyrVarListNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[0]), false); }
-#line 2086 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2085 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 37:
-#line 142 "lang11d" /* yacc.c:1661  */
+#line 141 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrBlockNode(NULL, NULL, (PyrParseNode*)(yyvsp[0]), false); }
-#line 2092 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2091 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 39:
-#line 147 "lang11d" /* yacc.c:1661  */
+#line 146 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrDropNode((PyrParseNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[0])); }
-#line 2098 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2097 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 40:
-#line 150 "lang11d" /* yacc.c:1661  */
+#line 149 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 2104 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2103 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 41:
-#line 152 "lang11d" /* yacc.c:1661  */
+#line 151 "lang11d" /* yacc.c:1661  */
     { (yyval) = (yyvsp[-1]); }
-#line 2110 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2109 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 42:
-#line 156 "lang11d" /* yacc.c:1661  */
+#line 155 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrReturnNode(NULL); }
-#line 2116 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2115 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 43:
-#line 158 "lang11d" /* yacc.c:1661  */
+#line 157 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrReturnNode((PyrParseNode*)(yyvsp[-1])); }
-#line 2122 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2121 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 44:
-#line 162 "lang11d" /* yacc.c:1661  */
+#line 161 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrBlockReturnNode(); }
-#line 2128 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2127 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 45:
-#line 164 "lang11d" /* yacc.c:1661  */
+#line 163 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrReturnNode((PyrParseNode*)(yyvsp[-1])); }
-#line 2134 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2133 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 47:
-#line 169 "lang11d" /* yacc.c:1661  */
+#line 168 "lang11d" /* yacc.c:1661  */
     {
 					(yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[0]));
 				}
-#line 2142 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2141 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 50:
-#line 178 "lang11d" /* yacc.c:1661  */
+#line 177 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 2148 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2147 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 52:
-#line 183 "lang11d" /* yacc.c:1661  */
+#line 182 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrCallNode((PyrSlotNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[0]), 0, 0);
 			}
-#line 2156 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2155 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 53:
-#line 187 "lang11d" /* yacc.c:1661  */
+#line 186 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrCallNode((PyrSlotNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0]), 0, 0);
 			}
-#line 2164 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2163 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 54:
-#line 191 "lang11d" /* yacc.c:1661  */
+#line 190 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrCallNode((PyrSlotNode*)(yyvsp[-3]), NULL, NULL, (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2172 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2171 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 55:
-#line 195 "lang11d" /* yacc.c:1661  */
+#line 194 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrCallNode((PyrSlotNode*)(yyvsp[-5]), (PyrParseNode*)(yyvsp[-3]),
 						(PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2181 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2180 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 56:
-#line 200 "lang11d" /* yacc.c:1661  */
+#line 199 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrCallNode((PyrSlotNode*)(yyvsp[-4]), NULL, NULL, (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2189 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2188 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 57:
-#line 204 "lang11d" /* yacc.c:1661  */
+#line 203 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrCallNode((PyrSlotNode*)(yyvsp[-6]), (PyrParseNode*)(yyvsp[-3]),
 						(PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2198 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2197 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 58:
-#line 209 "lang11d" /* yacc.c:1661  */
+#line 208 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -2215,11 +2215,11 @@ yyreduce:
 					newPyrPushLitNode((PyrSlotNode*)(yyvsp[-4]), NULL));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, (PyrParseNode*)(yyvsp[-1]), 0);
 			}
-#line 2220 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2219 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 59:
-#line 227 "lang11d" /* yacc.c:1661  */
+#line 226 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -2232,17 +2232,17 @@ yyreduce:
 					newPyrPushLitNode((PyrSlotNode*)(yyvsp[-5]), NULL));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, (PyrParseNode*)(yyvsp[-1]), 0);
 			}
-#line 2237 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2236 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 60:
-#line 240 "lang11d" /* yacc.c:1661  */
+#line 239 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrDynListNode((PyrParseNode*)(yyvsp[-3]), (PyrParseNode*)(yyvsp[-1])); }
-#line 2243 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2242 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 61:
-#line 242 "lang11d" /* yacc.c:1661  */
+#line 241 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -2253,11 +2253,11 @@ yyreduce:
 				args = (PyrParseNode*)newPyrPushNameNode((PyrSlotNode*)(yyvsp[-1]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2258 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2257 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 62:
-#line 253 "lang11d" /* yacc.c:1661  */
+#line 252 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -2268,11 +2268,11 @@ yyreduce:
 				args = (PyrParseNode*)newPyrPushNameNode((PyrSlotNode*)(yyvsp[-3]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, NULL, (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2273 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2272 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 63:
-#line 264 "lang11d" /* yacc.c:1661  */
+#line 263 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -2283,11 +2283,11 @@ yyreduce:
 				args = (PyrParseNode*)newPyrPushNameNode((PyrSlotNode*)(yyvsp[-5]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, (PyrParseNode*)(yyvsp[-3]), (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2288 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2287 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 64:
-#line 275 "lang11d" /* yacc.c:1661  */
+#line 274 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -2300,11 +2300,11 @@ yyreduce:
 					(PyrParseNode*)(yyvsp[-3]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, (PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2305 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2304 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 65:
-#line 288 "lang11d" /* yacc.c:1661  */
+#line 287 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode, *selectornode2;
 				PyrSlot slot, slot2;
@@ -2325,11 +2325,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[-2]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, (PyrParseNode*)(yyvsp[0]), 0);
 			}
-#line 2330 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2329 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 66:
-#line 309 "lang11d" /* yacc.c:1661  */
+#line 308 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -2338,11 +2338,11 @@ yyreduce:
 				selectornode = newPyrSlotNode(&slot);
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, (PyrParseNode*)(yyvsp[-4]), NULL, (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2343 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2342 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 67:
-#line 318 "lang11d" /* yacc.c:1661  */
+#line 317 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -2351,20 +2351,20 @@ yyreduce:
 				selectornode = newPyrSlotNode(&slot);
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, (PyrParseNode*)(yyvsp[-6]), (PyrParseNode*)(yyvsp[-3]), (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2356 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2355 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 68:
-#line 327 "lang11d" /* yacc.c:1661  */
+#line 326 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrCallNode((PyrSlotNode*)(yyvsp[-5]), (PyrParseNode*)(yyvsp[-7]),
 					(PyrParseNode*)(yyvsp[-3]), (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2365 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2364 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 69:
-#line 332 "lang11d" /* yacc.c:1661  */
+#line 331 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -2377,11 +2377,11 @@ yyreduce:
 					(PyrParseNode*)(yyvsp[-3]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, (PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2382 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2381 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 70:
-#line 345 "lang11d" /* yacc.c:1661  */
+#line 344 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot, slot2;
@@ -2401,29 +2401,29 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[-2]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, (PyrParseNode*)(yyvsp[-1]), 0);
 			}
-#line 2406 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2405 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 71:
-#line 365 "lang11d" /* yacc.c:1661  */
+#line 364 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrCallNode((PyrSlotNode*)(yyvsp[-3]), (PyrParseNode*)(yyvsp[-5]), NULL, (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2414 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2413 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 72:
-#line 369 "lang11d" /* yacc.c:1661  */
+#line 368 "lang11d" /* yacc.c:1661  */
     {
 				PyrParseNode* args;
 				args = linkNextNode((PyrParseNode*)(yyvsp[-7]), (PyrParseNode*)(yyvsp[-3]));
 				(yyval) = (intptr_t)newPyrCallNode((PyrSlotNode*)(yyvsp[-5]), args, (PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2424 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2423 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 73:
-#line 375 "lang11d" /* yacc.c:1661  */
+#line 374 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -2441,25 +2441,25 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[-2]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, (PyrParseNode*)(yyvsp[-1]), 0);
 			}
-#line 2446 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2445 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 74:
-#line 393 "lang11d" /* yacc.c:1661  */
+#line 392 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrCallNode((PyrSlotNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[-3]), 0, (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2454 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2453 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 75:
-#line 398 "lang11d" /* yacc.c:1661  */
+#line 397 "lang11d" /* yacc.c:1661  */
     { pushls(&generatorStack, (yyvsp[0])); pushls(&generatorStack, 1); }
-#line 2460 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2459 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 76:
-#line 399 "lang11d" /* yacc.c:1661  */
+#line 398 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlot slot;
 				SetSymbol(&slot, getsym("r"));
@@ -2469,25 +2469,25 @@ yyreduce:
 				PyrParseNode *blocklit = (PyrParseNode*)newPyrPushLitNode(NULL, block);
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, (PyrParseNode*)blocklit, 0, 0);
 			}
-#line 2474 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2473 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 77:
-#line 408 "lang11d" /* yacc.c:1661  */
+#line 407 "lang11d" /* yacc.c:1661  */
     { pushls(&generatorStack, (yyvsp[0])); pushls(&generatorStack, 2); }
-#line 2480 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2479 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 78:
-#line 409 "lang11d" /* yacc.c:1661  */
+#line 408 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (yyvsp[-1]);
 			}
-#line 2488 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2487 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 79:
-#line 415 "lang11d" /* yacc.c:1661  */
+#line 414 "lang11d" /* yacc.c:1661  */
     {
 					// innermost part
 					int action = popls(&generatorStack);
@@ -2509,17 +2509,17 @@ yyreduce:
 						} break;
 					}
 				}
-#line 2514 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2513 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 80:
-#line 437 "lang11d" /* yacc.c:1661  */
+#line 436 "lang11d" /* yacc.c:1661  */
     { (yyval) = (yyvsp[0]); }
-#line 2520 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2519 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 81:
-#line 441 "lang11d" /* yacc.c:1661  */
+#line 440 "lang11d" /* yacc.c:1661  */
     {
 				// later should check if exprseq is a series and optimize it to for loop
 				PyrParseNode *exprseq = (PyrParseNode*)(yyvsp[-1]);
@@ -2553,11 +2553,11 @@ yyreduce:
 					(yyval) = (intptr_t)newPyrCallNode(selectornode, args2, 0, 0);
 				}
 			}
-#line 2558 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2557 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 82:
-#line 475 "lang11d" /* yacc.c:1661  */
+#line 474 "lang11d" /* yacc.c:1661  */
     {
 				// later should check if exprseq is a series and optimize it to for loop
 				PyrParseNode *exprseq = (PyrParseNode*)(yyvsp[-1]);
@@ -2595,11 +2595,11 @@ yyreduce:
 					(yyval) = (intptr_t)newPyrCallNode(selectornode, args2, 0, 0);
 				}
 			}
-#line 2600 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2599 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 83:
-#line 513 "lang11d" /* yacc.c:1661  */
+#line 512 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlot slot;
 				SetSymbol(&slot, s_value);
@@ -2613,11 +2613,11 @@ yyreduce:
 
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args2, 0, 0);
 			}
-#line 2618 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2617 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 84:
-#line 527 "lang11d" /* yacc.c:1661  */
+#line 526 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlot slot;
 				SetSymbol(&slot, getsym("if"));
@@ -2628,19 +2628,19 @@ yyreduce:
 
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args2, 0, 0);
 			}
-#line 2633 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2632 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 85:
-#line 538 "lang11d" /* yacc.c:1661  */
+#line 537 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrDropNode((PyrParseNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[0]));
 			}
-#line 2641 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2640 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 86:
-#line 542 "lang11d" /* yacc.c:1661  */
+#line 541 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlot slot;
 				SetSymbol(&slot, getsym("alwaysYield"));
@@ -2663,21 +2663,21 @@ yyreduce:
 
 				(yyval) = (intptr_t)newPyrCallNode(selectornode2, args3, 0, 0);
 			}
-#line 2668 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2667 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 93:
-#line 573 "lang11d" /* yacc.c:1661  */
+#line 572 "lang11d" /* yacc.c:1661  */
     {
 				PyrParseNode* node = (PyrParseNode*)(yyvsp[-1]);
 				node->mParens = 1;
 				(yyval) = (yyvsp[-1]);
 			}
-#line 2678 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2677 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 94:
-#line 579 "lang11d" /* yacc.c:1661  */
+#line 578 "lang11d" /* yacc.c:1661  */
     {
 				PyrParseNode* argnode;
 				PyrSlotNode* selectornode;
@@ -2687,41 +2687,41 @@ yyreduce:
 				selectornode = newPyrSlotNode(&slot);
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, argnode, 0, 0);
 			}
-#line 2692 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2691 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 95:
-#line 589 "lang11d" /* yacc.c:1661  */
+#line 588 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrDynListNode(0, (PyrParseNode*)(yyvsp[-1])); }
-#line 2698 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2697 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 96:
-#line 591 "lang11d" /* yacc.c:1661  */
+#line 590 "lang11d" /* yacc.c:1661  */
     { (yyval) = (yyvsp[-1]); }
-#line 2704 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2703 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 97:
-#line 593 "lang11d" /* yacc.c:1661  */
+#line 592 "lang11d" /* yacc.c:1661  */
     { (yyval) = (yyvsp[-1]); }
-#line 2710 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2709 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 98:
-#line 595 "lang11d" /* yacc.c:1661  */
+#line 594 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrDynDictNode((PyrParseNode*)(yyvsp[-1])); }
-#line 2716 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2715 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 99:
-#line 597 "lang11d" /* yacc.c:1661  */
+#line 596 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushNameNode((PyrSlotNode*)(yyvsp[0])); }
-#line 2722 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2721 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 100:
-#line 599 "lang11d" /* yacc.c:1661  */
+#line 598 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -2734,11 +2734,11 @@ yyreduce:
 					(PyrParseNode*)(yyvsp[-1]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 2739 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2738 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 102:
-#line 615 "lang11d" /* yacc.c:1661  */
+#line 614 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode1, *nilnode2;
@@ -2765,11 +2765,11 @@ yyreduce:
 				args = linkNextNode(args, nilnode2);
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 2770 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2769 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 103:
-#line 642 "lang11d" /* yacc.c:1661  */
+#line 641 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode1, *nilnode2;
@@ -2787,11 +2787,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[-1]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 2792 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2791 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 104:
-#line 660 "lang11d" /* yacc.c:1661  */
+#line 659 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode1;
@@ -2816,11 +2816,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[-1]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 2821 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2820 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 105:
-#line 687 "lang11d" /* yacc.c:1661  */
+#line 686 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode1, *nilnode2;
@@ -2848,11 +2848,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 2853 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2852 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 106:
-#line 715 "lang11d" /* yacc.c:1661  */
+#line 714 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode1, *nilnode2;
@@ -2871,11 +2871,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 2876 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2875 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 107:
-#line 734 "lang11d" /* yacc.c:1661  */
+#line 733 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode1;
@@ -2901,11 +2901,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 2906 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2905 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 108:
-#line 762 "lang11d" /* yacc.c:1661  */
+#line 761 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode1, *nilnode2;
@@ -2932,11 +2932,11 @@ yyreduce:
 				args = linkNextNode(args, nilnode2);
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 2937 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2936 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 109:
-#line 789 "lang11d" /* yacc.c:1661  */
+#line 788 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode1, *nilnode2;
@@ -2954,11 +2954,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[-1]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 2959 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2958 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 110:
-#line 807 "lang11d" /* yacc.c:1661  */
+#line 806 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode1;
@@ -2983,11 +2983,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[-1]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 2988 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 2987 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 111:
-#line 832 "lang11d" /* yacc.c:1661  */
+#line 831 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode1, *nilnode2;
@@ -3015,11 +3015,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3020 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3019 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 112:
-#line 860 "lang11d" /* yacc.c:1661  */
+#line 859 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode1, *nilnode2;
@@ -3038,11 +3038,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3043 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3042 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 113:
-#line 879 "lang11d" /* yacc.c:1661  */
+#line 878 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode1;
@@ -3068,11 +3068,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3073 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3072 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 114:
-#line 907 "lang11d" /* yacc.c:1661  */
+#line 906 "lang11d" /* yacc.c:1661  */
     {
 				// if this is not used in a 'do' or list comprehension, then should return an error.
 				PyrSlotNode *selectornode;
@@ -3090,11 +3090,11 @@ yyreduce:
 				args = linkNextNode(args, nilnode2);
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3095 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3094 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 115:
-#line 926 "lang11d" /* yacc.c:1661  */
+#line 925 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode, *zeronode;
@@ -3112,11 +3112,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3117 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3116 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 116:
-#line 945 "lang11d" /* yacc.c:1661  */
+#line 944 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode;
@@ -3132,11 +3132,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3137 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3136 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 117:
-#line 962 "lang11d" /* yacc.c:1661  */
+#line 961 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot selectorSlot;
@@ -3150,11 +3150,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3155 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3154 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 118:
-#line 976 "lang11d" /* yacc.c:1661  */
+#line 975 "lang11d" /* yacc.c:1661  */
     {
 				// if this is not used in a 'do' or list comprehension, then should return an error.
 				PyrSlotNode *selectornode;
@@ -3173,11 +3173,11 @@ yyreduce:
 				args = linkNextNode(args, nilnode);
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3178 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3177 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 119:
-#line 997 "lang11d" /* yacc.c:1661  */
+#line 996 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode, *zeronode;
@@ -3195,11 +3195,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3200 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3199 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 120:
-#line 1016 "lang11d" /* yacc.c:1661  */
+#line 1015 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode, *nilnode2;
@@ -3216,11 +3216,11 @@ yyreduce:
 				args = linkNextNode(args, nilnode2);
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3221 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3220 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 121:
-#line 1034 "lang11d" /* yacc.c:1661  */
+#line 1033 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode;
@@ -3236,11 +3236,11 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3241 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3240 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 122:
-#line 1051 "lang11d" /* yacc.c:1661  */
+#line 1050 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrPushLitNode *nilnode;
@@ -3256,11 +3256,11 @@ yyreduce:
 				args = linkNextNode(args, nilnode);
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3261 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3260 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 123:
-#line 1067 "lang11d" /* yacc.c:1661  */
+#line 1066 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot selectorSlot;
@@ -3274,17 +3274,17 @@ yyreduce:
 				args = linkNextNode(args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3279 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3278 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 127:
-#line 1085 "lang11d" /* yacc.c:1661  */
+#line 1084 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushNameNode((PyrSlotNode*)(yyvsp[0])); }
-#line 3285 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3284 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 128:
-#line 1087 "lang11d" /* yacc.c:1661  */
+#line 1086 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -3297,11 +3297,11 @@ yyreduce:
 					(PyrParseNode*)(yyvsp[-1]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3302 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3301 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 129:
-#line 1100 "lang11d" /* yacc.c:1661  */
+#line 1099 "lang11d" /* yacc.c:1661  */
     {
 				PyrParseNode *node, *args;
 				PyrSlotNode *slotnode;
@@ -3315,28 +3315,28 @@ yyreduce:
 				slotnode = newPyrSlotNode(&slot);
 				(yyval) = (intptr_t)newPyrCallNode(slotnode, args, 0, 0);
 			}
-#line 3320 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3319 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 130:
-#line 1114 "lang11d" /* yacc.c:1661  */
+#line 1113 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrBinopCallNode((PyrSlotNode*)(yyvsp[-2]),
 						(PyrParseNode*)(yyvsp[-3]), (PyrParseNode*)(yyvsp[0]), (PyrParseNode*)(yyvsp[-1]));
 			}
-#line 3329 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3328 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 131:
-#line 1119 "lang11d" /* yacc.c:1661  */
+#line 1118 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrAssignNode((PyrSlotNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0]), 0);
 			}
-#line 3337 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3336 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 132:
-#line 1123 "lang11d" /* yacc.c:1661  */
+#line 1122 "lang11d" /* yacc.c:1661  */
     {
 				PyrParseNode *argnode, *args;
 				PyrSlotNode* selectornode;
@@ -3347,20 +3347,20 @@ yyreduce:
 				selectornode = newPyrSlotNode(&slot);
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3352 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3351 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 133:
-#line 1134 "lang11d" /* yacc.c:1661  */
+#line 1133 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrSetterNode((PyrSlotNode*)(yyvsp[-2]),
 						(PyrParseNode*)(yyvsp[-4]), (PyrParseNode*)(yyvsp[0]));
 			}
-#line 3361 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3360 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 134:
-#line 1139 "lang11d" /* yacc.c:1661  */
+#line 1138 "lang11d" /* yacc.c:1661  */
     {
 				if ((yyvsp[-3]) != 0) {
 					error("Setter method called with keyword arguments.\n");
@@ -3370,20 +3370,20 @@ yyreduce:
 				(yyval) = (intptr_t)newPyrSetterNode((PyrSlotNode*)(yyvsp[-6]),
 						(PyrParseNode*)(yyvsp[-4]), (PyrParseNode*)(yyvsp[0]));
 			}
-#line 3375 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3374 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 135:
-#line 1149 "lang11d" /* yacc.c:1661  */
+#line 1148 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrMultiAssignNode((PyrMultiAssignVarListNode*)(yyvsp[-2]),
 					(PyrParseNode*)(yyvsp[0]), 0);
 			}
-#line 3384 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3383 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 136:
-#line 1154 "lang11d" /* yacc.c:1661  */
+#line 1153 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -3397,11 +3397,11 @@ yyreduce:
 				args = linkNextNode( args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3402 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3401 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 137:
-#line 1168 "lang11d" /* yacc.c:1661  */
+#line 1167 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *selectornode;
 				PyrSlot slot;
@@ -3415,689 +3415,689 @@ yyreduce:
 				args = linkNextNode( args, (PyrParseNode*)(yyvsp[0]));
 				(yyval) = (intptr_t)newPyrCallNode(selectornode, args, 0, 0);
 			}
-#line 3420 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3419 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 138:
-#line 1183 "lang11d" /* yacc.c:1661  */
+#line 1182 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 3426 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3425 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 139:
-#line 1184 "lang11d" /* yacc.c:1661  */
+#line 1183 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushLitNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3432 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3431 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 140:
-#line 1185 "lang11d" /* yacc.c:1661  */
+#line 1184 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushLitNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3438 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3437 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 141:
-#line 1186 "lang11d" /* yacc.c:1661  */
+#line 1185 "lang11d" /* yacc.c:1661  */
     { (yyval) = (yyvsp[-1]); }
-#line 3444 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3443 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 143:
-#line 1191 "lang11d" /* yacc.c:1661  */
+#line 1190 "lang11d" /* yacc.c:1661  */
     {
 				(yyval) = (intptr_t)newPyrDropNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0]));
 			}
-#line 3452 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3451 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 145:
-#line 1199 "lang11d" /* yacc.c:1661  */
+#line 1198 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 3458 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3457 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 146:
-#line 1201 "lang11d" /* yacc.c:1661  */
+#line 1200 "lang11d" /* yacc.c:1661  */
     { (yyval) = (yyvsp[-1]); }
-#line 3464 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3463 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 148:
-#line 1206 "lang11d" /* yacc.c:1661  */
+#line 1205 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 3470 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3469 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 149:
-#line 1208 "lang11d" /* yacc.c:1661  */
+#line 1207 "lang11d" /* yacc.c:1661  */
     {
 					PyrParseNode* key = newPyrPushLitNode((PyrSlotNode*)(yyvsp[-1]), NULL);
 					(yyval) = (intptr_t)linkNextNode(key, (PyrParseNode*)(yyvsp[0]));
 				}
-#line 3479 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3478 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 150:
-#line 1213 "lang11d" /* yacc.c:1661  */
+#line 1212 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 3485 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3484 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 151:
-#line 1215 "lang11d" /* yacc.c:1661  */
+#line 1214 "lang11d" /* yacc.c:1661  */
     {
 					PyrParseNode* elems;
 					PyrParseNode* key = newPyrPushLitNode((PyrSlotNode*)(yyvsp[-1]), NULL);
 					elems = (PyrParseNode*)linkNextNode(key, (PyrParseNode*)(yyvsp[0]));
 					(yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-3]), elems);
 				}
-#line 3496 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3495 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 152:
-#line 1222 "lang11d" /* yacc.c:1661  */
+#line 1221 "lang11d" /* yacc.c:1661  */
     {
 					PyrParseNode* elems;
 					elems = (PyrParseNode*)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0]));
 					(yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-4]), elems);
 				}
-#line 3506 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3505 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 154:
-#line 1231 "lang11d" /* yacc.c:1661  */
+#line 1230 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 3512 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3511 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 155:
-#line 1235 "lang11d" /* yacc.c:1661  */
+#line 1234 "lang11d" /* yacc.c:1661  */
     { (yyval) = (yyvsp[0]); }
-#line 3518 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3517 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 156:
-#line 1237 "lang11d" /* yacc.c:1661  */
+#line 1236 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-3]), (PyrParseNode*)(yyvsp[0])); }
-#line 3524 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3523 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 158:
-#line 1242 "lang11d" /* yacc.c:1661  */
+#line 1241 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 3530 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3529 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 159:
-#line 1246 "lang11d" /* yacc.c:1661  */
+#line 1245 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushKeyArgNode((PyrSlotNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[0])); }
-#line 3536 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3535 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 160:
-#line 1249 "lang11d" /* yacc.c:1661  */
+#line 1248 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 3542 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3541 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 161:
-#line 1250 "lang11d" /* yacc.c:1661  */
+#line 1249 "lang11d" /* yacc.c:1661  */
     { (yyval) = (yyvsp[-1]); }
-#line 3548 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3547 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 162:
-#line 1254 "lang11d" /* yacc.c:1661  */
+#line 1253 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrMultiAssignVarListNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3554 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3553 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 163:
-#line 1256 "lang11d" /* yacc.c:1661  */
+#line 1255 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrMultiAssignVarListNode((PyrSlotNode*)(yyvsp[-2]), (PyrSlotNode*)(yyvsp[0])); }
-#line 3560 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3559 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 165:
-#line 1261 "lang11d" /* yacc.c:1661  */
+#line 1260 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 3566 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3565 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 166:
-#line 1265 "lang11d" /* yacc.c:1661  */
+#line 1264 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3572 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3571 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 167:
-#line 1266 "lang11d" /* yacc.c:1661  */
+#line 1265 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3578 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3577 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 168:
-#line 1267 "lang11d" /* yacc.c:1661  */
+#line 1266 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3584 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3583 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 169:
-#line 1268 "lang11d" /* yacc.c:1661  */
+#line 1267 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3590 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3589 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 170:
-#line 1269 "lang11d" /* yacc.c:1661  */
+#line 1268 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3596 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3595 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 171:
-#line 1270 "lang11d" /* yacc.c:1661  */
+#line 1269 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3602 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3601 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 172:
-#line 1271 "lang11d" /* yacc.c:1661  */
+#line 1270 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3608 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3607 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 173:
-#line 1272 "lang11d" /* yacc.c:1661  */
+#line 1271 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3614 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3613 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 174:
-#line 1273 "lang11d" /* yacc.c:1661  */
+#line 1272 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode(NULL, (PyrParseNode*)(yyvsp[0])); }
-#line 3620 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3619 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 175:
-#line 1276 "lang11d" /* yacc.c:1661  */
+#line 1275 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushLitNode(NULL, (PyrParseNode*)(yyvsp[0])); }
-#line 3626 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3625 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 176:
-#line 1279 "lang11d" /* yacc.c:1661  */
+#line 1278 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushNameNode((PyrSlotNode*)(yyvsp[0])); }
-#line 3632 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3631 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 177:
-#line 1282 "lang11d" /* yacc.c:1661  */
+#line 1281 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushLitNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3638 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3637 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 178:
-#line 1283 "lang11d" /* yacc.c:1661  */
+#line 1282 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushLitNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3644 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3643 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 179:
-#line 1284 "lang11d" /* yacc.c:1661  */
+#line 1283 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushLitNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3650 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3649 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 180:
-#line 1285 "lang11d" /* yacc.c:1661  */
+#line 1284 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushLitNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3656 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3655 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 181:
-#line 1286 "lang11d" /* yacc.c:1661  */
+#line 1285 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushLitNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3662 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3661 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 182:
-#line 1287 "lang11d" /* yacc.c:1661  */
+#line 1286 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushLitNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3668 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3667 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 183:
-#line 1288 "lang11d" /* yacc.c:1661  */
+#line 1287 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushLitNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3674 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3673 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 184:
-#line 1289 "lang11d" /* yacc.c:1661  */
+#line 1288 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushLitNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3680 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3679 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 185:
-#line 1290 "lang11d" /* yacc.c:1661  */
+#line 1289 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrPushLitNode(NULL, (PyrParseNode*)(yyvsp[0])); }
-#line 3686 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3685 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 186:
-#line 1293 "lang11d" /* yacc.c:1661  */
+#line 1292 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3692 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3691 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 187:
-#line 1294 "lang11d" /* yacc.c:1661  */
+#line 1293 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3698 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3697 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 188:
-#line 1295 "lang11d" /* yacc.c:1661  */
+#line 1294 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3704 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3703 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 189:
-#line 1296 "lang11d" /* yacc.c:1661  */
+#line 1295 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3710 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3709 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 190:
-#line 1297 "lang11d" /* yacc.c:1661  */
+#line 1296 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3716 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3715 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 191:
-#line 1298 "lang11d" /* yacc.c:1661  */
+#line 1297 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3722 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3721 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 192:
-#line 1299 "lang11d" /* yacc.c:1661  */
+#line 1298 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3728 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3727 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 193:
-#line 1300 "lang11d" /* yacc.c:1661  */
+#line 1299 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3734 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3733 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 194:
-#line 1301 "lang11d" /* yacc.c:1661  */
+#line 1300 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode((PyrSlotNode*)(yyvsp[0]), NULL); }
-#line 3740 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3739 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 195:
-#line 1302 "lang11d" /* yacc.c:1661  */
+#line 1301 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode(NULL, (PyrParseNode*)(yyvsp[0])); }
-#line 3746 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3745 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 196:
-#line 1303 "lang11d" /* yacc.c:1661  */
+#line 1302 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLiteralNode(NULL, (PyrParseNode*)(yyvsp[0])); }
-#line 3752 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3751 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 197:
-#line 1307 "lang11d" /* yacc.c:1661  */
+#line 1306 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrBlockNode((PyrArgListNode*)(yyvsp[-3]), (PyrVarListNode*)(yyvsp[-2]),
 					(PyrParseNode*)(yyvsp[-1]), false); }
-#line 3759 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3758 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 198:
-#line 1310 "lang11d" /* yacc.c:1661  */
+#line 1309 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrBlockNode((PyrArgListNode*)(yyvsp[-3]), (PyrVarListNode*)(yyvsp[-2]),
 					(PyrParseNode*)(yyvsp[-1]), true); }
-#line 3766 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3765 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 199:
-#line 1314 "lang11d" /* yacc.c:1661  */
+#line 1313 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 3772 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3771 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 200:
-#line 1316 "lang11d" /* yacc.c:1661  */
+#line 1315 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[0])); }
-#line 3778 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3777 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 202:
-#line 1321 "lang11d" /* yacc.c:1661  */
+#line 1320 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-1]), (PyrParseNode*)(yyvsp[0])); }
-#line 3784 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3783 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 203:
-#line 1325 "lang11d" /* yacc.c:1661  */
+#line 1324 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrVarListNode((PyrVarDefNode*)(yyvsp[-1]), varLocal); }
-#line 3790 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3789 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 204:
-#line 1328 "lang11d" /* yacc.c:1661  */
+#line 1327 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 3796 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3795 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 205:
-#line 1330 "lang11d" /* yacc.c:1661  */
+#line 1329 "lang11d" /* yacc.c:1661  */
     {
 					(yyval) = (intptr_t)newPyrArgListNode((PyrVarDefNode*)(yyvsp[-1]), NULL);
 				}
-#line 3804 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3803 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 206:
-#line 1334 "lang11d" /* yacc.c:1661  */
+#line 1333 "lang11d" /* yacc.c:1661  */
     {
 					(yyval) = (intptr_t)newPyrArgListNode((PyrVarDefNode*)(yyvsp[-3]), (PyrSlotNode*)(yyvsp[-1]));
 				}
-#line 3812 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3811 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 207:
-#line 1338 "lang11d" /* yacc.c:1661  */
+#line 1337 "lang11d" /* yacc.c:1661  */
     {
 					(yyval) = (intptr_t)newPyrArgListNode((PyrVarDefNode*)(yyvsp[-1]), NULL);
 				}
-#line 3820 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3819 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 208:
-#line 1342 "lang11d" /* yacc.c:1661  */
+#line 1341 "lang11d" /* yacc.c:1661  */
     {
 					(yyval) = (intptr_t)newPyrArgListNode((PyrVarDefNode*)(yyvsp[-3]), (PyrSlotNode*)(yyvsp[-1]));
 				}
-#line 3828 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3827 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 210:
-#line 1349 "lang11d" /* yacc.c:1661  */
+#line 1348 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 3834 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3833 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 211:
-#line 1353 "lang11d" /* yacc.c:1661  */
+#line 1352 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrVarDefNode((PyrSlotNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0]), (yyvsp[-3])); }
-#line 3840 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3839 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 212:
-#line 1356 "lang11d" /* yacc.c:1661  */
+#line 1355 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 3846 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3845 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 215:
-#line 1362 "lang11d" /* yacc.c:1661  */
+#line 1361 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 3852 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3851 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 216:
-#line 1366 "lang11d" /* yacc.c:1661  */
+#line 1365 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrVarDefNode((PyrSlotNode*)(yyvsp[0]), NULL, 0); }
-#line 3858 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3857 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 217:
-#line 1368 "lang11d" /* yacc.c:1661  */
+#line 1367 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrVarDefNode((PyrSlotNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0]), 0); }
-#line 3864 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3863 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 218:
-#line 1370 "lang11d" /* yacc.c:1661  */
+#line 1369 "lang11d" /* yacc.c:1661  */
     {
 					PyrParseNode* node = (PyrParseNode*)(yyvsp[-1]);
 					node->mParens = 1;
 					(yyval) = (intptr_t)newPyrVarDefNode((PyrSlotNode*)(yyvsp[-4]), node, 0);
 				}
-#line 3874 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3873 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 219:
-#line 1377 "lang11d" /* yacc.c:1661  */
+#line 1376 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 3880 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3879 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 222:
-#line 1383 "lang11d" /* yacc.c:1661  */
+#line 1382 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 3886 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3885 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 223:
-#line 1387 "lang11d" /* yacc.c:1661  */
+#line 1386 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrVarDefNode((PyrSlotNode*)(yyvsp[0]), NULL, 0); }
-#line 3892 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3891 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 224:
-#line 1389 "lang11d" /* yacc.c:1661  */
+#line 1388 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrVarDefNode((PyrSlotNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0]), 0); }
-#line 3898 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3897 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 225:
-#line 1391 "lang11d" /* yacc.c:1661  */
+#line 1390 "lang11d" /* yacc.c:1661  */
     {
 									PyrParseNode* node = (PyrParseNode*)(yyvsp[-1]);
 									node->mParens = 1;
 									(yyval) = (intptr_t)newPyrVarDefNode((PyrSlotNode*)(yyvsp[-3]), node, 0);
 								}
-#line 3908 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3907 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 226:
-#line 1399 "lang11d" /* yacc.c:1661  */
+#line 1398 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 3914 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3913 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 227:
-#line 1401 "lang11d" /* yacc.c:1661  */
+#line 1400 "lang11d" /* yacc.c:1661  */
     {
 					PyrParseNode* key = newPyrPushLitNode((PyrSlotNode*)(yyvsp[-1]), NULL);
 					(yyval) = (intptr_t)linkNextNode(key, (PyrParseNode*)(yyvsp[0]));
 				}
-#line 3923 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3922 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 229:
-#line 1409 "lang11d" /* yacc.c:1661  */
+#line 1408 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 3929 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3928 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 230:
-#line 1412 "lang11d" /* yacc.c:1661  */
+#line 1411 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 3935 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3934 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 233:
-#line 1418 "lang11d" /* yacc.c:1661  */
+#line 1417 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 3941 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3940 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 234:
-#line 1422 "lang11d" /* yacc.c:1661  */
+#line 1421 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrVarDefNode((PyrSlotNode*)(yyvsp[0]), NULL, (yyvsp[-1])); }
-#line 3947 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3946 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 235:
-#line 1424 "lang11d" /* yacc.c:1661  */
+#line 1423 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrVarDefNode((PyrSlotNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0]), (yyvsp[-3])); }
-#line 3953 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3952 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 236:
-#line 1428 "lang11d" /* yacc.c:1661  */
+#line 1427 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLitDictNode((PyrParseNode*)(yyvsp[-1])); }
-#line 3959 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3958 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 237:
-#line 1432 "lang11d" /* yacc.c:1661  */
+#line 1431 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 3965 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3964 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 238:
-#line 1434 "lang11d" /* yacc.c:1661  */
+#line 1433 "lang11d" /* yacc.c:1661  */
     {
 					PyrParseNode* key = newPyrPushLitNode((PyrSlotNode*)(yyvsp[-1]), NULL);
 					(yyval) = (intptr_t)linkNextNode(key, (PyrParseNode*)(yyvsp[0]));
 				}
-#line 3974 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3973 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 240:
-#line 1442 "lang11d" /* yacc.c:1661  */
+#line 1441 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 3980 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3979 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 241:
-#line 1445 "lang11d" /* yacc.c:1661  */
+#line 1444 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 3986 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3985 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 243:
-#line 1452 "lang11d" /* yacc.c:1661  */
+#line 1451 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLitListNode(0, (PyrParseNode*)(yyvsp[-1])); }
-#line 3992 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3991 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 244:
-#line 1454 "lang11d" /* yacc.c:1661  */
+#line 1453 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLitListNode((PyrParseNode*)(yyvsp[-3]), (PyrParseNode*)(yyvsp[-1])); }
-#line 3998 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 3997 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 245:
-#line 1458 "lang11d" /* yacc.c:1661  */
+#line 1457 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLitListNode(0, (PyrParseNode*)(yyvsp[-1])); }
-#line 4004 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4003 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 246:
-#line 1460 "lang11d" /* yacc.c:1661  */
+#line 1459 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)newPyrLitListNode((PyrParseNode*)(yyvsp[-3]), (PyrParseNode*)(yyvsp[-1])); }
-#line 4010 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4009 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 247:
-#line 1463 "lang11d" /* yacc.c:1661  */
+#line 1462 "lang11d" /* yacc.c:1661  */
     { (yyval) = 0; }
-#line 4016 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4015 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 250:
-#line 1469 "lang11d" /* yacc.c:1661  */
+#line 1468 "lang11d" /* yacc.c:1661  */
     { (yyval) = (intptr_t)linkNextNode((PyrParseNode*)(yyvsp[-2]), (PyrParseNode*)(yyvsp[0])); }
-#line 4022 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4021 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 251:
-#line 1472 "lang11d" /* yacc.c:1661  */
+#line 1471 "lang11d" /* yacc.c:1661  */
     { (yyval) = rwPrivate; }
-#line 4028 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4027 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 252:
-#line 1474 "lang11d" /* yacc.c:1661  */
+#line 1473 "lang11d" /* yacc.c:1661  */
     { (yyval) = rwReadOnly; }
-#line 4034 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4033 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 253:
-#line 1476 "lang11d" /* yacc.c:1661  */
+#line 1475 "lang11d" /* yacc.c:1661  */
     { (yyval) = rwReadWrite; }
-#line 4040 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4039 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 254:
-#line 1478 "lang11d" /* yacc.c:1661  */
+#line 1477 "lang11d" /* yacc.c:1661  */
     { (yyval) = rwWriteOnly; }
-#line 4046 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4045 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 255:
-#line 1481 "lang11d" /* yacc.c:1661  */
+#line 1480 "lang11d" /* yacc.c:1661  */
     { (yyval) = rwPrivate; }
-#line 4052 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4051 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 256:
-#line 1483 "lang11d" /* yacc.c:1661  */
+#line 1482 "lang11d" /* yacc.c:1661  */
     { (yyval) = rwReadOnly; }
-#line 4058 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4057 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 257:
-#line 1486 "lang11d" /* yacc.c:1661  */
+#line 1485 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4064 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4063 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 258:
-#line 1488 "lang11d" /* yacc.c:1661  */
+#line 1487 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *node;
 				node = (PyrSlotNode*)zzval;
 				SetRaw(&node->mSlot, -slotRawInt(&node->mSlot));
 				(yyval) = zzval;
 			}
-#line 4075 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4074 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 259:
-#line 1496 "lang11d" /* yacc.c:1661  */
+#line 1495 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4081 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4080 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 260:
-#line 1498 "lang11d" /* yacc.c:1661  */
+#line 1497 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *node;
 				node = (PyrSlotNode*)zzval;
 				SetRaw(&node->mSlot, -slotRawFloat(&node->mSlot));
 				(yyval) = zzval;
 			}
-#line 4092 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4091 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 261:
-#line 1506 "lang11d" /* yacc.c:1661  */
+#line 1505 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4098 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4097 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 262:
-#line 1508 "lang11d" /* yacc.c:1661  */
+#line 1507 "lang11d" /* yacc.c:1661  */
     {
 					PyrSlotNode *node;
 					double intval, fracval;
@@ -4107,27 +4107,27 @@ yyreduce:
 					SetRaw(&node->mSlot, -intval + fracval);
 					(yyval) = zzval;
 				}
-#line 4112 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4111 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 263:
-#line 1518 "lang11d" /* yacc.c:1661  */
+#line 1517 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4118 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4117 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 266:
-#line 1524 "lang11d" /* yacc.c:1661  */
+#line 1523 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *node;
 				node = (PyrSlotNode*)(yyvsp[-1]);
 				SetRaw(&node->mSlot, slotRawFloat(&node->mSlot) * pi);
 			}
-#line 4128 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4127 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 267:
-#line 1530 "lang11d" /* yacc.c:1661  */
+#line 1529 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *node;
 				double ival;
@@ -4135,159 +4135,159 @@ yyreduce:
 				ival = slotRawInt(&node->mSlot);
 				SetFloat(&node->mSlot, ival * pi);
 			}
-#line 4140 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4139 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 268:
-#line 1538 "lang11d" /* yacc.c:1661  */
+#line 1537 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *node;
 				node = (PyrSlotNode*)zzval;
 				SetFloat(&node->mSlot, pi);
 				(yyval) = zzval;
 			}
-#line 4151 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4150 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 269:
-#line 1545 "lang11d" /* yacc.c:1661  */
+#line 1544 "lang11d" /* yacc.c:1661  */
     {
 				PyrSlotNode *node;
 				node = (PyrSlotNode*)zzval;
 				SetFloat(&node->mSlot, -pi);
 				(yyval) = zzval;
 			}
-#line 4162 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4161 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 270:
-#line 1553 "lang11d" /* yacc.c:1661  */
+#line 1552 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4168 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4167 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 271:
-#line 1554 "lang11d" /* yacc.c:1661  */
+#line 1553 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4174 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4173 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 272:
-#line 1557 "lang11d" /* yacc.c:1661  */
+#line 1556 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4180 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4179 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 273:
-#line 1560 "lang11d" /* yacc.c:1661  */
+#line 1559 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4186 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4185 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 274:
-#line 1563 "lang11d" /* yacc.c:1661  */
+#line 1562 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4192 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4191 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 275:
-#line 1566 "lang11d" /* yacc.c:1661  */
+#line 1565 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4198 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4197 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 276:
-#line 1569 "lang11d" /* yacc.c:1661  */
+#line 1568 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4204 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4203 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 277:
-#line 1572 "lang11d" /* yacc.c:1661  */
+#line 1571 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4210 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4209 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 278:
-#line 1575 "lang11d" /* yacc.c:1661  */
+#line 1574 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4216 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4215 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 279:
-#line 1578 "lang11d" /* yacc.c:1661  */
+#line 1577 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4222 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4221 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 280:
-#line 1581 "lang11d" /* yacc.c:1661  */
+#line 1580 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4228 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4227 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 281:
-#line 1584 "lang11d" /* yacc.c:1661  */
+#line 1583 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4234 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4233 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 282:
-#line 1585 "lang11d" /* yacc.c:1661  */
+#line 1584 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4240 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4239 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 283:
-#line 1586 "lang11d" /* yacc.c:1661  */
+#line 1585 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4246 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4245 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 284:
-#line 1587 "lang11d" /* yacc.c:1661  */
+#line 1586 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4252 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4251 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 285:
-#line 1588 "lang11d" /* yacc.c:1661  */
+#line 1587 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4258 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4257 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 286:
-#line 1589 "lang11d" /* yacc.c:1661  */
+#line 1588 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4264 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4263 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 287:
-#line 1590 "lang11d" /* yacc.c:1661  */
+#line 1589 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4270 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4269 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 288:
-#line 1591 "lang11d" /* yacc.c:1661  */
+#line 1590 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4276 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4275 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 289:
-#line 1594 "lang11d" /* yacc.c:1661  */
+#line 1593 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4282 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4281 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
   case 292:
-#line 1601 "lang11d" /* yacc.c:1661  */
+#line 1600 "lang11d" /* yacc.c:1661  */
     { (yyval) = zzval; }
-#line 4288 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4287 "lang11d_tab.cpp" /* yacc.c:1661  */
     break;
 
 
-#line 4292 "lang11d_tab.cpp" /* yacc.c:1661  */
+#line 4291 "lang11d_tab.cpp" /* yacc.c:1661  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

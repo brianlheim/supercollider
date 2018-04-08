@@ -120,7 +120,11 @@ optcomma	:
 			| ','
 			;
 
-optequal	:
+optequal	: { post("WARNING: Pipe arg notation without using equals (=) for initialization\n"
+					 "WARNING: is deprecated and will be removed in a future version of sclang.\n"
+					 "WARNING:   In file: %s\n"
+					 "WARNING:     Line %d, column %d\n",
+					gCompilingFileSym->name, lineno, linepos); }
 			| '='
 			;
 
