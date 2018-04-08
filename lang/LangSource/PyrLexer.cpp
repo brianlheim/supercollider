@@ -41,7 +41,7 @@
 #include <boost/filesystem/string_file.hpp>
 
 #include "PyrParseNode.h"
-#include "Bison/lang11d_tab.h"
+#include "Bison/lang11d_tab.hpp"
 #include "SCBase.h"
 #include "PyrObject.h"
 #include "PyrObjectProto.h"
