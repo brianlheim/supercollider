@@ -36,10 +36,6 @@
 # include <sys/param.h>
 #endif
 
-#include <boost/filesystem/path.hpp>
-#include <boost/filesystem/operations.hpp>
-#include <boost/filesystem/string_file.hpp>
-
 #include "PyrParseNode.h"
 #include "Bison/lang11d_tab.h"
 #include "SCBase.h"
