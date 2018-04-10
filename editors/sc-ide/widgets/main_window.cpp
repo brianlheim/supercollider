@@ -67,6 +67,7 @@
 #include <QUrl>
 #include <QMimeData>
 #include <QMetaMethod>
+#include <QDebug>
 
 namespace ScIDE {
 
