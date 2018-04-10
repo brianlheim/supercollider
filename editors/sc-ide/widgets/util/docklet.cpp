@@ -208,7 +208,7 @@ void Docklet::toggleDetached()
     setDetached( !isDetached() );
 }
 
-void Docklet::setDetached( bool detach )
+void Docklet::setDetached( bool detach, bool visible )
 {
     if (isDetached() == detach)
         return;
@@ -226,7 +226,11 @@ void Docklet::setDetached( bool detach )
 
     QWidget *container = currentContainer();
 
-    container->show();
+    // NOTE: Only call show() if the docklet is set to visible otherwise we might
+    // get into some timing issue where show() can be called after setVisible(false)
+    // https://github.com/supercollider/supercollider/issues/3287
+    if (visible)
+        container->show();
 
     // NOTE: set geometry after show() or else some geometry modifying events
     // are postponed!
@@ -291,9 +295,8 @@ void Docklet::restoreDetachedState( const QByteArray & data )
 {
     if (!data.isEmpty()) {
         bool visible = data.at(0) == 1;
-        setDetached( true );
+        setDetached( true, visible );
         mWindow->restoreGeometry( data.mid(1) );
-        mWindow->setVisible( visible );
     }
     else
         setDetached( false );

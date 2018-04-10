@@ -74,7 +74,7 @@ public:
         return const_cast<Docklet*>(this)->currentContainer() != mDockWidget;
     }
 
-    void setDetached( bool detached );
+    void setDetached( bool detached, bool visible = true );
 
     bool isVisible() const
     {
