@@ -146,7 +146,7 @@ MainWindow::MainWindow(Main * main) :
     mHelpBrowserDocklet = new HelpBrowserDocklet(this);
     mHelpBrowserDocklet->setObjectName("help-dock");
     addDockWidget(Qt::RightDockWidgetArea, mHelpBrowserDocklet->dockWidget());
-    //mHelpBrowserDockable->hide();
+    mHelpBrowserDocklet->hide();
 
     mPostDocklet = new PostDocklet(this);
     mPostDocklet->setObjectName("post-dock");
