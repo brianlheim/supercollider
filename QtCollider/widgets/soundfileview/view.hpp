@@ -64,6 +64,7 @@ class QcWaveform : public QWidget, public QcHelper {
   Q_PROPERTY( float yZoom READ yZoom WRITE setYZoom );
   Q_PROPERTY( float xZoom READ xZoom WRITE setXZoom );
   Q_PROPERTY( float yOffset READ yOffset WRITE setYOffset );
+  Q_PROPERTY( float spacing READ spacing WRITE setSpacing );
   Q_PROPERTY( bool cursorVisible READ cursorVisible WRITE setCursorVisible );
   Q_PROPERTY( bool cursorEditable READ cursorEditable WRITE setCursorEditable );
   Q_PROPERTY( int cursorPosition READ cursorPosition WRITE setCursorPosition );
@@ -121,6 +122,7 @@ public:
   float xZoom(); //visible seconds
   float yZoom(); //factor
   float yOffset(); //normalized value (1 equals half helght)
+  float spacing(); //factor for space otuside the ±1.0 value range
 
   QVariantList selections() const;
   int currentSelection() const { return _curSel; }
@@ -191,6 +193,7 @@ public Q_SLOTS:
   void setYZoom( double factor );
   void setXZoom( double seconds );
   void setYOffset( double offset );
+  void setSpacing( double factor );
 
 
 Q_SIGNALS:
@@ -256,6 +259,7 @@ private:
   double _fpp;
   float _yZoom;
   float _yOffset;
+  float _spacing;
 
   // painting
   QPixmap *pixmap;
