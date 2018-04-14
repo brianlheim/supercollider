@@ -756,7 +756,7 @@ void QcWaveform::draw( QPixmap *pix, int x, int width, double f_beg, double f_du
 
     if( ch < waveColorN && _waveColors[ch].isValid() ) {
       QColor clr( _waveColors[ch] );
-      rmsPen.setColor( clr.lighter( 100 + _rmsBrighterBy ) );
+      rmsPen.setColor( _rmsColor );
       minMaxPen.setColor( clr );
     }
     else {
