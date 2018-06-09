@@ -413,19 +413,19 @@ extern void ElapsedTimeToChrono(double elapsed, std::chrono::system_clock::time_
  *
  * This method does the following:
  *
- * - Wraps `::tickLocked` (locking `gLangMutex` before and after), which in turn calls
- *   `::runLibrary`.
- * - Schedules to call itself again using a `boost::asio::basic_waitable_timer`
- *   (`mTimer`).
+ * - Wraps \c tickLocked (locking \c gLangMutex before and after), which in
+ *   turn calls \c runLibrary.
+ * - Schedules to call itself again using a \c boost::asio::basic_waitable_timer
+ *   (\c mTimer).
  *
- * Since it calls itself, a single call to `::tick` will cause the method to keep
- * calling itself autonomously.
+ * Since it calls itself, a single call to \c tick will cause the method to
+ * keep calling itself autonomously.
  *
- * If `::tick` is called again externally while a timer is running, any previously
- * scheduled `::tick` call is canceled. This forces a premature `::tick`, which
- * will schedule itself again, and so on.
+ * If \c tick is called again externally while a timer is running, any
+ * previously scheduled \c tick call is canceled. This forces a premature \c
+ * ::tick, which will schedule itself again, and so on.
  *
- * The timed calls to `::tick` are used for events scheduled on the AppClock.
+ * The timed calls to \c tick are used for events scheduled on the AppClock.
  * The interruption feature is used when sclang receives unanticipated events
  * such as inbound OSC messages.
  */
@@ -437,16 +437,16 @@ void SC_TerminalClient::tick( const boost::system::error_code& error )
 
 	Distinguishing between a canceled and successful callback is done by
 	inspecting the error. If it turns out this method was called because of a
-	cancelled timer, we need to bail out and let the ::tick call that
+	cancelled timer, we need to bail out and let the tick call that
 	interrupted us take over.
 
 	If we aren't the result of a canceled timer call, we're either the result
 	of a scheduled timer expiry, or we *are* the interruption and we need to
-	cancel any scheduled ::tick calls. Calling mTimer.cancel() if the error is
+	cancel any scheduled tick calls. Calling mTimer.cancel() if the error is
 	a success error code handles both cases.
 
 	Previously, instead of this if/else block, this was just a call to
-	mTimer.cancel(). This was causing ::tick to rapidly call itself
+	mTimer.cancel(). This was causing this method to rapidly call itself
 	excessively, hogging the CPU. See discussion at #2144.
 	*/
 	if (error == boost::system::errc::success) {
