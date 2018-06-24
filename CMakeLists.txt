@@ -458,11 +458,23 @@ if(APPLE AND SC_SYMLINK_CLASSLIB)
 	endforeach(onedirectory)
 else()
 	list(FILTER ClassLibrary EXCLUDE REGEX "${SCCLASSLIB_EXCLUDE_REGEX}|.*~|.*#")
+	set(CLASSLIB_DIRS "")
 	set(CLASSLIB_CONF "")
+
+	# Create a list of all directories which have files to copy
 	foreach(CLASSLIB_FILE IN LISTS ClassLibrary)
-		set(CLASSLIB_CONF "${CLASSLIB_CONF}\n    - ${CLASSLIB_FILE}")
+		get_filename_component(CLASSLIB_FILE_DIR ${CLASSLIB_FILE} DIRECTORY)
+		list(APPEND CLASSLIB_DIRS ${CLASSLIB_FILE_DIR})
 	endforeach()
+	list(REMOVE_DUPLICATES CLASSLIB_DIRS)
+
+	# Transform the list to YAML
+	foreach(CLASSLIB_DIR IN LISTS CLASSLIB_DIRS)
+		set(CLASSLIB_CONF "${CLASSLIB_CONF}\n    - ${CLASSLIB_DIR}")
+	endforeach()
+
 	configure_file(sclang_conf_test.yaml.in sclang_conf_test.yaml)
+
 	install(FILES ${ClassLibrary}
 		DESTINATION ${auxresourcesdir}
 	)
