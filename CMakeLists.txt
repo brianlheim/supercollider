@@ -434,36 +434,37 @@ if(WIN32)
 	set(SCCLASSLIB_EXCLUDE_REGEX "${SCCLASSLIB_EXCLUDE_REGEX}")
 endif()
 
-if(APPLE)
-	if(SC_SYMLINK_CLASSLIB)
-		#if there are folders inside SCCLassLibrary abort cmake.
-		file(GLOB classlibraryfolders "${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary/[^.]*")
-		foreach(onedirectory ${classlibraryfolders})
-			message( "${onedirectory}" )
-			if(NOT IS_SYMLINK "${onedirectory}")
-				message(FATAL_ERROR "Symlinking will fail ! SCClassLibrary folder already exists and has directories inside, please delete it first." )
-			endif()
-		endforeach(onedirectory)
-
-		message(STATUS "Will create symlink of SCClassLibrary to ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary" )
-		if(NOT EXISTS "{CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary")
-			install( CODE "EXECUTE_PROCESS(COMMAND mkdir ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary)" )
+if(APPLE AND SC_SYMLINK_CLASSLIB)
+	#if there are folders inside SCCLassLibrary abort cmake.
+	file(GLOB classlibraryfolders "${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary/[^.]*")
+	foreach(onedirectory ${classlibraryfolders})
+		message( "${onedirectory}" )
+		if(NOT IS_SYMLINK "${onedirectory}")
+			message(FATAL_ERROR "Symlinking will fail ! SCClassLibrary folder already exists and has directories inside, please delete it first." )
 		endif()
-		#symlink the folders inside SCCLassLibrary. Check if QtCollider folder should be symlinked or not.
-		file(GLOB classlibraryfolders RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/SCClassLibrary" "SCClassLibrary/[^.]*")
-		foreach(onedirectory ${classlibraryfolders})
-			if(NOT "${onedirectory}" MATCHES "${SCCLASSLIB_EXCLUDE_REGEX}")
-				install( CODE
-					"EXECUTE_PROCESS(COMMAND ln -shF ${CMAKE_CURRENT_SOURCE_DIR}/SCClassLibrary/${onedirectory} ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary/${onedirectory} )" )
-			endif()
-		endforeach(onedirectory)
+	endforeach(onedirectory)
+
+	message(STATUS "Will create symlink of SCClassLibrary to ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary" )
+	if(NOT EXISTS "{CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary")
+		install( CODE "EXECUTE_PROCESS(COMMAND mkdir ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary)" )
 	endif()
+	#symlink the folders inside SCCLassLibrary. Check if QtCollider folder should be symlinked or not.
+	file(GLOB classlibraryfolders RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/SCClassLibrary" "SCClassLibrary/[^.]*")
+	foreach(onedirectory ${classlibraryfolders})
+		if(NOT "${onedirectory}" MATCHES "${SCCLASSLIB_EXCLUDE_REGEX}")
+			install( CODE
+				"EXECUTE_PROCESS(COMMAND ln -shF ${CMAKE_CURRENT_SOURCE_DIR}/SCClassLibrary/${onedirectory} ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary/${onedirectory} )" )
+		endif()
+	endforeach(onedirectory)
 else()
-	install(DIRECTORY SCClassLibrary
+	list(FILTER ClassLibrary EXCLUDE REGEX "${SCCLASSLIB_EXCLUDE_REGEX}|.*~|.*#")
+	set(CLASSLIB_CONF "")
+	foreach(CLASSLIB_FILE IN LISTS ClassLibrary)
+		set(CLASSLIB_CONF "${CLASSLIB_CONF}\n    - ${CLASSLIB_FILE}")
+	endforeach()
+	configure_file(sclang_conf_test.yaml.in sclang_conf_test.yaml)
+	install(FILES ${ClassLibrary}
 		DESTINATION ${auxresourcesdir}
-		REGEX ${SCCLASSLIB_EXCLUDE_REGEX} EXCLUDE
-		PATTERN "*~" EXCLUDE
-		PATTERN "*#" EXCLUDE
 	)
 endif()
 
