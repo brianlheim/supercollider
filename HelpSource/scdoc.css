@@ -3,7 +3,6 @@ html, body {
     padding: 0;
     margin: 0;
     position: relative;
-    overflow-y: hidden;
 }
 
 body {
@@ -14,11 +13,8 @@ body {
 }
 
 div.contents {
-    position: relative;
-    height: 100%;
-    overflow: auto;
     margin: 0;
-    padding: 0em 1em;
+    padding: 3em 1em;
 }
 
 table {
@@ -97,13 +93,14 @@ a.subclass_toggle:hover {
 
 
 #menubar {
+    position: fixed;
     font-family: Arial, Helvetica, sans-serif;
     text-indent: 0;
-    padding: 0;
     width: 100%;
+    height: 1.5em; /* equal to line height */
     padding: 0.5em 0;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 1em;
+    background-color: #f8f8f8;
+    box-shadow: 0em 0em 0.25em rgba(128, 128, 128, 0.5);
 }
 
 #menubar .menuitem {
@@ -122,13 +119,11 @@ a.subclass_toggle:hover {
 }
 
 #menubar .menuitem:first-child {
-    padding-left: 0;
-
     /* It is better to make the logo a background image instead of an <img> because it is purely
     decorative. */
     background-image: url("images/SC_icon.png");
     background-repeat: no-repeat;
-    background-position: left center;
+    background-position: 0.5em center;
     background-size: 1.5em;
 }
 
@@ -542,11 +537,16 @@ ul.toc li a:hover {
 }
 
 a.close-link {
-    float: right;
+    position: fixed;
+    left: 20em;
+    top: 0;
     font-size: 80%;
-    color: #558;
-    padding: 1em;
-    display: inline-block;
+    color: #fff;
+    background-color: #555;
+    height: 2em;
+    width: 2em;
+    border-radius: 2em;
+    display: block;
 }
 
 ul.tree, ul.tree ul {
