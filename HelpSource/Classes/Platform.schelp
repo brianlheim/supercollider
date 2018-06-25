@@ -135,7 +135,9 @@ method:: pathSeparator
 platform specific path separator
 
 method:: pathDelimiter
-platform specific path delimiter
+Platform specific path delimiter, typically used to delimit lists of paths - for example, in the
+code::PATH:: environment variable. On Windows, this method returns ';'; on macOS and Linux it
+returns ':'.
 
 method:: recordingsDir
 platform recordings directory
