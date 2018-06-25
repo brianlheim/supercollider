@@ -464,46 +464,40 @@ function fixTOC() {
         return true;
     }
 
-// make header menu
-    var bar = document.getElementById("menubar");
-    menubar = bar;
-    var nav = ["SuperCollider " + scdoc_sc_version, "Browse", "Search"];
-    var url = ["Help.html","Browse.html","Search.html"];
-    var nav_item;
-    var a;
-    for(var i=0;i<nav.length;i++) {
-        nav_item = document.createElement("div");
-        nav_item.className = "menuitem";
-        a = document.createElement("a");
-        a.innerHTML = nav[i];
-        a.setAttribute("href",helpRoot+"/"+url[i]);
-        a.className = "navlink";
-        nav_item.appendChild(a);
-        bar.appendChild(nav_item);
+    function create_menubar_item(text, link, post_processing) {
+        var a = $("<a>").text(text).addClass("navlink").attr("href", link);
+        var li = $("<li>").addClass("menuitem").append(a);
+        $("#menubar").append(li);
+        if (post_processing) {
+            post_processing(a, li);
+        }
     }
 
-    nav_item = document.createElement("div");
-    nav_item.className = "menuitem";
-    var a = document.createElement("a");
-    a.innerHTML = "Indexes &#9660;";
-    a.setAttribute("href","#");
-    var m1 = document.createElement("div");
-    m1.className = "submenu";
-    m1.style.display = "none";
-    a.onclick = function() {
-        toggleMenu(m1);
-        return false;
-    };
-    var nav = ["Documents","Classes","Methods"];
-    for(var i=0;i<nav.length;i++) {
-        var b = document.createElement("a");
-        b.setAttribute("href",helpRoot+"/Overviews/"+nav[i]+".html");
-        b.innerHTML = nav[i];
-        m1.appendChild(b);
-    }
-    nav_item.appendChild(a);
-    nav_item.appendChild(m1);
-    bar.appendChild(nav_item);
+    create_menubar_item("SuperCollider " + scdoc_sc_version, "Help.html");
+    create_menubar_item("Browse", "Browse.html");
+    create_menubar_item("Search", "Search.html");
+
+    var bar = document.getElementById("menubar");
+    menubar = bar;
+
+    create_menubar_item("Indexes \u25bc", "#", function (a, li) {
+        var m1 = document.createElement("div");
+        m1.className = "submenu";
+        m1.style.display = "none";
+        var nav = ["Documents","Classes","Methods"];
+        for(var i=0;i<nav.length;i++) {
+            var b = document.createElement("a");
+            b.setAttribute("href",helpRoot+"/Overviews/"+nav[i]+".html");
+            b.innerHTML = nav[i];
+            m1.appendChild(b);
+        }
+
+        a.on("click", function (e) {
+            toggleMenu(m1);
+            e.preventDefault();
+        });
+        li.append(m1);
+    });
 
     toc = document.getElementById("toc");
     if (toc) {
@@ -512,23 +506,13 @@ function fixTOC() {
 
         toc.style.display = 'none';
 
-        nav_item = document.createElement("div");
-        nav_item.className = "menuitem";
-        var toc_link = document.createElement("a");
-        toc_link.setAttribute("href", "#");
-        toc_link.className = "navlink";
-        toc_link.innerHTML = "Table of contents";
-        toc_link.onclick = function() {
-            scroll(0,0);
-            return false;
-        }
-        nav_item.appendChild(toc_link);
-        bar.appendChild(nav_item);
-        toc_link.onclick = function() {
-            document.getElementById("toc_search").focus();
-            toggle_toc();
-            return false;
-        };
+        create_menubar_item("Table of contents", "#", function (a, li) {
+            a.on("click", function () {
+                scroll(0,0);
+                document.getElementById("toc_search").focus();
+                toggle_toc();
+            });
+        });
 
         var close_link = document.createElement("a");
         close_link.setAttribute("href","#");
