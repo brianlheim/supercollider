@@ -539,19 +539,6 @@ ul.toc li a:hover {
     color: #555;
 }
 
-a.close-link {
-    position: fixed;
-    left: 20em;
-    top: 0;
-    font-size: 80%;
-    color: #fff;
-    background-color: #555;
-    height: 2em;
-    width: 2em;
-    border-radius: 2em;
-    display: block;
-}
-
 ul.tree, ul.tree ul {
  list-style-type: none;
  background: url(images/vline.png) repeat-y;
