@@ -431,10 +431,6 @@ function set_up_toc() {
         document.getElementById("toc_search").focus();
         $("#toc").toggle();
     });
-
-    if (storage.tocOpen === "yes") {
-        $("#toc").show();
-    }
 }
 
 function fixTOC() {

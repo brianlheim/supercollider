@@ -164,14 +164,13 @@ a.menu-link.title {
     cursor: pointer;
 }
 
-.submenu {
-    margin-top: 2px;
+.submenu, #toc {
+    margin-top: 0.5em;
     padding: 0.5em;
-    background: #eee;
-    display: none;
     position: absolute;
-    border: 1px solid #aaa;
-    border-radius: 4px;
+    display: none;
+    background-color: #f9f9f9;
+    border: thin solid #ddd;
 }
 
 .submenu a {
@@ -483,16 +482,8 @@ td p {
     width: 20em;
     max-height: 90vh;
     overflow: auto;
-
-    position: absolute;
     right: 0;
-
-    margin: 0;
-    padding: 0;
     line-height: 130%;
-    display: none;
-    background-color: #f9f9f9;
-    box-shadow: 0em 0em 0.25em rgba(128, 128, 128, 0.5);
 }
 #toctitle {
     font-weight: bold;
