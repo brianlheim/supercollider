@@ -1,26 +1,5 @@
-function toggle_visibility(e) {
-    if(e.style.display == 'none') {
-        e.style.display = 'block';
-        return e;
-    } else {
-        e.style.display = 'none';
-        return undefined;
-    }
-}
-
 var storage;
-var sidetoc;
-var toc;
 var menubar;
-var allItems;
-
-function resize_handler() {
-    var height = window.innerHeight - menubar.clientHeight - 20;
-    if(sidetoc)
-        sidetoc.style.height = height;
-    if(toc)
-        toc.style.maxHeight = height * 0.75;
-}
 
 function addInheritedMethods() {
     if(! /\/Classes\/[^\/]+/.test(window.location.pathname)) return; // skip this if not a class doc
@@ -384,22 +363,33 @@ function selectParens(ev) {
     }
 }
 
+function create_menubar_item(text, link, post_processing) {
+    var a = $("<a>").text(text).addClass("navlink").attr("href", link);
+    var li = $("<li>").addClass("menuitem").append(a);
+    $("#menubar").append(li);
+    if (post_processing) {
+        post_processing(a, li);
+    }
+}
+
 escape_regexp = function(str) {
   var specials = new RegExp("[.*+?|()\\[\\]{}\\\\]", "g"); // .*+?|()[]{}\
   return str.replace(specials, "\\$&");
 }
 
+var toc_items;
 function toc_search(ev) {
 //TODO: on enter, go to first match
     var re = RegExp("^"+escape_regexp(ev.target.value),"i");
-    for(var i=0;i<allItems.length;i++) {
-        var li = allItems[i];
+
+    for(var i=0;i<toc_items.length;i++) {
+        var li = toc_items[i];
         var a = li.firstChild;
         if(re.test(a.innerHTML)) {
             li.style.display = "";
             var lev = li.className[3];
             for(var i2 = i-1;i2>=0;i2--) {
-                var e = allItems[i2];
+                var e = toc_items[i2];
                 if(e.className[3]<lev) {
                     e.style.display = "";
                     lev -= 1;
@@ -412,14 +402,36 @@ function toc_search(ev) {
     }
 }
 
+
+function set_up_toc() {
+    var toc = $("#toc");
+
+    toc_items = document.getElementById("toc")
+        .getElementsByTagName("ul")[0].getElementsByTagName("li");
+
+    document.getElementById("toc_search").onkeyup = toc_search;
+
+    create_menubar_item("Table of contents", "#", function (a, li) {
+        a.on("click", function (e) {
+            e.preventDefault();
+            document.getElementById("toc_search").focus();
+            toc.toggle();
+        });
+    });
+
+    toc.appendTo($("#menubar"));
+
+    if (storage.tocOpen === "yes") {
+        toc.show();
+    }
+}
+
 function fixTOC() {
     var x = document.getElementsByClassName("lang-sc");
     for(var i=0;i<x.length;i++) {
         var e = x[i];
-
         // make all code examples editable!
         e.setAttribute("contentEditable",true);
-
         // select parenthesis on double-click
         e.onclick = function(ev) {
             var r =  window.getSelection().getRangeAt(0);
@@ -464,18 +476,9 @@ function fixTOC() {
         return true;
     }
 
-    function create_menubar_item(text, link, post_processing) {
-        var a = $("<a>").text(text).addClass("navlink").attr("href", link);
-        var li = $("<li>").addClass("menuitem").append(a);
-        $("#menubar").append(li);
-        if (post_processing) {
-            post_processing(a, li);
-        }
-    }
-
-    create_menubar_item("SuperCollider " + scdoc_sc_version, "Help.html");
-    create_menubar_item("Browse", "Browse.html");
-    create_menubar_item("Search", "Search.html");
+    create_menubar_item("SuperCollider " + scdoc_sc_version, helpRoot + "/Help.html");
+    create_menubar_item("Browse", helpRoot + "/Browse.html");
+    create_menubar_item("Search", helpRoot + "/Search.html");
 
     var bar = document.getElementById("menubar");
     menubar = bar;
@@ -499,54 +502,7 @@ function fixTOC() {
         li.append(m1);
     });
 
-    toc = document.getElementById("toc");
-    if (toc) {
-        allItems = toc.getElementsByTagName("ul")[0].getElementsByTagName("li");
-        document.getElementById("toc_search").onkeyup = toc_search;
-
-        toc.style.display = 'none';
-
-        create_menubar_item("Table of contents", "#", function (a, li) {
-            a.on("click", function () {
-                scroll(0,0);
-                document.getElementById("toc_search").focus();
-                toggle_toc();
-            });
-        });
-
-        var close_link = document.createElement("a");
-        close_link.setAttribute("href","#");
-        close_link.className = "close-link";
-        close_link.innerHTML = "X";
-        close_link.addEventListener("click", function () {
-            toggle_toc();
-        }, false);
-        toc.insertBefore(close_link,toc.firstChild);
-        resize_handler();
-        if (storage.tocOpen === "yes") {
-            show_toc();
-        }
+    if ($("#toc").length) {
+        set_up_toc();
     }
-    window.onresize = resize_handler;
-}
-
-function show_toc() {
-    toc.style.display = "block";
-    document.querySelector(".contents").style.marginLeft = "20em";
-}
-
-function hide_toc() {
-    toc.style.display = "none";
-    document.querySelector(".contents").style.marginLeft = "0";
-}
-
-function toggle_toc() {
-    if (storage.tocOpen === "yes") {
-        hide_toc();
-        storage.tocOpen = "no";
-    } else {
-        show_toc();
-        storage.tocOpen = "yes";
-    }
-    resize_handler();
 }
