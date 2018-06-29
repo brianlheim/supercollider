@@ -366,7 +366,7 @@ function selectParens(ev) {
 function create_menubar_item(text, link, post_processing) {
     var a = $("<a>").text(text).addClass("navlink").attr("href", link);
     var li = $("<li>").addClass("menuitem").append(a);
-    $("#menubar").append(li);
+    $("#nav").append(li);
     if (post_processing) {
         post_processing(a, li);
     }
@@ -475,6 +475,8 @@ function fixTOC() {
         inMenu = false;
         return true;
     }
+
+    $("#menubar").append($("<ul>", {id: "nav"}));
 
     create_menubar_item("SuperCollider " + scdoc_sc_version, helpRoot + "/Help.html");
     create_menubar_item("Browse", helpRoot + "/Browse.html");

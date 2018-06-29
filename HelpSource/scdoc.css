@@ -102,6 +102,11 @@ a.subclass_toggle:hover {
     box-shadow: 0em 0em 0.25em rgba(128, 128, 128, 0.5);
 }
 
+#nav {
+    padding: 0;
+    margin: 0;
+}
+
 #menubar .menuitem {
     margin: 0;
     padding: 0px;
