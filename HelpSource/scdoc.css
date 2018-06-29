@@ -108,18 +108,11 @@ a.subclass_toggle:hover {
 }
 
 #menubar .menuitem {
+    padding: 0;
     margin: 0;
-    padding: 0px;
-    padding-left: 0.75em;
-    padding-right: 0.75em;
     border-right: 1px solid #ddd;
     font-size: 10pt;
     display: inline-block;
-
-    /* This ensures that the logo isn't cut off. */
-    min-height: 1.5em;
-    /* This gets the text to vertically center. Discovered by accident. */
-    line-height: 1.5em;
 }
 
 #menubar .menuitem:first-child {
@@ -131,10 +124,23 @@ a.subclass_toggle:hover {
     background-size: 1.5em;
 }
 
+a.menu-link {
+    color: #666;
+    padding: 0 0.75em 0 0.75em;
+    /* This ensures that the logo isn't cut off. */
+    min-height: 1.5em;
+    /* This gets the text to vertically center. Discovered by accident. */
+    line-height: 1.5em;
+}
+a.menu-link:hover {
+    text-decoration: none;
+    color: #999;
+}
+
 #menubar .menuitem:first-child a {
     /* The cube logo is actually *under* the <a>, but it shows through so that it looks like it
     is part of the link. */
-    padding-left: 2em;
+    padding-left: 2.5em;
 }
 
 #menubar .menuitem:first-child a:hover {
@@ -146,15 +152,7 @@ a.subclass_toggle:hover {
     border-right: none;
 }
 
-.menuitem a {
-    color: #666;
-}
-.menuitem a:hover {
-    text-decoration: none;
-    color: #999;
-}
-
-.menuitem a.title {
+a.menu-link.title {
     font-weight: bold;
 }
 

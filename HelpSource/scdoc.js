@@ -364,7 +364,7 @@ function selectParens(ev) {
 }
 
 function create_menubar_item(text, link, post_processing) {
-    var a = $("<a>").text(text).addClass("navlink").attr("href", link);
+    var a = $("<a>").text(text).addClass("menu-link").attr("href", link);
     var li = $("<li>").addClass("menuitem").append(a);
     $("#nav").append(li);
     if (post_processing) {
@@ -409,7 +409,8 @@ function set_up_toc() {
 
     var toc_link = $("<a>", {
         href: "#",
-        text: "Table of contents"
+        class: "menu-link",
+        text: "Table of contents \u25bc"
     }).appendTo(toc_container);
 
     $("#toc").appendTo(toc_container);
@@ -418,6 +419,12 @@ function set_up_toc() {
         .getElementsByTagName("ul")[0].getElementsByTagName("li");
 
     document.getElementById("toc_search").onkeyup = toc_search;
+
+    $(document).on("click", function (e) {
+        if (!$(e.target).closest(toc_container).length) {
+            $("#toc").hide();
+        }
+    });
 
     toc_link.on("click", function (e) {
         e.preventDefault();
@@ -469,7 +476,7 @@ function fixTOC() {
             openMenu = undefined;
         }
         inMenu = true;
-    }
+    };
 
     document.onclick = function(e) {
         if(openMenu && !inMenu && e.target.id!="toc_search") {
@@ -478,7 +485,7 @@ function fixTOC() {
         }
         inMenu = false;
         return true;
-    }
+    };
 
     $("#menubar").append($("<ul>", {id: "nav"}));
 
