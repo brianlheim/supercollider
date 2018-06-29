@@ -480,9 +480,6 @@ function fixTOC() {
     create_menubar_item("Browse", helpRoot + "/Browse.html");
     create_menubar_item("Search", helpRoot + "/Search.html");
 
-    var bar = document.getElementById("menubar");
-    menubar = bar;
-
     create_menubar_item("Indexes \u25bc", "#", function (a, li) {
         var m1 = document.createElement("div");
         m1.className = "submenu";
