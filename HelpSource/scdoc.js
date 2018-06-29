@@ -404,25 +404,29 @@ function toc_search(ev) {
 
 
 function set_up_toc() {
-    var toc = $("#toc");
+    var toc_container = $("<div>", {id: "toc-container"})
+        .insertBefore($("#menubar").children().first());
+
+    var toc_link = $("<a>", {
+        href: "#",
+        text: "Table of contents"
+    }).appendTo(toc_container);
+
+    $("#toc").appendTo(toc_container);
 
     toc_items = document.getElementById("toc")
         .getElementsByTagName("ul")[0].getElementsByTagName("li");
 
     document.getElementById("toc_search").onkeyup = toc_search;
 
-    create_menubar_item("Table of contents", "#", function (a, li) {
-        a.on("click", function (e) {
-            e.preventDefault();
-            document.getElementById("toc_search").focus();
-            toc.toggle();
-        });
+    toc_link.on("click", function (e) {
+        e.preventDefault();
+        document.getElementById("toc_search").focus();
+        $("#toc").toggle();
     });
 
-    toc.appendTo($("#menubar"));
-
     if (storage.tocOpen === "yes") {
-        toc.show();
+        $("#toc").show();
     }
 }
 
@@ -479,6 +483,11 @@ function fixTOC() {
     $("#menubar").append($("<ul>", {id: "nav"}));
 
     create_menubar_item("SuperCollider " + scdoc_sc_version, helpRoot + "/Help.html");
+
+    create_menubar_item(scdoc_title, "#", function (a, li) {
+        a.addClass("title");
+    });
+
     create_menubar_item("Browse", helpRoot + "/Browse.html");
     create_menubar_item("Search", helpRoot + "/Search.html");
 
