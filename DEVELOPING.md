@@ -56,11 +56,11 @@ the wild." These are standards the community has agreed upon for new UGens:
     - `throw`/`catch`: use return codes instead.
     - `dynamic_cast`
     - System calls. These are complicated to handle and require use of an NRT thread.
-  - Any calls to `RTAlloc` should be protected from `RTAlloc` returning a null pointer. This usually happens when there
-    isn't enough real-time memory left, and results in a **server crash** if the code is not protected from attempts to
+  - Any calls to `RTAlloc` should be protected from it returning a null pointer. This usually happens when there
+    isn't enough real-time memory left, resulting in a **server crash** if the code is not protected from attempts to
     read from an unallocated buffer.
   - The Ctor sample should be initialized. If this is not done, very nasty bugs can occur.
-  - Zap dangerous values (subnormals, infinities, nans) in feedback loops to 0. SC provides a `zapgremlins` function
+  - Zap dangerous values (subnormals, infinities, nans) in feedback loops to zero. SC provides a `zapgremlins` function
     that does this for you.
 - **Utility:**
   - UGens should have both `.ar` and `.kr` methods if applicable.
@@ -297,8 +297,6 @@ ARGUMENT:: width
 Project Structure
 =================
 
-- **`.github`**: PR and issue template for GitHub
-- **`.travis`**: scripts for Travis CI
 - **`cmake_modules`**: Find and Config modules for CMake
 - **`common`**: C++ files needed by multiple components of the project
 - **`editors`**: Files for `scide` and editor extensions
@@ -351,6 +349,8 @@ Project Structure
 
 Important files in the root directory are:
 
+- **`.github`**: PR and issue template for GitHub
+- **`.travis`**: scripts for Travis CI
 - **`.appveyor.yml`**: config file for AppVeyor CI
 - **`.travis.yml`**: config file for Travis CI
 - **`build_sclang_cfg.in`**: config file used for the special `SC_DOC_RENDER` build target
