@@ -103,13 +103,11 @@ int prFileDeleteAll(struct VMGlobals *g, int numArgsPushed)
 		return error;
 
 	const bfs::path& p = SC_Codecvt::utf8_str_to_path(filename);
-	boost::system::error_code error_code;
-	bfs::remove_all(p, error_code);
-
-	if (error_code)
-		SetFalse(a);
-	else
+	if (bfs::remove_all(p) > 0) {
 		SetTrue(a);
+	} else {
+		SetFalse(a);
+	}
 
 	return errNone;
 }
