@@ -1319,7 +1319,6 @@ void ScCodeEditor::evaluateLine()
 
     HelpBrowserDocklet* help = MainWindow::instance()->helpBrowserDocklet();
     if (help && help->browser()->helpBrowserHasFocus()) {
-        help->browser()->evaluateSelection(false);
         return; // early return
     }
 
@@ -1358,7 +1357,6 @@ void ScCodeEditor::evaluateRegion()
 
     HelpBrowserDocklet* help = MainWindow::instance()->helpBrowserDocklet();
     if (help && help->browser()->helpBrowserHasFocus()) {
-        help->browser()->evaluateSelection(true);
         return; // early return
     }
 
