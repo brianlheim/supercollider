@@ -110,6 +110,8 @@ list::
 ## code::false:: -- No files were deleted.
 ::
 
+If deletion fails, a PrimitiveFailedError object will be thrown.
+
 method::realpath
 Follow symbolic links (and aliases on macOS) and any parent directory references (like "..") and return the true absolute path.
 
