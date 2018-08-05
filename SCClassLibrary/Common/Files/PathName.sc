@@ -19,11 +19,7 @@ PathName {
 
 	colonIndices {
 		^colonIndices ?? {
-			colonIndices = List.new;
-			fullPath.do({ | eachChar, i |
-				if(eachChar.isPathSeparator, { colonIndices.add(i) })
-			});
-			colonIndices
+			colonIndices = fullPath.selectIndicesAs(_.isPathSeparator, Array)
 		}
 	}
 
@@ -49,11 +45,10 @@ PathName {
 	}
 
 	extension {
-		var fileName;
-		fileName = this.fileName;
-		fileName.reverseDo({ | char, i |
+		fullPath.reverseDo({ | char, i |
+			if(char.isPathSeparator) { ^"" };
 			if(char == $., {
-				^fileName.copyRange(fileName.size - i,fileName.size - 1)
+				^fullPath.copyRange(fullPath.size - i, fullPath.size - 1)
 			})
 		});
 		^""
@@ -173,17 +168,11 @@ PathName {
 	}
 
 	isFolder {
-		var path = this.pathMatch;
-		^if(path.notEmpty, {
-			path.at(0).last.isPathSeparator
-		}, { false })
+		^File.type(fullPath) == \directory
 	}
 
 	isFile {
-		var path = this.pathMatch;
-		^if(path.notEmpty, {
-			path.at(0).last.isPathSeparator.not
-		}, { false })
+		^File.type(fullPath) == \regular
 	}
 
 	files {
@@ -215,10 +204,11 @@ PathName {
 	}
 
 	filesDo { | func |
-		this.files.do(func);
-		this.folders.do { | pathname |
-			pathname.filesDo(func)
-		};
+		this.entries.do { |path|
+			switch(File.type(path.fullPath))
+			{ \regular } { func.value(path) }
+			{ \directory } { path.filesDo(func) };
+		}
 	}
 
 	streamTree { | str, tabs = 0 |

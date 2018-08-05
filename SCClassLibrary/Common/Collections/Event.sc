@@ -31,7 +31,6 @@ Event : Environment {
 	}
 
 	*addParentType { arg type, parentEvent;
-		if(parentEvent.notNil and: { parentEvent.parent.isNil }) { parentEvent.parent = defaultParentEvent };
 		partialEvents.playerEvent.parentTypes.put(type, parentEvent)
 	}
 
@@ -432,19 +431,17 @@ Event : Environment {
 				play: #{
 					var tempo, server, eventTypes, parentType;
 
+					eventTypes = ~eventTypes;
 					parentType = ~parentTypes[~type];
 					parentType !? { currentEnvironment.parent = parentType };
 
 					server = ~server = ~server ? Server.default;
-
 					~finish.value(currentEnvironment);
 
 					tempo = ~tempo;
 					tempo !? { thisThread.clock.tempo = tempo };
 
-
 					if(currentEnvironment.isRest.not) {
-						eventTypes = ~eventTypes;
 						(eventTypes[~type] ?? { eventTypes[\note] }).value(server)
 					};
 
