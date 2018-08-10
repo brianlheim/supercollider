@@ -142,7 +142,7 @@ int main( int argc, char *argv[] )
                      &channel, &QWebChannel::connectTo);
 
     // publish IDE interface
-    IDEWebChannelWrapper ideWrapper{win->helpBrowserDocklet()->browser()};
+    IDEWebChannelWrapper ideWrapper{win->helpBrowserDocklet()->browser(), settings};
     channel.registerObject("IDE", &ideWrapper);
 
     return app.exec();

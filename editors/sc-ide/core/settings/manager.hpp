@@ -77,8 +77,11 @@ public:
     int defaultCursorFlashTime() const { return mDefaultCursorFlashTime; }
 
     void setThemeVal(QString key, const QTextCharFormat &val);
-    const QTextCharFormat & getThemeVal(QString key);
+    const QTextCharFormat & getThemeVal(QString key) const;
     void updateTheme();
+
+signals:
+    void themeChanged();
 
 private:
     void setDefault ( const QString & key, const QVariant & value )

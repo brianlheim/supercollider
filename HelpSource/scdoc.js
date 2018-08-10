@@ -208,6 +208,13 @@ function setUpWebChannel() {
         new QWebChannel(socket, function(channel) {
             // make help browser globally accessible
             window.IDE = channel.objects.IDE;
+
+            IDE.styleChanged.connect(function(styleProperties) {
+                console.log("Request style");
+                applyIDEStyle(styleProperties)
+            });
+
+            IDE.postStyle();
         });
     }
 }

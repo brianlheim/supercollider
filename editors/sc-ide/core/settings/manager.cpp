@@ -168,8 +168,7 @@ void Manager::setThemeVal(QString key, const QTextCharFormat &val)
     mTheme->setFormat(key, val);
 }
 
-const QTextCharFormat & Manager::getThemeVal(QString key)
-{
+const QTextCharFormat & Manager::getThemeVal(QString key) const {
     return mTheme->format(key);
 }
 
@@ -179,6 +178,7 @@ void Manager::updateTheme()
 
     delete(mTheme);
     mTheme = new Theme(theme);
+    emit themeChanged();
 }
 
 }} // namespace ScIDE::Settings

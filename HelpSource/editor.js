@@ -124,7 +124,7 @@ const selectRegion = (options = { flash: true }) => {
         return editor.getSelection()
     } else {
         let marker = editor.markText(leftCursor, rightCursor, { className: 'text-flash' })
-        setTimeout(() => marker.clear(), 300)
+        setTimeout(() => marker.clear(), blinkDuration)
         return editor.getRange(leftCursor, rightCursor)
     }
 }
@@ -133,6 +133,8 @@ const evalLine = () => {
     // Ask IDE to eval line. Calls back to `selectLine()`
     window.IDE.evaluateLine();
 }
+
+blinkDuration = 600 // IDE default
 
 // Returns the code selection or line
 const selectLine = (options = { flash: true }) => {
@@ -153,8 +155,18 @@ const selectLine = (options = { flash: true }) => {
     if (!options.flash)
         return editor.getRange(from, to)
     let marker = editor.markText(from, to, { className: 'text-flash' })
-    setTimeout(() => marker.clear(), 300)
+    setTimeout(() => marker.clear(), blinkDuration)
     return editor.getRange(from, to)
+}
+
+const applyIDEStyle = (settings) => {
+    blinkDuration = settings["IDE/editor/blinkDuration"]
+    console.log(settings["IDE/editor/theme/class"])
+    console.log(settings["IDE/editor/theme/class"]["weight"])
+    console.log(settings["IDE/editor/theme/class"]["italic"])
+    console.log(settings["IDE/editor/theme/class"]["foreground"])
+    console.log(settings["IDE/editor/theme/class"]["background"])
+    // $(".cm-type").map((i, o) => { o.style.color = settings["classColor"] } )
 }
 
 init()
