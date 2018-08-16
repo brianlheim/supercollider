@@ -29,7 +29,7 @@ const init = () => {
             lineWrapping: true,
             viewportMargin: Infinity,
             extraKeys: { 
-                'Cmd-Enter': () => selectRegion(),
+                'Ctrl-Enter': () => selectRegion(),
                 'Shift-Enter': () => selectLine()
             }
         })
