@@ -268,7 +268,6 @@ int main(int argc, char* argv[])
 			case 'H' :
 				checkNumArgs(2);
 				options.mInDeviceName = argv[j+1];
-#ifdef __APPLE__
 				if (i+1>argc || argv[j+2][0]=='-')
 				{
 					options.mOutDeviceName = options.mInDeviceName;
@@ -279,9 +278,6 @@ int main(int argc, char* argv[])
 					options.mOutDeviceName = argv[j+2];
 					++i;
 				}
-#else
-				options.mOutDeviceName = options.mInDeviceName; // Non-Mac platforms always use same device
-#endif
 				break;
 			case 'L' :
 				checkNumArgs(1);
@@ -387,4 +383,3 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
-
