@@ -169,9 +169,6 @@ void start_audio_backend(server_arguments const & args)
         output_device = args.hw_name[1];
     }
 
-    cout << "opening portaudio device name: ";
-    cout << input_device << " / " << output_device << endl;
-
     if (input_device == "nil") {
         input_device.clear();
         input_channels = 0;
@@ -182,19 +179,22 @@ void start_audio_backend(server_arguments const & args)
         output_channels = 0;
     }
 
-    cout << "opening portaudio device name: ";
-    cout << input_device << " / " << output_device << endl;
-
+    cout << "opening portaudio devices:\n";
+    cout << "  In: " << input_device << "\n";
+    cout << "  Out: " << output_device << endl;
 
     bool success = instance->open_stream(input_device, input_channels, output_device, output_channels,
         args.samplerate, args.blocksize, args.hardware_buffer_size);
 
     if (!success) {
-        cout << "could not open portaudio device name: " << input_device << " / " << output_device << endl;
+        cout << "could not open portaudio devices:\n";
+        cout << "  In: " << input_device << "\n";
+        cout << "  Out: " << output_device << endl;
         exit(1);
     }
-    cout << "opened portaudio device name: ";
-    cout << input_device << " / " << output_device << endl;
+    cout << "opened portaudio devices:\n";
+    cout << "  In: " << input_device << "\n";
+    cout << "  Out: " << output_device << endl;
 
     instance->report_latency();
 

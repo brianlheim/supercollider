@@ -101,8 +101,16 @@ public:
         for (int i = 0; i != device_number; ++i) {
             const PaDeviceInfo * device_info = Pa_GetDeviceInfo(i);
             if (device_info) {
+#ifdef _WIN32
+                // list APIs on Windows
+                const PaHostApiInfo * api_info = Pa_GetHostApiInfo(device_info->hostApi);
+                printf("%d: %s : %s (%d inputs, %d outputs)\n", i, api_info->name,
+                       device_info->name, device_info->maxInputChannels,
+                       device_info->maxOutputChannels);
+#else
                 printf("%d: %s (%d inputs, %d outputs)\n", i, device_info->name,
                        device_info->maxInputChannels, device_info->maxOutputChannels);
+#endif
             }
         }
         printf("\n");
@@ -278,16 +286,24 @@ public:
         const PaDeviceIndex default_input = Pa_GetDefaultInputDevice();
         const PaDeviceIndex default_output = Pa_GetDefaultOutputDevice();
 
-        std::cout << default_input << " " << default_output;
-
         return std::make_pair(device_name(default_input), device_name(default_output));
     }
 
 private:
     std::string device_name(PaDeviceIndex device_index)
     {
+#ifdef _WIN32
+        // list APIs on Windows
+        const PaDeviceInfo * device_info = Pa_GetDeviceInfo(device_index);
+        const PaHostApiInfo * api_info = Pa_GetHostApiInfo(device_info->hostApi);
+        std::string dev_string = api_info->name;
+        dev_string += " : ";
+        dev_string += device_info->name;
+        return dev_string;
+#else
         const PaDeviceInfo * device_info = Pa_GetDeviceInfo(device_index);
         return std::string(device_info->name);
+#endif
     }
 
     int perform(const void *inputBuffer, void *outputBuffer, unsigned long frames,
