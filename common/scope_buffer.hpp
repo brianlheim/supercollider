@@ -24,6 +24,8 @@
 
 #include <boost/interprocess/offset_ptr.hpp>
 
+#include <cstring>
+
 extern "C" {
 #include "tlsf.h"
 }
@@ -41,7 +43,7 @@ public:
     void init(void* pool, size_t size_of_pool)
     {
         pool_ = (char*)pool;
-        memset(pool_, 0, size_of_pool);
+        std::memset(pool_, 0, size_of_pool);
         init_memory_pool(size_of_pool, pool_);
     }
 

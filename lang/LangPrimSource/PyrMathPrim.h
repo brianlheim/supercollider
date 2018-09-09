@@ -22,6 +22,8 @@
 
 void initMathPrimitives();
 
+struct VMGlobals;
+
 int prAddNum(VMGlobals* g, int numArgsPushed);
 int prSubNum(VMGlobals* g, int numArgsPushed);
 int prMulNum(VMGlobals* g, int numArgsPushed);

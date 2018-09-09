@@ -22,6 +22,7 @@
 
 #include "SC_Unit.h"
 #include "SC_Wire.h"
+#include "SC_Rate.h"
 
 // demand rate unit support.
 

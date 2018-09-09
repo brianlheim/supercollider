@@ -20,6 +20,11 @@
 
 #pragma once
 
+#include "PyrSlot.h"
+
+struct VMGlobals;
+struct PyrObject;
+
 void initArrayPrimitives();
 
 int prArrayMultiChanExpand(VMGlobals* g, int numArgsPushed);

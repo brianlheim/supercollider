@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <stddef.h>
+
 typedef unsigned char Byte;
 
 #define BYTE_CODE_CHUNK_SIZE 64

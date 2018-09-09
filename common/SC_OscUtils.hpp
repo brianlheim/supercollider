@@ -21,6 +21,8 @@
 #pragma once
 
 #include "SC_ReplyImpl.hpp"
+#include "SC_WorldOptions.h"
+#include "sc_msg_iter.h"
 #include <cinttypes>
 
 static bool dumpOSCmsg(int inSize, char* inData, bool skipStatus = false)

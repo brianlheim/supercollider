@@ -20,6 +20,10 @@
 
 #pragma once
 
+struct PyrSymbol;
+struct PyrClass;
+struct VMGlobals;
+
 extern PyrSymbol* s_wavetable;
 extern struct PyrClass* class_wavetable;
 

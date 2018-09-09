@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <math.h>
+
 #define NUMPRIMES 6542
 long nthPrime(int n);
 long findPrime(int n);
