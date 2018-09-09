@@ -20,19 +20,18 @@
 
 #include "standard_dirs.hpp"
 
-#include "SC_Filesystem.hpp" // getDirectory
 #include "SC_Codecvt.hpp" // path_to_utf8_str
+#include "SC_Filesystem.hpp" // getDirectory
 #include <boost/filesystem/path.hpp> // path
 
 namespace ScIDE {
 
-QString standardDirectory( StandardDirectory type )
+QString standardDirectory(StandardDirectory type)
 {
     using DirName = SC_Filesystem::DirName;
     DirName dn;
 
-    switch(type)
-    {
+    switch (type) {
     case ScResourceDir:
         dn = DirName::Resource;
         break;

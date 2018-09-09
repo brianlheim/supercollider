@@ -1,7 +1,7 @@
 /*
-	SuperCollider real time audio synthesis system
+    SuperCollider real time audio synthesis system
     Copyright (c) 2002 James McCartney. All rights reserved.
-	http://www.audiosynth.com
+    http://www.audiosynth.com
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 */
 
-
 #pragma once
 
 typedef int SCErr;
@@ -26,31 +25,31 @@ typedef int SCErr;
 void SC_ErrorString(SCErr err, char returnString[]);
 
 enum {
-	kSCErr_None,
-	kSCErr_Failed,
-	kSCErr_NodeNotFound,
-	kSCErr_TargetNodeNotFound,
-	kSCErr_GroupNotFound,
-	kSCErr_SynthDefNotFound,
-	kSCErr_NoSuchCommand,
-	kSCErr_WrongArgType,
-	kSCErr_IndexOutOfRange,
-	kSCErr_AccessDenied,
-	kSCErr_NoReplyPort,
-	kSCErr_InvalidControlIndex,
-	kSCErr_AlreadyLoggedIn,
-	kSCErr_NotLoggedIn,
-	kSCErr_TooManyUsers,
-	kSCErr_TooManyNodes,
-	kSCErr_DuplicateNodeID,
-	kSCErr_ReservedNodeID,
-	kSCErr_ReplaceRootGroup,
-	kSCErr_OutOfRealTimeMemory,
+    kSCErr_None,
+    kSCErr_Failed,
+    kSCErr_NodeNotFound,
+    kSCErr_TargetNodeNotFound,
+    kSCErr_GroupNotFound,
+    kSCErr_SynthDefNotFound,
+    kSCErr_NoSuchCommand,
+    kSCErr_WrongArgType,
+    kSCErr_IndexOutOfRange,
+    kSCErr_AccessDenied,
+    kSCErr_NoReplyPort,
+    kSCErr_InvalidControlIndex,
+    kSCErr_AlreadyLoggedIn,
+    kSCErr_NotLoggedIn,
+    kSCErr_TooManyUsers,
+    kSCErr_TooManyNodes,
+    kSCErr_DuplicateNodeID,
+    kSCErr_ReservedNodeID,
+    kSCErr_ReplaceRootGroup,
+    kSCErr_OutOfRealTimeMemory,
 
-	kSCErr_UnsupportedHeaderFormat,
-	kSCErr_UnsupportedSampleFormat,
+    kSCErr_UnsupportedHeaderFormat,
+    kSCErr_UnsupportedSampleFormat,
 
-	kSCErr_BufGenNotFound,
+    kSCErr_BufGenNotFound,
 
-	kSCErr_NumErrors
+    kSCErr_NumErrors
 };

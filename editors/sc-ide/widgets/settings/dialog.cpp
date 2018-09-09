@@ -19,59 +19,56 @@
 */
 
 #include "dialog.hpp"
-#include "ui_settings_dialog.h"
+#include "../../core/main.hpp"
+#include "../../core/settings/manager.hpp"
+#include "editor_page.hpp"
 #include "general_page.hpp"
 #include "sclang_page.hpp"
-#include "editor_page.hpp"
 #include "shortcuts_page.hpp"
-#include "../../core/settings/manager.hpp"
-#include "../../core/main.hpp"
+#include "ui_settings_dialog.h"
 
-#include <QVBoxLayout>
-#include <QHBoxLayout>
 #include <QDialogButtonBox>
-#include <QStackedWidget>
-#include <QListWidget>
 #include <QFile>
+#include <QHBoxLayout>
 #include <QLineEdit>
+#include <QListWidget>
 #include <QPushButton>
+#include <QStackedWidget>
+#include <QVBoxLayout>
 
-namespace ScIDE { namespace Settings {
+namespace ScIDE {
+namespace Settings {
 
-Dialog::Dialog( Manager *settings, QWidget * parent ):
-    QDialog(parent),
-    mManager(settings),
-    ui( new Ui::ConfigDialog )
+Dialog::Dialog(Manager* settings, QWidget* parent)
+    : QDialog(parent)
+    , mManager(settings)
+    , ui(new Ui::ConfigDialog)
 {
     ui->setupUi(this);
 
-    QWidget *w;
+    QWidget* w;
 
     w = new GeneralPage;
     ui->configPageStack->addWidget(w);
-    ui->configPageList->addItem (
-        new QListWidgetItem(QIcon::fromTheme("preferences-system"), tr("General")));
+    ui->configPageList->addItem(new QListWidgetItem(QIcon::fromTheme("preferences-system"), tr("General")));
     connect(this, SIGNAL(storeRequest(Manager*)), w, SLOT(store(Manager*)));
     connect(this, SIGNAL(loadRequest(Manager*)), w, SLOT(load(Manager*)));
 
     w = new SclangPage;
     ui->configPageStack->addWidget(w);
-    ui->configPageList->addItem (
-        new QListWidgetItem(QIcon::fromTheme("applications-system"), tr("Interpreter")));
+    ui->configPageList->addItem(new QListWidgetItem(QIcon::fromTheme("applications-system"), tr("Interpreter")));
     connect(this, SIGNAL(storeRequest(Manager*)), w, SLOT(store(Manager*)));
     connect(this, SIGNAL(loadRequest(Manager*)), w, SLOT(load(Manager*)));
 
     w = new EditorPage;
     ui->configPageStack->addWidget(w);
-    ui->configPageList->addItem (
-        new QListWidgetItem(QIcon::fromTheme("accessories-text-editor"), tr("Editor")));
+    ui->configPageList->addItem(new QListWidgetItem(QIcon::fromTheme("accessories-text-editor"), tr("Editor")));
     connect(this, SIGNAL(storeRequest(Manager*)), w, SLOT(store(Manager*)));
     connect(this, SIGNAL(loadRequest(Manager*)), w, SLOT(load(Manager*)));
 
     w = new ShortcutsPage;
     ui->configPageStack->addWidget(w);
-    ui->configPageList->addItem (
-        new QListWidgetItem(QIcon::fromTheme("input-keyboard"), tr("Shortcuts")));
+    ui->configPageList->addItem(new QListWidgetItem(QIcon::fromTheme("input-keyboard"), tr("Shortcuts")));
     connect(this, SIGNAL(storeRequest(Manager*)), w, SLOT(store(Manager*)));
     connect(this, SIGNAL(loadRequest(Manager*)), w, SLOT(load(Manager*)));
 
@@ -80,38 +77,29 @@ Dialog::Dialog( Manager *settings, QWidget * parent ):
     connect(ui->buttonBox->button(QDialogButtonBox::Apply), SIGNAL(clicked()), this, SLOT(apply()));
     connect(ui->buttonBox->button(QDialogButtonBox::Reset), SIGNAL(clicked()), this, SLOT(reset()));
 
-
-    ui->configPageList->setMinimumWidth( ui->configPageList->sizeHintForColumn(0) );
+    ui->configPageList->setMinimumWidth(ui->configPageList->sizeHintForColumn(0));
 
     reset();
 }
 
-Dialog::~Dialog()
-{
-    delete ui;
-}
+Dialog::~Dialog() { delete ui; }
 
 void Dialog::accept()
 {
-    Q_EMIT( storeRequest(mManager) );
+    Q_EMIT(storeRequest(mManager));
 
     QDialog::accept();
 }
 
-void Dialog::reject()
-{
-    QDialog::reject();
-}
+void Dialog::reject() { QDialog::reject(); }
 
 void Dialog::apply()
 {
-    Q_EMIT( storeRequest(mManager) );
+    Q_EMIT(storeRequest(mManager));
     Main::instance()->applySettings();
 }
 
-void Dialog::reset()
-{
-    Q_EMIT( loadRequest(mManager) );
-}
+void Dialog::reset() { Q_EMIT(loadRequest(mManager)); }
 
-}} // namespace ScIDE::Settings
+}
+} // namespace ScIDE::Settings

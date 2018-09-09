@@ -7,27 +7,23 @@
     http://www.boost.org/LICENSE_1_0.txt)
 =============================================================================*/
 #if !defined(BOOST_HIGH_RESOLUTION_TIMER_HPP)
-#define BOOST_HIGH_RESOLUTION_TIMER_HPP
+#    define BOOST_HIGH_RESOLUTION_TIMER_HPP
 
-#include <boost/config.hpp>
-#include <boost/throw_exception.hpp>
+#    include <boost/config.hpp>
+#    include <boost/throw_exception.hpp>
 
-#if _POSIX_C_SOURCE >= 199309L
+#    if _POSIX_C_SOURCE >= 199309L
 
-#include "time.h"
+#        include "time.h"
 
-#include <stdexcept>
-#include <limits>
+#        include <limits>
+#        include <stdexcept>
 
 namespace boost {
 
-class high_resolution_timer
-{
+class high_resolution_timer {
 public:
-    high_resolution_timer()
-    {
-        restart();
-    }
+    high_resolution_timer() { restart(); }
 
     void restart()
     {
@@ -37,7 +33,7 @@ public:
             boost::throw_exception(std::runtime_error("Couldn't initialize start_time"));
     }
 
-    double elapsed() const                  // return elapsed time in seconds
+    double elapsed() const // return elapsed time in seconds
     {
         struct timespec now;
 
@@ -51,8 +47,7 @@ public:
         double ret_sec = double(now.tv_sec - start_time.tv_sec);
         double ret_nsec = double(now.tv_nsec - start_time.tv_nsec);
 
-        while (ret_nsec < 0)
-        {
+        while (ret_nsec < 0) {
             ret_sec -= 1.0;
             ret_nsec += 1e9;
         }
@@ -62,12 +57,12 @@ public:
         return ret;
     }
 
-    double elapsed_max() const   // return estimated maximum value for elapsed()
+    double elapsed_max() const // return estimated maximum value for elapsed()
     {
         return double((std::numeric_limits<double>::max)());
     }
 
-    double elapsed_min() const            // return minimum value for elapsed()
+    double elapsed_min() const // return minimum value for elapsed()
     {
         return 0.0;
     }
@@ -78,15 +73,13 @@ private:
 
 } // namespace boost
 
-#elif defined(__APPLE__)
+#    elif defined(__APPLE__)
 
-#import <mach/mach_time.h>
-
+#        import <mach/mach_time.h>
 
 namespace boost {
 
-class high_resolution_timer
-{
+class high_resolution_timer {
 public:
     high_resolution_timer(void)
     {
@@ -96,16 +89,13 @@ public:
         if (err)
             throw std::runtime_error("cannot create mach timebase info");
 
-        conversion_factor = (double)info.numer/(double)info.denom;
+        conversion_factor = (double)info.numer / (double)info.denom;
         restart();
     }
 
-    void restart()
-    {
-        start = mach_absolute_time();
-    }
+    void restart() { start = mach_absolute_time(); }
 
-    double elapsed() const                  // return elapsed time in seconds
+    double elapsed() const // return elapsed time in seconds
     {
         uint64_t now = mach_absolute_time();
         double duration = double(now - start) * conversion_factor;
@@ -113,12 +103,12 @@ public:
         return duration
     }
 
-    double elapsed_max() const   // return estimated maximum value for elapsed()
+    double elapsed_max() const // return estimated maximum value for elapsed()
     {
         return double((std::numeric_limits<double>::max)());
     }
 
-    double elapsed_min() const            // return minimum value for elapsed()
+    double elapsed_min() const // return minimum value for elapsed()
     {
         return 0.0;
     }
@@ -130,11 +120,11 @@ private:
 
 } // namespace boost
 
-#elif defined(BOOST_WINDOWS)
+#    elif defined(BOOST_WINDOWS)
 
-#include <stdexcept>
-#include <limits>
-#include <windows.h>
+#        include <limits>
+#        include <stdexcept>
+#        include <windows.h>
 
 namespace boost {
 
@@ -145,8 +135,7 @@ namespace boost {
 //      CAUTION: Windows only!
 //
 ///////////////////////////////////////////////////////////////////////////////
-class high_resolution_timer
-{
+class high_resolution_timer {
 public:
     high_resolution_timer()
     {
@@ -165,7 +154,7 @@ public:
             boost::throw_exception(std::runtime_error("Couldn't initialize start_time"));
     }
 
-    double elapsed() const                  // return elapsed time in seconds
+    double elapsed() const // return elapsed time in seconds
     {
         LARGE_INTEGER now;
         if (!QueryPerformanceCounter(&now))
@@ -174,13 +163,13 @@ public:
         return double(now.QuadPart - start_time.QuadPart) / frequency.QuadPart;
     }
 
-    double elapsed_max() const   // return estimated maximum value for elapsed()
+    double elapsed_max() const // return estimated maximum value for elapsed()
     {
-        return (double((std::numeric_limits<LONGLONG>::max)())
-            - double(start_time.QuadPart)) / double(frequency.QuadPart);
+        return (double((std::numeric_limits<LONGLONG>::max)()) - double(start_time.QuadPart))
+            / double(frequency.QuadPart);
     }
 
-    double elapsed_min() const            // return minimum value for elapsed()
+    double elapsed_min() const // return minimum value for elapsed()
     {
         return 1.0 / frequency.QuadPart;
     }
@@ -192,17 +181,16 @@ private:
 
 } // namespace boost
 
-#else
+#    else
 
 //  For other platforms, simply fall back to boost::timer
-#include <boost/timer.hpp>
-#include <boost/throw_exception.hpp>
+#        include <boost/throw_exception.hpp>
+#        include <boost/timer.hpp>
 
 namespace boost {
-    typedef boost::timer high_resolution_timer;
+typedef boost::timer high_resolution_timer;
 }
 
-#endif
+#    endif
 
-#endif  // !defined(BOOST_HIGH_RESOLUTION_TIMER_HPP)
-
+#endif // !defined(BOOST_HIGH_RESOLUTION_TIMER_HPP)

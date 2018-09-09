@@ -20,34 +20,33 @@
 
 #pragma once
 
-#include <QObject>
 #include <QDir>
-#include <QStringList>
+#include <QObject>
 #include <QSettings>
+#include <QStringList>
 
 namespace ScIDE {
 
 class DocumentManager;
 
-struct Session : public QSettings
-{
-    Session( const QString & file, const QString & name, Format format, QObject * parent = 0 ):
-        QSettings(file, format, parent),
-        mName(name)
-    {}
+struct Session : public QSettings {
+    Session(const QString& file, const QString& name, Format format, QObject* parent = 0)
+        : QSettings(file, format, parent)
+        , mName(name)
+    {
+    }
 
-    const QString & name() const { return mName; }
+    const QString& name() const { return mName; }
 
 private:
     QString mName;
 };
 
-class SessionManager : public QObject
-{
+class SessionManager : public QObject {
     Q_OBJECT
 
 public:
-    SessionManager( DocumentManager *, QObject * parent = 0 );
+    SessionManager(DocumentManager*, QObject* parent = 0);
 
     QDir sessionsDir();
     QStringList availableSessions();
@@ -55,22 +54,22 @@ public:
 
     void newSession();
     void saveSession();
-    Session * saveSessionAs( const QString & name );
-    Session * openSession( const QString & name );
-    void removeSession( const QString & name );
-    void renameSession( const QString & oldName, const QString & newName );
-    Session *currentSession() { return mCurrentSession; }
+    Session* saveSessionAs(const QString& name);
+    Session* openSession(const QString& name);
+    void removeSession(const QString& name);
+    void renameSession(const QString& oldName, const QString& newName);
+    Session* currentSession() { return mCurrentSession; }
 
 signals:
-    void saveSessionRequest(Session * session);
-    void switchSessionRequest(Session * session);
+    void saveSessionRequest(Session* session);
+    void switchSessionRequest(Session* session);
     void currentSessionNameChanged();
 
 private:
     bool closeSession();
-    bool saveLastSession( const QDir & dir, const QString & file );
-    DocumentManager *mDocMng;
-    Session *mCurrentSession;
+    bool saveLastSession(const QDir& dir, const QString& file);
+    DocumentManager* mDocMng;
+    Session* mCurrentSession;
 };
 
 } // namespace ScIDE

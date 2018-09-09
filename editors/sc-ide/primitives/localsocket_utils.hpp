@@ -1,16 +1,16 @@
 #pragma once
 
 #include <QByteArray>
-#include <QLocalSocket>
 #include <QDataStream>
+#include <QLocalSocket>
 
 // Aux functions for LocalSocket data handling
-// Make template so that it supports QVariantLists and QStringList, which are te data types that we send in sc_process and main
+// Make template so that it supports QVariantLists and QStringList, which are te data types that we send in sc_process
+// and main
 QByteArray IntToArray(qint32 source);
 qint32 ArrayToInt(QByteArray source);
 
-template <typename T>
-void sendSelectorAndData(QLocalSocket *socket, const QString& selector, const T& data)
+template <typename T> void sendSelectorAndData(QLocalSocket* socket, const QString& selector, const T& data)
 {
     QByteArray baToStream;
     QDataStream stream(&baToStream, QIODevice::WriteOnly);

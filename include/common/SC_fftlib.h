@@ -29,7 +29,6 @@ Copyright (c) 2008 Dan Stowell. All rights reserved.
 #define SC_FFT_MAXSIZE 32768
 #define SC_FFT_LOG2_MAXSIZE 15
 
-
 // Note that things like *fftWindow actually allow for other sizes, to be created on user request.
 #define SC_FFT_ABSOLUTE_MAXSIZE 262144
 #define SC_FFT_LOG2_ABSOLUTE_MAXSIZE 18
@@ -37,26 +36,16 @@ Copyright (c) 2008 Dan Stowell. All rights reserved.
 
 struct scfft;
 
-class SCFFT_Allocator
-{
+class SCFFT_Allocator {
 public:
-	virtual void* alloc(size_t size) = 0;
-	virtual void free(void* ptr) = 0;
+    virtual void* alloc(size_t size) = 0;
+    virtual void free(void* ptr) = 0;
 };
 
-enum SCFFT_Direction
-{
-	kForward = 1,
-	kBackward = 0
-};
+enum SCFFT_Direction { kForward = 1, kBackward = 0 };
 
 // These values are referred to from SC lang as well as in the following code - do not rearrange!
-enum SCFFT_WindowFunction
-{
-	kRectWindow = -1,
-	kSineWindow = 0,
-	kHannWindow = 1
-};
+enum SCFFT_WindowFunction { kRectWindow = -1, kSineWindow = 0, kHannWindow = 1 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Functions
@@ -64,12 +53,12 @@ enum SCFFT_WindowFunction
 // To initialise a specific FFT, ensure your input and output buffers exist. Internal data structures
 // will be allocated using the alloc object,
 // Both "fullsize" and "winsize" should be powers of two (this is not checked internally).
-scfft * scfft_create(size_t fullsize, size_t winsize, SCFFT_WindowFunction wintype,
-					 float *indata, float *outdata, SCFFT_Direction forward, SCFFT_Allocator & alloc);
+scfft* scfft_create(size_t fullsize, size_t winsize, SCFFT_WindowFunction wintype, float* indata, float* outdata,
+    SCFFT_Direction forward, SCFFT_Allocator& alloc);
 
 // These two will take data from indata, use trbuf to process it, and put their results in outdata.
-void scfft_dofft(scfft *f);
-void scfft_doifft(scfft *f);
+void scfft_dofft(scfft* f);
+void scfft_doifft(scfft* f);
 
 // destroy any resources held internally.
-void scfft_destroy(scfft *f, SCFFT_Allocator & alloc);
+void scfft_destroy(scfft* f, SCFFT_Allocator& alloc);

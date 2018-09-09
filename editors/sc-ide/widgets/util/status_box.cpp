@@ -22,8 +22,8 @@
 
 namespace ScIDE {
 
-StatusLabel::StatusLabel(QWidget *parent):
-    QLabel(parent)
+StatusLabel::StatusLabel(QWidget* parent)
+    : QLabel(parent)
 {
     setAutoFillBackground(true);
     setMargin(3);
@@ -37,25 +37,24 @@ StatusLabel::StatusLabel(QWidget *parent):
     setFont(font);
 }
 
-void StatusLabel::setBackground(const QBrush & brush)
+void StatusLabel::setBackground(const QBrush& brush)
 {
     QPalette plt(palette());
     plt.setBrush(QPalette::Window, brush);
     setPalette(plt);
 }
 
-void StatusLabel::setTextColor(const QColor & color)
+void StatusLabel::setTextColor(const QColor& color)
 {
     QPalette plt(palette());
     plt.setColor(QPalette::WindowText, color);
     setPalette(plt);
 }
 
-StatusBox::StatusBox(QWidget *parent):
-    QWidget(parent),
-    mMenu(0)
+StatusBox::StatusBox(QWidget* parent)
+    : QWidget(parent)
+    , mMenu(0)
 {
-
 }
 
 void StatusBox::showContextMenu()
@@ -63,25 +62,21 @@ void StatusBox::showContextMenu()
     if (!mMenu) {
         QList<QAction*> actions = this->actions();
         if (actions.count()) {
-            StatusBoxMenu * menu = new StatusBoxMenu;
+            StatusBoxMenu* menu = new StatusBoxMenu;
             menu->addActions(actions);
             mMenu = menu;
         }
     }
 
     if (!mMenu->isVisible())
-        mMenu->popup(mapToGlobal(QPoint(0, -mMenu->sizeHint().height() - 2)) );
+        mMenu->popup(mapToGlobal(QPoint(0, -mMenu->sizeHint().height() - 2)));
 }
 
-
-void StatusBox::mousePressEvent( QMouseEvent * )
-{
-    showContextMenu();
-}
+void StatusBox::mousePressEvent(QMouseEvent*) { showContextMenu(); }
 
 void StatusBox::addActionSeparator()
 {
-    QAction *separator = new QAction(this);
+    QAction* separator = new QAction(this);
     separator->setSeparator(true);
     addAction(separator);
 }

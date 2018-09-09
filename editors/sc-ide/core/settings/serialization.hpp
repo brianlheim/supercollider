@@ -24,10 +24,12 @@
 #include <QTextCharFormat>
 #include <QVariant>
 
-namespace ScIDE { namespace Settings {
+namespace ScIDE {
+namespace Settings {
 
 QSettings::Format serializationFormat();
 
-}} // namespace ScIDE::Settings
+}
+} // namespace ScIDE::Settings
 
-Q_DECLARE_METATYPE( QTextCharFormat )
+Q_DECLARE_METATYPE(QTextCharFormat)

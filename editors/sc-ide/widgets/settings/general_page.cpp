@@ -19,30 +19,27 @@
 */
 
 #include "general_page.hpp"
-#include "ui_settings_general.h"
 #include "../../core/settings/manager.hpp"
+#include "ui_settings_general.h"
 
 Q_DECLARE_METATYPE(QAction*)
 Q_DECLARE_METATYPE(QKeySequence)
 
-namespace ScIDE { namespace Settings {
+namespace ScIDE {
+namespace Settings {
 
-GeneralPage::GeneralPage(QWidget *parent) :
-    QWidget(parent),
-    ui( new Ui::GeneralConfigPage )
+GeneralPage::GeneralPage(QWidget* parent)
+    : QWidget(parent)
+    , ui(new Ui::GeneralConfigPage)
 {
     ui->setupUi(this);
 
-    connect( ui->startSessionName, SIGNAL(textChanged(QString)),
-             this, SLOT(onStartSessionNameChanged(QString)) );
+    connect(ui->startSessionName, SIGNAL(textChanged(QString)), this, SLOT(onStartSessionNameChanged(QString)));
 }
 
-GeneralPage::~GeneralPage()
-{
-    delete ui;
-}
+GeneralPage::~GeneralPage() { delete ui; }
 
-void GeneralPage::load( Manager *settings )
+void GeneralPage::load(Manager* settings)
 {
     QString startSessionName = settings->value("IDE/startWithSession").toString();
     if (startSessionName.isEmpty())
@@ -55,31 +52,28 @@ void GeneralPage::load( Manager *settings )
     }
 }
 
-void GeneralPage::store( Manager *settings )
+void GeneralPage::store(Manager* settings)
 {
     settings->beginGroup("IDE");
 
-    QWidget *checkedOption = ui->startSessionOptions->checkedButton();
+    QWidget* checkedOption = ui->startSessionOptions->checkedButton();
 
     if (checkedOption == ui->startLastSessionOption) {
         settings->setValue("startWithSession", "last");
-    }
-    else if (checkedOption == ui->startNamedSessionOption &&
-             !ui->startSessionName->text().isEmpty())
-    {
+    } else if (checkedOption == ui->startNamedSessionOption && !ui->startSessionName->text().isEmpty()) {
         settings->setValue("startWithSession", ui->startSessionName->text());
-    }
-    else {
+    } else {
         settings->setValue("startWithSession", "");
     }
 
     settings->endGroup();
 }
 
-void GeneralPage::onStartSessionNameChanged( const QString & text )
+void GeneralPage::onStartSessionNameChanged(const QString& text)
 {
     if (!text.isEmpty())
         ui->startNamedSessionOption->setChecked(true);
 }
 
-}} // namespace ScIDE::Settings
+}
+} // namespace ScIDE::Settings

@@ -18,16 +18,15 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 */
 
-
 #pragma once
 
-#include <QWidget>
-#include <QStackedLayout>
-#include <QPointer>
-#include <QComboBox>
 #include <QBoxLayout>
-#include <QStandardItemModel>
+#include <QComboBox>
+#include <QPointer>
 #include <QSortFilterProxyModel>
+#include <QStackedLayout>
+#include <QStandardItemModel>
+#include <QWidget>
 
 #include "../core/doc_manager.hpp"
 #include "../core/main.hpp"
@@ -57,27 +56,27 @@ actions to it: e.g. it is the one where newly created and opened documents will
 be displayed.
 */
 
-class CodeEditorBox : public QWidget
-{
+class CodeEditorBox : public QWidget {
     Q_OBJECT
 
 public:
-    typedef QList< GenericCodeEditor * > History;
+    typedef QList<GenericCodeEditor*> History;
 
-    CodeEditorBox(MultiSplitter *splitter, QWidget *parent = 0);
+    CodeEditorBox(MultiSplitter* splitter, QWidget* parent = 0);
 
-    void setDocument(Document *, int pos = -1, int selectionLength = 0);
+    void setDocument(Document*, int pos = -1, int selectionLength = 0);
 
-    GenericCodeEditor *currentEditor();
-    Document *currentDocument();
+    GenericCodeEditor* currentEditor();
+    Document* currentDocument();
 
-    const History & history() { return mHistory; }
+    const History& history() { return mHistory; }
 
-    void setActive() {
+    void setActive()
+    {
         if (isActive())
             return;
 
-        CodeEditorBox *lastActiveBox = gActiveBox;
+        CodeEditorBox* lastActiveBox = gActiveBox;
         gActiveBox = this;
 
         if (lastActiveBox)
@@ -86,7 +85,7 @@ public:
         update();
 
         if (lastActiveBox)
-          emit lastActiveBox->activeChanged(false);
+            emit lastActiveBox->activeChanged(false);
         emit activated(this);
         emit activeChanged(true);
     }
@@ -96,15 +95,15 @@ public:
     QSize minimumSizeHint() const { return QSize(100, 100); }
     QSize sizeHint() const { return QSize(100, 100); }
 
-    void showComboBox( bool );
+    void showComboBox(bool);
 
 signals:
     void currentChanged(GenericCodeEditor*);
-    void activated( CodeEditorBox *me );
+    void activated(CodeEditorBox* me);
     void activeChanged(bool active);
 
 public slots:
-    void applySettings( Settings::Manager * );
+    void applySettings(Settings::Manager*);
     void comboBoxWhenSplitting();
     void tabsWhenRemovingSplits();
 
@@ -115,18 +114,18 @@ private slots:
 
 private:
     int historyIndexOf(Document*);
-    GenericCodeEditor *editorForDocument(Document*);
-    bool eventFilter( QObject *, QEvent * );
-    void focusInEvent( QFocusEvent * );
-    void paintEvent( QPaintEvent * );
+    GenericCodeEditor* editorForDocument(Document*);
+    bool eventFilter(QObject*, QEvent*);
+    void focusInEvent(QFocusEvent*);
+    void paintEvent(QPaintEvent*);
 
-    QStackedLayout *mLayout;
+    QStackedLayout* mLayout;
     History mHistory;
     static QPointer<CodeEditorBox> gActiveBox;
-    QBoxLayout *mTopLayout;
-    QComboBox *mDocComboBox;
-    MultiSplitter *mSplitter;
-    QSortFilterProxyModel *mProxyModel;
+    QBoxLayout* mTopLayout;
+    QComboBox* mDocComboBox;
+    MultiSplitter* mSplitter;
+    QSortFilterProxyModel* mProxyModel;
 };
 
 } // namespace ScIDE

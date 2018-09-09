@@ -1,13 +1,11 @@
-#include <iostream>
 #include <boost/test/unit_test.hpp>
+#include <iostream>
 
 #include "server/buffer_manager.cpp"
 
-
 using namespace nova;
 
-
-BOOST_AUTO_TEST_CASE( buffer_manager_test )
+BOOST_AUTO_TEST_CASE(buffer_manager_test)
 {
     buffer_manager bm(1024);
     bm.allocate_buffer(0, 44100, 2);

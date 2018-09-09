@@ -4,18 +4,16 @@
 #define protected public
 
 #include "audio_backend/audio_backend.hpp"
-#include "audio_backend/portaudio.hpp"
 #include "audio_backend/audio_frontend.hpp"
+#include "audio_backend/portaudio.hpp"
 
 using namespace nova;
 
-namespace
-{
-void tick(void)
-{}
+namespace {
+void tick(void) {}
 }
 
-BOOST_AUTO_TEST_CASE( frontend_test_1 )
+BOOST_AUTO_TEST_CASE(frontend_test_1)
 {
     audio_frontend<&tick> af;
 
@@ -27,7 +25,7 @@ BOOST_AUTO_TEST_CASE( frontend_test_1 )
     BOOST_REQUIRE(!af.audio_is_opened());
 }
 
-BOOST_AUTO_TEST_CASE( frontend_test_2 )
+BOOST_AUTO_TEST_CASE(frontend_test_2)
 {
     audio_frontend<&tick> af;
 

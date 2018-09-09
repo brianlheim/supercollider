@@ -1,7 +1,7 @@
 /*
-	SuperCollider real time audio synthesis system
+    SuperCollider real time audio synthesis system
     Copyright (c) 2002 James McCartney. All rights reserved.
-	http://www.audiosynth.com
+    http://www.audiosynth.com
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,19 +18,17 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 */
 
-
 #pragma once
 
-#include "SC_Types.h"
 #include "SC_Endian.h"
+#include "SC_Types.h"
 
 // These hash functions are among the best there are in terms of both speed and quality.
 // A good hash function makes a lot of difference.
 // I have not used Bob Jenkins own hash function because the keys I use are relatively short.
 
-
 // hash function for a string
-inline int32 Hash(const char *inKey)
+inline int32 Hash(const char* inKey)
 {
     // the one-at-a-time hash.
     // a very good hash function. ref: a web page by Bob Jenkins.
@@ -48,11 +46,11 @@ inline int32 Hash(const char *inKey)
 }
 
 // hash function for a string that also returns the length
-inline int32 Hash(const char *inKey, size_t *outLength)
+inline int32 Hash(const char* inKey, size_t* outLength)
 {
     // the one-at-a-time hash.
     // a very good hash function. ref: a web page by Bob Jenkins.
-    const char *origKey = inKey;
+    const char* origKey = inKey;
     int32 hash = 0;
     while (*inKey) {
         hash += *inKey++;
@@ -67,12 +65,12 @@ inline int32 Hash(const char *inKey, size_t *outLength)
 }
 
 // hash function for an array of char
-inline int32 Hash(const char *inKey, int32 inLength)
+inline int32 Hash(const char* inKey, int32 inLength)
 {
     // the one-at-a-time hash.
     // a very good hash function. ref: a web page by Bob Jenkins.
     int32 hash = 0;
-    for (int i=0; i<inLength; ++i) {
+    for (int i = 0; i < inLength; ++i) {
         hash += *inKey++;
         hash += hash << 10;
         hash ^= hash >> 6;
@@ -91,58 +89,58 @@ inline int32 Hash(int32 inKey)
     // a faster hash for integers. also very good.
     uint32 hash = (uint32)inKey;
     hash += ~(hash << 15);
-    hash ^=   hash >> 10;
-    hash +=   hash << 3;
-    hash ^=   hash >> 6;
+    hash ^= hash >> 10;
+    hash += hash << 3;
+    hash ^= hash >> 6;
     hash += ~(hash << 11);
-    hash ^=   hash >> 16;
+    hash ^= hash >> 16;
     return (int32)hash;
 }
 
 inline int64 Hash64(int64 inKey)
 {
     // Thomas Wang's 64 bit integer hash.
-	uint64 hash = (uint64)inKey;
-	hash += ~(hash << 32);
-	hash ^=  (hash >> 22);
-	hash += ~(hash << 13);
-	hash ^=  (hash >> 8);
-	hash +=  (hash << 3);
-	hash ^=  (hash >> 15);
-	hash += ~(hash << 27);
-	hash ^=  (hash >> 31);
-	return (int64)hash;
+    uint64 hash = (uint64)inKey;
+    hash += ~(hash << 32);
+    hash ^= (hash >> 22);
+    hash += ~(hash << 13);
+    hash ^= (hash >> 8);
+    hash += (hash << 3);
+    hash ^= (hash >> 15);
+    hash += ~(hash << 27);
+    hash ^= (hash >> 31);
+    return (int64)hash;
 }
 
-inline int32 Hash(const int32 *inKey, int32 inLength)
+inline int32 Hash(const int32* inKey, int32 inLength)
 {
     // one-at-a-time hashing of a string of int32's.
     // uses Thomas Wang's integer hash for the combining step.
     int32 hash = 0;
-    for (int i=0; i<inLength; ++i) {
+    for (int i = 0; i < inLength; ++i) {
         hash = Hash(hash + *inKey++);
     }
     return hash;
 }
 
 #ifndef _LASTCHAR_
-#define _LASTCHAR_
-#if BYTE_ORDER == LITTLE_ENDIAN
+#    define _LASTCHAR_
+#    if BYTE_ORDER == LITTLE_ENDIAN
 const int32 kLASTCHAR = 0xFF000000;
-#else
+#    else
 const int32 kLASTCHAR = 0x000000FF;
-#endif
+#    endif
 #endif
 
-inline int32 Hash(const int32 *inKey)
+inline int32 Hash(const int32* inKey)
 {
     // hashing of a string of int32's.
     // uses Thomas Wang's integer hash for the combining step.
-	int32 hash = 0;
+    int32 hash = 0;
     int32 c;
-	do {
+    do {
         c = *inKey++;
-		hash = Hash(hash + c);
-	} while (c & kLASTCHAR);
+        hash = Hash(hash + c);
+    } while (c & kLASTCHAR);
     return hash;
 }

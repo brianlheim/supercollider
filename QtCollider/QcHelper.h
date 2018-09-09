@@ -3,13 +3,12 @@
 #include "Common.h"
 
 #include <QColor>
-#include <QString>
 #include <QFont>
+#include <QString>
 #include <QVariant>
 
-struct QcHelper
-{
-  protected:
+struct QcHelper {
+protected:
     QcHelper() {}
     float dummyFloat() const { return 0; }
     int dummyInt() const { return 0; }

@@ -1,7 +1,7 @@
 /*
-	SuperCollider real time audio synthesis system
+    SuperCollider real time audio synthesis system
     Copyright (c) 2002 James McCartney. All rights reserved.
-	http://www.audiosynth.com
+    http://www.audiosynth.com
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,25 +21,25 @@
 #pragma once
 
 #include "PyrSlot.h"
-#include "VMGlobals.h"
 #include "SC_Export.h"
+#include "VMGlobals.h"
 
 extern bool gRunningInterpreterThread;
 
 extern int gNumClasses;
 extern int gNumClassVars;
 
-bool initInterpreter(VMGlobals *g, PyrSymbol *selector, int numArgsPushed);
-bool initRuntime(VMGlobals *g, int poolSize, AllocPool *inPool);
-void Interpret(VMGlobals *g);
+bool initInterpreter(VMGlobals* g, PyrSymbol* selector, int numArgsPushed);
+bool initRuntime(VMGlobals* g, int poolSize, AllocPool* inPool);
+void Interpret(VMGlobals* g);
 
-int doSpecialUnaryArithMsg(VMGlobals *g, int numArgsPushed);
-int prSpecialBinaryArithMsg(VMGlobals *g, int numArgsPushed);
-int doSpecialBinaryArithMsg(VMGlobals *g, int numArgsPushed, bool isPrimitive);
-void DumpBackTrace(VMGlobals *g);
-void DumpStack(VMGlobals *g, PyrSlot *sp);
-void DumpFrame(struct PyrFrame *frame);
-bool FrameSanity(PyrFrame *frame, const char *tagstr);
-struct PyrProcess* newPyrProcess(VMGlobals *g, struct PyrClass *classobj);
-void startProcess(VMGlobals *g, PyrSymbol *selector);
-SCLANG_DLLEXPORT_C void runInterpreter(VMGlobals *g, PyrSymbol *selector, int numArgsPushed);
+int doSpecialUnaryArithMsg(VMGlobals* g, int numArgsPushed);
+int prSpecialBinaryArithMsg(VMGlobals* g, int numArgsPushed);
+int doSpecialBinaryArithMsg(VMGlobals* g, int numArgsPushed, bool isPrimitive);
+void DumpBackTrace(VMGlobals* g);
+void DumpStack(VMGlobals* g, PyrSlot* sp);
+void DumpFrame(struct PyrFrame* frame);
+bool FrameSanity(PyrFrame* frame, const char* tagstr);
+struct PyrProcess* newPyrProcess(VMGlobals* g, struct PyrClass* classobj);
+void startProcess(VMGlobals* g, PyrSymbol* selector);
+SCLANG_DLLEXPORT_C void runInterpreter(VMGlobals* g, PyrSymbol* selector, int numArgsPushed);

@@ -1,6 +1,5 @@
 #include "localsocket_utils.hpp"
 
-
 qint32 ArrayToInt(QByteArray source)
 {
     qint32 temp;

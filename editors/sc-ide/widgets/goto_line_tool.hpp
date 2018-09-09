@@ -20,41 +20,40 @@
 
 #pragma once
 
-#include "code_editor/editor.hpp"
 #include "../core/doc_manager.hpp"
+#include "code_editor/editor.hpp"
 
-#include <QWidget>
-#include <QSpinBox>
-#include <QToolButton>
 #include <QHBoxLayout>
 #include <QKeyEvent>
-#include <QPointer>
 #include <QLabel>
+#include <QPointer>
+#include <QSpinBox>
 #include <QTextBlock>
+#include <QToolButton>
+#include <QWidget>
 
 namespace ScIDE {
 
-class GoToLineTool : public QWidget
-{
+class GoToLineTool : public QWidget {
     Q_OBJECT
 
 public:
-    GoToLineTool( QWidget * parent = 0 ):
-        QWidget(parent),
-        mEditor(0)
+    GoToLineTool(QWidget* parent = 0)
+        : QWidget(parent)
+        , mEditor(0)
     {
         mSpinBox = new QSpinBox;
         mSpinBox->setMinimum(0);
         mSpinBox->setMaximum(0);
 
-        QToolButton *goBtn = new QToolButton;
+        QToolButton* goBtn = new QToolButton;
         goBtn->setText(tr("Go"));
         goBtn->setAutoRaise(true);
 
-        QLabel *label = new QLabel(tr("Line:"));
+        QLabel* label = new QLabel(tr("Line:"));
 
-        QHBoxLayout *layout = new QHBoxLayout;
-        layout->setContentsMargins(0,0,0,0);
+        QHBoxLayout* layout = new QHBoxLayout;
+        layout->setContentsMargins(0, 0, 0, 0);
         layout->addWidget(label);
         layout->addWidget(mSpinBox);
         layout->addWidget(goBtn);
@@ -68,30 +67,30 @@ public:
         connect(mSpinBox, SIGNAL(editingFinished()), this, SLOT(onEditingFinished()));
     }
 
-    void setEditor( GenericCodeEditor *editor )
+    void setEditor(GenericCodeEditor* editor)
     {
         if (mEditor)
-            mEditor->disconnect( this, SLOT(setMaximum(int)) );
+            mEditor->disconnect(this, SLOT(setMaximum(int)));
 
         mEditor = editor;
 
         if (mEditor) {
             connect(mEditor, SIGNAL(blockCountChanged(int)), this, SLOT(setMaximum(int)));
             setMaximum(mEditor->blockCount());
-        }
-        else
+        } else
             setMaximum(0);
     }
 
-    void setValue( int value ) { mSpinBox->setValue(value); }
+    void setValue(int value) { mSpinBox->setValue(value); }
 
 public slots:
 
-    void setMaximum( int max ) {
+    void setMaximum(int max)
+    {
         if (max > 0)
             mSpinBox->setRange(1, max);
         else
-            mSpinBox->setRange(0,0);
+            mSpinBox->setRange(0, 0);
     }
 
     void setFocus()
@@ -102,7 +101,7 @@ public slots:
 
 signals:
 
-    void activated( int lineNumber );
+    void activated(int lineNumber);
 
 private slots:
 
@@ -111,17 +110,17 @@ private slots:
         int lineNumber = mSpinBox->value();
 
         if (mEditor) {
-            QTextDocument *doc = mEditor->textDocument();
-            QTextBlock block( doc->findBlockByNumber(lineNumber - 1) );
+            QTextDocument* doc = mEditor->textDocument();
+            QTextBlock block(doc->findBlockByNumber(lineNumber - 1));
             if (!block.isValid())
                 return;
 
-            QTextCursor cursor( doc );
-            cursor.setPosition( block.position() );
+            QTextCursor cursor(doc);
+            cursor.setPosition(block.position());
             mEditor->setTextCursor(cursor);
         }
 
-        emit activated( lineNumber );
+        emit activated(lineNumber);
     }
 
     void onEditingFinished()
@@ -131,8 +130,7 @@ private slots:
     }
 
 private:
-
-    QSpinBox *mSpinBox;
+    QSpinBox* mSpinBox;
     QPointer<GenericCodeEditor> mEditor;
 };
 

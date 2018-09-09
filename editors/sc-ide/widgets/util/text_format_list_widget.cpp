@@ -20,45 +20,42 @@
 
 #include "text_format_list_widget.hpp"
 
-#include <QPainter>
 #include <QApplication>
-#include <QHeaderView>
-#include <QStandardItemModel>
 #include <QColorDialog>
+#include <QHeaderView>
+#include <QPainter>
+#include <QStandardItemModel>
 
 namespace ScIDE {
 
-TextFormatListWidget::ItemDelegate::ItemDelegate( QObject *parent ):
-    QStyledItemDelegate(parent)
-{}
-
-QSize TextFormatListWidget::ItemDelegate::sizeHint
-    ( const QStyleOptionViewItem & opt, const QModelIndex & index ) const
+TextFormatListWidget::ItemDelegate::ItemDelegate(QObject* parent)
+    : QStyledItemDelegate(parent)
 {
-    switch(index.column())
-    {
+}
+
+QSize TextFormatListWidget::ItemDelegate::sizeHint(const QStyleOptionViewItem& opt, const QModelIndex& index) const
+{
+    switch (index.column()) {
     case 1:
-        return QSize(30,20);
+        return QSize(30, 20);
     default:
         return QStyledItemDelegate::sizeHint(opt, index);
     }
 }
 
-void TextFormatListWidget::ItemDelegate::paint
-    ( QPainter * painter, const QStyleOptionViewItem & opt,
-        const QModelIndex & index ) const
+void TextFormatListWidget::ItemDelegate::paint(
+    QPainter* painter, const QStyleOptionViewItem& opt, const QModelIndex& index) const
 {
     int col = index.column();
-    if( col < 1 || col > 2  )
-    {
+    if (col < 1 || col > 2) {
         QStyledItemDelegate::paint(painter, opt, index);
         return;
     }
 
-    QApplication::style()->drawPrimitive( QStyle::PE_PanelItemViewItem, &opt, painter );
+    QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, painter);
 
     QBrush brush = index.data(Qt::DisplayRole).value<QBrush>();
-    if(brush.style() == Qt::NoBrush) {
+    if (brush.style() == Qt::NoBrush) {
         brush.setColor(opt.palette.color(QPalette::Text));
         brush.setStyle(Qt::BDiagPattern);
     }
@@ -72,78 +69,74 @@ void TextFormatListWidget::ItemDelegate::paint
 
     painter->setBrush(brush);
     painter->setPen(opt.palette.color(QPalette::Text));
-    painter->drawRect(r.adjusted(0,0,-1,-1));
+    painter->drawRect(r.adjusted(0, 0, -1, -1));
 
     painter->restore();
 }
 
-
-TextFormatListWidget::TextFormatListWidget( QWidget * parent ):
-    QTreeView(parent)
+TextFormatListWidget::TextFormatListWidget(QWidget* parent)
+    : QTreeView(parent)
 {
-    QStandardItemModel *m = new QStandardItemModel(this);
-    m->setHorizontalHeaderLabels(
-        QStringList() << tr("Role") << tr("Color") << tr("Background") << "B" << "I" << "U" );
+    QStandardItemModel* m = new QStandardItemModel(this);
+    m->setHorizontalHeaderLabels(QStringList() << tr("Role") << tr("Color") << tr("Background") << "B"
+                                               << "I"
+                                               << "U");
 
-    QItemSelectionModel *old_sm = selectionModel();
-    QAbstractItemModel *old_m = model();
+    QItemSelectionModel* old_sm = selectionModel();
+    QAbstractItemModel* old_m = model();
     setModel(m);
     delete old_m;
     delete old_sm;
 
-    QAbstractItemDelegate *old_d = itemDelegate();
-    setItemDelegate( new ItemDelegate(this) );
+    QAbstractItemDelegate* old_d = itemDelegate();
+    setItemDelegate(new ItemDelegate(this));
     delete old_d;
 
-    header()->setSectionResizeMode( QHeaderView::ResizeToContents );
+    header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
 
-    connect(this, SIGNAL(doubleClicked(const QModelIndex&)),
-            this, SLOT(onDoubleClicked(const QModelIndex&)));
+    connect(this, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(onDoubleClicked(const QModelIndex&)));
 }
 
-void TextFormatListWidget::addFormat( const QString & name, const QTextCharFormat & format )
+void TextFormatListWidget::addFormat(const QString& name, const QTextCharFormat& format)
 {
     QList<QStandardItem*> items;
 
-    QStandardItem *nameItem = new QStandardItem(name);
-    nameItem->setFlags( Qt::ItemIsEnabled | Qt::ItemIsSelectable );
+    QStandardItem* nameItem = new QStandardItem(name);
+    nameItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
     items << nameItem;
 
-    items << makeBrushItem( format.foreground() );
+    items << makeBrushItem(format.foreground());
 
-    items << makeBrushItem( format.background() );
+    items << makeBrushItem(format.background());
 
-    items << makeBoolItem( format.fontWeight() == QFont::Bold );
+    items << makeBoolItem(format.fontWeight() == QFont::Bold);
 
-    items << makeBoolItem( format.fontItalic() );
+    items << makeBoolItem(format.fontItalic());
 
-    items << makeBoolItem( format.fontUnderline() );
+    items << makeBoolItem(format.fontUnderline());
 
-    standardModel()->appendRow( items );
+    standardModel()->appendRow(items);
 }
 
-void TextFormatListWidget::setFormat( int index, const QTextCharFormat & format )
+void TextFormatListWidget::setFormat(int index, const QTextCharFormat& format)
 {
-    QStandardItemModel *m = standardModel();
+    QStandardItemModel* m = standardModel();
 
     if (index < 0 || index >= m->rowCount())
         return;
 
     m->item(index, 1)->setData(format.foreground(), Qt::DisplayRole);
     m->item(index, 2)->setData(format.background(), Qt::DisplayRole);
-    m->item(index, 3)->setCheckState(
-        format.fontWeight() == QFont::Bold ? Qt::Checked : Qt::Unchecked );
-    m->item(index, 4)->setCheckState(
-        format.fontItalic() ? Qt::Checked : Qt::Unchecked );
-    m->item(index, 5)->setCheckState(
-        format.fontUnderline() ? Qt::Checked : Qt::Unchecked );
+    m->item(index, 3)->setCheckState(format.fontWeight() == QFont::Bold ? Qt::Checked : Qt::Unchecked);
+    m->item(index, 4)->setCheckState(format.fontItalic() ? Qt::Checked : Qt::Unchecked);
+    m->item(index, 5)->setCheckState(format.fontUnderline() ? Qt::Checked : Qt::Unchecked);
 }
 
-QString TextFormatListWidget::name( int index )
+QString TextFormatListWidget::name(int index)
 {
-    QStandardItemModel *m = standardModel();
+    QStandardItemModel* m = standardModel();
     QString str;
 
     if (index < 0 || index >= m->rowCount())
@@ -154,63 +147,67 @@ QString TextFormatListWidget::name( int index )
     return str;
 }
 
-QTextCharFormat TextFormatListWidget::format( int index )
+QTextCharFormat TextFormatListWidget::format(int index)
 {
-    QStandardItemModel *m = standardModel();
+    QStandardItemModel* m = standardModel();
     QTextCharFormat fm;
 
     if (index < 0 || index >= m->rowCount())
         return fm;
 
     QBrush br = m->item(index, 1)->data(Qt::DisplayRole).value<QBrush>();
-    if( br.style() != Qt::NoBrush )
+    if (br.style() != Qt::NoBrush)
         fm.setForeground(br);
 
     br = m->item(index, 2)->data(Qt::DisplayRole).value<QBrush>();
-    if( br.style() != Qt::NoBrush )
+    if (br.style() != Qt::NoBrush)
         fm.setBackground(br);
 
     bool b = m->item(index, 3)->checkState() == Qt::Checked;
-    if(b) fm.setFontWeight(QFont::Bold);
+    if (b)
+        fm.setFontWeight(QFont::Bold);
 
     b = m->item(index, 4)->checkState() == Qt::Checked;
-    if(b) fm.setFontItalic(true);
+    if (b)
+        fm.setFontItalic(true);
 
     b = m->item(index, 5)->checkState() == Qt::Checked;
-    if(b) fm.setFontUnderline(true);
+    if (b)
+        fm.setFontUnderline(true);
 
     return fm;
 }
 
-void TextFormatListWidget::onDoubleClicked( const QModelIndex &index )
+void TextFormatListWidget::onDoubleClicked(const QModelIndex& index)
 {
     int column = index.column();
-    if (column < 1 || column > 2) return;
+    if (column < 1 || column > 2)
+        return;
 
-    QStandardItem *item = standardModel()->item(index.row(), column);
+    QStandardItem* item = standardModel()->item(index.row(), column);
     QBrush br = item->data(Qt::DisplayRole).value<QBrush>();
 
     QColor color = QColorDialog::getColor(br.color(), this);
-    if (color.isValid())
-    {
+    if (color.isValid()) {
         item->setData(QBrush(color), Qt::DisplayRole);
     }
 }
 
-QStandardItem *TextFormatListWidget::makeBrushItem( const QBrush &brush )
+QStandardItem* TextFormatListWidget::makeBrushItem(const QBrush& brush)
 {
-    QStandardItem *item = new QStandardItem();
-    item->setFlags( Qt::ItemIsEnabled | Qt::ItemIsSelectable );
-    item->setData( brush, Qt::DisplayRole );
+    QStandardItem* item = new QStandardItem();
+    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+    item->setData(brush, Qt::DisplayRole);
     return item;
 }
 
-QStandardItem *TextFormatListWidget::makeBoolItem( bool b )
+QStandardItem* TextFormatListWidget::makeBoolItem(bool b)
 {
-    QStandardItem *item = new QStandardItem();
-    item->setFlags( Qt::ItemIsEnabled | Qt::ItemIsSelectable );
+    QStandardItem* item = new QStandardItem();
+    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
     item->setCheckable(true);
-    if(b) item->setCheckState(Qt::Checked);
+    if (b)
+        item->setCheckState(Qt::Checked);
     return item;
 }
 
