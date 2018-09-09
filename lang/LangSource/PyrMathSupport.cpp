@@ -23,8 +23,8 @@
 #include "SC_InlineBinaryOp.h"
 #include "SC_InlineUnaryOp.h"
 #include "SC_RGen.h"
-#include <math.h>
-#include <stdlib.h>
+#include <cmath>
+#include <cstdlib>
 
 #if defined(__FreeBSD__) || defined(__NetBSD__)
 #    include <complex.h>

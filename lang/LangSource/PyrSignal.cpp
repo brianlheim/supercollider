@@ -37,9 +37,9 @@
 #include "SCBase.h"
 #include "SC_InlineBinaryOp.h"
 #include "SC_InlineUnaryOp.h"
-#include <math.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cmath>
+#include <cstdlib>
+#include <cstring>
 
 PyrObject* newPyrSignal(VMGlobals* g, long size)
 {
@@ -152,7 +152,7 @@ PyrObject* signal_add_xf(VMGlobals* g, PyrObject* ina, float inb)
 {
     PyrObject* outc = newPyrSignal(g, ina->size);
     if (inb == 0.f) {
-        float* a = (float*)(ina->slots);
+        auto* a = (float*)(ina->slots);
         memcpy((float*)(outc->slots), a, ina->size * sizeof(float));
     } else {
         float* a = (float*)(ina->slots) - 1;
@@ -166,7 +166,7 @@ PyrObject* signal_sub_xf(VMGlobals* g, PyrObject* ina, float inb)
 {
     PyrObject* outc = newPyrSignal(g, ina->size);
     if (inb == 0.f) {
-        float* a = (float*)(ina->slots);
+        auto* a = (float*)(ina->slots);
         memcpy((float*)(outc->slots), a, ina->size * sizeof(float));
     } else {
         float* a = (float*)(ina->slots) - 1;
@@ -180,7 +180,7 @@ PyrObject* signal_mul_xf(VMGlobals* g, PyrObject* ina, float inb)
 {
     PyrObject* outc = newPyrSignal(g, ina->size);
     if (inb == 1.f) {
-        float* a = (float*)(ina->slots);
+        auto* a = (float*)(ina->slots);
         memcpy((float*)(outc->slots), a, ina->size * sizeof(float));
     } else {
         float* a = (float*)(ina->slots) - 1;
@@ -252,7 +252,7 @@ PyrObject* signal_div_xf(VMGlobals* g, PyrObject* ina, float inb)
 {
     PyrObject* outc = newPyrSignal(g, ina->size);
     if (inb == 1.f) {
-        float* a = (float*)(ina->slots);
+        auto* a = (float*)(ina->slots);
         memcpy((float*)(outc->slots), a, ina->size * sizeof(float));
     } else {
         float* a = (float*)(ina->slots) - 1;
@@ -476,8 +476,8 @@ bool signal_equal_xx(VMGlobals* g, PyrObject* ina, PyrObject* inb)
         return false;
     if (slotRawSymbol(&ina->slots[kSignalRate]) != slotRawSymbol(&inb->slots[kSignalRate]))
         return false;
-    float* a = (float*)(ina->slots);
-    float* b = (float*)(inb->slots);
+    auto* a = (float*)(ina->slots);
+    auto* b = (float*)(inb->slots);
     for (int i = 0; i < ina->size; i++) {
         if (a[i] != b[i]) {
             return false;

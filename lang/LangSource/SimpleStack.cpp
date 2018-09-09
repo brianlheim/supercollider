@@ -18,8 +18,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 */
 
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 //#include <stdio.h>
 #include "InitAlloc.h"
 #include "SCBase.h"
@@ -29,7 +29,7 @@ void initLongStack(LongStack* self)
 {
     // dbg("initLongStack");
     self->maxsize = 0;
-    self->stak = NULL;
+    self->stak = nullptr;
     self->num = 0;
 }
 
@@ -40,7 +40,7 @@ void freeLongStack(LongStack* self)
     self->num = 0;
     if (self->stak) {
         pyr_pool_compile->Free((void*)self->stak);
-        self->stak = NULL;
+        self->stak = nullptr;
     }
 }
 

@@ -24,8 +24,8 @@
 #include "SCBase.h"
 #include "VMGlobals.h"
 #include "clz.h"
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 
 SCLANG_DLLEXPORT_C PyrSymbol* getsym(const char* name)
 {
@@ -77,7 +77,7 @@ PyrSymbol* SymbolSpace::NewSymbol(const char* inName, int inHash, int inLength)
     if (inLength > 1 && inName[inLength - 1] == '_')
         sym->flags |= sym_Setter;
     sym->u.index = 0;
-    sym->classdep = NULL;
+    sym->classdep = nullptr;
     return sym;
 }
 

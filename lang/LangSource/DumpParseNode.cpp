@@ -24,10 +24,10 @@
 #include "PyrParseNode.h"
 #include "PyrPrimitive.h"
 #include "SCBase.h"
-#include <ctype.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cctype>
+#include <cstdarg>
+#include <cstdlib>
+#include <cstring>
 
 #ifdef _WIN32
 #    define snprintf _snprintf

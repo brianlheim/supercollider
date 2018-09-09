@@ -31,10 +31,10 @@
 #include "SC_Constants.h"
 #include "SC_Lock.h"
 #include <atomic>
-#include <limits.h>
-#include <math.h>
-#include <stdlib.h>
-#include <string.h>
+#include <climits>
+#include <cmath>
+#include <cstdlib>
+#include <cstring>
 
 #include <limits>
 #include <set>
@@ -57,7 +57,7 @@
 #    include <parallel/algorithm>
 #endif
 
-PyrClass* gClassList = NULL;
+PyrClass* gClassList = nullptr;
 int gNumSelectors = 0;
 int gNumClasses = 0;
 int gNumClassVars = 0;
@@ -375,7 +375,7 @@ PyrClass* newClassObj(PyrClass* classObjSuperClass, PyrSymbol* className, PyrSym
     classobj = (PyrClass*)pyr_pool_runtime->Alloc(sizeof(PyrClass));
     MEMFAIL(classobj);
     classobj->size = (sizeof(PyrClass) - sizeof(PyrObjectHdr)) / sizeof(PyrSlot);
-    classobj->prev = classobj->next = NULL;
+    classobj->prev = classobj->next = nullptr;
     classobj->obj_flags = obj_immutable;
     classobj->obj_format = obj_notindexed;
     classobj->gc_color = obj_permanent;
@@ -399,7 +399,7 @@ PyrClass* newClassObj(PyrClass* classObjSuperClass, PyrSymbol* className, PyrSym
         superclassobj = superClassName->u.classobj;
     } else {
         SetSymbol(&classobj->superclass, s_none);
-        superclassobj = NULL;
+        superclassobj = nullptr;
     }
 
     SetInt(&classobj->subclasses, 0); // to be filled with subclasses later
@@ -407,17 +407,17 @@ PyrClass* newClassObj(PyrClass* classObjSuperClass, PyrSymbol* className, PyrSym
     // size can be known
 
     if (numInstMethods) {
-        array = newPyrArray(NULL, numInstMethods, obj_permanent | obj_immutable, false);
+        array = newPyrArray(nullptr, numInstMethods, obj_permanent | obj_immutable, false);
         SetObject(&classobj->methods, array);
     } else {
         SetNil(&classobj->methods);
     }
 
     if (numInstVars) {
-        symarray = newPyrSymbolArray(NULL, numInstVars, obj_permanent | obj_immutable, false);
+        symarray = newPyrSymbolArray(nullptr, numInstVars, obj_permanent | obj_immutable, false);
         SetObject(&classobj->instVarNames, symarray);
 
-        array = newPyrArray(NULL, numInstVars, obj_permanent | obj_immutable, false);
+        array = newPyrArray(nullptr, numInstVars, obj_permanent | obj_immutable, false);
         SetObject(&classobj->iprototype, array);
         nilSlots(array->slots, numInstVars);
     } else {
@@ -426,10 +426,10 @@ PyrClass* newClassObj(PyrClass* classObjSuperClass, PyrSymbol* className, PyrSym
     }
 
     if (numClassVars) {
-        symarray = newPyrSymbolArray(NULL, numClassVars, obj_permanent | obj_immutable, false);
+        symarray = newPyrSymbolArray(nullptr, numClassVars, obj_permanent | obj_immutable, false);
         SetObject(&classobj->classVarNames, symarray);
 
-        array = newPyrArray(NULL, numClassVars, obj_permanent | obj_immutable, false);
+        array = newPyrArray(nullptr, numClassVars, obj_permanent | obj_immutable, false);
         SetObject(&classobj->cprototype, array);
         nilSlots(array->slots, numClassVars);
     } else {
@@ -438,10 +438,10 @@ PyrClass* newClassObj(PyrClass* classObjSuperClass, PyrSymbol* className, PyrSym
     }
 
     if (numConsts) {
-        symarray = newPyrSymbolArray(NULL, numConsts, obj_permanent | obj_immutable, false);
+        symarray = newPyrSymbolArray(nullptr, numConsts, obj_permanent | obj_immutable, false);
         SetObject(&classobj->constNames, symarray);
 
-        array = newPyrArray(NULL, numConsts, obj_permanent | obj_immutable, false);
+        array = newPyrArray(nullptr, numConsts, obj_permanent | obj_immutable, false);
         SetObject(&classobj->constValues, array);
         nilSlots(array->slots, numConsts);
     } else {
@@ -484,7 +484,7 @@ void reallocClassObj(
     freePyrSlot(&classobj->constValues);
 
     if (numMethods) {
-        array = newPyrArray(NULL, numMethods, obj_permanent | obj_immutable, false);
+        array = newPyrArray(nullptr, numMethods, obj_permanent | obj_immutable, false);
         SetObject(&classobj->methods, array);
     } else {
         SetNil(&classobj->methods);
@@ -492,10 +492,10 @@ void reallocClassObj(
 
     if (numInstVars) {
         // post("reallocClassObj %s numInstVars %d\n", slotRawSymbol(&classobj->name)->name, numInstVars);
-        symarray = newPyrSymbolArray(NULL, numInstVars, obj_permanent | obj_immutable, false);
+        symarray = newPyrSymbolArray(nullptr, numInstVars, obj_permanent | obj_immutable, false);
         SetObject(&classobj->instVarNames, symarray);
 
-        array = newPyrArray(NULL, numInstVars, obj_permanent | obj_immutable, false);
+        array = newPyrArray(nullptr, numInstVars, obj_permanent | obj_immutable, false);
         SetObject(&classobj->iprototype, array);
         nilSlots(array->slots, numInstVars);
     } else {
@@ -505,11 +505,11 @@ void reallocClassObj(
 
     if (numClassVars) {
         // post("reallocClassObj %s numClassVars %d\n", slotRawSymbol(&classobj->name)->name, numClassVars);
-        symarray = newPyrSymbolArray(NULL, numClassVars, obj_permanent | obj_immutable, false);
+        symarray = newPyrSymbolArray(nullptr, numClassVars, obj_permanent | obj_immutable, false);
         SetObject(&classobj->classVarNames, symarray);
         nilSlots(array->slots, numClassVars);
 
-        array = newPyrArray(NULL, numClassVars, obj_permanent | obj_immutable, false);
+        array = newPyrArray(nullptr, numClassVars, obj_permanent | obj_immutable, false);
         SetObject(&classobj->cprototype, array);
         nilSlots(array->slots, numClassVars);
     } else {
@@ -519,10 +519,10 @@ void reallocClassObj(
 
     if (numConsts) {
         // post("reallocClassObj %s numConsts %d\n", slotRawSymbol(&classobj->name)->name, numConsts);
-        symarray = newPyrSymbolArray(NULL, numConsts, obj_permanent | obj_immutable, false);
+        symarray = newPyrSymbolArray(nullptr, numConsts, obj_permanent | obj_immutable, false);
         SetObject(&classobj->constNames, symarray);
 
-        array = newPyrArray(NULL, numConsts, obj_permanent | obj_immutable, false);
+        array = newPyrArray(nullptr, numConsts, obj_permanent | obj_immutable, false);
         SetObject(&classobj->constValues, array);
         nilSlots(array->slots, numConsts);
     } else {
@@ -577,14 +577,14 @@ void objAddIndexedSlotGrow(PyrSlot* arraySlot, PyrSlot* addSlot)
 {
     PyrObject* obj;
     if (IsNil(arraySlot)) {
-        PyrObject* newobj = (PyrObject*)newPyrArray(NULL, 1, obj_permanent | obj_immutable, false);
+        auto* newobj = (PyrObject*)newPyrArray(nullptr, 1, obj_permanent | obj_immutable, false);
         SetObject(arraySlot, newobj);
         obj = newobj;
     } else {
         obj = slotRawObject(arraySlot);
         if (obj->size >= ARRAYMAXINDEXSIZE(obj)) {
             // post("objAddIndexedSlotGrow\n");
-            PyrObject* newobj = (PyrObject*)newPyrArray(NULL, obj->size * 2, obj_permanent | obj_immutable, false);
+            auto* newobj = (PyrObject*)newPyrArray(nullptr, obj->size * 2, obj_permanent | obj_immutable, false);
             memcpy(newobj->slots, obj->slots, obj->size * sizeof(PyrSlot));
             newobj->size = obj->size;
             SetObject(arraySlot, newobj);
@@ -608,7 +608,7 @@ PyrMethod* classFindDirectMethod(PyrClass* classobj, PyrSymbol* name)
     PyrSlot* methods;
     int i, numMethods;
     if (IsNil(&classobj->methods))
-        return NULL;
+        return nullptr;
     methods = slotRawObject(&classobj->methods)->slots;
     numMethods = slotRawObject(&classobj->methods)->size;
     for (i = 0; i < numMethods; ++i) {
@@ -617,7 +617,7 @@ PyrMethod* classFindDirectMethod(PyrClass* classobj, PyrSymbol* name)
             break;
     }
     if (i >= numMethods)
-        method = NULL;
+        method = nullptr;
     return method;
 }
 
@@ -727,7 +727,7 @@ bool classFindClassVar(PyrClass** classobj, PyrSymbol* name, int* index)
         if (IsSym(&localclassobj->superclass)) {
             localclassobj = slotRawSymbol(&localclassobj->superclass)->u.classobj;
         } else {
-            localclassobj = NULL;
+            localclassobj = nullptr;
         }
     }
     return false;
@@ -763,7 +763,7 @@ bool classFindConst(PyrClass** classobj, PyrSymbol* name, int* index)
         if (IsSym(&localclassobj->superclass)) {
             localclassobj = slotRawSymbol(&localclassobj->superclass)->u.classobj;
         } else {
-            localclassobj = NULL;
+            localclassobj = nullptr;
         }
     }
     return false;
@@ -778,19 +778,19 @@ struct compareByName {
 
 template <class T> class pyr_pool_compile_allocator {
 public:
-    typedef std::size_t size_type;
-    typedef std::ptrdiff_t difference_type;
-    typedef T* pointer;
-    typedef const T* const_pointer;
-    typedef T& reference;
-    typedef const T& const_reference;
-    typedef T value_type;
+    using size_type = std::size_t;
+    using difference_type = std::ptrdiff_t;
+    using pointer = T*;
+    using const_pointer = const T*;
+    using reference = T&;
+    using const_reference = T const&;
+    using value_type = T;
 
     template <class U> struct rebind {
-        typedef pyr_pool_compile_allocator<U> other;
+        using other = pyr_pool_compile_allocator<U>;
     };
 
-    pyr_pool_compile_allocator(void) {}
+    pyr_pool_compile_allocator() = default;
 
     template <class U> pyr_pool_compile_allocator(pyr_pool_compile_allocator<U> const&) {}
 
@@ -798,7 +798,10 @@ public:
 
     const_pointer address(const_reference x) const { return &x; }
 
-    pointer allocate(size_type n, const void* hint = 0) { return (pointer)pyr_pool_compile->Alloc(n * sizeof(T)); }
+    pointer allocate(size_type n, const void* hint = nullptr)
+    {
+        return (pointer)pyr_pool_compile->Alloc(n * sizeof(T));
+    }
 
     void deallocate(pointer p, size_type n) { pyr_pool_compile->Free(p); }
 
@@ -823,7 +826,7 @@ static PyrClass* sortClasses(PyrClass* aClassList)
         insertHead = slotRawClass(&insertHead->nextclass);
     } while (insertHead);
 
-    classSetType::iterator it = classSet.begin();
+    auto it = classSet.begin();
     PyrClass* sortedClasses = *it;
     ++it;
 
@@ -862,7 +865,7 @@ void buildClassTree()
         // postfl("  %s %d\n", slotRawSymbol(&classobj->name)->name, numSubclasses);
         if (numSubclasses) {
             SetObject(&classobj->subclasses,
-                (PyrObject*)newPyrArray(NULL, numSubclasses, obj_permanent | obj_immutable, false));
+                (PyrObject*)newPyrArray(nullptr, numSubclasses, obj_permanent | obj_immutable, false));
             slotRawObject(&classobj->subclasses)->size = 0;
         } else {
             SetNil(&classobj->subclasses);
@@ -1033,8 +1036,8 @@ typedef struct {
 int compareColDescs(const void* va, const void* vb);
 int compareColDescs(const void* va, const void* vb)
 {
-    ColumnDescriptor* a = (ColumnDescriptor*)va;
-    ColumnDescriptor* b = (ColumnDescriptor*)vb;
+    auto* a = (ColumnDescriptor*)va;
+    auto* b = (ColumnDescriptor*)vb;
     int diff;
     // diff = b->largestChunk - a->largestChunk;
     // if (diff != 0) return diff;
@@ -1166,7 +1169,7 @@ void buildBigMethodMatrix()
     // lifetime: kill after compile
     bigTableSize = numSelectors * numClasses;
     // post("bigTableSize %d %d %d\n", bigTableSize, numSelectors, numClasses);
-    ColumnDescriptor* sels = (ColumnDescriptor*)pyr_pool_compile->Alloc(numSelectors * sizeof(ColumnDescriptor));
+    auto* sels = (ColumnDescriptor*)pyr_pool_compile->Alloc(numSelectors * sizeof(ColumnDescriptor));
     MEMFAIL(sels);
 #ifdef _MSC_VER
     auto filledSelectorsFuture = std::async(std::launch::deferred, std::bind(&prepareColumnTable, sels, numSelectors));
@@ -1376,13 +1379,13 @@ static size_t fillClassRow(const PyrClass* classobj, PyrMethod** bigTable, boost
     }
 
     if (IsObj(&classobj->methods)) {
-        PyrObject* methods = const_cast<PyrObject*>(slotRawObject(&classobj->methods));
+        auto* methods = const_cast<PyrObject*>(slotRawObject(&classobj->methods));
         // postfl("        %d\n", methods->size);
         for (int i = 0; i < methods->size; ++i) {
             PyrMethod* method = slotRawMethod(&methods->slots[i]);
             int selectorIndex = slotRawSymbol(&method->name)->u.index;
 
-            if (myrow[selectorIndex] == 0)
+            if (myrow[selectorIndex] == nullptr)
                 ++count;
 
             myrow[selectorIndex] = method;
@@ -1421,7 +1424,7 @@ static size_t fillClassRow(const PyrClass* classobj, PyrMethod** bigTable, boost
                 for (int subClassIndex : boost::irange(0, numSubclasses))
                     result += fillClassRow(slotRawClass(&subclasses->slots[subClassIndex]), bigTable, pool);
             } else {
-                typedef std::vector<boost::future<size_t>> VectorOfFutures;
+                using VectorOfFutures = std::vector<boost::future<size_t>>;
 
                 VectorOfFutures subclassResults;
                 for (int subClassIndex : boost::irange(1, numSubclasses)) {
@@ -1481,12 +1484,12 @@ bool funcFindVar(PyrBlock* func, PyrSymbol* name, int* index)
 
 PyrClass* makeIntrinsicClass(PyrSymbol* className, PyrSymbol* superClassName, int numInstVars, int numClassVars)
 {
-    PyrClass* superClass = NULL;
-    PyrClass* metaSuperClass = NULL;
-    PyrSymbol* metaClassName = NULL;
-    PyrSymbol* metaSuperClassName = NULL;
-    PyrClass* classobj = NULL;
-    PyrClass* metaclassobj = NULL;
+    PyrClass* superClass = nullptr;
+    PyrClass* metaSuperClass = nullptr;
+    PyrSymbol* metaClassName = nullptr;
+    PyrSymbol* metaSuperClassName = nullptr;
+    PyrClass* classobj = nullptr;
+    PyrClass* metaclassobj = nullptr;
     int superInstVars;
 
     // postfl("makeIntrinsicClass '%s'\n", className->name);
@@ -1494,14 +1497,14 @@ PyrClass* makeIntrinsicClass(PyrSymbol* className, PyrSymbol* superClassName, in
         superClass = superClassName->u.classobj;
         if (!superClass) {
             error("Can't find superclass '%s' of '%s'\n", superClassName->name, className->name);
-            return NULL;
+            return nullptr;
         }
         metaSuperClassName = getmetasym(superClassName->name);
         metaSuperClass = metaSuperClassName->u.classobj;
         superInstVars = numSuperInstVars(superClass);
     } else {
         // else it must be Object and so has no superclass
-        metaSuperClassName = NULL;
+        metaSuperClassName = nullptr;
         superInstVars = 0;
     }
 
@@ -1563,15 +1566,15 @@ void initClasses()
     // BOOTSTRAP THE OBJECT HIERARCHY
 
     gNumClassVars = 0;
-    gClassList = NULL;
+    gClassList = nullptr;
     gNullMethod = newPyrMethod();
-    SetSymbol(&gNullMethod->name, (PyrSymbol*)NULL);
+    SetSymbol(&gNullMethod->name, (PyrSymbol*)nullptr);
     methraw = METHRAW(gNullMethod);
     methraw->methType = methNormal;
 
     // build intrinsic classes
-    class_class = NULL;
-    class_object = makeIntrinsicClass(s_object, 0, 0, 4);
+    class_class = nullptr;
+    class_object = makeIntrinsicClass(s_object, nullptr, 0, 4);
     class_class = makeIntrinsicClass(s_class, s_object, classClassNumInstVars, 1);
 
     // now fix class_class ptrs that were just previously installed erroneously
@@ -1803,8 +1806,8 @@ void initClasses()
     addIntrinsicVar(class_server_shm_interface, "ptr", &o_nil);
     addIntrinsicVar(class_server_shm_interface, "finalizer", &o_nil);
 
-    gTagClassTable[0] = NULL;
-    gTagClassTable[1] = NULL;
+    gTagClassTable[0] = nullptr;
+    gTagClassTable[1] = nullptr;
     gTagClassTable[2] = class_int;
     gTagClassTable[3] = class_symbol;
     gTagClassTable[4] = class_char;
@@ -1817,13 +1820,13 @@ void initClasses()
     gTagClassTable[11] = class_float;
     gTagClassTable[12] = class_float;
 
-    SetObject(&o_emptyarray, newPyrArray(NULL, 0, obj_permanent | obj_immutable, false));
+    SetObject(&o_emptyarray, newPyrArray(nullptr, 0, obj_permanent | obj_immutable, false));
 
-    SetObject(&o_onenilarray, newPyrArray(NULL, 1, obj_permanent | obj_immutable, false));
+    SetObject(&o_onenilarray, newPyrArray(nullptr, 1, obj_permanent | obj_immutable, false));
     slotRawObject(&o_onenilarray)->size = 1;
     SetNil(slotRawObject(&o_onenilarray)->slots);
 
-    SetObject(&o_argnamethis, newPyrSymbolArray(NULL, 1, obj_permanent | obj_immutable, false));
+    SetObject(&o_argnamethis, newPyrSymbolArray(nullptr, 1, obj_permanent | obj_immutable, false));
     slotRawSymbolArray(&o_argnamethis)->size = 1;
     slotRawSymbolArray(&o_argnamethis)->symbols[0] = s_this;
 
@@ -1964,7 +1967,7 @@ void dumpObject(PyrObject* obj)
     PyrClass* classobj;
     int i;
 
-    if (obj == NULL) {
+    if (obj == nullptr) {
         postfl("NULL object pointer\n");
         return;
     }
@@ -2058,7 +2061,7 @@ void dumpBadObject(PyrObject* obj)
     PyrClass* classobj;
     int i;
 
-    if (obj == NULL) {
+    if (obj == nullptr) {
         postfl("NULL object pointer\n");
         return;
     }
@@ -2181,7 +2184,7 @@ bool FrameSanity(PyrFrame* frame, const char* tagstr);
 bool FrameSanity(PyrFrame* frame, const char* tagstr)
 {
     bool failed = false;
-    if (frame == NULL)
+    if (frame == nullptr)
         return false;
     if (NotObj(&frame->method)) {
         postfl("Frame %p method tag wrong %p\n", frame, GetTag(&frame->method));
@@ -2562,7 +2565,7 @@ PyrMethod* initPyrMethod(PyrMethod* method)
 PyrMethod* newPyrMethod()
 {
     int32 numbytes = sizeof(PyrMethod) - sizeof(PyrObjectHdr);
-    PyrMethod* method = (PyrMethod*)PyrGC::NewPermanent(numbytes, obj_permanent | obj_immutable, obj_notindexed);
+    auto* method = (PyrMethod*)PyrGC::NewPermanent(numbytes, obj_permanent | obj_immutable, obj_notindexed);
     return initPyrMethod(method);
 }
 
@@ -2826,7 +2829,7 @@ int putIndexedFloat(PyrObject* obj, double val, int index)
 
 static int hashPtr(void* ptr)
 {
-    int32 hashed_part = int32((size_t)ptr & 0xffffffff);
+    auto hashed_part = int32((size_t)ptr & 0xffffffff);
     return Hash(hashed_part);
 }
 

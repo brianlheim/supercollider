@@ -59,22 +59,21 @@ extern PyrString* newPyrStringN(class PyrGC* gc, long length, long flags, long c
 // SC_LanguageClient
 // =====================================================================
 
-SC_LanguageClient* gInstance = 0;
+SC_LanguageClient* gInstance = nullptr;
 SC_Lock gInstanceMutex;
 
 class HiddenLanguageClient {
 public:
     HiddenLanguageClient()
-        : mPostFile(0)
-        , mScratch(0)
-        , mRunning(false)
+        : mScratch(0)
+
     {
     }
 
     std::string mName;
-    FILE* mPostFile;
+    FILE* mPostFile { nullptr };
     SC_StringBuffer mScratch;
-    bool mRunning;
+    bool mRunning { false };
 };
 
 SC_LanguageClient::SC_LanguageClient(const char* name)
@@ -232,7 +231,7 @@ void SC_LanguageClient::snprintMemArg(char* dst, size_t size, int arg)
 bool SC_LanguageClient::parseMemArg(const char* arg, int* res)
 {
     long value, factor = 1;
-    char* endPtr = 0;
+    char* endPtr = nullptr;
 
     if (*arg == '\0')
         return false;
@@ -412,7 +411,7 @@ void error(const char* fmt, ...)
     va_end(ap);
 }
 
-void flushPostBuf(void) { SC_LanguageClient::instance()->flush(); }
+void flushPostBuf() { SC_LanguageClient::instance()->flush(); }
 
 void closeAllGUIScreens() { SC_LanguageClient::instance()->onLibraryShutdown(); }
 

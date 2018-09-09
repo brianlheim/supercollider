@@ -33,14 +33,14 @@
 #include "PyrSymbolTable.h"
 #include "SC_InlineBinaryOp.h"
 #include "SC_InlineUnaryOp.h"
-#include <math.h>
-#include <signal.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cmath>
+#include <csignal>
+#include <cstdlib>
+#include <cstring>
 
 #include <boost/chrono.hpp>
 
-#include <float.h>
+#include <cfloat>
 #define kBigBigFloat DBL_MAX
 #define kSmallSmallFloat DBL_MIN
 
@@ -153,7 +153,7 @@ int32 timeseed();
 PyrProcess* newPyrProcess(VMGlobals* g, PyrClass* procclassobj)
 {
     PyrGC* gc = g->gc;
-    PyrProcess* proc = (PyrProcess*)instantiateObject(gc, procclassobj, 0, true, false);
+    auto* proc = (PyrProcess*)instantiateObject(gc, procclassobj, 0, true, false);
 
     PyrObject* sysSchedulerQueue = newPyrArray(gc, 4096, 0, false);
     sysSchedulerQueue->size = 1;
@@ -184,7 +184,7 @@ PyrProcess* newPyrProcess(VMGlobals* g, PyrClass* procclassobj)
     class_thread = getsym("Thread")->u.classobj;
     if (class_thread) {
         SetNil(&proc->curThread);
-        PyrThread* thread = (PyrThread*)instantiateObject(gc, class_thread, 0, true, false);
+        auto* thread = (PyrThread*)instantiateObject(gc, class_thread, 0, true, false);
         // SetObject(&threadsArray->slots[0], thread);
         SetObject(&proc->mainThread, thread);
         PyrInt32Array* rgenArray = newPyrInt32Array(gc, 4, 0, false);
@@ -214,7 +214,7 @@ PyrProcess* newPyrProcess(VMGlobals* g, PyrClass* procclassobj)
         PyrFrame* frame;
         PyrMethodRaw* methraw;
 
-        PyrInterpreter* interpreter = (PyrInterpreter*)instantiateObject(gc, class_interpreter, 0, true, false);
+        auto* interpreter = (PyrInterpreter*)instantiateObject(gc, class_interpreter, 0, true, false);
         SetObject(&proc->interpreter, interpreter);
         proto = slotRawObject(&meth->prototypeFrame);
 
@@ -226,7 +226,7 @@ PyrProcess* newPyrProcess(VMGlobals* g, PyrClass* procclassobj)
         SetObject(&frame->homeContext, frame);
         SetInt(&frame->caller, 0);
         SetNil(&frame->context);
-        SetPtr(&frame->ip, 0);
+        SetPtr(&frame->ip, nullptr);
         SetObject(&frame->vars[0], interpreter);
 
         SetObject(&interpreter->context, frame);
@@ -331,10 +331,10 @@ bool initRuntime(VMGlobals* g, int poolSize, AllocPool* inPool)
     SetObject(&g->receiver, g->process);
 
     // these will be set up when the run method is called
-    g->method = NULL;
-    g->block = NULL;
-    g->frame = NULL;
-    g->ip = NULL;
+    g->method = nullptr;
+    g->block = nullptr;
+    g->frame = nullptr;
+    g->ip = nullptr;
 
     // initialize process random number generator
     g->rgen = (RGen*)(slotRawObject(&g->thread->randData)->slots);
@@ -367,10 +367,10 @@ static bool initAwakeMessage(VMGlobals* g)
     g->thread = slotRawThread(&g->process->mainThread); //??
 
     // these will be set up when the run method is called
-    g->method = NULL;
-    g->block = NULL;
-    g->frame = NULL;
-    g->ip = NULL;
+    g->method = nullptr;
+    g->block = nullptr;
+    g->frame = nullptr;
+    g->ip = nullptr;
     g->execMethod = 0;
 
     // set process as the receiver
@@ -385,7 +385,7 @@ static bool initAwakeMessage(VMGlobals* g)
     // start it
     sendMessage(g, s_awake, 4);
 
-    return g->method != NULL;
+    return g->method != nullptr;
 }
 
 bool initInterpreter(VMGlobals* g, PyrSymbol* selector, int numArgsPushed)
@@ -397,10 +397,10 @@ bool initInterpreter(VMGlobals* g, PyrSymbol* selector, int numArgsPushed)
 #if TAILCALLOPTIMIZE
     g->tailCall = 0;
 #endif
-    g->method = NULL;
-    g->block = NULL;
-    g->frame = NULL;
-    g->ip = NULL;
+    g->method = nullptr;
+    g->block = nullptr;
+    g->frame = nullptr;
+    g->ip = nullptr;
     g->execMethod = 0;
     double elapsed = elapsedTime();
     SetFloat(&g->thread->beats, elapsed);
@@ -415,7 +415,7 @@ bool initInterpreter(VMGlobals* g, PyrSymbol* selector, int numArgsPushed)
     // start it
     sendMessage(g, selector, numArgsPushed);
 
-    return g->method != NULL;
+    return g->method != nullptr;
 }
 
 static void endInterpreter(VMGlobals* g)
@@ -743,7 +743,7 @@ HOT void Interpret(VMGlobals* g)
             if (IsObj(slot) && slotRawObject(slot)->classptr == gSpecialClasses[op_class_fundef]->u.classobj) {
                 // push a closure
                 g->sp = sp; // gc may push the stack
-                PyrClosure* closure = (PyrClosure*)g->gc->New(2 * sizeof(PyrSlot), 0, obj_notindexed, true);
+                auto* closure = (PyrClosure*)g->gc->New(2 * sizeof(PyrSlot), 0, obj_notindexed, true);
                 sp = g->sp;
                 closure->classptr = gSpecialClasses[op_class_func]->u.classobj;
                 closure->size = 2;
@@ -916,7 +916,7 @@ HOT void Interpret(VMGlobals* g)
             case opgFunction: { // push thisFunc
                 // push a closure
                 g->sp = sp; // gc may push the stack
-                PyrClosure* closure = (PyrClosure*)g->gc->New(2 * sizeof(PyrSlot), 0, obj_notindexed, true);
+                auto* closure = (PyrClosure*)g->gc->New(2 * sizeof(PyrSlot), 0, obj_notindexed, true);
                 sp = g->sp;
                 closure->classptr = gSpecialClasses[op_class_func]->u.classobj;
                 closure->size = 2;
@@ -2891,7 +2891,7 @@ HOT void Interpret(VMGlobals* g)
             // message sends handled here:
         msg_lookup : {
             size_t index = slotRawInt(&classobj->classIndex) + selector->u.index;
-            PyrMethod* meth = NULL;
+            PyrMethod* meth = nullptr;
             if (UNLIKELY((selector->flags & sym_Class) != 0)) {
                 // You have sent a message which is a class name. This is a bad thing.
                 // There are two cases. It is either an illegitimate classname like
@@ -2899,13 +2899,13 @@ HOT void Interpret(VMGlobals* g)
                 // in which case selector->u.index == 0 and you get a message or it is a real one like
                 // 1 Object: 2
                 // in which case selector->u.index isn't pointing to a method and you get a segfault. So...
-                meth = NULL;
+                meth = nullptr;
             } else {
                 meth = gRowTable[index];
             }
 
             // and now if meth is null, bail out just like if I don't understand it
-            if (UNLIKELY(meth == NULL || (slotRawSymbol(&meth->name) != selector))) {
+            if (UNLIKELY(meth == nullptr || (slotRawSymbol(&meth->name) != selector))) {
                 g->sp = sp;
                 g->ip = ip;
                 doesNotUnderstand(g, selector, numArgsPushed);

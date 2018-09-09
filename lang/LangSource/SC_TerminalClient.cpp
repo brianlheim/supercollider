@@ -46,9 +46,9 @@
 #endif
 
 #ifdef HAVE_READLINE
+#    include <csignal>
 #    include <readline/history.h>
 #    include <readline/readline.h>
-#    include <signal.h>
 #endif
 
 #include "GC.h"
@@ -84,7 +84,7 @@ SC_TerminalClient::SC_TerminalClient(const char* name)
 {
 }
 
-SC_TerminalClient::~SC_TerminalClient() {}
+SC_TerminalClient::~SC_TerminalClient() = default;
 
 void SC_TerminalClient::postText(const char* str, size_t len) { fwrite(str, sizeof(char), len, gPostDest); }
 
@@ -236,7 +236,7 @@ int SC_TerminalClient::run(int argc, char** argv)
     }
 
     // finish argv processing
-    const char* codeFile = 0;
+    const char* codeFile = nullptr;
 
     if (argc > 0) {
         codeFile = argv[0];
@@ -464,7 +464,7 @@ void SC_TerminalClient::daemonLoop() { commandLoop(); }
 
 #ifdef HAVE_READLINE
 
-static void sc_rl_cleanlf(void)
+static void sc_rl_cleanlf()
 {
     rl_reset_line_state();
     rl_crlf();
@@ -504,9 +504,9 @@ int SC_TerminalClient::readlineRecompile(int i1, int i2)
 
 void SC_TerminalClient::readlineCmdLine(char* cmdLine)
 {
-    SC_TerminalClient* client = static_cast<SC_TerminalClient*>(instance());
+    auto* client = static_cast<SC_TerminalClient*>(instance());
 
-    if (cmdLine == NULL) {
+    if (cmdLine == nullptr) {
         postfl("\nExiting sclang (ctrl-D)\n");
         client->onQuit(0);
         return;
@@ -543,7 +543,7 @@ void SC_TerminalClient::readlineInit()
     struct sigaction sact;
     memset(&sact, 0, sizeof(struct sigaction));
     sact.sa_handler = &sc_rl_signalhandler;
-    sigaction(SIGINT, &sact, 0);
+    sigaction(SIGINT, &sact, nullptr);
 #    endif
 }
 
@@ -729,7 +729,7 @@ int SC_TerminalClient::prRecompile(struct VMGlobals*, int)
 SCLANG_DLLEXPORT SC_LanguageClient* createLanguageClient(const char* name)
 {
     if (SC_LanguageClient::instance())
-        return NULL;
+        return nullptr;
 
 #ifdef __APPLE__
     SC::Apple::disableAppNap();

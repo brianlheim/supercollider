@@ -28,8 +28,8 @@
 #include "PyrPrimitiveProto.h"
 #include "PyrSymbol.h"
 #include "SCBase.h"
-#include <assert.h>
-#include <stdlib.h>
+#include <cassert>
+#include <cstdlib>
 
 #define DEBUGMETHODS 0
 #define METHODMETER 0
@@ -53,7 +53,7 @@ void initUniqueMethods()
 
 HOT void sendMessageWithKeys(VMGlobals* g, PyrSymbol* selector, long numArgsPushed, long numKeyArgsPushed)
 {
-    PyrMethod* meth = NULL;
+    PyrMethod* meth = nullptr;
     PyrMethodRaw* methraw;
     PyrSlot *recvrSlot, *sp;
     PyrClass* classobj;
@@ -186,7 +186,7 @@ lookup_again:
 
 HOT void sendMessage(VMGlobals* g, PyrSymbol* selector, long numArgsPushed)
 {
-    PyrMethod* meth = NULL;
+    PyrMethod* meth = nullptr;
     PyrMethodRaw* methraw;
     PyrSlot *recvrSlot, *sp;
     PyrClass* classobj;
@@ -374,7 +374,7 @@ lookup_again:
 
 HOT void sendSuperMessageWithKeys(VMGlobals* g, PyrSymbol* selector, long numArgsPushed, long numKeyArgsPushed)
 {
-    PyrMethod* meth = NULL;
+    PyrMethod* meth = nullptr;
     PyrMethodRaw* methraw;
     PyrSlot *recvrSlot, *sp;
     PyrClass* classobj;
@@ -508,7 +508,7 @@ lookup_again:
 
 HOT void sendSuperMessage(VMGlobals* g, PyrSymbol* selector, long numArgsPushed)
 {
-    PyrMethod* meth = NULL;
+    PyrMethod* meth = nullptr;
     PyrMethodRaw* methraw;
     PyrSlot *recvrSlot, *sp;
     PyrClass* classobj;
@@ -907,7 +907,7 @@ HOT void executeMethodWithKeys(VMGlobals* g, PyrMethod* meth, long allArgsPushed
     } else {
         SetInt(&frame->caller, 0);
     }
-    SetPtr(&frame->ip, 0);
+    SetPtr(&frame->ip, nullptr);
     g->method = meth;
 
     g->ip = slotRawInt8Array(&meth->code)->b - 1;
@@ -1068,7 +1068,7 @@ HOT void executeMethod(VMGlobals* g, PyrMethod* meth, long numArgsPushed)
     } else {
         SetInt(&frame->caller, 0);
     }
-    SetPtr(&frame->ip, 0);
+    SetPtr(&frame->ip, nullptr);
     g->method = meth;
 
     g->ip = slotRawInt8Array(&meth->code)->b - 1;
@@ -1186,9 +1186,9 @@ HOT void returnFromBlock(VMGlobals* g)
     } else {
         ////// this should never happen .
         error("return from Function at top of call stack.\n");
-        g->method = NULL;
-        g->block = NULL;
-        g->frame = NULL;
+        g->method = nullptr;
+        g->block = nullptr;
+        g->frame = nullptr;
         g->sp = g->gc->Stack()->slots - 1;
         longjmp(g->escapeInterpreter, 1);
     }
@@ -1216,7 +1216,7 @@ HOT void returnFromMethod(VMGlobals* g)
     g->gc->SanityCheck();
 #endif
     homeContext = slotRawFrame(&slotRawFrame(&curframe->context)->homeContext);
-    if (homeContext == NULL) {
+    if (homeContext == nullptr) {
     null_return:
 #if TAILCALLOPTIMIZE
         if (g->tailCall)
@@ -1247,14 +1247,14 @@ HOT void returnFromMethod(VMGlobals* g)
         PyrSlot* bottom = g->gc->Stack()->slots;
         slotCopy(bottom, g->sp);
         g->sp = bottom; // ??!! pop everybody
-        g->method = NULL;
-        g->block = NULL;
-        g->frame = NULL;
+        g->method = nullptr;
+        g->block = nullptr;
+        g->frame = nullptr;
         longjmp(g->escapeInterpreter, 2);
     } else {
         returnFrame = slotRawFrame(&homeContext->caller);
 
-        if (returnFrame == NULL)
+        if (returnFrame == nullptr)
             goto null_return;
         // make sure returnFrame is a caller and find earliest stack frame
         {

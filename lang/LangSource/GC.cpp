@@ -23,8 +23,8 @@
 #include "PyrKernel.h"
 #include "PyrObjectProto.h"
 #include "PyrSymbol.h"
+#include <cstring>
 #include <stdexcept>
-#include <string.h>
 
 #define PAUSETIMES 0
 
@@ -196,12 +196,12 @@ HOT void PyrGC::ScanSlots(PyrSlot* inSlots, long inNumToScan)
 
 void GCSet::Init(int inGCSet)
 {
-    mBlack.classptr = NULL;
+    mBlack.classptr = nullptr;
     mBlack.obj_sizeclass = inGCSet;
     mBlack.size = 0;
     mBlack.gc_color = obj_gcmarker;
 
-    mWhite.classptr = NULL;
+    mWhite.classptr = nullptr;
     mWhite.obj_sizeclass = inGCSet;
     mWhite.size = 0;
     mWhite.gc_color = obj_gcmarker;
@@ -264,11 +264,11 @@ PyrGC::PyrGC(VMGlobals* g, AllocPool* inPool, PyrClass* mainProcessClass, long p
     mRunning = false;
 
     mCanSweep = false;
-    mPartialScanObj = NULL;
+    mPartialScanObj = nullptr;
     mPartialScanSlot = 0;
     mUncollectedAllocations = 0;
 
-    mGrey.classptr = NULL;
+    mGrey.classptr = nullptr;
     mGrey.obj_sizeclass = 0;
     mGrey.size = 0;
     mGrey.gc_color = obj_gcmarker;
@@ -284,7 +284,7 @@ PyrGC::PyrGC(VMGlobals* g, AllocPool* inPool, PyrClass* mainProcessClass, long p
     for (int i = 0; i < kNumGCSets; ++i) {
         mSets[i].Init(i);
     }
-    g->process = NULL; // initPyrThread checks to see if process has been started
+    g->process = nullptr; // initPyrThread checks to see if process has been started
     mProcess = newPyrProcess(g, mainProcessClass);
 
     mStack = slotRawObject(&slotRawThread(&mProcess->mainThread)->stack);
@@ -313,10 +313,10 @@ PyrObject* PyrGC::NewPermanent(size_t inNumBytes, long inFlags, long inFormat)
     int32 allocSize = sizeof(PyrObjectHdr) + (sizeof(PyrSlot) << sizeclass);
 
     // allocate permanent objects
-    PyrObject* obj = (PyrObject*)pyr_pool_runtime->Alloc(allocSize);
+    auto* obj = (PyrObject*)pyr_pool_runtime->Alloc(allocSize);
 
     obj->gc_color = obj_permanent;
-    obj->next = obj->prev = NULL;
+    obj->next = obj->prev = nullptr;
     obj->obj_sizeclass = sizeclass;
     obj->obj_format = inFormat;
     obj->obj_flags = inFlags;
@@ -342,7 +342,7 @@ void DumpBackTrace(VMGlobals* g);
 
 HOT PyrObject* PyrGC::New(size_t inNumBytes, long inFlags, long inFormat, bool inRunCollection)
 {
-    PyrObject* obj = NULL;
+    PyrObject* obj = nullptr;
 
     if (inFlags & obj_permanent) {
         return NewPermanent(inNumBytes, inFlags, inFormat);
@@ -381,7 +381,7 @@ HOT PyrObject* PyrGC::New(size_t inNumBytes, long inFlags, long inFormat, bool i
 
 HOT PyrObject* PyrGC::NewFrame(size_t inNumBytes, long inFlags, long inFormat, bool inAccount)
 {
-    PyrObject* obj = NULL;
+    PyrObject* obj = nullptr;
 
 #ifdef GC_SANITYCHECK
     SanityCheck();
@@ -416,7 +416,7 @@ HOT PyrObject* PyrGC::NewFrame(size_t inNumBytes, long inFlags, long inFormat, b
 
 PyrObject* PyrGC::NewFinalizer(ObjFuncPtr finalizeFunc, PyrObject* inObject, bool inRunCollection)
 {
-    PyrObject* obj = NULL;
+    PyrObject* obj = nullptr;
 
 #ifdef GC_SANITYCHECK
     SanityCheck();
@@ -511,7 +511,7 @@ HOT void PyrGC::DoPartialScan(int32 inObjSize)
     int32 remain = inObjSize - mPartialScanSlot;
     mNumPartialScans++;
     if (remain <= 0) {
-        mPartialScanObj = NULL;
+        mPartialScanObj = nullptr;
         mNumToScan -= 4;
         if (mNumToScan < 0)
             mNumToScan = 0;
@@ -521,7 +521,7 @@ HOT void PyrGC::DoPartialScan(int32 inObjSize)
     ScanSlots(mPartialScanObj->slots + mPartialScanSlot, numtoscan);
 
     if (numtoscan == remain) {
-        mPartialScanObj = NULL;
+        mPartialScanObj = nullptr;
         mNumToScan -= numtoscan + 4;
     } else {
         mPartialScanSlot += numtoscan;
@@ -695,14 +695,14 @@ HOT void PyrGC::Collect()
                         break;
                 }
             }
-            if (mNumGrey == 0 && mPartialScanObj == NULL) {
+            if (mNumGrey == 0 && mPartialScanObj == nullptr) {
                 if (!stackScanned) {
                     stackScanned = true;
                     mStackScans++;
                     ScanStack();
                     ScanFrames();
                 }
-                if (mNumGrey == 0 && mPartialScanObj == NULL && stackScanned) {
+                if (mNumGrey == 0 && mPartialScanObj == nullptr && stackScanned) {
                     Flip();
                     break;
                 }
@@ -731,7 +731,7 @@ void PyrGC::Finalize(PyrObject* finalizer)
     if (!IsObj(finalizer->slots + 1))
         return;
 
-    ObjFuncPtr func = (ObjFuncPtr)slotRawPtr(&finalizer->slots[0]);
+    auto func = (ObjFuncPtr)slotRawPtr(&finalizer->slots[0]);
     PyrObject* obj = slotRawObject(&finalizer->slots[1]);
     // post("FINALIZE %s %p\n", slotRawSymbol(&obj->classptr->name)->name, obj);
     (func)(mVMGlobals, obj);
@@ -1035,7 +1035,7 @@ bool PyrGC::BlackToWhiteCheck(PyrObject* objA)
     if (size > 0) {
         PyrSlot* slot = objA->slots;
         for (int j = size; j--; ++slot) {
-            PyrObject* objB = NULL;
+            PyrObject* objB = nullptr;
             if (IsObj(slot) && slotRawObject(slot)) {
                 objB = slotRawObject(slot);
             }
@@ -1051,7 +1051,7 @@ bool PyrGC::BlackToWhiteCheck(PyrObject* objA)
                     if (objB->gc_color == mWhiteColor) {
                         if (objA->classptr == class_frame) {
                             // jmc: black stack frames pointing to white nodes can be ignore
-                            PyrFrame* frameA = (PyrFrame*)objA;
+                            auto* frameA = (PyrFrame*)objA;
                             PyrMethod* meth = slotRawMethod(&frameA->method);
                             PyrMethodRaw* methraw = METHRAW(meth);
                             if (methraw->needsHeapContext)
@@ -1094,7 +1094,7 @@ bool PyrGC::SanityMarkObj(PyrObject* objA, PyrObject* fromObj, int level)
         if (size > 0) {
             PyrSlot* slot = objA->slots;
             for (int j = size; j--; ++slot) {
-                PyrObject* objB = NULL;
+                PyrObject* objB = nullptr;
                 int tag = GetTag(slot);
                 if (tag == tagObj && slotRawObject(slot))
                     objB = slotRawObject(slot);
@@ -1131,7 +1131,7 @@ bool PyrGC::SanityClearObj(PyrObject* objA, int level)
         if (size > 0) {
             PyrSlot* slot = objA->slots;
             for (int j = size; j--; ++slot) {
-                PyrObject* objB = NULL;
+                PyrObject* objB = nullptr;
                 if (IsObj(slot) && slotRawObject(slot)) {
                     objB = slotRawObject(slot);
                 }

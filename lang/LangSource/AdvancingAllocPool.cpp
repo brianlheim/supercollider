@@ -24,13 +24,13 @@
 
 AdvancingAllocPool::AdvancingAllocPool()
 {
-    mAllocPool = 0;
+    mAllocPool = nullptr;
     mInitSize = 0;
     mGrowSize = 0;
     mTooBig = 0;
     mCurSize = 0;
-    mChunks = NULL;
-    mFatties = NULL;
+    mChunks = nullptr;
+    mFatties = nullptr;
 }
 
 void AdvancingAllocPool::Init(AllocPool* inAllocPool, size_t initSize, size_t growSize, size_t tooBigSize)
@@ -39,16 +39,16 @@ void AdvancingAllocPool::Init(AllocPool* inAllocPool, size_t initSize, size_t gr
     mInitSize = initSize;
     mGrowSize = growSize;
     mTooBig = tooBigSize;
-    mChunks = NULL;
+    mChunks = nullptr;
     AddChunk(initSize);
-    mFatties = NULL;
+    mFatties = nullptr;
     // assert(SanityCheck());
 }
 
 void AdvancingAllocPool::AddChunk(size_t inSize)
 {
     size_t chunkSize = sizeof(AdvancingAllocPoolChunkHdr) + inSize;
-    AdvancingAllocPoolChunk* chunk = (AdvancingAllocPoolChunk*)mAllocPool->Alloc(chunkSize);
+    auto* chunk = (AdvancingAllocPoolChunk*)mAllocPool->Alloc(chunkSize);
     FailNil(chunk);
     chunk->mNext = mChunks;
     mChunks = chunk;
@@ -73,7 +73,7 @@ void* AdvancingAllocPool::Alloc(size_t reqsize)
         return (void*)space;
     } else {
         size_t chunkSize = sizeof(AdvancingAllocPoolChunkHdr) + size;
-        AdvancingAllocPoolChunk* fatty = (AdvancingAllocPoolChunk*)mAllocPool->Alloc(chunkSize);
+        auto* fatty = (AdvancingAllocPoolChunk*)mAllocPool->Alloc(chunkSize);
         FailNil(fatty);
         fatty->mNext = mFatties;
         mFatties = fatty;
@@ -96,8 +96,8 @@ void AdvancingAllocPool::FreeAll()
         next = chunk->mNext;
         mAllocPool->Free(chunk);
     }
-    mChunks = NULL;
-    mFatties = NULL;
+    mChunks = nullptr;
+    mFatties = nullptr;
     mCurSize = 0;
     // assert(SanityCheck());
 }

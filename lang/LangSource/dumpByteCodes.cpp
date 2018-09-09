@@ -47,9 +47,9 @@ unsigned char* dumpOneByteCode(PyrBlock* theBlock, PyrClass* theClass, unsigned 
     long numArgNames, numVarNames, numTemps;
     unsigned char* ipbeg;
 
-    if (theClass == NULL) {
+    if (theClass == nullptr) {
         block = theBlock;
-        theClass = 0;
+        theClass = nullptr;
         while (block) {
             // dumpObject((PyrObject*)block);
             // post("block->classptr %d class_method %d  %d\n",
@@ -61,7 +61,7 @@ unsigned char* dumpOneByteCode(PyrBlock* theBlock, PyrClass* theClass, unsigned 
             }
             block = slotRawBlock(&block->contextDef);
         }
-        if (theClass == NULL) {
+        if (theClass == nullptr) {
             theClass = s_interpreter->u.classobj;
             // error("dumpByteCodes: no Class found.\n");
             // return NULL;
@@ -761,12 +761,12 @@ bool detectSendSelector(PyrBlock* theBlock, PyrClass* theClass, unsigned char** 
 bool detectSendSelector(PyrBlock* theBlock, PyrClass* theClass, unsigned char** ipp, PyrSymbol* testSelector)
 {
     PyrBlock* block;
-    PyrSymbol* selector = 0;
+    PyrSymbol* selector = nullptr;
     long op1, op2, op3, op4, op5, op6;
     unsigned char* ip = *ipp;
-    if (theClass == NULL) {
+    if (theClass == nullptr) {
         block = theBlock;
-        theClass = 0;
+        theClass = nullptr;
         while (block) {
             if (isKindOf((PyrObject*)block, class_method)) {
                 theClass = slotRawClass(&((PyrMethod*)block)->ownerclass);
@@ -774,7 +774,7 @@ bool detectSendSelector(PyrBlock* theBlock, PyrClass* theClass, unsigned char** 
             }
             block = slotRawBlock(&block->contextDef);
         }
-        if (theClass == NULL) {
+        if (theClass == nullptr) {
             theClass = s_interpreter->u.classobj;
         }
     }
@@ -1198,12 +1198,12 @@ void dumpByteCodes(PyrBlock* theBlock)
     long size;
     unsigned char *ip, *ipbeg, *ipend;
 
-    if (slotRawInt8Array(&theBlock->code) == NULL) {
+    if (slotRawInt8Array(&theBlock->code) == nullptr) {
         post("Code empty.\n");
         return;
     }
     block = theBlock;
-    theClass = 0;
+    theClass = nullptr;
     while (block) {
         if (isKindOf((PyrObject*)block, class_method)) {
             theClass = slotRawClass(&((PyrMethod*)block)->ownerclass);
@@ -1211,7 +1211,7 @@ void dumpByteCodes(PyrBlock* theBlock)
         }
         block = slotRawBlock(&block->contextDef);
     }
-    if (theClass == NULL) {
+    if (theClass == nullptr) {
         theClass = s_interpreter->u.classobj;
     }
 
@@ -1233,7 +1233,7 @@ bool detectSendSelectorIn(PyrBlock* theBlock, PyrSymbol* testSelector)
     long size;
     unsigned char *ip, *ipbeg, *ipend;
 
-    if (slotRawInt8Array(&theBlock->code) == NULL) {
+    if (slotRawInt8Array(&theBlock->code) == nullptr) {
         PyrMethodRaw* methraw = METHRAW(theBlock);
         switch (methraw->methType) {
         case methRedirect:
@@ -1247,7 +1247,7 @@ bool detectSendSelectorIn(PyrBlock* theBlock, PyrSymbol* testSelector)
         }
     }
     block = theBlock;
-    theClass = 0;
+    theClass = nullptr;
     while (block) {
         if (isKindOf((PyrObject*)block, class_method)) {
             theClass = slotRawClass(&((PyrMethod*)block)->ownerclass);
@@ -1255,7 +1255,7 @@ bool detectSendSelectorIn(PyrBlock* theBlock, PyrSymbol* testSelector)
         }
         block = slotRawBlock(&block->contextDef);
     }
-    if (theClass == NULL) {
+    if (theClass == nullptr) {
         theClass = s_interpreter->u.classobj;
     }
 
