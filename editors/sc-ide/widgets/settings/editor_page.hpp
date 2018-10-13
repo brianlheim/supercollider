@@ -25,8 +25,6 @@
 #include <QTreeWidgetItem>
 #include <QTextCharFormat>
 
-#include "../../core/settings/theme.hpp"
-
 class QFontDatabase;
 
 namespace Ui {
@@ -36,6 +34,7 @@ namespace Ui {
 namespace ScIDE { namespace Settings {
 
 class Manager;
+class Theme;
 
 class EditorPage : public QWidget
 {
