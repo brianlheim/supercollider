@@ -6,70 +6,235 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>356</height>
+    <width>778</width>
+    <height>451</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>On application start:</string>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>1</number>
      </property>
+     <widget class="QWidget" name="startupTab">
+      <attribute name="title">
+       <string>Startup</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>On application start:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QRadioButton" name="startNewSessionOption">
+             <property name="text">
+              <string>Start a new session</string>
+             </property>
+             <attribute name="buttonGroup">
+              <string notr="true">startSessionOptions</string>
+             </attribute>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QRadioButton" name="startLastSessionOption">
+             <property name="text">
+              <string>Load last session</string>
+             </property>
+             <attribute name="buttonGroup">
+              <string notr="true">startSessionOptions</string>
+             </attribute>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <property name="spacing">
+            <number>-1</number>
+           </property>
+           <item>
+            <widget class="QRadioButton" name="startNamedSessionOption">
+             <property name="text">
+              <string>Load session:</string>
+             </property>
+             <attribute name="buttonGroup">
+              <string notr="true">startSessionOptions</string>
+             </attribute>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="startSessionName"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>706</width>
+             <height>247</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="colorsTab">
+      <attribute name="title">
+       <string>Colors</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="1" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QPushButton" name="uiThemeDeleteBtn">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>10</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>delete</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="uiThemeCopyBtn">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>10</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>copy</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="1" rowspan="3">
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QLabel" name="label_13">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Color:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="uiColorClearBtn">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>10</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>25</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>X</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <widget class="QComboBox" name="uiThemeCombo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" rowspan="3">
+        <widget class="QTreeWidget" name="uiThemeColorsList">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
+         <property name="headerHidden">
+          <bool>true</bool>
+         </property>
+         <attribute name="headerVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string notr="true">1</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="useEditorThemeColors">
+         <property name="text">
+          <string>Inherit general interface colors from editor theme</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
-   </item>
-   <item>
-    <widget class="QRadioButton" name="startNewSessionOption">
-     <property name="text">
-      <string>Start a new session</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">startSessionOptions</string>
-     </attribute>
-    </widget>
-   </item>
-   <item>
-    <widget class="QRadioButton" name="startLastSessionOption">
-     <property name="text">
-      <string>Load last session</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">startSessionOptions</string>
-     </attribute>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QRadioButton" name="startNamedSessionOption">
-       <property name="text">
-        <string>Load session:</string>
-       </property>
-       <attribute name="buttonGroup">
-        <string notr="true">startSessionOptions</string>
-       </attribute>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="startSessionName"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>250</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
