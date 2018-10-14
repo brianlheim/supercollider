@@ -58,6 +58,11 @@ public:
         return mSettings->contains( key );
     }
 
+    /**
+     * Returns the stored setting for this key.
+     *
+     * If no value exists, returns the value from the default settings. If no value exists in
+     * that map, returns an invalid QVariant. That typically should not happen. */
     QVariant value ( const QString & key ) const;
     QVariant defaultValue ( const QString & key ) const
     {
