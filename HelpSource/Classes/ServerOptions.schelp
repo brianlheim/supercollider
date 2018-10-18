@@ -118,7 +118,7 @@ method:: verbosity
 Controls the verbosity of server messages. A value of 0 is normal behaviour. -1 suppresses informational messages. -2 suppresses informational and many error messages, as well as messages from Poll. The default is 0.
 
 method:: zeroConf
-A Boolean indication whether or not the server should publish its port using zero configuration networking, to facilitate network interaction. This is true by default; if you find unacceptable delays (beachballing) upon server boot, you can try setting this to false.
+A Boolean indication whether or not the server should publish its port using zero configuration networking, to facilitate network interaction. This is false by default.
 
 method:: ugenPluginsPath
 A path or an Array of paths. If non-nil, the standard paths are NOT searched for plugins. This corresponds with the option "-U".
