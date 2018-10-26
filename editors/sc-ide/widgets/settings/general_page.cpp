@@ -35,6 +35,9 @@ GeneralPage::GeneralPage(QWidget *parent) :
 
     connect( ui->startSessionName, SIGNAL(textChanged(QString)),
              this, SLOT(onStartSessionNameChanged(QString)) );
+
+    // XXX connect slots for uiTheme page (at least copy & delete buttons
+    // XXX setup behavior between buttons, look at editor_page for similar behavior
 }
 
 GeneralPage::~GeneralPage()
@@ -53,6 +56,10 @@ void GeneralPage::load( Manager *settings )
         ui->startNamedSessionOption->setChecked(true);
         ui->startSessionName->setText(startSessionName);
     }
+
+    // XXX set 'inherit' checkbox from settings
+    // XXX populate theme list (incl chosen theme)
+    // XXX populate colors list & set color button
 }
 
 void GeneralPage::store( Manager *settings )
@@ -72,6 +79,10 @@ void GeneralPage::store( Manager *settings )
     else {
         settings->setValue("startWithSession", "");
     }
+
+    // XXX store inherit
+    // XXX store chosen theme, theme list
+    // XXX store custom themes
 
     settings->endGroup();
 }
