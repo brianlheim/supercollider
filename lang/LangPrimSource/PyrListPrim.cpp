@@ -80,7 +80,9 @@ int prArrayMultiChanExpand(struct VMGlobals *g, int numArgsPushed)
 	}
 
 	obj2 = newPyrArray(g->gc, maxlen, 0, true);
-	SetObject(a, obj2);
+	// push obj2 onto the stack so it's not collected
+	// we can't just set in a here as we still need obj1's slots below, so we need to ensure it isn't collected
+	++g->sp; SetObject(g->sp, obj2);
 	slots2 = obj2->slots;
 	for (i=0; i<maxlen; ++i) {
 		obj3 = newPyrArray(g->gc, size, 0, true);
@@ -110,6 +112,8 @@ int prArrayMultiChanExpand(struct VMGlobals *g, int numArgsPushed)
 		}
 	}
 
+	g->sp -= 1; // pop the stack
+	SetObject(a, obj2); // now set the result in a
 	return errNone;
 }
 
