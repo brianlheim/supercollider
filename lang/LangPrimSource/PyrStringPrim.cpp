@@ -486,7 +486,7 @@ static int prString_FindRegexpAt(struct VMGlobals *g, int numArgsPushed)
 	}
 
 	PyrObject *array = newPyrArray(g->gc, 2, 0, true);
-	SetObject(a, array);
+	++g->sp; SetObject(g->sp, array); // push on stack to make reachable
 
 	PyrString *matched_string = newPyrStringN(g->gc, matched_len, 0, true);
 	memcpy(matched_string->s, stringBegin, (size_t) matched_len);
@@ -495,6 +495,8 @@ static int prString_FindRegexpAt(struct VMGlobals *g, int numArgsPushed)
 	SetInt(array->slots+1, matched_len);
 	SetObject(array->slots, matched_string);
 	g->gc->GCWriteNew(array, matched_string); // we know matched_string is white so we can use GCWriteNew
+	g->sp -= 1; // pop
+	SetObject(a, array); // now store result
 
 	return errNone;
 }
