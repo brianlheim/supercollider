@@ -410,7 +410,7 @@ static int prString_FindRegexp(struct VMGlobals *g, int numArgsPushed)
 	int match_count = matches.size();
 
 	PyrObject *result_array = newPyrArray(g->gc, match_count, 0, true);
-	SetObject(a, result_array);
+	++g->sp; SetObject(g->sp, result_array); // push result to make reachable
 
 	if( !match_count ) return errNone;
 
@@ -430,8 +430,11 @@ static int prString_FindRegexp(struct VMGlobals *g, int numArgsPushed)
 		array->size = 2;
 		SetInt(array->slots, pos + offset);
 		SetObject(array->slots+1, matched_string);
-		g->gc->GCWrite(array, matched_string); // we know matched_string is white so we can use GCWriteNew
+		g->gc->GCWriteNew(array, matched_string); // we know matched_string is white so we can use GCWriteNew
 	};
+	
+	g->sp -= 1; //pop
+	SetObject(a, result_array); // now store result
 
 	return errNone;
 }
