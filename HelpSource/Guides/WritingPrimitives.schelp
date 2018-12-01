@@ -35,9 +35,9 @@ enum { // primitive errors
 	errOutOfMemory,
 	errCantCallOS,
 	errException,
-	
+
 	errPropertyNotFound = 6000,
-	
+
 	errLastError
 };
 ::
@@ -176,7 +176,18 @@ PyrObject *array2 = newPyrArray(g->gc, 2, 0, false);
 ...
 ::
 ::
-Care must be taken when writing utility functions which themselves create new objects, since this may happen somewhat opaquely and the calling context may not be known. Functions which may call themselves recursively also need special attention. In such cases setting teletype::runGC:: to false may be the safest option, or including a teletype::runGC:: arg so that GC behaviour is explicit. teletype::MsgToInt8Array:: is one example of such a function.
+One caveat: When making a new object reachable by storing it on the stack, you must ensure that you are not overwriting the receiver if it is still needed in the primitive and you will need to do further allocations. If this is done the receiver may be collected on any future allocations. One solution is to strong::push:: the object onto the stack, and then pop it when finished, e.g.:
+teletype::
+PyrSlot* rec = g->sp; // get the receiver
+PyrObject *result = newPyrArray(g->gc, 2, 0, true); // create the result
+++g->sp; SetObject(g->sp, result); // push the result array on the stack, so both it and rec are reachable
+... // further allocations which make use of the receiver to populate result
+g->sp -= 1; // pop
+SetObject(rec, result); // now set the receiver
+::
+teletype::prArrayMultiChanExpand:: gives an example of this approach. Setting teletype::runGC:: to false is another possible solution.
+
+Similarly, care must be taken when writing utility functions which themselves create new objects, since this may happen somewhat opaquely and the calling context may not be known. Functions which may call themselves recursively also need special attention. In such cases setting teletype::runGC:: to false may be the safest option, or including a teletype::runGC:: arg so that GC behaviour is explicit. teletype::MsgToInt8Array:: is one example of such a function.
 
 teletype::
 static PyrInt8Array* MsgToInt8Array ( sc_msg_iter& msg, bool runGC )
@@ -267,7 +278,7 @@ To summarize, before calling any function that might allocate (like teletype::ne
 numberedlist::
 ## All objects previously created must be reachable, which means they must exist
     list::
-    ## on the teletype::g->sp:: stack
+    ## on the teletype::g->sp:: stack (taking care not to overwrite the receiver if it is still needed)
     ## or, in a lang-side variable or class variable.
     ## or, in a slot of another object that fulfils these criteria.
     ::
