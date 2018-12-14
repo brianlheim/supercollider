@@ -115,7 +115,7 @@ int Unit_DoCmd(World *inWorld, int inSize, char *inData)
 
 	UnitDef* unitDef = unit->mUnitDef;
 
-	int32 *cmdName = msg.gets4();
+	const int32 *cmdName = msg.gets4();
 	if (!cmdName) return kSCErr_Failed;
 
 	if (!unitDef->mCmds) return kSCErr_Failed;
@@ -131,7 +131,7 @@ int PlugIn_DoCmd(World *inWorld, int inSize, char *inData, ReplyAddress *inReply
 {
 	sc_msg_iter msg(inSize, inData);
 
-	int32 *cmdName = msg.gets4();
+	const int32 *cmdName = msg.gets4();
 	if (!cmdName) return kSCErr_Failed;
 
 	PlugInCmd *cmd = GetPlugInCmd(cmdName);

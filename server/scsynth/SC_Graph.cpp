@@ -147,7 +147,7 @@ void Graph_Ctor(World *inWorld, GraphDef *inGraphDef, Graph *graph, sc_msg_iter 
 			int i = 0;
 			int loop = 0;
 			if (msg->nextTag('i') == 's') {
-				int32* name = msg->gets4();
+				const int32* name = msg->gets4();
 				int32 hash = Hash(name);
 				do {
 					switch (msg->nextTag('f') ) {
@@ -290,7 +290,7 @@ void Graph_Ctor(World *inWorld, GraphDef *inGraphDef, Graph *graph, sc_msg_iter 
 	else{
 		while (msg->remain()) {
 			if (msg->nextTag('i') == 's') {
-				int32* name = msg->gets4();
+				const int32* name = msg->gets4();
 				int32 hash = Hash(name);
 				int32 n = msg->geti();
 				for (int i=0; msg->remain() && i<n; ++i) {

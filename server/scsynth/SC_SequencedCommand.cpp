@@ -350,7 +350,7 @@ int BufGenCmd::Init(char *inData, int inSize)
 	sc_msg_iter msg(mSize, mData);
 	mBufIndex = msg.geti();
 
-	int32 *genName = msg.gets4();
+	const int32 *genName = msg.gets4();
 	if (!genName) return kSCErr_WrongArgType;
 
 	mBufGen = GetBufGen(genName);
