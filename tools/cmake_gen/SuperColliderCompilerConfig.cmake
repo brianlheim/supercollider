@@ -37,7 +37,9 @@ function(sc_config_compiler_flags target)
             )
         if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|AppleClang" AND STRICT)
             # the generator expression for this was too horrible
-            target_compile_options(${target} PUBLIC -Weverything)
+            # cast-align would probably be good to keep but there is some code in SC_SndBuf.h that
+            # triggers it that I don't want to touch
+            target_compile_options(${target} PUBLIC -Weverything -Wno-old-style-cast -Wno-cast-align)
         endif()
     elseif(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
         # these options only apply if we're doing a 32-bit build, otherwise they cause a diagnostic
