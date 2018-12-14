@@ -44,24 +44,24 @@ inline size_t OSCstrlen(const char *strin)
 inline float32 OSCfloat(const char* inData)
 {
 	elem32 elem;
-	elem.u = sc_ntohl(*(uint32*)inData);
+	elem.u = sc_ntohl(*(const uint32*)inData);
 	return elem.f;
 }
 
 inline int32 OSCint(const char* inData)
 {
-	return (int32)sc_ntohl(*(uint32*)inData);
+	return (int32)sc_ntohl(*(const uint32*)inData);
 }
 
 inline int64 OSCtime(const char* inData)
 {
-	return ((int64)sc_ntohl(*(uint32*)inData) << 32) + (sc_ntohl(*(uint32*)(inData + 4)));
+	return ((int64)sc_ntohl(*(const uint32*)inData) << 32) + (sc_ntohl(*(const uint32*)(inData + 4)));
 }
 
 inline float64 OSCdouble(const char* inData)
 {
 	elem64 slot;
-	slot.i = ((int64)sc_ntohl(*(uint32*)inData) << 32) + (sc_ntohl(*(uint32*)(inData + 4)));
+	slot.i = ((int64)sc_ntohl(*(const uint32*)inData) << 32) + (sc_ntohl(*(const uint32*)(inData + 4)));
 	return slot.f;
 }
 
@@ -257,14 +257,14 @@ inline const char* sc_msg_iter::gets(const char* defaultValue)
 
 inline int32* sc_msg_iter::gets4(char* defaultValue)
 {
-	int32* value;
+	const int32* value;
 	if (remain() <= 0) return 0;
 	if (tags) {
 		if (tags[count] == 's') {
-			value = (int32*)rdpos;
+			value = (const int32*)rdpos;
 			rdpos = OSCstrskip(rdpos);
 		} else {
-			value = (int32*)defaultValue;
+			value = (const int32*)defaultValue;
 		}
 	} else {
 		value = (int32*)rdpos;

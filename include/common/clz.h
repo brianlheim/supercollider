@@ -42,7 +42,7 @@ count leading zeroes function and those that can be derived from it
 static __inline__ int32 CLZ(int32 arg)
 {
     if (arg)
-        return __builtin_clz(arg);
+        return __builtin_clz((uint32)arg);
     else
         return 32;
 }
