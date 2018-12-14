@@ -42,7 +42,8 @@ function(sc_config_compiler_flags target)
             target_compile_options(${target} PUBLIC -Weverything
                 -Wno-old-style-cast -Wno-cast-align -Wno-global-constructors
                 -Wno-shadow-field-in-constructor -Wno-zero-as-null-pointer-constant
-                -Wno-double-promotion -Wno-float-equal)
+                -Wno-double-promotion -Wno-float-equal -Wno-padded -Wno-weak-vtables
+                -Wno-missing-prototypes -Wno-c++98-compat)
         endif()
     elseif(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
         # these options only apply if we're doing a 32-bit build, otherwise they cause a diagnostic
