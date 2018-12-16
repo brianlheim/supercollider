@@ -441,7 +441,7 @@ if(APPLE)
             if(NOT IS_SYMLINK "${onedirectory}")
                 message(FATAL_ERROR "Symlinking will fail ! SCClassLibrary folder already exists and has directories inside, please delete it first." )
             endif()
-        endforeach(onedirectory)
+        endforeach()
 
         message(STATUS "Will create symlink of SCClassLibrary to ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary" )
         if(NOT EXISTS "{CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary")
@@ -454,7 +454,7 @@ if(APPLE)
                 install( CODE
                     "EXECUTE_PROCESS(COMMAND ln -shF ${CMAKE_CURRENT_SOURCE_DIR}/SCClassLibrary/${onedirectory} ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary/${onedirectory} )" )
             endif()
-        endforeach(onedirectory)
+        endforeach()
     endif()
 else()
     install(DIRECTORY SCClassLibrary
