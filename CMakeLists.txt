@@ -35,7 +35,7 @@ endif()
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules
     ${CMAKE_MODULE_PATH})
 
-CONFIGURE_FILE(
+configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/cmake_uninstall.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
     IMMEDIATE @ONLY)
@@ -66,23 +66,23 @@ if(RULE_LAUNCH_COMPILE AND CMAKE_GENERATOR STREQUAL "Xcode")
     set(CMAKE_XCODE_ATTRIBUTE_LDPLUSPLUS "${SC_LAUNCH_CXX_SCRIPT}")
 endif()
 
-ADD_CUSTOM_TARGET(uninstall
+add_custom_target(uninstall
     "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
 
 # identify target architecture, build portaudio before any SC specific
 # definitions break the pa-build
 if(WIN32)
-    SET(SC_WIN_BUNDLE_NAME "SuperCollider" CACHE STRING "Folder name of SC install")
+    set(SC_WIN_BUNDLE_NAME "SuperCollider" CACHE STRING "Folder name of SC install")
 
     if(CMAKE_CL_64 OR "$ENV{MSYSTEM}" MATCHES "64" OR CMAKE_C_COMPILER MATCHES "64")
-        SET(CMAKE_LIBRARY_ARCHITECTURE "x64" CACHE STRING "Architecture of target system (for 64bit)")
+        set(CMAKE_LIBRARY_ARCHITECTURE "x64" CACHE STRING "Architecture of target system (for 64bit)")
     else()
-        SET(CMAKE_LIBRARY_ARCHITECTURE "x86" CACHE STRING "Architecture of target system (for 32bit)")
+        set(CMAKE_LIBRARY_ARCHITECTURE "x86" CACHE STRING "Architecture of target system (for 32bit)")
     endif()
 
     # installing to default application-location creates an error (a privileges and/or path syntax problem)
     if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-        SET(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/Install" CACHE PATH "Cmake install path" FORCE)
+        set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/Install" CACHE PATH "Cmake install path" FORCE)
     endif()
 
     # might work with "SHARED" as well.
@@ -177,7 +177,7 @@ set(AUDIOAPI "default" CACHE STRING "Audio API to use (one of {default,coreaudio
 if(AUDIOAPI STREQUAL jack)
     # here we check for JACK metadata API
     include(CheckIncludeFiles)
-    CHECK_INCLUDE_FILES("jack/metadata.h" JACK_USE_METADATA_API)
+    check_include_files("jack/metadata.h" JACK_USE_METADATA_API)
     if(${JACK_USE_METADATA_API})
         message(STATUS "using JACK metadata API")
         include_directories(${CMAKE_SOURCE_DIR}/external_libraries/jackey)
