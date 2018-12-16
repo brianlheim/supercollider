@@ -90,8 +90,8 @@ if(WIN32)
     if(NOT MSYS)
         set(PORTAUDIO_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/external_libraries/portaudio_sc_org/include" CACHE PATH "Portaudio include directory" FORCE)
         add_subdirectory("${CMAKE_SOURCE_DIR}/external_libraries/portaudio_sc_org")
-    endif(NOT MSYS)
-endif(WIN32)
+    endif()
+endif()
 
 #############################################
 # Compiler flags etc
@@ -197,7 +197,7 @@ else()
         message( STATUS "Not compiling SC IDE, because it requires Qt but SC_QT is False" )
         set(SC_IDE False)
     endif()
-endif(SC_QT)
+endif()
 option(NO_X11 "Disables the building of plugins that require the X11 library (for UI-less compiles)" OFF)
 
 option(ENABLE_TESTSUITE "Compile testsuite." ON)
@@ -214,7 +214,7 @@ if(WIN32)
     option(NO_AVAHI "Disable Avahi support. (Not recommended.)" ON)
 else(WIN32)
     option(NO_AVAHI "Disable Avahi support. (Not recommended.)" OFF)
-endif(WIN32)
+endif()
 option(NO_GPL3 "Disable GPL3 code, for pure-GPL2 situations. (Not recommended.)" OFF)
 
 option(SCLANG_SERVER "Build with internal server." ON)
@@ -339,7 +339,7 @@ if(MSVC)
     # _ENABLE_ATOMIC_ALIGNMENT_FIX prevents the build from breaking when VS2015 update 2 upwards are used
     # see http://boost.2283326.n4.nabble.com/lockfree-ENABLE-ATOMIC-ALIGNMENT-FIX-for-VS-2015-Update-2-td4685955.html
     add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_WARNINGS -D_ENABLE_ATOMIC_ALIGNMENT_FIX)
-endif(MSVC)
+endif()
 
 if(SC_MEMORY_DEBUGGING)
     add_definitions(-DDISABLE_MEMORY_POOLS)
