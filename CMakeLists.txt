@@ -151,10 +151,10 @@ add_definitions(-DBOOST_CHRONO_HEADER_ONLY -DBOOST_NO_AUTO_PTR)
 # Detect CCache
 
 find_program(CCacheExectuable ccache)
-if( CCacheExectuable )
+if(CCacheExectuable)
     # only used with >=cmake-3.4
-    set( CMAKE_C_COMPILER_LAUNCHER   "${CCacheExectuable}" )
-    set( CMAKE_CXX_COMPILER_LAUNCHER "${CCacheExectuable}" )
+    set(CMAKE_C_COMPILER_LAUNCHER   "${CCacheExectuable}")
+    set(CMAKE_CXX_COMPILER_LAUNCHER "${CCacheExectuable}")
 endif()
 
 #############################################
@@ -191,10 +191,10 @@ option(SC_DOC_RENDER "Pre-render SCDoc documentation. (For putting online, etc)"
 option(SC_QT "Build SuperCollider with Qt GUI features" ON)
 option(SC_IDE "Build Qt IDE." ON)
 if(SC_QT)
-    message( STATUS "Compiling with Qt GUI" )
+    message(STATUS "Compiling with Qt GUI")
 else()
     if(SC_IDE)
-        message( STATUS "Not compiling SC IDE, because it requires Qt but SC_QT is False" )
+        message(STATUS "Not compiling SC IDE, because it requires Qt but SC_QT is False")
         set(SC_IDE False)
     endif()
 endif()
@@ -254,7 +254,7 @@ endif()
 
 if(SYSTEM_BOOST)
     set(Boost_USE_MULTITHREADED      ON)
-    find_package( Boost 1.50.0 COMPONENTS  thread system filesystem program_options regex test_exec_monitor )
+    find_package(Boost 1.50.0 COMPONENTS  thread system filesystem program_options regex test_exec_monitor)
 endif()
 
 if(Boost_FOUND)
@@ -289,7 +289,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANG)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
     endif()
 
-    if( CMAKE_VERSION VERSION_LESS 3.1 )
+    if(CMAKE_VERSION VERSION_LESS 3.1)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
         set(CMAKE_CXX_LINK_FLAGS "${CMAKE_CXX_LINK_FLAGS} -std=c++11")
         if(CMAKE_COMPILER_IS_CLANG)
@@ -297,7 +297,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANG)
             set(CMAKE_CXX_LINK_FLAGS "${CMAKE_CXX_LINK_FLAGS} -stdlib=libc++")
         endif()
     else()
-        set( CMAKE_CXX_STANDARD 11 )
+        set(CMAKE_CXX_STANDARD 11)
 
         if(CMAKE_COMPILER_IS_CLANG)
             # workaround
@@ -307,7 +307,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANG)
     endif()
 
     if(FORTIFY)
-        add_definitions( -D_FORTIFY_SOURCE=2 )
+        add_definitions(-D_FORTIFY_SOURCE=2)
     endif()
 
     add_definitions(-fvisibility=hidden)
@@ -437,21 +437,21 @@ if(APPLE)
         #if there are folders inside SCCLassLibrary abort cmake.
         file(GLOB classlibraryfolders "${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary/[^.]*")
         foreach(onedirectory ${classlibraryfolders})
-            message( "${onedirectory}" )
+            message("${onedirectory}")
             if(NOT IS_SYMLINK "${onedirectory}")
-                message(FATAL_ERROR "Symlinking will fail ! SCClassLibrary folder already exists and has directories inside, please delete it first." )
+                message(FATAL_ERROR "Symlinking will fail ! SCClassLibrary folder already exists and has directories inside, please delete it first.")
             endif()
         endforeach()
 
-        message(STATUS "Will create symlink of SCClassLibrary to ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary" )
+        message(STATUS "Will create symlink of SCClassLibrary to ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary")
         if(NOT EXISTS "{CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary")
-            install( CODE "EXECUTE_PROCESS(COMMAND mkdir ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary)" )
+            install(CODE "EXECUTE_PROCESS(COMMAND mkdir ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary)")
         endif()
         #symlink the folders inside SCCLassLibrary. Check if QtCollider folder should be symlinked or not.
         file(GLOB classlibraryfolders RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/SCClassLibrary" "SCClassLibrary/[^.]*")
         foreach(onedirectory ${classlibraryfolders})
             if(NOT "${onedirectory}" MATCHES "${SCCLASSLIB_EXCLUDE_REGEX}")
-                install( CODE
+                install(CODE
                     "EXECUTE_PROCESS(COMMAND ln -shF ${CMAKE_CURRENT_SOURCE_DIR}/SCClassLibrary/${onedirectory} ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary/${onedirectory} )" )
             endif()
         endforeach()
@@ -473,7 +473,7 @@ elseif(APPLE)
 endif()
 
 if(WIN32)
-    set( AdditionalInstallFiles
+    set(AdditionalInstallFiles
         README.md
         README_WINDOWS.md
         CHANGELOG.md
@@ -481,7 +481,7 @@ if(WIN32)
         AUTHORS
         )
 elseif(APPLE)
-    set( AdditionalInstallFiles
+    set(AdditionalInstallFiles
         README.md
         README_MACOS.md
         CHANGELOG.md
@@ -489,7 +489,7 @@ elseif(APPLE)
         AUTHORS
         )
 else()
-    set( AdditionalInstallFiles
+    set(AdditionalInstallFiles
         README.md
         README_LINUX.md
         CHANGELOG.md
@@ -504,9 +504,9 @@ if(INSTALL_HELP)
     if(SC_SYMLINK_CLASSLIB AND APPLE)
         message(STATUS "Will create symlink of HelpSource to ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/HelpSource")
         if(EXISTS "${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/HelpSource")
-            message(FATAL_ERROR "Symlinking will fail ! HelpSource folder already exists, please delete it first." )
+            message(FATAL_ERROR "Symlinking will fail ! HelpSource folder already exists, please delete it first.")
         endif()
-        install( CODE
+        install(CODE
             "EXECUTE_PROCESS(COMMAND ln -shF ${CMAKE_CURRENT_SOURCE_DIR}/HelpSource ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/HelpSource )" )
     elseif(NOT APPLE)
         install(DIRECTORY HelpSource
