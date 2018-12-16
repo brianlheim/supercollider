@@ -28,9 +28,12 @@ void str4cpy(int32 *dst, const char *src)
     while (*src) {
         *cdst++ = *src++;
     }
-    int charlen = cdst - cdst0;
+    int charlen
+        = cdst - cdst0;
     int pad = 4 - (charlen & 3);
-    for (int i = 0; i < pad; ++i) {
+    for (int i=0; i < pad; ++i) {
+
+        ;
         *cdst++ = 0;
     }
 }
