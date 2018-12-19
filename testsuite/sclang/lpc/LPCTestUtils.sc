@@ -260,7 +260,7 @@ LPCTestUtils {
 		// Master state (suffix `M` = `master`)
 		// Necessary for the case when alphabets differ in size.
 		var alphM = alphs.flatten(1).collect(_.asSymbol).asSet.asArray
-		              .collect(_.asString).sort;
+			.collect(_.asString).sort;
 		var alphSizeM = alphM.size;
 		var ctrM = 0!strlen;
 
@@ -539,7 +539,7 @@ LPCTestUtils {
 		// If both nan of some sort, return true. `endsWith` because some systems
 		// may print NaN as `-nan`.
 		if( (a.endsWith(nanString) || a.endsWith(nanString_win)) &&
-			  (b.endsWith(nanString) || b.endsWith(nanString_win)) ) {
+			(b.endsWith(nanString) || b.endsWith(nanString_win)) ) {
 			this.debug(
 				"Ignoring a result because of nan."
 				"\tInput: " ++ input ++
@@ -552,7 +552,7 @@ LPCTestUtils {
 
 		// If both +inf, return true.
 		if( ((a == infString_pos) || (a == infString_pos_win)) &&
-			  ((b == infString_pos) || (b == infString_pos_win)) ) {
+			((b == infString_pos) || (b == infString_pos_win)) ) {
 			this.debug(
 				"Strings matched under cross-platform representations of +inf."
 				"\tInput: " ++ input ++
@@ -565,7 +565,7 @@ LPCTestUtils {
 
 		// If both -inf, return true.
 		if( ((a == infString_neg) || (a == infString_neg_win)) &&
-			  ((b == infString_neg) || (b == infString_neg_win)) ) {
+			((b == infString_neg) || (b == infString_neg_win)) ) {
 			this.debug(
 				"Strings matched under cross-platform representations of -inf."
 				"\tInput: " ++ input ++
