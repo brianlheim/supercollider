@@ -1,19 +1,19 @@
-/**
- * Two Auditory Scene Analysis (ASA) experiences
- * as proposed by Albert Bregman, Auditory Scene Analysis, MIT Press, 1990
- *
- * 1. Streaming: if rate of presentation and
- * frequency gap between the two series of sinusoidal tones are varied,
- * one or two stream(s) appear(s).
- *
- * 2. Miniature ASA Problem:
- * Three short sinusoidal segments.
- * Varying frequency distance of A and C with respect to B, and attack time of C, two groupings are possible:
- * (A-B)/C: a two note melody with a low tone (parallel)
- * A-(B+C): a simple tone and a complex tone (sequence)
- *
- * (andrea valle)
- */
+/*
+Two Auditory Scene Analysis (ASA) experiences
+as proposed by Albert Bregman, Auditory Scene Analysis, MIT Press, 1990
+
+1. Streaming: if rate of presentation and
+frequency gap between the two series of sinusoidal tones are varied,
+one or two stream(s) appear(s).
+
+2. Miniature ASA Problem:
+Three short sinusoidal segments.
+Varying frequency distance of A and C with respect to B, and attack time of C, two groupings are possible:
+(A-B)/C: a two note melody with a low tone (parallel)
+A-(B+C): a simple tone and a complex tone (sequence)
+
+(andrea valle)
+*/
 
 
 // start server

@@ -6,12 +6,11 @@ TestParser : UnitTest {
 		var openTests, closedTests, errorTests;
 		var testCs, testCsValue;
 
-		/* A test compile string, and its interpreted value.
-		 * Will be added to the end of a test comment to make sure it
-		 * does/doesn't get interpreted as expected. Will also be
-		 * added to the start of an error-causing string to make sure
-		 * it causes an error.
-		 */
+		// A test compile string, and its interpreted value.
+		// Will be added to the end of a test comment to make sure it
+		// does/doesn't get interpreted as expected. Will also be
+		// added to the start of an error-causing string to make sure
+		// it causes an error.
 		testCs = " 3\n";
 		testCsValue = 3;
 
@@ -48,10 +47,9 @@ TestParser : UnitTest {
 			"/* /* /* */ */ */"
 		];
 
-		/* These should throw an error when interpreted.
-		 * Since the errors from .interpret cannot be caught, this just tests
-		 * that it returns nil no matter where the test string is added.
-		 */
+		// These should throw an error when interpreted.
+		// Since the errors from .interpret cannot be caught, this just tests
+		// that it returns nil no matter where the test string is added.
 		errorTests = [
 			"*/",
 			"*/*",

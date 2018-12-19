@@ -14,8 +14,8 @@
 play({
 	CombL.ar(
 		RLPF.ar(LFPulse.ar(FSinOsc.kr(0.05,0,80,160),0,0.4,0.05),
-		   FSinOsc.kr([0.6,0.7],0,3600,4000), 0.2),
-		0.3, [0.2,0.25], 2)
+			FSinOsc.kr([0.6,0.7],0,3600,4000), 0.2),
+			0.3, [0.2,0.25], 2)
 }))
 
 //////////////////////////////////////////////////////////////////////////
@@ -157,12 +157,12 @@ p = 8;	// number of partials per instrument
 		LFNoise1.kr(0.2, 2000, 2400),
 		0.2);
 	y = z * 0.6;
-	z +  [
-			  CombL.ar(y, 0.06, LFNoise1.kr(0.3.rand, 0.025, 0.035), 1)
-			+ CombL.ar(y, 0.06, LFNoise1.kr(0.3.rand, 0.025, 0.035), 1)
+	z + [
+		CombL.ar(y, 0.06, LFNoise1.kr(0.3.rand, 0.025, 0.035), 1)
+		+ CombL.ar(y, 0.06, LFNoise1.kr(0.3.rand, 0.025, 0.035), 1)
 		,
-			  CombL.ar(y, 0.06, LFNoise1.kr(0.3.rand, 0.025, 0.035), 1)
-			+ CombL.ar(y, 0.06, LFNoise1.kr(0.3.rand, 0.025, 0.035), 1)
+		CombL.ar(y, 0.06, LFNoise1.kr(0.3.rand, 0.025, 0.035), 1)
+		+ CombL.ar(y, 0.06, LFNoise1.kr(0.3.rand, 0.025, 0.035), 1)
 		]
 }.play;
 )
