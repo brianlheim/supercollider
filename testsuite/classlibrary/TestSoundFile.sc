@@ -48,7 +48,7 @@ TestSoundFile : UnitTest {
 		// collect all instance variables into a Dictionary, remove problematic 'fileptr'
 		instVars = soundFile.getSlots.asDict;
 		instVars.removeAt(\fileptr);
-		
+
 		this.assertEquals(instVars, info, "SoundFile information should match that of actual sound file");
 
 	}
