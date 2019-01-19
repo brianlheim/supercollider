@@ -23,5 +23,8 @@ cmake-build-*
 #build directories
 /build*
 
+# Python files
+__pycache__
+
 *~
 *.orig
