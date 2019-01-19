@@ -7,7 +7,7 @@
 using namespace nova;
 using namespace boost;
 
-BOOST_AUTO_TEST_CASE( time_tag_test_1 )
+BOOST_AUTO_TEST_CASE(time_tag_test_1)
 {
     {
         time_tag tt;
@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE( time_tag_test_1 )
     }
 }
 
-BOOST_AUTO_TEST_CASE( time_tag_test_2 )
+BOOST_AUTO_TEST_CASE(time_tag_test_2)
 {
     using namespace boost::posix_time;
     time_tag first = time_tag::from_ptime(ptime(microsec_clock::universal_time()));
@@ -52,13 +52,13 @@ BOOST_AUTO_TEST_CASE( time_tag_test_2 )
     BOOST_REQUIRE(first <= next);
 }
 
-BOOST_AUTO_TEST_CASE( time_tag_test_3 )
+BOOST_AUTO_TEST_CASE(time_tag_test_3)
 {
     using namespace boost::posix_time;
     time_tag now = time_tag::from_ptime(ptime(microsec_clock::universal_time()));
 
     ptime pnow = now.to_ptime();
 
-/*     std::cout << now.get_secs() << std::endl; */
-/*     std::cout << pnow << std::endl; */
+    /*     std::cout << now.get_secs() << std::endl; */
+    /*     std::cout << pnow << std::endl; */
 }
