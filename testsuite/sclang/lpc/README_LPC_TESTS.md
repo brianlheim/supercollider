@@ -13,11 +13,14 @@ to the language specification or compiler are being considered.
 
 ### How to run these tests
 
+To make the tests run faster and avoid excessive error outputs, you can apply
+the patch in this directory, `quiet_sclang.patch`.
+
 1. Unzip test\_data.zip.
 2. Add all the files in the /lpc directory to your SuperCollider class path
 (make sure you also have the UnitTest classes).
-3. Configure your class library so that only the core library, the UnitTest 
-quark, and these test classes are compiled. This is very important: some 
+3. Configure your class library so that only the core library, the UnitTest
+quark, and these test classes are compiled. This is very important: some
 non-core components such as AY.sc and the MathLib quark will affect parsing.
 4. Run the code in test\_script.scd
 5. If there are any differences, they will be written to files in the

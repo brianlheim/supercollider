@@ -1,0 +1,198 @@
+diff --git a/lang/LangPrimSource/PyrPrimitive.cpp b/lang/LangPrimSource/PyrPrimitive.cpp
+index aed956873..581370bdd 100644
+--- a/lang/LangPrimSource/PyrPrimitive.cpp
++++ b/lang/LangPrimSource/PyrPrimitive.cpp
+@@ -2684 +2683,0 @@ int prCompileString(struct VMGlobals *g, int numArgsPushed)
+-			error("Command line parse failed\n");
+diff --git a/lang/LangSource/PyrLexer.cpp b/lang/LangSource/PyrLexer.cpp
+index 62ab1ebba..9455a3147 100644
+--- a/lang/LangSource/PyrLexer.cpp
++++ b/lang/LangSource/PyrLexer.cpp
+@@ -397 +396,0 @@ start:
+-				post("opening bracket was a '%c', but found a '%c'\n",d,c);
+@@ -402 +400,0 @@ start:
+-			post("unmatched '%c'\n",c);
+@@ -412 +409,0 @@ start:
+-				post("opening bracket was a '%c', but found a '%c'\n",d,c);
+@@ -417 +413,0 @@ start:
+-			post("unmatched '%c'\n",c);
+@@ -427 +422,0 @@ start:
+-				post("opening bracket was a '%c', but found a '%c'\n",d,c);
+@@ -433 +427,0 @@ start:
+-			post("unmatched '%c'\n",c);
+@@ -722,2 +715,0 @@ symbol3 : {
+-				post("Symbol open at end of line on line %d of %s\n",
+-					 startline+errLineOffset, printingCurrfilename.c_str());
+@@ -735,2 +726,0 @@ symbol3 : {
+-			post("Open ended symbol started on line %d of %s\n",
+-				startline+errLineOffset, printingCurrfilename.c_str());
+@@ -769,2 +758,0 @@ string1 : {
+-			post("Open ended string started on line %d of %s\n",
+-				startline + errLineOffset, printingCurrfilename.c_str());
+@@ -817,2 +804,0 @@ comment2 : {
+-			post("Open ended comment started on line %d of %s\n",
+-				startline + errLineOffset, printingCurrfilename.c_str());
+@@ -830,3 +815,0 @@ error1:
+-	post("illegal input string '%s' \n   in %s line %d char %d\n",
+-		yytext, printingCurrfilename.c_str(), lineno+errLineOffset, charno);
+-	post("code %d\n", c);
+@@ -837 +819,0 @@ error2:
+-	post("  in %s line %d char %d\n", printingCurrfilename.c_str(), lineno+errLineOffset, charno);
+@@ -1196,2 +1177,0 @@ void yyerror(const char *s)
+-	error("%s\n",s);
+-	postErrorLine(lineno, linepos, charno);
+@@ -1205,2 +1184,0 @@ void fatal()
+-	error("Parse error\n");
+-	postErrorLine(lineno, linepos, charno);
+@@ -1217,2 +1194,0 @@ void postErrorLine(int linenum, int start, int charpos)
+-	post("  in %s\n", printingCurrfilename.c_str());
+-	post("  line %d char %d:\n\n", linenum+errLineOffset, charpos);
+@@ -1233,4 +1208,0 @@ void postErrorLine(int linenum, int start, int charpos)
+-	post("  %s\n  ", str);
+-	for (i=0; i<charpos-yylen; i++) post(" ");
+-	for (i=0; i<yylen; i++) post("^");
+-	post("\n");
+@@ -1246 +1217,0 @@ void postErrorLine(int linenum, int start, int charpos)
+-		post("  %s\n", str);
+@@ -1248 +1218,0 @@ void postErrorLine(int linenum, int start, int charpos)
+-	post("-----------------------------------\n", str);
+@@ -1326 +1295,0 @@ start:
+-				post("opening bracket was a '%c', but found a '%c'\n",d,c);
+@@ -1331 +1299,0 @@ start:
+-			post("unmatched '%c'\n",c);
+@@ -1342 +1309,0 @@ start:
+-				post("opening bracket was a '%c', but found a '%c'\n",d,c);
+@@ -1347 +1313,0 @@ start:
+-			post("unmatched '%c'\n",c);
+@@ -1357 +1322,0 @@ start:
+-				post("opening bracket was a '%c', but found a '%c'\n",d,c);
+@@ -1362 +1326,0 @@ start:
+-			post("unmatched '%c'\n",c);
+@@ -1382,2 +1345,0 @@ symbol3 : {
+-			post("Open ended symbol started on line %d of %s\n",
+-				 startline, printingCurrfilename.c_str());
+@@ -1401,2 +1362,0 @@ string1 : {
+-			post("Open ended string started on line %d of %s\n",
+-				 startline, printingCurrfilename.c_str());
+@@ -1433,2 +1392,0 @@ comment2 : {
+-			post("Open ended comment started on line %d of %s\n",
+-				 startline, printingCurrfilename.c_str());
+@@ -1441 +1398,0 @@ error1:
+-	post("  in %s line %d char %d\n", printingCurrfilename.c_str(), lineno, charno);
+@@ -1488,3 +1444,0 @@ ClassDependancy* newClassDependancy(PyrSymbol *className, PyrSymbol *superClassN
+-		error("duplicate Class found: '%s' \n", className->name);
+-		post("%s\n",className->classdep->fileSym->name);
+-		postfl("%s\n\n",fileSym->name);
+@@ -1525,2 +1478,0 @@ void buildDepTree()
+-					error("Superclass '%s' of class '%s' is not defined in any file.\n%s\n",
+-						sym->classdep->superClassName->name, sym->classdep->className->name,sym->classdep->fileSym->name);
+@@ -1611,2 +1562,0 @@ void compileClass(PyrSymbol *fileSym, int startPos, int endPos, int lineOffset)
+-			error("file '%s' parse failed\n", SC_Codecvt::path_to_utf8_str(pathname).c_str());
+-			postfl("error parsing\n");
+@@ -1735 +1684,0 @@ bool parseOneClass(PyrSymbol *fileSym)
+-					postfl("Expected %c.  got token: '%s' %d\n", OPENCURLY, yytext, token);
+@@ -1741 +1689,0 @@ bool parseOneClass(PyrSymbol *fileSym)
+-				post("Expected superclass name.  got token: '%s' %d\n", yytext, token);
+@@ -1752 +1699,0 @@ bool parseOneClass(PyrSymbol *fileSym)
+-			post("Expected ':' or %c.  got token: '%s' %d\n", OPENCURLY, yytext, token);
+@@ -1766 +1712,0 @@ bool parseOneClass(PyrSymbol *fileSym)
+-			post("Expected class name.  got token: '%s' %d\n", yytext, token);
+diff --git a/lang/LangSource/PyrParseNode.cpp b/lang/LangSource/PyrParseNode.cpp
+index 6908ec3e3..f3eb2545c 100644
+--- a/lang/LangSource/PyrParseNode.cpp
++++ b/lang/LangSource/PyrParseNode.cpp
+@@ -218 +217,0 @@ void compilePushVar(PyrParseNode *node, PyrSymbol *varName)
+-			error("Class not defined.\n");
+@@ -283 +281,0 @@ void compilePushVar(PyrParseNode *node, PyrSymbol *varName)
+-		error("Variable '%s' not defined.\n", varName->name);
+@@ -301 +298,0 @@ void PyrCurryArgNode::compile(PyrSlot *result)
+-		error("found _ argument outside of a call.\n");
+@@ -323 +319,0 @@ void PyrSlotNode::compile(PyrSlot *result)
+-		error("compilePyrSlotNode: shouldn't get here.\n");
+@@ -345,4 +340,0 @@ void PyrClassExtNode::compile(PyrSlot *result)
+-		error("Class extension for nonexistent class '%s'\n     In file:'%s'\n",
+-			slotRawSymbol(&mClassName->mSlot)->name,
+-			SC_Codecvt::path_to_utf8_str(relpath).c_str()
+-		);
+@@ -447 +438,0 @@ bool compareVarDefs(PyrClassNode* node, PyrClass* classobj)
+-		error("You may not change variable definitions of intrinsic classes.\n");
+@@ -531,3 +521,0 @@ PyrClass* getNodeSuperclass(PyrClassNode *node)
+-			error("Cannot find superclass '%s' for class '%s'\n",
+-				slotSymString(&node->mSuperClassName->mSlot),
+-				slotSymString(&node->mClassName->mSlot));
+@@ -784,2 +771,0 @@ int getIndexType(PyrClassNode *classnode)
+-			error("Illegal indexed type. Must be one of:\n"
+-				"   slot, double, float, int8, int16, int32, char\n");
+@@ -851,2 +836,0 @@ void PyrClassNode::compile(PyrSlot *result)
+-					error("Superclass of '%s' does not match intrinsic definition.\n",
+-						slotRawSymbol(&mClassName->mSlot)->name);
+@@ -858,2 +841,0 @@ void PyrClassNode::compile(PyrSlot *result)
+-					error("Index type of '%s' does not match intrinsic definition.\n",
+-						slotRawSymbol(&mClassName->mSlot)->name);
+@@ -863,2 +844,0 @@ void PyrClassNode::compile(PyrSlot *result)
+-				error("Class '%s' declaration doesn't match intrinsic definition.\n",
+-						slotRawSymbol(&mClassName->mSlot)->name);
+@@ -1198 +1177,0 @@ void installByteCodes(PyrBlock *block)
+-			error("installByteCodes: zero length byte codes\n");
+@@ -1201 +1179,0 @@ void installByteCodes(PyrBlock *block)
+-		error("installByteCodes: NULL byte codes\n");
+@@ -1231,2 +1208,0 @@ void PyrMethodNode::compile(PyrSlot *result)
+-		error("Method %s:%s already defined.\n",
+-			slotRawSymbol(&slotRawClass(&oldmethod->ownerclass)->name)->name, slotRawSymbol(&oldmethod->name)->name);
+@@ -1325,3 +1300,0 @@ void PyrMethodNode::compile(PyrSlot *result)
+-						error("Argument '%s' already declared in %s:%s\n",
+-							slotRawSymbol(varslot)->name,
+-							slotRawSymbol(&gCompilingClass->name)->name, slotRawSymbol(&gCompilingMethod->name)->name);
+@@ -1351,3 +1323,0 @@ void PyrMethodNode::compile(PyrSlot *result)
+-						error("Argument '%s' already declared in %s:%s\n",
+-							slotRawSymbol(varslot)->name,
+-							slotRawSymbol(&gCompilingClass->name)->name, slotRawSymbol(&gCompilingMethod->name)->name);
+@@ -1402,3 +1371,0 @@ void PyrMethodNode::compile(PyrSlot *result)
+-					error("Variable '%s' already declared in %s:%s\n",
+-						slotRawSymbol(varslot)->name,
+-						slotRawSymbol(&gCompilingClass->name)->name, slotRawSymbol(&gCompilingMethod->name)->name);
+@@ -1412,3 +1378,0 @@ void PyrMethodNode::compile(PyrSlot *result)
+-					error("Variable '%s' already declared in %s:%s\n",
+-						slotRawSymbol(varslot)->name,
+-						slotRawSymbol(&gCompilingClass->name)->name, slotRawSymbol(&gCompilingMethod->name)->name);
+@@ -2718 +2681,0 @@ void compileSwitchMsg(PyrCallNode* node)
+-			error("Missing argument in switch statement");
+@@ -3433 +3395,0 @@ void compileAssignVar(PyrParseNode* node, PyrSymbol* varName, bool drop)
+-		error("You may not assign to '%s'.", varName->name);
+@@ -3438 +3399,0 @@ void compileAssignVar(PyrParseNode* node, PyrSymbol* varName, bool drop)
+-		error("You may not assign to a class name.");
+@@ -3479 +3439,0 @@ void compileAssignVar(PyrParseNode* node, PyrSymbol* varName, bool drop)
+-				error("You may not assign to a constant.");
+@@ -3504 +3463,0 @@ void compileAssignVar(PyrParseNode* node, PyrSymbol* varName, bool drop)
+-		error("Variable '%s' not defined.\n", varName->name);
+@@ -3544 +3502,0 @@ void PyrSetterNode::compileCall(PyrSlot* result)
+-		error("Setter method called with too many arguments.\n");
+@@ -3741,2 +3698,0 @@ void PyrLitListNode::compile(PyrSlot* result)
+-		error("Only Array is supported as literal type.\n");
+-		post("Compiling as an Array.\n");
+@@ -3911 +3866,0 @@ void PyrBlockNode::compile(PyrSlot* slotResult)
+-		error("Too many arguments in function definition (> 255)\n");
+@@ -3917 +3871,0 @@ void PyrBlockNode::compile(PyrSlot* slotResult)
+-		error("Too many arguments in function definition (> 255).\n");
+@@ -3967,3 +3920,0 @@ void PyrBlockNode::compile(PyrSlot* slotResult)
+-					error("Function argument '%s' already declared in %s:%s\n",
+-						slotRawSymbol(varslot)->name,
+-						slotRawSymbol(&gCompilingClass->name)->name, slotRawSymbol(&gCompilingMethod->name)->name);
+@@ -3988,3 +3938,0 @@ void PyrBlockNode::compile(PyrSlot* slotResult)
+-				error("Function argument '%s' already declared in %s:%s\n",
+-					slotRawSymbol(varslot)->name,
+-					slotRawSymbol(&gCompilingClass->name)->name, slotRawSymbol(&gCompilingMethod->name)->name);
+@@ -4012,3 +3959,0 @@ void PyrBlockNode::compile(PyrSlot* slotResult)
+-					error("Function variable '%s' already declared in %s:%s\n",
+-						slotRawSymbol(varslot)->name,
+-						slotRawSymbol(&gCompilingClass->name)->name, slotRawSymbol(&gCompilingMethod->name)->name);
+@@ -4022,3 +3966,0 @@ void PyrBlockNode::compile(PyrSlot* slotResult)
+-					error("Function variable '%s' already declared in %s:%s\n",
+-						slotRawSymbol(varslot)->name,
+-						slotRawSymbol(&gCompilingClass->name)->name, slotRawSymbol(&gCompilingMethod->name)->name);
+@@ -4233,2 +4174,0 @@ int conjureSelectorIndex(PyrParseNode *node, PyrBlock* func,
+-		error("Selector table too big: too many classes, method selectors or function definitions in this function. Simplify the function.\n");
+-		post("Next selector was: %s\n", selector->name);
+@@ -4284,2 +4223,0 @@ int conjureLiteralSlotIndex(PyrParseNode *node, PyrBlock* func, PyrSlot *slot)
+-		error("Selector table too big: too many classes, method selectors or function definitions in this function. Simplify the function.\n");
+-		post("Next literal was:\n");
