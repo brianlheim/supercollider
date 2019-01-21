@@ -27,11 +27,12 @@
 #include "../widgets/lookup_dialog.hpp"
 #include "../widgets/code_editor/highlighter.hpp"
 #include "../widgets/style/style.hpp"
+#include "../../../QtCollider/hacks/hacks_mac.hpp"
+#include "../primitives/localsocket_utils.hpp"
+
 #include "../widgets/util/WebSocketClientWrapper.hpp"
 #include "../widgets/util/WebSocketTransport.hpp"
 #include "../widgets/util/IDEWebChannelWrapper.hpp"
-#include "../../../QtCollider/hacks/hacks_mac.hpp"
-#include "../primitives/localsocket_utils.hpp"
 
 #include <yaml-cpp/node/node.h>
 #include <yaml-cpp/parser.h>
@@ -45,10 +46,12 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 #include <QDebug>
-#include <QWebChannel>
 #include <QStyleFactory>
+#include <QWebChannel>
 
 using namespace ScIDE;
+
+static void findOpenPort(QWebSocketServer &server);
 
 int main(int argc, char *argv[])
 {
@@ -132,23 +135,39 @@ int main(int argc, char *argv[])
     if (startInterpreter)
         main->scProcess()->startLanguage();
 
-    // setup HelpBrowser server
+    // set up HelpBrowser server
+    HelpBrowser *browser = win->helpBrowserDocklet()->browser();
     QWebSocketServer server("SCIDE HelpBrowser Server", QWebSocketServer::NonSecureMode);
-    if (!server.listen(QHostAddress::LocalHost, 12344)) {
-        qFatal("Failed to open web socket server.");
-        return 1;
+    findOpenPort(server);
+    if (server.serverPort()) {
+        browser->setServerPort(server.serverPort());
+
+        // setup comm channel
+        WebSocketClientWrapper clientWrapper(&server);
+        QWebChannel channel;
+        QObject::connect(&clientWrapper, &WebSocketClientWrapper::clientConnected, &channel, &QWebChannel::connectTo);
+
+        // publish IDE interface
+        IDEWebChannelWrapper ideWrapper { browser };
+        channel.registerObject("IDE", &ideWrapper);
+
+        return app.exec();
+    } else {
+        qWarning("Failed to set up help browser server.");
+        return app.exec();
     }
+}
 
-    // setup comm channel
-    WebSocketClientWrapper clientWrapper(&server);
-    QWebChannel channel;
-    QObject::connect(&clientWrapper, &WebSocketClientWrapper::clientConnected, &channel, &QWebChannel::connectTo);
 
-    // publish IDE interface
-    IDEWebChannelWrapper ideWrapper { win->helpBrowserDocklet()->browser() };
-    channel.registerObject("IDE", &ideWrapper);
-
-    return app.exec();
+static void findOpenPort(QWebSocketServer &server)
+{
+    const int startPort = 12344;
+    for (int port = startPort; port < startPort + 8; ++port) {
+        bool success = server.listen(QHostAddress::LocalHost, port);
+        if (success) {
+            return;
+        }
+    }
 }
 
 

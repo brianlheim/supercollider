@@ -119,6 +119,8 @@ public:
 
     bool helpBrowserHasFocus() const;
 
+    void setServerPort(int serverPort) { mServerPort = serverPort; };
+
 public slots:
     void applySettings(Settings::Manager *);
     void goHome();
@@ -133,6 +135,7 @@ public slots:
     void openCommandLine();
     void findReferences();
     void onLinkClicked(const QUrl &, QWebEnginePage::NavigationType type, bool isMainFrame);
+    void onPageLoad();
 
 signals:
     void urlChanged();
@@ -157,6 +160,8 @@ private:
     QSize mSizeHint;
 
     QAction *mActions[ActionCount];
+
+    int mServerPort = 0; // if 0, server is not running
 };
 
 class HelpBrowserFindBox : public QLineEdit
