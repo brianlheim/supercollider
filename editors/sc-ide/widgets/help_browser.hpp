@@ -119,8 +119,7 @@ public:
 
     bool helpBrowserHasFocus() const;
 
-    bool mServerRunning = false;
-    int mServerPort = 12344;
+    void setUpServer(void);
 
 public slots:
     void applySettings(Settings::Manager *);
@@ -161,6 +160,9 @@ private:
     QSize mSizeHint;
 
     QAction *mActions[ActionCount];
+
+    bool mServerRunning = false;
+    int mServerPort = 12344;
 };
 
 class HelpBrowserFindBox : public QLineEdit

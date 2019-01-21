@@ -27,9 +27,6 @@
 #include "../widgets/lookup_dialog.hpp"
 #include "../widgets/code_editor/highlighter.hpp"
 #include "../widgets/style/style.hpp"
-#include "../widgets/util/WebSocketClientWrapper.hpp"
-#include "../widgets/util/WebSocketTransport.hpp"
-#include "../widgets/util/IDEWebChannelWrapper.hpp"
 #include "../../../QtCollider/hacks/hacks_mac.hpp"
 #include "../primitives/localsocket_utils.hpp"
 
@@ -45,7 +42,6 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 #include <QDebug>
-#include <QWebChannel>
 #include <QStyleFactory>
 
 using namespace ScIDE;
@@ -132,30 +128,7 @@ int main(int argc, char *argv[])
     if (startInterpreter)
         main->scProcess()->startLanguage();
 
-    // setup HelpBrowser server
-    QWebSocketServer server("SCIDE HelpBrowser Server", QWebSocketServer::NonSecureMode);
-    auto browser = win->helpBrowserDocklet()->browser();
-    bool success;
-    for (int i = 0; i < 8; i++) {
-        success = server.listen(QHostAddress::LocalHost, browser->mServerPort);
-        if (success) {
-            break;
-        }
-        browser->mServerPort += 1;
-    }
-    browser->mServerRunning = success;
-    if (success) {
-        // setup comm channel
-        WebSocketClientWrapper clientWrapper(&server);
-        QWebChannel channel;
-        QObject::connect(&clientWrapper, &WebSocketClientWrapper::clientConnected, &channel, &QWebChannel::connectTo);
-
-        // publish IDE interface
-        IDEWebChannelWrapper ideWrapper { browser };
-        channel.registerObject("IDE", &ideWrapper);
-    } else {
-        qWarning("Failed to set up help browser server.");
-    }
+    win->helpBrowserDocklet()->browser()->setUpServer();
 
     return app.exec();
 }
