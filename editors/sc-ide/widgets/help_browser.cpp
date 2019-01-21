@@ -115,6 +115,14 @@ HelpBrowser::HelpBrowser(QWidget *parent): QWidget(parent)
     setFocusProxy(mWebView);
 }
 
+void HelpBrowser::onPageLoad()
+{
+    if (!mServerRunning) {
+        return;
+    }
+    mWebView->page()->runJavaScript(QString("setUpWebChannel(%1)").arg(mServerPort));
+}
+
 void HelpBrowser::createActions()
 {
     QAction *action;

@@ -134,19 +134,28 @@ int main(int argc, char *argv[])
 
     // setup HelpBrowser server
     QWebSocketServer server("SCIDE HelpBrowser Server", QWebSocketServer::NonSecureMode);
-    if (!server.listen(QHostAddress::LocalHost, 12344)) {
-        qFatal("Failed to open web socket server.");
-        return 1;
+    auto browser = win->helpBrowserDocklet()->browser();
+    bool success;
+    for (int i = 0; i < 8; i++) {
+        success = server.listen(QHostAddress::LocalHost, browser->mServerPort);
+        if (success) {
+            break;
+        }
+        browser->mServerPort += 1;
     }
+    browser->mServerRunning = success;
+    if (success) {
+        // setup comm channel
+        WebSocketClientWrapper clientWrapper(&server);
+        QWebChannel channel;
+        QObject::connect(&clientWrapper, &WebSocketClientWrapper::clientConnected, &channel, &QWebChannel::connectTo);
 
-    // setup comm channel
-    WebSocketClientWrapper clientWrapper(&server);
-    QWebChannel channel;
-    QObject::connect(&clientWrapper, &WebSocketClientWrapper::clientConnected, &channel, &QWebChannel::connectTo);
-
-    // publish IDE interface
-    IDEWebChannelWrapper ideWrapper { win->helpBrowserDocklet()->browser() };
-    channel.registerObject("IDE", &ideWrapper);
+        // publish IDE interface
+        IDEWebChannelWrapper ideWrapper { browser };
+        channel.registerObject("IDE", &ideWrapper);
+    } else {
+        qWarning("Failed to set up help browser server.");
+    }
 
     return app.exec();
 }

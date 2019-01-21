@@ -119,6 +119,9 @@ public:
 
     bool helpBrowserHasFocus() const;
 
+    bool mServerRunning = false;
+    int mServerPort = 12344;
+
 public slots:
     void applySettings(Settings::Manager *);
     void goHome();
@@ -133,6 +136,7 @@ public slots:
     void openCommandLine();
     void findReferences();
     void onLinkClicked(const QUrl &, QWebEnginePage::NavigationType type, bool isMainFrame);
+    void onPageLoad();
 
 signals:
     void urlChanged();
