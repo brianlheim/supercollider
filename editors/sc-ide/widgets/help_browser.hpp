@@ -119,7 +119,7 @@ public:
 
     bool helpBrowserHasFocus() const;
 
-    void setUpServer(void);
+    void setUpServer();
 
 public slots:
     void applySettings(Settings::Manager *);
