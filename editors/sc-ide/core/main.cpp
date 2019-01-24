@@ -30,6 +30,10 @@
 #include "../../../QtCollider/hacks/hacks_mac.hpp"
 #include "../primitives/localsocket_utils.hpp"
 
+#include "../widgets/util/WebSocketClientWrapper.hpp"
+#include "../widgets/util/WebSocketTransport.hpp"
+#include "../widgets/util/IDEWebChannelWrapper.hpp"
+
 #include <yaml-cpp/node/node.h>
 #include <yaml-cpp/parser.h>
 
@@ -43,6 +47,7 @@
 #include <QTranslator>
 #include <QDebug>
 #include <QStyleFactory>
+#include <QWebChannel>
 
 using namespace ScIDE;
 
@@ -128,9 +133,38 @@ int main(int argc, char *argv[])
     if (startInterpreter)
         main->scProcess()->startLanguage();
 
-    win->helpBrowserDocklet()->browser()->setUpServer();
+    // set up HelpBrowser server
+    HelpBrowser *browser = win->helpBrowserDocklet()->browser();
+    QWebSocketServer server("SCIDE HelpBrowser Server", QWebSocketServer::NonSecureMode);
+    findOpenPort(server);
+    if (server.serverPort()) {
+        browser->setServerPort(server.serverPort());
+
+        // setup comm channel
+        WebSocketClientWrapper clientWrapper(&server);
+        QWebChannel channel;
+        QObject::connect(&clientWrapper, &WebSocketClientWrapper::clientConnected, &channel, &QWebChannel::connectTo);
+
+        // publish IDE interface
+        IDEWebChannelWrapper ideWrapper { browser };
+        channel.registerObject("IDE", &ideWrapper);
+    } else {
+        qWarning("Failed to set up help browser server.");
+    }
 
     return app.exec();
+}
+
+
+static void findOpenPort(QWebSocketServer &server)
+{
+    const int startPort = 12344;
+    for (int port = startPort; port < startPort + 8; ++port) {
+        bool success = server.listen(QHostAddress::LocalHost, port);
+        if (success) {
+            return;
+        }
+    }
 }
 
 

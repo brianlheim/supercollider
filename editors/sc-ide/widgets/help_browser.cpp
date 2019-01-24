@@ -27,9 +27,6 @@
 #include "../core/util/overriding_action.hpp"
 #include "QtCollider/widgets/web_page.hpp"
 #include "QtCollider/hacks/hacks_qt.hpp"
-#include "../widgets/util/WebSocketClientWrapper.hpp"
-#include "../widgets/util/WebSocketTransport.hpp"
-#include "../widgets/util/IDEWebChannelWrapper.hpp"
 
 #include <QVBoxLayout>
 #include <QToolBar>
@@ -43,7 +40,6 @@
 #include <QDesktopWidget>
 #include <QDebug>
 #include <QKeyEvent>
-#include <QWebChannel>
 
 #ifdef Q_OS_MAC
 #    include <QStyleFactory> // QStyleFactory::create, see below
@@ -119,38 +115,13 @@ HelpBrowser::HelpBrowser(QWidget *parent): QWidget(parent)
     setFocusProxy(mWebView);
 }
 
-void HelpBrowser::setUpServer()
-{
-
-    // setup HelpBrowser server
-    QWebSocketServer server("SCIDE HelpBrowser Server", QWebSocketServer::NonSecureMode);
-    for (int i = 0; i < 8; i++) {
-        mServerRunning = server.listen(QHostAddress::LocalHost, mServerPort);
-        if (mServerRunning) {
-            break;
-        }
-        mServerPort += 1;
-    }
-    if (mServerRunning) {
-        // setup comm channel
-        WebSocketClientWrapper clientWrapper(&server);
-        QWebChannel channel;
-        QObject::connect(&clientWrapper, &WebSocketClientWrapper::clientConnected, &channel, &QWebChannel::connectTo);
-
-        // publish IDE interface
-        IDEWebChannelWrapper ideWrapper { this };
-        channel.registerObject("IDE", &ideWrapper);
-    } else {
-        qWarning("Failed to set up help browser server.");
-    }
-}
+void HelpBrowser::setServerPort(int serverPort) { mServerPort = serverPort; }
 
 void HelpBrowser::onPageLoad()
 {
-    if (!mServerRunning) {
-        return;
+    if (mServerPort) {
+        mWebView->page()->runJavaScript(QString("setUpWebChannel(%1)").arg(mServerPort));
     }
-    mWebView->page()->runJavaScript(QString("setUpWebChannel(%1)").arg(mServerPort));
 }
 
 void HelpBrowser::createActions()
