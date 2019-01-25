@@ -23,7 +23,6 @@
 #include <QAbstractNativeEventFilter>
 #include <QAction>
 #include <QObject>
-#include <QWebSocketServer>
 
 #include <QtNetwork/QLocalSocket>
 #include <QtNetwork/QLocalServer>
@@ -33,8 +32,6 @@
 #include "doc_manager.hpp"
 #include "settings/manager.hpp"
 #include "../widgets/style/style.hpp"
-
-static void findOpenPort(QWebSocketServer &server);
 
 namespace ScIDE {
 

@@ -51,6 +51,8 @@
 
 using namespace ScIDE;
 
+static void findOpenPort(QWebSocketServer &server);
+
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
