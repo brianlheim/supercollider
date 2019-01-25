@@ -115,8 +115,6 @@ HelpBrowser::HelpBrowser(QWidget *parent): QWidget(parent)
     setFocusProxy(mWebView);
 }
 
-void HelpBrowser::setServerPort(int serverPort) { mServerPort = serverPort; }
-
 void HelpBrowser::onPageLoad()
 {
     if (mServerPort) {

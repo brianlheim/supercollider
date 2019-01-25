@@ -119,7 +119,7 @@ public:
 
     bool helpBrowserHasFocus() const;
 
-    void setServerPort(int serverPort);
+    void setServerPort(int serverPort) { mServerPort = serverPort; };
 
 public slots:
     void applySettings(Settings::Manager *);
