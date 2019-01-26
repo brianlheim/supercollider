@@ -150,11 +150,12 @@ int main(int argc, char *argv[])
         // publish IDE interface
         IDEWebChannelWrapper ideWrapper { browser };
         channel.registerObject("IDE", &ideWrapper);
+
+        return app.exec();
     } else {
         qWarning("Failed to set up help browser server.");
+        return app.exec();
     }
-
-    return app.exec();
 }
 
 
