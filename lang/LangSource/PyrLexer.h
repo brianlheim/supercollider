@@ -98,6 +98,7 @@ int processstring(char *token);
 int processkeywordbinop(char *token);
 
 void postErrorLine(int linenum, int start, int charpos);
+void postErrorLine(int linenum, int start, int charpos, int textLen);
 bool scanForClosingBracket();
 void parseClasses();
 

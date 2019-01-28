@@ -179,6 +179,7 @@ PyrParseNode::PyrParseNode(int inClassNo)
 	mTail = this;
 	mCharno = ::charno;
 	mLineno = ::lineno;
+    mTextLen = ::yylen;
 	mParens = 0;
 }
 
@@ -197,6 +198,11 @@ void compileNodeList(PyrParseNode *node, bool onTailBranch)
 void nodePostErrorLine(PyrParseNode* node)
 {
 	postErrorLine(node->mLineno, linestarts[node->mLineno], node->mCharno);
+}
+
+void nodePostErrorLineTextLen(PyrParseNode* node)
+{
+	postErrorLine(node->mLineno, linestarts[node->mLineno], node->mCharno, node->mTextLen);
 }
 
 PyrPushNameNode* newPyrPushNameNode(PyrSlotNode *slotNode)

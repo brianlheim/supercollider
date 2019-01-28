@@ -1207,6 +1207,48 @@ void fatal()
 	//Debugger();
 }
 
+void postErrorLine(int linenum, int start, int charpos, int textLen)
+{
+	int i, j, end, pos;
+	char str[256];
+
+	//post("start %d\n", start);
+	//parseFailed = true;
+	post("  in %s\n", printingCurrfilename.c_str());
+	post("  line %d char %d:\n\n", linenum+errLineOffset, charpos);
+	// nice: postfl previous line for context
+
+	//postfl("text '%s' %d\n", text, text);
+
+	// postfl error line for context
+	pos = start + charpos;
+	for (i=pos; i < textlen; ++i) {
+		if (text[i] == 0 || text[i] == '\r' || text[i] == '\n') break;
+	}
+	end=i;
+	for (i=start, j=0; i<end && j<255; ++i) {
+		str[j++] = text[i];
+	}
+	str[j] = 0;
+	post("  %s\n  ", str);
+	for (i=0; i<charpos-textLen; i++) post(" ");
+	for (i=0; i<textLen; i++) post("^");
+	post("\n");
+
+	i=end+1;
+	if (i<textlen) {
+		// postfl following line for context
+		for (j=0; j<255 && i<textlen; ++i) {
+			if (text[i] == 0 ||text[i] == '\r' || text[i] == '\n') break;
+			str[j++] = text[i];
+		}
+		str[j] = 0;
+		post("  %s\n", str);
+	}
+	post("-----------------------------------\n", str);
+}
+
+
 void postErrorLine(int linenum, int start, int charpos)
 {
 	int i, j, end, pos;
