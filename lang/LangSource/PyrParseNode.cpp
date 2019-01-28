@@ -2315,6 +2315,23 @@ bool isAtomicLiteral(PyrParseNode *node)
 	return res;
 }
 
+PyrSlot* slotFromAtomicLiteral(PyrParseNode * node)
+{
+    assert(isAtomicLiteral(node) && "Node is not an atomic literal");
+    auto & slot = static_cast<PyrPushLitNode *>(node)->mSlot;
+    return &slot;
+}
+
+// TODO const everywhere?
+PyrSlot* slotFromInlineableAtomicLiteralBlock(PyrParseNode* node)
+{
+    assert(isAnInlineableAtomicLiteralBlock(node) && "Node is not an inlineable atomic literal block");
+    auto * blockLitNode = static_cast<PyrPushLitNode *>(node);
+    auto * blockNode = reinterpret_cast<PyrBlockNode *>(slotRawPtr(&blockLitNode->mSlot));
+    auto * blockBody = static_cast<PyrDropNode *>(blockNode->mBody);
+    return slotFromAtomicLiteral(blockBody->mExpr1);
+}
+
 bool isWhileTrue(PyrParseNode *node)
 {
 	bool res = false;
@@ -2711,6 +2728,61 @@ void compileCaseMsg(PyrCallNodeBase2* node)
 	}
 }
 
+PyrSlot * slotFromAtomicLiteralOrAtomicLiteralBlock(PyrParseNode* node)
+{
+    if (isAtomicLiteral(node))
+        return slotFromAtomicLiteral(node);
+    else if (isAnInlineableAtomicLiteralBlock(node))
+        return slotFromInlineableAtomicLiteralBlock(node);
+
+    assert(false);
+    return nullptr;
+}
+/**
+ * Checks whether the cases in a switch statement are unique.
+ *
+ * Only examines literals.
+ *
+ * Assumes the following:
+ *  - num args has already been validated as >= 2
+ */
+bool switchCasesAreUnique(PyrCallNode* node)
+{
+    auto* argNode = node->mArglist;
+    auto numArgs = nodeListLength(argNode);
+    assert(numArgs >= 2 && "Should not call with numArgs < 2");
+
+    argNode = argNode->mNext; // skip receiver
+
+    // hashtable of structs?
+    std::vector<decltype(argNode)> caseSlots;
+    caseSlots.reserve((numArgs - 1) / 2); // round down, eliminates trailing default case
+    while (argNode && argNode->mNext) {
+        // only check literal things
+        if (isAtomicLiteral(argNode) || isAnInlineableAtomicLiteralBlock(argNode))
+            caseSlots.push_back(argNode);
+
+        argNode = argNode->mNext->mNext;
+    }
+
+    bool success = true;
+    for (auto i = 0ULL; i < caseSlots.size(); ++i) {
+        for (auto j = i + 1; j < caseSlots.size(); ++j) {
+            auto* iSlot = slotFromAtomicLiteralOrAtomicLiteralBlock(caseSlots[i]);
+            auto* jSlot = slotFromAtomicLiteralOrAtomicLiteralBlock(caseSlots[j]);
+            if (SlotEq(iSlot, jSlot)) {
+                error("Cases are not unique in switch statement.\n");
+                nodePostErrorLineTextLen(caseSlots[i]);
+                nodePostErrorLineTextLen(caseSlots[j]);
+                compileErrors++;
+                success = false;
+            }
+        }
+    }
+
+    return success;
+}
+
 void compileSwitchMsg(PyrCallNode* node)
 {
 	PyrSlot dummy;
@@ -2721,9 +2793,10 @@ void compileSwitchMsg(PyrCallNode* node)
 		numArgs = nodeListLength(argnode);
 
 		if (numArgs <= 2) {
-			error("Missing argument in switch statement");
+			error("Missing argument in switch statement.\n");
 			nodePostErrorLine(node);
 			compileErrors++;
+            return;
 		};
 
 		argnode = argnode->mNext; // skip first arg.
@@ -2749,6 +2822,11 @@ void compileSwitchMsg(PyrCallNode* node)
 			}
 		}
 	}
+
+    if (! switchCasesAreUnique(node)) {
+        // TODO post matching cases
+        return;
+    }
 
 	if (canInline) {
 		PyrParseNode *argnode = node->mArglist;
@@ -2783,6 +2861,7 @@ void compileSwitchMsg(PyrCallNode* node)
 				PyrSlot value;
 				SetInt(&value, offset);
 				PyrPushLitNode* keyargnode = (PyrPushLitNode*)argnode;
+                // TODO replace with slot grabbbers above
 				if (isAtomicLiteral(argnode)) {
 					key = &keyargnode->mSlot;
 				} else {
