@@ -26,7 +26,7 @@ elseif(AUDIOAPI STREQUAL portaudio AND ((NOT WIN32) OR MSYS)) # MSYS like Apple
       message(FATAL_ERROR "Portaudio selected as audio API, but development files not found")
     endif()
 endif()
-message(STATUS "Audio API: ${AUDIOAPI}")
+message(STATUS "Scsynth audio API: ${AUDIOAPI}")
 
 set(scsynth_sources
 	SC_BufGen.cpp
