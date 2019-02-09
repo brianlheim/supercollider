@@ -118,6 +118,11 @@ if(NOT AUDIOAPI MATCHES "^(jack|coreaudio|portaudio)$")
 	message(FATAL_ERROR "Unrecognised audio API: ${AUDIOAPI}")
 endif()
 
+if(AUDIOAPI STREQUAL "coreaudio")
+	set(AUDIOAPI portaudio)
+  message(STATUS "Supernova: coreaudio API not implemented, using ${AUDIOAPI} instead")
+endif()
+
 if(AUDIOAPI STREQUAL jack)
     find_package(Jack)
     if(NOT JACK_FOUND)
@@ -129,7 +134,7 @@ elseif(AUDIOAPI STREQUAL portaudio AND ((NOT WIN32) OR MSYS)) # MSYS like Apple
         message(FATAL_ERROR "Portaudio selected as audio API, but development files not found")
     endif()
 endif()
-message(STATUS "Audio API: ${AUDIOAPI}")
+message(STATUS "Supernova audio API: ${AUDIOAPI}")
 
 if (AUDIOAPI STREQUAL jack)
     find_library(JACK NAMES jack)
