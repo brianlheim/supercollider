@@ -5,8 +5,7 @@ Date {
 	*localtime { ^this.new.localtime }
 	*gmtime { ^this.new.gmtime }
 	*new { arg year, month, day, hour, minute, second, dayOfWeek, rawSeconds;
-		var instance = super.newCopyArgs(year, month, day, hour, minute, second, dayOfWeek,
-			rawSeconds);
+		var instance = super.newCopyArgs(year, month, day, hour, minute, second, dayOfWeek, rawSeconds);
 		^instance.prInitialize;
 	}
 	*fromString { arg string, format;
