@@ -83,22 +83,24 @@ The format to use to parse the date string. Note that the supported input format
 
 To parse the above example string, you would use teletype::"%Y-%m-%d %H:%M:%S"::.
 
-method::getDate
-Get current date from system and create a date object from it.
+method::localtime
+Get current localized time from system and create a date object from it.
+
 code::
 (
-var a = Date.getDate;
+var a = Date.localtime;
 a.rawSeconds.postln;
 a.dayOfWeek.postln;
 a
 )
 ::
 
-method::localtime
-Get current localized time from system and create a date object from it.
-
 method::gmtime
 Get current strong::Greenwich Mean Time (GMT):: from system and create a date object from it.
+
+method::getDate
+
+Deprecated; use link::#-localtime:: instead.
 
 method::seed
 Get current date and return a value suitable for seeding a random number generator. See also link::Reference/randomSeed##randomSeed::.
@@ -113,6 +115,8 @@ thisThread.randSeed = a;
 ::
 
 InstanceMethods::
+
+private::getTime
 
 method::rawSeconds
 Get or set the receiver's raw time in seconds (relative to the "epoch" of January 1, 1970).
@@ -199,8 +203,8 @@ d = Date(rawSeconds: d.rawSeconds);
 method::format
 Obtain a date string with a given format. The character % is replaced by the appropriate value, which is derived from the letter that follows.
 code::
-Date.getDate.format("Today is %A. It is around %I o'clock (%p), in %B.");
-Date.getDate.format("%d/%m/%Y %H:%M");  // DD/MM/YYYY hh:mm
+Date.localtime.format("Today is %A. It is around %I o'clock (%p), in %B.");
+Date.localtime.format("%d/%m/%Y %H:%M");  // DD/MM/YYYY hh:mm
 ::
 
 discussion::

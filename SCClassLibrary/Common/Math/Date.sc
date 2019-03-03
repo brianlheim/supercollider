@@ -1,7 +1,6 @@
 Date {
 	var <>year, <>month=1, <>day=1, <>hour=0, <>minute=0, <>second=0, <>dayOfWeek, <>rawSeconds;
 
-	*getDate { ^this.localtime }
 	*localtime { ^this.new.localtime }
 	*gmtime { ^this.new.gmtime }
 	*new { arg year, month, day, hour, minute, second, dayOfWeek, rawSeconds;
