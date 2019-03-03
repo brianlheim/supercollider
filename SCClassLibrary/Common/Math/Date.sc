@@ -1,6 +1,5 @@
 Date {
-	var <>year=2000, <>month=1, <>day=1, <>hour=0, <>minute=0, <>second=0, <>dayOfWeek=6,
-		<>rawSeconds=0;
+	var <>year, <>month=1, <>day=1, <>hour=0, <>minute=0, <>second=0, <>dayOfWeek, <>rawSeconds;
 
 	*getDate { ^this.localtime }
 	*localtime { ^this.new.localtime }
