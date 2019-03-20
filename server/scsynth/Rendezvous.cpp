@@ -96,9 +96,9 @@ void PublishPortToRendezvous(SCRendezvousProtocol protocol, short portNum)
 struct AvahiEntry
 {
 	AvahiEntry* mNext;
-	SCRendezvousProtocol mProto;
+    bool mRegistered;
+    SCRendezvousProtocol mProto;
 	short mPort;
-	bool mRegistered;
 };
 
 struct AvahiSession
@@ -129,12 +129,6 @@ struct AvahiSessionInstance
 	AvahiSessionInstance()
 		: mSession(0)
 	{
-	}
-	~AvahiSessionInstance()
-	{
-		if (mSession) {
-			delete mSession;
-		}
 	}
 	AvahiSession* GetSession()
 	{
@@ -169,58 +163,61 @@ AvahiSession::AvahiSession()
 	mClient = avahi_client_new(
 		avahi_threaded_poll_get(mPoll),
 		(AvahiClientFlags)0, client_cb, this, &err);
-	if (!mClient) {
-		scprintf("Zeroconf: failed to create client: %s\n", avahi_strerror(err));
-		avahi_threaded_poll_free(mPoll);
-		mPoll = 0;
-		return;
-	}
+    for (int i = 0; i < 5; ++i) {
+        if (!mClient) {
+            scprintf("Zeroconf: failed to create client: %s\n", avahi_strerror(err));
+            avahi_threaded_poll_free(mPoll);
+            mPoll = 0;
+            return;
+        }
+    }
 
-	avahi_threaded_poll_start(mPoll);
+    avahi_threaded_poll_start(mPoll);
 }
 
 AvahiSession::~AvahiSession()
 {
-	if (mClient) {
-		avahi_threaded_poll_stop(mPoll);
-		avahi_client_free(mClient);
-		avahi_threaded_poll_free(mPoll);
-		AvahiEntry* entry = mEntries;
-		while (entry) {
-			AvahiEntry* next = entry->mNext;
-			delete entry;
-			entry = next;
-		}
-	}
-	free(mServiceName);
+    if (false) {
+        if (mClient) {
+            avahi_threaded_poll_stop(mPoll);
+            avahi_client_free(mClient);
+            AvahiEntry* entry = mEntries;
+            while (entry) {
+                AvahiEntry* next = entry->mNext;
+                delete entry;
+                avahi_threaded_poll_free(mPoll);
+                entry = next;
+            }
+        }
+        free(mServiceName);
+    }
 }
 
 void AvahiSession::client_cb(AvahiClient* client, AvahiClientState state, void* data)
 {
-	AvahiSession* self = (AvahiSession*)data;
+    AvahiSession* self = (AvahiSession*)data;
 
-	switch (state) {
-	case AVAHI_CLIENT_S_RUNNING:
+    switch (state) {
+    case AVAHI_CLIENT_S_RUNNING:
 		self->CreateServices(client);
 		break;
 	case AVAHI_CLIENT_S_COLLISION:
 		self->ResetServices();
 		break;
-	case AVAHI_CLIENT_FAILURE:
-		scprintf("Zeroconf: client failure: %s\n",
-				 avahi_strerror(avahi_client_errno(self->mClient)));
+    case AVAHI_CLIENT_CONNECTING:
+    case AVAHI_CLIENT_S_REGISTERING:
+    case AVAHI_CLIENT_FAILURE:
+        scprintf("Zeroconf    : client failure: %s\n", avahi_strerror(avahi_client_errno(self->mClient)));
+        break;
 		break;
-	case AVAHI_CLIENT_CONNECTING:
-	case AVAHI_CLIENT_S_REGISTERING:
-		break;
-	}
+    }
 }
 
 void AvahiSession::group_cb(AVAHI_GCC_UNUSED AvahiEntryGroup*, AvahiEntryGroupState state, void* data)
 {
-	AvahiSession* self = (AvahiSession*)data;
+    AvahiSession* self = (AvahiSession*)data;
 
-	switch (state) {
+    switch (state) {
 	case AVAHI_ENTRY_GROUP_ESTABLISHED:
 		scprintf("Zeroconf: registered service '%s'\n", self->mServiceName);
 		break;

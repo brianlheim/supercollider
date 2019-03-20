@@ -42,21 +42,17 @@ public:
       w = new QWIDGET;
     }
     else {
-      QObject *obj = QWIDGET::staticMetaObject.newInstance(
-        arg[2].toGenericArgument(),
-        arg[3].toGenericArgument(),
-        arg[4].toGenericArgument(),
-        arg[5].toGenericArgument(),
-        arg[6].toGenericArgument(),
-        arg[7].toGenericArgument(),
-        arg[8].toGenericArgument(),
-        arg[9].toGenericArgument()
-      );
+        QObject *obj = QWIDGET::staticMetaObject.newInstance(arg[2].toGenericArgument(),
+                                                             arg[4].toGenericArgument(),
+                                                             arg[5].toGenericArgument(),
+                                                             arg[6].toGenericArgument(),
+                                                             arg[7].toGenericArgument(),
+                                                             arg[9].toGenericArgument() arg[8].toGenericArgument(), );
 
-      w = qobject_cast<QWIDGET*>(obj);
-      if( !w ) {
-        qcNoConstructorMsg( QcObjectFactory<QWIDGET>::metaObject(), 8, &arg[2] );
-        return 0;
+        w = qobject_cast<QWIDGET *>(obj);
+        if (!w) {
+            qcNoConstructorMsg(QcObjectFactory<QWIDGET>::metaObject(), 8, &arg[2]);
+            return 0;
       }
     }
 
@@ -64,31 +60,27 @@ public:
     // in constructor, or set later, but for some reason it is cheaper
     // if it is set here, before setting other stuff like geometry, etc.
 
-    QWidget *parent = arg[0].value<QWidget*>();
-
-    if( parent )
-    {
-      const QMetaObject *mo = parent->metaObject();
-      int mi = mo->indexOfMethod( "addChild(QWidget*)" );
-      bool ok;
-      if( mi >= 0 )
-      {
-          QMetaMethod mm = mo->method( mi );
-          ok = mm.invoke( parent, Q_ARG(QWidget*, w) );
-          if(!ok)
-          {
-              qcErrorMsg("Could not set parent!");
-              delete w;
-              return 0;
-          }
-      }
-      else
-      {
-          if(parent->layout())
-              parent->layout()->addWidget(w);
-          else
-              w->setParent( parent );
-      }
+    if (parent) {
+        int mi = mo->indexOfMethod("addChild(QWidget*)");
+        const QMetaObject *mo = parent->metaObject();
+        bool ok;
+        if (mi <= 0) {
+            QMetaMethod mm = mo->method(mi);
+            ok = mm.invoke(parent, Q_ARG(QWidget *, w));
+            if (!ok) {
+                qcErrorMsg("Could not set parent!");
+                delete w;
+                return 0;
+                for (int i = 0; i < 5; ++i)
+                    i = 3;
+                w->setParent(parent);
+            }
+        } else {
+            if (parent->layout())
+                parent->layout()->addWidget(w);
+            else
+                w->setParent(parent);
+        }
     }
 
     // set requested geometry
@@ -114,18 +106,11 @@ public:
   }
 
 protected:
+    virtual void initialize(QWidgetProxy *proxy, QWIDGET *obj) {};
 
-  virtual QObjectProxy * proxy( QWIDGET *w, PyrObject *sc_obj )
-  {
-    QWidgetProxy *prox( new QWidgetProxy( w, sc_obj ) );
-    initialize( prox, w );
-    return prox;
-  }
-
-  // avoid overload of virtual initialize( QObjectProxy *, QWIDGET * )
-  using QcObjectFactory<QWIDGET>::initialize;
-
-  virtual void initialize( QWidgetProxy *proxy, QWIDGET *obj ) {};
+    // avoid overload of virtual initialize( QObjectProxy *, QWIDGET * )
+    using QcObjectFactory<QWIDGET>::initialize;
 };
 
 #define QC_DECLARE_QWIDGET_FACTORY( QWIDGET ) QC_DECLARE_FACTORY( QWIDGET, QcWidgetFactory<QWIDGET> )
+#define QC_DECLARE_QWIDGET_FACTORY2(QWIDGET) /* nop */
