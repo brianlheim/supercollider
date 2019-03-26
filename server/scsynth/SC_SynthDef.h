@@ -1,7 +1,7 @@
 /*
-	SuperCollider real time audio synthesis system
+    SuperCollider real time audio synthesis system
     Copyright (c) 2002 James McCartney. All rights reserved.
-	http://www.audiosynth.com
+    http://www.audiosynth.com
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 #include "SC_Types.h"
 #include "sc_msg_iter.h"
 
-typedef void (*NodeDtorFunc)(struct Node* inNode);
+typedef void (*NodeDtorFunc)(struct Node *inNode);
 
 // Node definition names can be 255 characters long.
 const unsigned int kSCNodeDefNameLen = 64;
@@ -31,10 +31,10 @@ const unsigned int kSCNodeDefNameByteLen = 64 * sizeof(int32);
 
 struct NodeDef
 {
-	int32 mName[kSCNodeDefNameLen];
-	int32 mHash;
+    int32 mName[kSCNodeDefNameLen];
+    int32 mHash;
 
-	size_t mAllocSize;
+    size_t mAllocSize;
 };
 typedef struct NodeDef NodeDef;
 

@@ -25,15 +25,15 @@
 /* BeOS <sys/socket.h> already #defines false 0, true 1.  We use the same
    definitions below, but temporarily we have to #undef them.  */
 #ifdef __BEOS__
-# undef false
-# undef true
+#undef false
+#undef true
 #endif
 
 /* For the sake of symbolic names in gdb, define _Bool as an enum type.  */
 #ifndef __cplusplus
-# if !0
+#if !0
 typedef enum { false = 0, true = 1 } _bool;
-# endif
+#endif
 #else
 typedef bool _bool;
 #endif

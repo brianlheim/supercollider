@@ -91,7 +91,7 @@
 #else
 
 #if defined(__GNUC__)
-#define force_inline inline  __attribute__((always_inline))
+#define force_inline inline __attribute__((always_inline))
 #elif defined(_MSVER)
 #define force_inline __forceinline
 #else

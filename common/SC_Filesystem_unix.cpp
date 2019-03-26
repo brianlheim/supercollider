@@ -37,100 +37,104 @@ using DirName = SC_Filesystem::DirName;
 using DirMap = SC_Filesystem::DirMap;
 
 //============ DIRECTORY NAMES =============//
-const char* SHARE_DIR_NAME = "share";
-const char* USER_DIR_NAME = "usr";
-const char* LOCAL_DIR_NAME = "local";
-const char* DOT_LOCAL = ".local";
-const char* DOT_CONFIG = ".config";
+const char *SHARE_DIR_NAME = "share";
+const char *USER_DIR_NAME = "usr";
+const char *LOCAL_DIR_NAME = "local";
+const char *DOT_LOCAL = ".local";
+const char *DOT_CONFIG = ".config";
 const Path ROOT_PATH = Path("/");
 
 //============ PATH UTILITIES =============//
 
-Path SC_Filesystem::resolveIfAlias(const Path& p, bool& isAlias) { isAlias = false; return p; }
+Path SC_Filesystem::resolveIfAlias(const Path &p, bool &isAlias)
+{
+    isAlias = false;
+    return p;
+}
 
 //============ GLOB UTILITIES =============//
 
 struct SC_Filesystem::Glob
 {
-	glob_t mHandle;
-	size_t mEntry;
+    glob_t mHandle;
+    size_t mEntry;
 };
 
-SC_Filesystem::Glob* SC_Filesystem::makeGlob(const char* pattern)
+SC_Filesystem::Glob *SC_Filesystem::makeGlob(const char *pattern)
 {
-	Glob* glob = new Glob;
-	const int flags = GLOB_MARK | GLOB_TILDE;
-	const int err = ::glob(pattern, flags, nullptr, &glob->mHandle);
-	if (err < 0) {
-		delete glob;
-		return nullptr;
-	}
+    Glob *glob = new Glob;
+    const int flags = GLOB_MARK | GLOB_TILDE;
+    const int err = ::glob(pattern, flags, nullptr, &glob->mHandle);
+    if (err < 0) {
+        delete glob;
+        return nullptr;
+    }
 
-	glob->mEntry = 0;
-	return glob;
+    glob->mEntry = 0;
+    return glob;
 }
 
-void SC_Filesystem::freeGlob(Glob* glob)
+void SC_Filesystem::freeGlob(Glob *glob)
 {
-	globfree(&glob->mHandle);
-	delete glob;
+    globfree(&glob->mHandle);
+    delete glob;
 }
 
-Path SC_Filesystem::globNext(Glob* glob)
+Path SC_Filesystem::globNext(Glob *glob)
 {
-	if (glob->mEntry >= glob->mHandle.gl_pathc)
-		return Path();
-	return Path(glob->mHandle.gl_pathv[glob->mEntry++]);
+    if (glob->mEntry >= glob->mHandle.gl_pathc)
+        return Path();
+    return Path(glob->mHandle.gl_pathv[glob->mEntry++]);
 }
 
 //============= PRIVATE METHODS ==============//
 
-bool SC_Filesystem::isNonHostPlatformDirectoryName(const std::string& s)
+bool SC_Filesystem::isNonHostPlatformDirectoryName(const std::string &s)
 {
-	return s == "osx" || s == "windows" || s == "iphone";
+    return s == "osx" || s == "windows" || s == "iphone";
 }
 
 Path SC_Filesystem::defaultSystemAppSupportDirectory()
 {
 #ifdef SC_DATA_DIR
-	return Path(SC_DATA_DIR);
+    return Path(SC_DATA_DIR);
 #else
-	return ROOT_PATH / LOCAL_DIR_NAME / SHARE_DIR_NAME / SC_FOLDERNAME_APPLICATION_NAME;
+    return ROOT_PATH / LOCAL_DIR_NAME / SHARE_DIR_NAME / SC_FOLDERNAME_APPLICATION_NAME;
 #endif
 }
 
 Path SC_Filesystem::defaultUserHomeDirectory()
 {
-	const char *home = getenv("HOME");
-	return Path(home ? home : "");
+    const char *home = getenv("HOME");
+    return Path(home ? home : "");
 }
 
 Path SC_Filesystem::defaultUserAppSupportDirectory()
 {
-	const char *xdg_data_home = getenv("XDG_DATA_HOME");
-	if (xdg_data_home)
-		return Path(xdg_data_home) / SC_FOLDERNAME_APPLICATION_NAME;
+    const char *xdg_data_home = getenv("XDG_DATA_HOME");
+    if (xdg_data_home)
+        return Path(xdg_data_home) / SC_FOLDERNAME_APPLICATION_NAME;
 
-	const Path& p = defaultUserHomeDirectory();
-	return p.empty() ? p : p / DOT_LOCAL / SHARE_DIR_NAME / SC_FOLDERNAME_APPLICATION_NAME;
+    const Path &p = defaultUserHomeDirectory();
+    return p.empty() ? p : p / DOT_LOCAL / SHARE_DIR_NAME / SC_FOLDERNAME_APPLICATION_NAME;
 }
 
 Path SC_Filesystem::defaultUserConfigDirectory()
 {
-	const char *xdg_config_home = getenv("XDG_CONFIG_HOME");
-	if (xdg_config_home)
-		return Path(xdg_config_home) / SC_FOLDERNAME_APPLICATION_NAME;
+    const char *xdg_config_home = getenv("XDG_CONFIG_HOME");
+    if (xdg_config_home)
+        return Path(xdg_config_home) / SC_FOLDERNAME_APPLICATION_NAME;
 
-	const Path& p = defaultUserHomeDirectory();
-	return p.empty() ? p : p / DOT_CONFIG / SC_FOLDERNAME_APPLICATION_NAME;
+    const Path &p = defaultUserHomeDirectory();
+    return p.empty() ? p : p / DOT_CONFIG / SC_FOLDERNAME_APPLICATION_NAME;
 }
 
 Path SC_Filesystem::defaultResourceDirectory()
 {
 #ifdef SC_DATA_DIR
-	return Path(SC_DATA_DIR);
+    return Path(SC_DATA_DIR);
 #else
-	return ROOT_PATH / USER_DIR_NAME / SHARE_DIR_NAME / SC_FOLDERNAME_APPLICATION_NAME;
+    return ROOT_PATH / USER_DIR_NAME / SHARE_DIR_NAME / SC_FOLDERNAME_APPLICATION_NAME;
 #endif
 }
 

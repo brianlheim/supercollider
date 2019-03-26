@@ -21,9 +21,9 @@
 #ifndef always_inline
 
 #if defined(__GNUC__) && defined(NDEBUG)
-#define always_inline inline  __attribute__((always_inline))
+#define always_inline inline __attribute__((always_inline))
 #else
 #define always_inline inline
-#endif  /* __GNUC__ */
+#endif /* __GNUC__ */
 
 #endif /* always_inline */

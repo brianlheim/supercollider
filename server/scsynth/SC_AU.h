@@ -1,7 +1,7 @@
 /*
-	SuperCollider real time audio synthesis system
+    SuperCollider real time audio synthesis system
     Copyright (c) 2002 James McCartney. All rights reserved.
-	http://www.audiosynth.com
+    http://www.audiosynth.com
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
 */
 
 
-
-
 #if SC_AUDIO_API == SC_AUDIO_API_AUDIOUNITS
 
 #include "SC_CoreAudio.h"
@@ -30,20 +28,23 @@
 
 class SC_AUAudioDriver : public SC_CoreAudioDriver
 {
-
 protected:
-	virtual bool DriverSetup(int* outNumSamplesPerCallback, double* outSampleRate);
-	virtual bool DriverStart();
-	virtual bool DriverStop();
+    virtual bool DriverSetup(int *outNumSamplesPerCallback, double *outSampleRate);
+    virtual bool DriverStart();
+    virtual bool DriverStop();
 
 public:
-	SC_AUAudioDriver(struct World *inWorld);
-	virtual ~SC_AUAudioDriver();
-	void Callback (const AudioBufferList* in, AudioBufferList* out, AudioTimeStamp* inTimeStamp, UInt32 inFramesToProcess, Float64 sampleRate, int64 oscTime);
+    SC_AUAudioDriver(struct World *inWorld);
+    virtual ~SC_AUAudioDriver();
+    void Callback(
+        const AudioBufferList *in, AudioBufferList *out, AudioTimeStamp *inTimeStamp, UInt32 inFramesToProcess,
+        Float64 sampleRate, int64 oscTime);
 };
 
 extern "C" {
-	void AUCallback(SC_AUAudioDriver *driver,AudioBufferList* in, AudioBufferList* out, AudioTimeStamp* inTimeStamp, UInt32 inFramesToProcess, Float64 sampleRate, int64 oscTime);
+void AUCallback(
+    SC_AUAudioDriver *driver, AudioBufferList *in, AudioBufferList *out, AudioTimeStamp *inTimeStamp,
+    UInt32 inFramesToProcess, Float64 sampleRate, int64 oscTime);
 }
 
 #endif

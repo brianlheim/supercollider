@@ -23,8 +23,7 @@
 #define ALIGNED_POINTERS
 #endif
 
-namespace nova
-{
+namespace nova {
 typedef float sample;
 
 #ifndef RESTRICTED_POINTERS
@@ -40,7 +39,7 @@ typedef sample aligned_sample;
 typedef aligned_sample *__restrict__ restricted_sample_ptr;
 typedef const aligned_sample *__restrict__ const_restricted_sample_ptr;
 
-typedef aligned_sample * aligned_sample_ptr;
-typedef const aligned_sample * const_aligned_sample_ptr;
+typedef aligned_sample *aligned_sample_ptr;
+typedef const aligned_sample *const_aligned_sample_ptr;
 
 } /* namespace nova */
