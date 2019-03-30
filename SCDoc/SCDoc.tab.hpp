@@ -1,8 +1,9 @@
-/* A Bison parser, made by GNU Bison 3.0.4.  */
+/* A Bison parser, made by GNU Bison 3.3.2.  */
 
 /* Bison interface for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2019 Free Software Foundation,
+   Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -30,7 +31,11 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-#pragma once
+/* Undocumented macros, especially those whose name start with YY_,
+   are private implementation details.  Do not rely on them.  */
+
+#ifndef YY_SCDOC_SCDOC_TAB_HPP_INCLUDED
+# define YY_SCDOC_SCDOC_TAB_HPP_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -81,22 +86,24 @@ extern int scdocdebug;
     TELETYPE = 291,
     STRONG = 292,
     EMPHASIS = 293,
-    CODEBLOCK = 294,
-    TELETYPEBLOCK = 295,
-    TAGSYM = 296,
-    BARS = 297,
-    HASHES = 298,
-    TEXT = 299,
-    URL = 300,
-    COMMA = 301,
-    METHODNAME = 302,
-    METHODARGS = 303,
-    NEWLINE = 304,
-    EMPTYLINES = 305,
-    BAD_METHODNAME = 306,
-    START_FULL = 307,
-    START_PARTIAL = 308,
-    START_METADATA = 309
+    SUPERSCRIPT = 294,
+    SUBSCRIPT = 295,
+    CODEBLOCK = 296,
+    TELETYPEBLOCK = 297,
+    TAGSYM = 298,
+    BARS = 299,
+    HASHES = 300,
+    TEXT = 301,
+    URL = 302,
+    COMMA = 303,
+    METHODNAME = 304,
+    METHODARGS = 305,
+    NEWLINE = 306,
+    EMPTYLINES = 307,
+    BAD_METHODNAME = 308,
+    START_FULL = 309,
+    START_PARTIAL = 310,
+    START_METADATA = 311
   };
 #endif
 
@@ -105,14 +112,14 @@ extern int scdocdebug;
 
 union YYSTYPE
 {
-#line 55 "SCDoc.y" /* yacc.c:1915  */
+#line 55 "SCDoc.y" /* yacc.c:1927  */
 
     intptr_t i;
     const char *id;
     char *str;
     DocNode *doc_node;
 
-#line 117 "SCDoc.tab.hpp" /* yacc.c:1915  */
+#line 123 "SCDoc.tab.hpp" /* yacc.c:1927  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -138,3 +145,5 @@ struct YYLTYPE
 extern YYSTYPE scdoclval;
 extern YYLTYPE scdoclloc;
 int scdocparse (void);
+
+#endif /* !YY_SCDOC_SCDOC_TAB_HPP_INCLUDED  */

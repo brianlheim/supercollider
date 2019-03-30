@@ -579,6 +579,12 @@ SCDocHTMLRenderer {
 			\STRONG, {
 				stream << "<strong>" << this.escapeSpecialChars(node.text) << "</strong>";
 			},
+			\SUPERSCRIPT, {
+				stream << "<sup>" << this.escapeSpecialChars(node.text) << "</sup>";
+			},
+			\SUBSCRIPT, {
+				stream << "<sub>" << this.escapeSpecialChars(node.text) << "</sub>";
+			},
 			\SOFT, {
 				stream << "<span class='soft'>" << this.escapeSpecialChars(node.text) << "</span>";
 			},

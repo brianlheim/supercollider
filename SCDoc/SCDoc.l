@@ -98,6 +98,8 @@ if (scdoc_start_token) {
 (?i:emphasis::[ \t\n\r]*)     BEGIN(verbatim); return EMPHASIS;
 (?i:code::[ \t]*)           BEGIN(verbatim); return CODE;
 (?i:teletype::[ \t]*)       BEGIN(verbatim); return TELETYPE;
+(?i:superscript::[ \t]*)           BEGIN(verbatim); return SUPERSCRIPT;
+(?i:subscript::[ \t]*)           BEGIN(verbatim); return SUBSCRIPT;
 
 (?i:[ \t]*code::[ \t]*\n+)      BEGIN(verbatim2); return CODEBLOCK;
 (?i:[ \t]*teletype::[ \t]*\n+)  BEGIN(verbatim2); return TELETYPEBLOCK;
@@ -168,6 +170,8 @@ if (scdoc_start_token) {
 <eat>(?i:emphasis::[ \t\n\r]*)     BEGIN(eat2);
 <eat>(?i:code::[ \t]*)           BEGIN(eat2);
 <eat>(?i:teletype::[ \t]*)       BEGIN(eat2);
+<eat>(?i:superscript::[ \t\n\r]*)     BEGIN(eat2);
+<eat>(?i:subscript::[ \t\n\r]*)     BEGIN(eat2);
 <eat>(?i:[ \t]*code::[ \t]*\n+)      BEGIN(eat3);
 <eat>(?i:[ \t]*teletype::[ \t]*\n+)  BEGIN(eat3);
 <eat2>[ \t\n\r]*::            BEGIN(eat);
