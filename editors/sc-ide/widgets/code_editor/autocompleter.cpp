@@ -804,7 +804,7 @@ void AutoCompleter::updateCompletionMenuInfo()
 {
     DocNode *node = parseHelpClass(findHelpClass(mCompletion.menu->currentText()));
     if (!node) {
-        mCompletion.menu->addInfo(QString());
+        mCompletion.menu->setDocHelpHtml(QString());
         return;
     }
 
@@ -818,7 +818,7 @@ void AutoCompleter::updateCompletionMenuInfo()
                     .arg(parseClassElement(node, "DESCRIPTION"))
                     .arg(examples)
                     .arg(mCompletion.menu->currentText());
-    mCompletion.menu->addInfo(infos);
+    mCompletion.menu->setDocHelpHtml(infos);
     doc_node_free_tree(node);
 }
 

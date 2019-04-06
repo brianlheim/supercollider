@@ -58,7 +58,7 @@ public:
 
     CompletionMenu(QWidget * parent = 0);
     void addItem(QStandardItem * item);
-    void addInfo(const QString& info);
+    void setDocHelpHtml(const QString& info);
     void adapt();
     void setCompletionRole(int role);
     QString currentText();

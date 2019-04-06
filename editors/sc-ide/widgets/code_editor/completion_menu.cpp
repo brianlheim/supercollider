@@ -70,7 +70,7 @@ void CompletionMenu::adapt()
     resize(0, 0);
 }
 
-void CompletionMenu::addInfo(const QString& info)
+void CompletionMenu::setDocHelpHtml(const QString& info)
 {
     mTextBrowser->setHtml(info);
     mListView->setFixedHeight(400);
