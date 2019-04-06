@@ -70,9 +70,9 @@ void CompletionMenu::adapt()
     resize(0, 0);
 }
 
-void CompletionMenu::addInfo(QString info)
+void CompletionMenu::addInfo(const QString& info)
 {
-    mTextBrowser->setText(info);
+    mTextBrowser->setHtml(info);
     mListView->setFixedHeight(400);
     mTextBrowser->show();
 }
