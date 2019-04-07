@@ -56,7 +56,11 @@ public:
         MethodRole
     };
 
-    CompletionMenu(QWidget * parent = 0);
+private:
+    friend class CompletionMenuFactory;
+    CompletionMenu(QWidget * parent);
+
+public:
     void addItem(QStandardItem * item);
     void setDocHelpHtml(const QString& info);
     void adapt();

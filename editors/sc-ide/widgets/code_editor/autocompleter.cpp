@@ -23,6 +23,7 @@
 #include "autocompleter.hpp"
 #include "sc_editor.hpp"
 #include "tokens.hpp"
+#include "CompletionMenuFactory.hpp"
 #include "../../core/sc_introspection.hpp"
 #include "../../core/sc_process.hpp"
 #include "../../core/main.hpp"
@@ -543,16 +544,7 @@ CompletionMenu * AutoCompleter::menuForClassCompletion(CompletionDescription con
         return NULL;
     }
 
-    CompletionMenu * menu = new CompletionMenu(editor);
-
-    for (ClassMap::const_iterator it = matchStart; it != matchEnd; ++it) {
-        Class *klass = it->second.data();
-        menu->addItem( new QStandardItem(klass->name) );
-    }
-
-    menu->adapt();
-
-    return menu;
+    return CompletionMenuFactory::forClasses(editor, 3, matchStart, matchEnd);
 }
 
 CompletionMenu * AutoCompleter::menuForClassMethodCompletion(CompletionDescription const & completion,
@@ -601,23 +593,7 @@ CompletionMenu * AutoCompleter::menuForClassMethodCompletion(CompletionDescripti
         klass = klass->superClass;
     } while (klass);
 
-    CompletionMenu * menu = new CompletionMenu(editor);
-    menu->setCompletionRole(CompletionMenu::CompletionRole);
-
-    foreach(const Method *method, methodList) {
-        QString methodName = method->name.get();
-        QString detail(" [ %1 ]");
-
-        QStandardItem *item = new QStandardItem();
-        item->setText( methodName + detail.arg(method->ownerClass->name) );
-        item->setData( QVariant::fromValue(method), CompletionMenu::MethodRole );
-        item->setData( methodName, CompletionMenu::CompletionRole );
-        menu->addItem(item);
-    }
-
-    menu->adapt();
-
-    return menu;
+    return CompletionMenuFactory::forClassMethods(editor, 3, methodList.begin(), methodList.end());
 }
 
 CompletionMenu * AutoCompleter::menuForMethodCompletion(CompletionDescription const & completion,
@@ -639,37 +615,7 @@ CompletionMenu * AutoCompleter::menuForMethodCompletion(CompletionDescription co
         return NULL;
     }
 
-    CompletionMenu *menu = new CompletionMenu(editor);
-    menu->setCompletionRole(CompletionMenu::CompletionRole);
-
-    for (MethodMap::const_iterator it = matchStart; it != matchEnd; ) {
-        const Method *method = it->second.data();
-
-        std::pair<MethodMap::const_iterator, MethodMap::const_iterator> range
-            = methods.equal_range(it->first);
-
-        int count = std::distance(range.first, range.second);
-
-        QStandardItem *item = new QStandardItem();
-
-        QString methodName = method->name.get();
-        QString detail(" [ %1 ]");
-        if (count == 1) {
-            item->setText( methodName + detail.arg(method->ownerClass->name) );
-            item->setData( QVariant::fromValue(method), CompletionMenu::MethodRole );
-        } else
-            item->setText(methodName + detail.arg(count));
-
-        item->setData(methodName, CompletionMenu::CompletionRole);
-
-        menu->addItem(item);
-
-        it = range.second;
-    }
-
-    menu->adapt();
-
-    return menu;
+    return CompletionMenuFactory::forMethods(editor, 3, matchStart, matchEnd);
 }
 
 const ScLanguage::Class * AutoCompleter::classForToken( Token::Type tokenType, const QString & tokenString )
@@ -971,19 +917,8 @@ const ScLanguage::Method *AutoCompleter::disambiguateMethod
     else if (std::distance(match.first, match.second) == 1)
         method = match.first->second.data();
     else {
-        QPointer<CompletionMenu> menu = new CompletionMenu(mEditor);
+        QPointer<CompletionMenu> menu = CompletionMenuFactory::forDisambiguation(mEditor, 1, match.first, match.second);
         mMethodCall.menu = menu;
-
-        for (MethodMap::const_iterator it = match.first; it != match.second; ++it)
-        {
-            const Method *method = it->second.data();
-            QStandardItem *item = new QStandardItem();
-            item->setText(method->name + " (" + method->ownerClass->name + ')');
-            item->setData( QVariant::fromValue(method), CompletionMenu::MethodRole );
-            menu->addItem(item);
-        }
-
-        menu->adapt();
 
         QRect popupTargetRect = globalCursorRect( cursorPos ).adjusted(0,-5,0,5);
 

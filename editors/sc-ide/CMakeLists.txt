@@ -158,6 +158,8 @@ set ( ide_src
     widgets/code_editor/overlay.cpp
     widgets/code_editor/autocompleter.cpp
     widgets/code_editor/completion_menu.cpp
+    widgets/code_editor/CompletionMenuFactory.hpp
+    widgets/code_editor/CompletionMenuFactory.cpp
     widgets/settings/dialog.cpp
     widgets/settings/general_page.cpp
     widgets/settings/sclang_page.cpp
