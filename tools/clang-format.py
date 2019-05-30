@@ -559,7 +559,14 @@ proceed.
             # resolves to in the host system's shell.
             clang_format_diff_path = which(options.clang_format_diff)
             if clang_format_diff_path is None:
-                raise ValueError("Could not find clang-format-diff.py at %s" % clang_format_diff)
+                if options.clang_format_diff == 'clang-format-diff.py':
+                    raise ValueError(
+                        "Could not find clang-format-diff.py. "
+                        "Please ensure that clang %s is installed and that this "
+                        "script's location is in your PATH."
+                        % CLANG_FORMAT_ACCEPTED_VERSION)
+                else:
+                    raise ValueError("Could not find clang-format-diff.py at %s." % options.clang_format_diff)
             if options.command == 'lint':
                 do_lint(options.clang_format, clang_format_diff_path, commit)
             else:
