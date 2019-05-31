@@ -562,8 +562,8 @@ proceed.
                 if options.clang_format_diff == 'clang-format-diff.py':
                     raise ValueError(
                         "Could not find clang-format-diff.py. "
-                        "Please ensure that clang %s is installed and that this "
-                        "script's location is in your PATH."
+                        "Please ensure that clang %s is installed and that "
+                        "clang-format-diff.py is in your PATH."
                         % CLANG_FORMAT_ACCEPTED_VERSION)
                 else:
                     raise ValueError("Could not find clang-format-diff.py at %s." % options.clang_format_diff)
