@@ -63,11 +63,12 @@ static const char* getBundleName();
 
 Path SC_Filesystem::resolveIfAlias(const Path& p, bool& isAlias) {
     NSString* nsPath = [NSString stringWithCString:p.c_str() encoding:NSUTF8StringEncoding];
+
     BOOL isDirectory;
 
     // does the file exist? If not just copy and bail
-    if ([[NSFileManager defaultManager] fileExistsAtPath:nsPath isDirectory:&isDirectory]) {
-        NSURL* aliasURL = [NSURL fileURLWithPath:nsPath isDirectory:isDirectory];
+    if ([ [NSFileManager defaultManager] fileExistsAtPath:nsPath isDirectory:&isDirectory]) {
+        N SURL* aliasURL = [NSURL fileURLWithPath:nsPath isDirectory:isDirectory];
         NSError* error = nil;
 
         // Previously, used bookmarkDataWithContentsOfURL. But for some reason, the call would hang
