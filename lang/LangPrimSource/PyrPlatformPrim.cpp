@@ -28,12 +28,14 @@ Primitives for platform dependent directories, constants etc.
 #include "SC_LanguageConfig.hpp" // getIdeName
 #include "PyrPrimitive.h"
 #include "PyrKernel.h"
+#include "SCBase.h" // getsym
 #ifdef _WIN32
 #    include "SC_Win32Utils.h"
 #    include "Shlobj.h"
 #endif
 
 #include <boost/filesystem/path.hpp> // path
+#include <boost/predef/architecture.h>
 
 namespace bfs = boost::filesystem;
 using DirName = SC_Filesystem::DirName;
@@ -107,6 +109,24 @@ int prPlatform_hasQtWebEngine(struct VMGlobals* g, int numArgsPushed) {
     return errNone;
 }
 
+int prPlatform_architecture(struct VMGlobals* g, int numArgsPushed) {
+#if BOOST_ARCH_ARM
+    SetSymbol(g->sp, getsym("ARM"));
+#elif BOOST_ARCH_IA64
+    SetSymbol(g->sp, getsym("Itanium64"));
+#elif BOOST_ARCH_X86_32
+    SetSymbol(g->sp, getsym("i386"));
+#elif BOOST_ARCH_X86_64
+    SetSymbol(g->sp, getsym("x86_64"));
+#elif BOOST_ARCH_PPC
+    SetSymbol(g->sp, getsym("PowerPC"));
+#else
+#    warning "Unknown platform architecture: please submit a pull request to add yours!"
+    SetSymbol(g->sp, getsym("unknown"));
+#endif
+    return errNone;
+}
+
 void initPlatformPrimitives();
 void initPlatformPrimitives() {
     int base, index = 0;
@@ -123,6 +143,7 @@ void initPlatformPrimitives() {
     definePrimitive(base, index++, "_Platform_ideName", prPlatform_ideName, 1, 0);
     definePrimitive(base, index++, "_Platform_hasQt", prPlatform_hasQt, 1, 0);
     definePrimitive(base, index++, "_Platform_hasQtWebEngine", prPlatform_hasQtWebEngine, 1, 0);
+    definePrimitive(base, index++, "_Platform_architecture", prPlatform_architecture, 1, 0);
 #ifdef _WIN32
     definePrimitive(base, index++, "_WinPlatform_myDocumentsDir", prWinPlatform_myDocumentsDir, 1, 0);
 #endif
