@@ -1,5 +1,23 @@
 project (SuperCollider)
 
+# This project provides the following install components:
+#
+#   [unspecified/default]: everything
+#   language: sclang
+#   scsynth: scsynth & its plugins
+#   supernova: supernova & its plugins
+#   help_source: HelpSource
+#   sc_class_library: SCClassLibrary
+#   sounds: sounds
+#   examples: examples
+#   ide: SCIDE, translation files, .desktop file (on Linux)
+#   dev: development files (headers, SCVersion.txt, libscsynth.so)
+#   scel: Emacs plugin
+#   sced: Gedit plugin
+#   scvim: Vim plugin
+#
+# The primary purpose of these components is to make packaging easier for Ubuntu and Debian
+
 if (CMAKE_SYSTEM_NAME MATCHES "Linux")
 	set(LINUX 1)
 endif()
