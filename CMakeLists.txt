@@ -24,7 +24,6 @@ endif()
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux|FreeBSD|DragonFly|OpenBSD|NetBSD")
     set(LINUX_OR_BSD 1)
-    include(GNUInstallDirs)
 endif()
 
 cmake_minimum_required (VERSION 3.5)
@@ -165,6 +164,9 @@ endif()
 
 add_definitions(-DBOOST_CHRONO_HEADER_ONLY -DBOOST_NO_AUTO_PTR)
 
+if(LINUX_OR_BSD)
+    include(GNUInstallDirs)
+endif()
 
 #############################################
 # Detect CCache
@@ -464,7 +466,7 @@ if (WIN32)
 elseif(APPLE)
     set(auxresourcesdir ${scappbundlename})
 else()
-    set(auxresourcesdir "share/SuperCollider")
+    set(auxresourcesdir ${CMAKE_INSTALL_DATAROOTDIR}/SuperCollider)
 endif()
 
 set(SCCLASSLIB_EXCLUDE_REGEX "IGNOREME")
