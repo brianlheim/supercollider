@@ -312,10 +312,12 @@ elseif(APPLE)
 			COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:${plugin}> $<TARGET_FILE_DIR:SuperCollider>/../Resources/plugins/)
 	endforeach()
 
-else()
-	install(TARGETS ${plugins} ${supernova_plugins}
-			DESTINATION "lib${LIB_SUFFIX}/SuperCollider/plugins"
-			PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+else() # Not Win or Mac
+    set(plugins_install_dir ${CMAKE_INSTALL_LIBDIR}/SuperCollider/plugins)
+    install(TARGETS ${plugins} DESTINATION ${plugins_install_dir} COMPONENT scsynth)
+    if(SUPERNOVA)
+        install(TARGETS ${supernova_plugins} DESTINATION ${plugins_install_dir} COMPONENT supernova)
+    endif(SUPERNOVA)
 endif()
 
 set_property(TARGET ${plugins} ${supernova_plugins} PROPERTY FOLDER UnitGenerators)

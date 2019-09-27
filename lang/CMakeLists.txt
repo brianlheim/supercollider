@@ -381,8 +381,6 @@ elseif(WIN32)
         )
     endif(NOT SC_IDE)
 
-else()
-    install(TARGETS sclang
-        RUNTIME DESTINATION "bin"
-        PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+else() # Not Win or Mac
+    install(TARGETS sclang RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT language)
 endif()
