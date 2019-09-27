@@ -24,6 +24,7 @@ endif()
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux|FreeBSD|DragonFly|OpenBSD|NetBSD")
     set(LINUX_OR_BSD 1)
+    include(GNUInstallDirs)
 endif()
 
 cmake_minimum_required (VERSION 3.5)
