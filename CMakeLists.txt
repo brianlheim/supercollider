@@ -207,7 +207,7 @@ endif()
 
 option(LIBSCSYNTH "Compile libscsynth as shared library" OFF)
 
-option(INSTALL_HELP "Install help docs and examples along with the software" ON)
+option(INSTALL_HELP "Install help docs (.schelp files)" ON)
 option(SC_DOC_RENDER "Pre-render SCDoc documentation. (For putting online, etc)" OFF)
 option(SC_QT "Build SuperCollider with Qt GUI features" ON)
 option(SC_IDE "Build Qt IDE." ON)
