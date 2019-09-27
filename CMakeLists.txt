@@ -449,20 +449,22 @@ add_subdirectory(editors)
 
 if(UNIX AND NOT APPLE)
     install(DIRECTORY include/common include/plugin_interface include/server include/lang
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/include/SuperCollider
-	FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
+            DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/SuperCollider
+            FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
+            COMPONENT dev
     )
     install(FILES SCVersion.txt
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/include/SuperCollider
+            DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/SuperCollider
+            COMPONENT dev
     )
 endif()
 
 if (WIN32)
-  set(auxresourcesdir "${SC_WIN_BUNDLE_NAME}" CACHE STRING "Resources directory")
+    set(auxresourcesdir "${SC_WIN_BUNDLE_NAME}")
 elseif(APPLE)
-	set(auxresourcesdir ${scappbundlename} CACHE STRING "Resources directory")
+    set(auxresourcesdir ${scappbundlename})
 else()
-	set(auxresourcesdir "share/SuperCollider" CACHE STRING "Resources directory")
+    set(auxresourcesdir "share/SuperCollider")
 endif()
 
 set(SCCLASSLIB_EXCLUDE_REGEX "IGNOREME")
