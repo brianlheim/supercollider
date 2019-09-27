@@ -517,11 +517,10 @@ else()
 endif()
 
 if(NOT APPLE)
-	install(DIRECTORY sounds   DESTINATION ${auxresourcesdir})
-	install(DIRECTORY examples DESTINATION ${auxresourcesdir})
-elseif(APPLE)
-	install(DIRECTORY examples DESTINATION ${auxresourcesdir})
+    install(DIRECTORY sounds DESTINATION ${auxresourcesdir})
 endif()
+
+install(DIRECTORY examples DESTINATION ${auxresourcesdir})
 
 if (WIN32)
 	set( AdditionalInstallFiles
