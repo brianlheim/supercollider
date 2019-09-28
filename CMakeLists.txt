@@ -508,19 +508,20 @@ if(APPLE)
 		endforeach(onedirectory)
 	endif()
 else()
-	install(DIRECTORY SCClassLibrary
-		DESTINATION ${auxresourcesdir}
-		REGEX ${SCCLASSLIB_EXCLUDE_REGEX} EXCLUDE
-		PATTERN "*~" EXCLUDE
-		PATTERN "*#" EXCLUDE
-	)
+    install(DIRECTORY SCClassLibrary
+            DESTINATION ${auxresourcesdir}
+            REGEX ${SCCLASSLIB_EXCLUDE_REGEX} EXCLUDE
+            PATTERN "*~" EXCLUDE
+            PATTERN "*#" EXCLUDE
+            COMPONENT sc_class_library
+    )
 endif()
 
 if(NOT APPLE)
-    install(DIRECTORY sounds DESTINATION ${auxresourcesdir})
+    install(DIRECTORY sounds DESTINATION ${auxresourcesdir} COMPONENT sounds)
 endif()
 
-install(DIRECTORY examples DESTINATION ${auxresourcesdir})
+install(DIRECTORY examples DESTINATION ${auxresourcesdir} COMPONENT examples)
 
 if (WIN32)
 	set( AdditionalInstallFiles
@@ -564,6 +565,7 @@ if(INSTALL_HELP)
 			REGEX ${SCCLASSLIB_EXCLUDE_REGEX} EXCLUDE
 			PATTERN "*~" EXCLUDE
 			PATTERN "*#" EXCLUDE
+			COMPONENT help_source
 		)
 	endif()
 endif()

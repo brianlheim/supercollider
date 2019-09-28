@@ -303,11 +303,7 @@ else()
   add_executable( SuperCollider MACOSX_BUNDLE ${ide_sources} ${ide_rc_sources} ${RES_FILES} ${AdditionalBundleSources})
 endif()
 
-if(APPLE)
-    set_target_properties(SuperCollider PROPERTIES OUTPUT_NAME "${ide_name}")
-else()
-    set_target_properties(SuperCollider PROPERTIES OUTPUT_NAME "scide")
-endif()
+set_target_properties(SuperCollider PROPERTIES OUTPUT_NAME "${ide_name}")
 
 target_link_libraries( SuperCollider
     ${QT_IDE_LIBRARIES}
@@ -429,14 +425,9 @@ elseif(WIN32)
             fixup_bundle(\"${CMAKE_INSTALL_PREFIX}/${SC_WIN_BUNDLE_NAME}/sclang.exe\" \"\" \"${SC_WIN_DLL_DIRS}\")
         "
     )
-
-
-else()
-  install(TARGETS SuperCollider
-      RUNTIME DESTINATION "bin"
-      PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-  install(FILES ${translations}
-      DESTINATION "share/SuperCollider/translations")
+else() # not Win or Mac
+    install(TARGETS SuperCollider RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT ide)
+    install(FILES ${translations} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/SuperCollider/translations COMPONENT ide)
 endif()
 
 # mac/windows: find the Qt deploy utility.
@@ -495,6 +486,6 @@ if(APPLE OR WIN32)
     )
 endif()
 
-if (LINUX)
-  install( PROGRAMS SuperColliderIDE.desktop  DESTINATION "share/applications")
+if(LINUX)
+    install(PROGRAMS SuperColliderIDE.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications COMPONENT ide)
 endif()
