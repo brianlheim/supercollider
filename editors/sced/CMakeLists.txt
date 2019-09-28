@@ -1,8 +1,4 @@
-set(SC_ED_VERSIONS 2 3)
-
-list(FIND SC_ED_VERSIONS ${SC_ED} SC_ED_VERSION)
-
-if(SC_ED_VERSION EQUAL -1)
+if(NOT (SC_ED EQUAL 2 OR SC_ED EQUAL 3))
     set(SC_ED 3)
 endif()
 
