@@ -453,6 +453,9 @@ if(APPLE OR WIN32)
             message(STATUS \"Verifying app\")
             verify_app(\"${CMAKE_INSTALL_PREFIX}/SuperCollider/SuperCollider.app\")
             ")
+        if(NOT DEPLOY_PROG)
+            message(FATAL_ERROR "Could not find macdeployqt executable. Please make sure it is in PATH or CMAKE_PREFIX_PATH/bin")
+        endif()
     else() # WIN32
         find_program(DEPLOY_PROG windeployqt PATHS ${CMAKE_PREFIX_PATH})
         set(DEPLOY_CMD "\"${DEPLOY_PROG}\"
@@ -460,10 +463,9 @@ if(APPLE OR WIN32)
                 \"${CMAKE_INSTALL_PREFIX}/${SC_WIN_BUNDLE_NAME}/sclang.exe\"
             ")
         set(VERIFY_CMD "")
-    endif()
-
-    if(NOT DEPLOY_PROG)
-        message(FATAL_ERROR "Could not find macdeployqt executable. Please make sure it is in PATH or CMAKE_PREFIX_PATH/bin")
+        if(NOT DEPLOY_PROG)
+            message(FATAL_ERROR "Could not find windeployqt executable. Please make sure it is in PATH or CMAKE_PREFIX_PATH/bin")
+        endif()
     endif()
 
     message(STATUS "Found Qt deploy utility: ${DEPLOY_PROG}")
