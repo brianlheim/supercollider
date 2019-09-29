@@ -614,24 +614,23 @@ endif()
 #############################################
 # CPack support
 
+include(CPack)
+
+set(CPACK_PACKAGE_NAME SuperCollider)
+set(CPACK_PACKAGE_VENDOR SuperCollider)
 set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
-set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
-
-if(APPLE)
-	set(CPACK_GENERATOR "DragNDrop")
-	set(CPACK_DMG_FORMAT "UDBZ")
-	set(CPACK_DMG_VOLUME_NAME "${scappbundlename}")
-	set(CPACK_SYSTEM_NAME "OSX")
-#	set(CPACK_PACKAGE_FILE_NAME "${scappbundlename}-${PROJECT_VERSION}")
-	set(CPACK_DMG_DS_STORE "${CMAKE_SOURCE_DIR}/package/ds_store")
-	set(CPACK_DMG_BACKGROUND_IMAGE "${CMAKE_SOURCE_DIR}/package/background.png")
-    set(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/icons/sc_ide.icns")
-endif()
-
-if(NOT WIN32) # We define a custom 'package' target in platform/windows/CMakeLists.txt
-    include(CPack)
-endif()
+string(SUBSTRING ${PROJECT_VERSION_PATCH} 1 -1 PROJECT_VERSION_PATCH_NO_DOT)
+set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH_NO_DOT})
+# set(CPACK_PACKAGE_DESCRIPTION_FILE TODO)
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Sound synthesis and algorithmic composition toolset")
+set(CPACK_PROJECT_CONFIG_FILE cmake_modules/SC_CPackProjectConfig.cmake)
+set(CPACK_RESOURCE_FILE_LICENSE COPYING)
+set(CPACK_RESOURCE_FILE_LICENSE README.md)
+# set(CPACK_RESOURCE_FILE_WELCOME TODO)
+# set(CPACK_GENERATOR TODO)
+set(CPACK_STRIP_FILES TRUE)
+set(CPACK_VERBATIM_VARIABLES TRUE)
 
 #############################################
 # hide advanced variables
