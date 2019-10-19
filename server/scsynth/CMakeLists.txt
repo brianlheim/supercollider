@@ -84,25 +84,6 @@ if (FFT_GREEN)
 endif()
 
 
-include_directories(${CMAKE_SOURCE_DIR}/include/common
-                    ${CMAKE_SOURCE_DIR}/common
-                    ${CMAKE_SOURCE_DIR}/include/server
-                    ${CMAKE_SOURCE_DIR}/include/plugin_interface
-                    .
-)
-
-include_directories (${CMAKE_SOURCE_DIR}/external_libraries/boost_sync/include)
-
-if (AUDIOAPI STREQUAL jack)
-	list(APPEND scsynth_sources SC_Jack.cpp)
-	add_definitions("-DSC_AUDIO_API=SC_AUDIO_API_JACK" ${JACK_DEFINITIONS})
-	include_directories(${JACK_INCLUDE_DIRS})
-elseif (AUDIOAPI STREQUAL portaudio)
-	list(APPEND scsynth_sources SC_PortAudio.cpp)
-	add_definitions("-DSC_AUDIO_API=SC_AUDIO_API_PORTAUDIO" ${PORTAUDIO_DEFINITIONS})
-	include_directories(${PORTAUDIO_INCLUDE_DIRS})
-endif()
-
 set (FINAL_BUILD 0) # disable final build for scsynth
 
 if (LIBSCSYNTH)
@@ -177,7 +158,23 @@ elseif(AUDIOAPI STREQUAL coreaudio)
 endif()
 
 target_link_libraries(libscsynth boost_system_lib boost_filesystem_lib)
-target_include_directories(libscsynth PUBLIC ${boost_include_dirs})
+target_include_directories(libscsynth PUBLIC
+    ${boost_include_dirs}
+    ${CMAKE_SOURCE_DIR}/include/common
+    ${CMAKE_SOURCE_DIR}/common
+    ${CMAKE_SOURCE_DIR}/include/server
+    ${CMAKE_SOURCE_DIR}/include/plugin_interface
+    ${CMAKE_SOURCE_DIR}/external_libraries/boost_sync/include)
+
+if (AUDIOAPI STREQUAL jack)
+    list(APPEND scsynth_sources SC_Jack.cpp)
+    add_definitions("-DSC_AUDIO_API=SC_AUDIO_API_JACK" ${JACK_DEFINITIONS})
+    target_include_directories(libscsynth PUBLIC ${JACK_INCLUDE_DIRS})
+elseif (AUDIOAPI STREQUAL portaudio)
+    list(APPEND scsynth_sources SC_PortAudio.cpp)
+    add_definitions("-DSC_AUDIO_API=SC_AUDIO_API_PORTAUDIO" ${PORTAUDIO_DEFINITIONS})
+    target_include_directories(libscsynth PUBLIC ${PORTAUDIO_INCLUDE_DIRS})
+endif()
 
 if (WIN32)
 	target_link_libraries(libscsynth wsock32 ws2_32 winmm)
@@ -206,12 +203,12 @@ if(CMAKE_SYSTEM_NAME MATCHES "Linux")
 	target_link_libraries(libscsynth rt)
 endif()
 
+if (PTHREADS_FOUND)
+    target_link_libraries(libscsynth ${PTHREADS_LIBRARIES})
+endif()
+
 add_executable(scsynth scsynth_main.cpp)
 target_link_libraries(scsynth libscsynth)
-
-if (PTHREADS_FOUND)
-    target_link_libraries(scsynth ${PTHREADS_LIBRARIES})
-endif()
 
 if(LTO)
     set_property(TARGET scsynth libscsynth
