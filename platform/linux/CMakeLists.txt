@@ -1,8 +1,3 @@
-install(FILES icons/supercollider.png icons/supercollider.xpm
-	DESTINATION ${CMAKE_INSTALL_PREFIX}/share/pixmaps )
-
-install(FILES ../../icons/sc_ide.svg
-	DESTINATION ${CMAKE_INSTALL_PREFIX}/share/pixmaps )
-
-install(FILES supercollider.xml
-    DESTINATION share/mime/packages )
+install(FILES icons/supercollider.png icons/supercollider.xpm DESTINATION share/pixmaps)
+install(FILES "${CMAKE_SOURCE_DIR}/icons/sc_ide.svg" DESTINATION share/pixmaps)
+install(FILES supercollider.xml DESTINATION share/mime/packages )
