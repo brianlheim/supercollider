@@ -1,4 +1,4 @@
-set(simple_tests
+set(tests
     buffer_manager_test.cpp
     callback_interpreter_system.cpp
     memory-pool_test.cpp
@@ -15,26 +15,12 @@ set(simple_tests
     timetag_test.cpp
 )
 
-if(!APPLE)
-    set(simple_tests
-        ${simple_tests}
-        static_allocator_test.cpp
-        tl_allocator_test.cpp
-    )
+if(NOT APPLE)
+    list(APPEND tests static_allocator_test.cpp tl_allocator_test.cpp)
 endif()
 
-if (CMAKE_SYSTEM_NAME MATCHES "Linux")
-    set(simple_tests ${simple_tests}
-        perf_counter_test.cpp
-    )
+if(CMAKE_SYSTEM_NAME MATCHES "Linux")
+    list(APPEND tests perf_counter_test.cpp)
 endif()
 
-# run simple tests
-foreach(test ${simple_tests})
-  string(REPLACE .cpp "" test_name ${test} )
-  add_executable(${test_name} ${test})
-
-  target_link_libraries(${test_name} libsupernova sc_boost_test boost_thread_lib)
-
-  add_test(${test_name}_run ${EXECUTABLE_OUTPUT_PATH}/${test_name})
-endforeach(test)
+MakeTestPerSourceFile(SOURCES ${tests} LIBS libsupernova sc_boost_test boost_thread_lib)
