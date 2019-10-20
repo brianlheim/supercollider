@@ -190,11 +190,6 @@ if(SC_QT OR SC_IDE)
     target_link_libraries(libsclang ${QT_COLLIDER_LIBS})
 endif()
 
-if(FALSE) # libsclang is a shared library
-  target_compile_definitions(libsclang PRIVATE   BUILDING_SCLANG)
-  target_compile_definitions(libsclang INTERFACE BUILDING_SCLANG)
-endif()
-
 if(SC_HIDAPI)
   target_compile_definitions(libsclang PRIVATE HAVE_HIDAPI)
   target_link_libraries( libsclang hidapi hidapi_parser )
