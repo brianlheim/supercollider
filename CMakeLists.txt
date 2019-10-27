@@ -219,6 +219,8 @@ add_compile_options(
         /wd4309 # '=' : truncation of constant value
         /wd4800 # forcing value to bool 'true' or 'false' (performance warning)
         /wd4996 # The POSIX name for this item is deprecated.
+
+        /w15038 # same as gcc -Wreorder
     >
 
     $<$<BOOL:MINGW>:-mstackrealign>
@@ -277,6 +279,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "^(GNU|Clang|AppleClang)$")
     add_compile_options(
         $<$<BOOL:NATIVE>:-march=native>
         -fvisibility=hidden
+        -Wreorder
     )
     add_definitions($<$<BOOL:FORTIFY>:-D_FORTIFY_SOURCE=2)
 

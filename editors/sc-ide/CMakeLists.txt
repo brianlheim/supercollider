@@ -2,10 +2,6 @@
 SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-if(${CMAKE_COMPILER_IS_GNUCXX})
-    add_definitions(-Wreorder)
-endif()
-
 if(APPLE)
     foreach(file ${ClassLibrary} ${HelpSource} ${Sounds})
         string(REPLACE ${CMAKE_SOURCE_DIR} "" PathInBundle ${file} )
