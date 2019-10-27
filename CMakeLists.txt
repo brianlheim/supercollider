@@ -13,6 +13,10 @@ set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}${PROJECT_
 message(STATUS "SuperCollider Version: ${PROJECT_VERSION}")
 message(STATUS "Building from branch ${GIT_BRANCH}, commit hash is ${GIT_COMMIT_HASH}")
 
+if(CMAKE_SYSTEM_NAME MATCHES "^(Linux|FreeBSD|DragonFly|OpenBSD|NetBSD)$")
+    set(system_is_unixy 1)
+endif()
+
 # disable no build type
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     message(FATAL_ERROR "Please specify a build type by rerunning this step with -DCMAKE_BUILD_TYPE=<type>")
@@ -39,6 +43,10 @@ include(CheckIncludeFiles)
 include(FinalFile)
 include(CMakeDependentOption)
 include(CheckCXXCompilerFlag)
+
+if(system_is_unixy)
+    include(GNUInstallDirs)
+endif()
 
 if(APPLE)
     include(MacAppFolder)

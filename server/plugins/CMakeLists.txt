@@ -245,7 +245,7 @@ endforeach()
 
 if(NOT NO_X11)
     # TODO audit this
-    if(CMAKE_SYSTEM_NAME MATCHES "Linux|FreeBSD|DragonFly|OpenBSD|NetBSD")
+    if(system_is_unixy)
 		find_package(X11 REQUIRED)
 
 		if (NOT X11_Xt_FOUND)
