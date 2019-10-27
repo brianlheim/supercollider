@@ -1108,10 +1108,6 @@ Commonly used variables to modify the build configuration are:
 
       -DSC_DOC_RENDER=ON
 
-  You can also avoid *installing* the (unrendered) HelpSource:
-
-      -DINSTALL_HELP=OFF
-
 * Server-only: Currently there is no straightforward way to build server-only.
   Even if you mark only the server target (and the plugins), sclang is pulled
   in as well. So a bit of patience is required. You can turn off Qt

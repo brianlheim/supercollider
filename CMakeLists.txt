@@ -69,7 +69,6 @@ option(NOVA_SIMD           "Build with nova-simd support." ON)
 option(FINAL_BUILD         "Build as single source file." OFF)
 option(FFT_GREEN           "Use internal 'Green' FFT lib rather than FFTW. (Not recommended.)" OFF)
 option(LIBSCSYNTH          "Compile libscsynth as shared library" OFF)
-option(INSTALL_HELP        "Install help docs and examples along with the software" ON)
 option(SC_DOC_RENDER       "Pre-render SCDoc documentation. (For putting online, etc)" OFF)
 option(SC_QT               "Build SuperCollider with Qt GUI features" ON)
 option(SC_NO_CCACHE "By default, ccache will be used if found; set this to disable it" OFF)
@@ -323,7 +322,7 @@ if(NOT SC_ABLETON_LINK)
 endif()
 
 if(NOT APPLE)
-    install(DIRECTORY SCClassLibrary
+    install(DIRECTORY SCClassLibrary HelpSource
         DESTINATION ${auxresourcesdir}
         REGEX ${SCCLASSLIB_EXCLUDE_REGEX} EXCLUDE
         PATTERN "*~" EXCLUDE
@@ -351,16 +350,6 @@ else()
 endif()
 
 install(FILES ${AdditionalInstallFiles} DESTINATION ${auxresourcesdir})
-
-if(INSTALL_HELP AND NOT APPLE)
-    install(DIRECTORY HelpSource
-        DESTINATION ${auxresourcesdir}
-        REGEX ${SCCLASSLIB_EXCLUDE_REGEX} EXCLUDE
-        PATTERN "*~" EXCLUDE
-        PATTERN "*#" EXCLUDE
-    )
-endif()
-
 
 #############################################
 #
