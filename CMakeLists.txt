@@ -321,6 +321,7 @@ if(NOT SC_ABLETON_LINK)
 	set(SCCLASSLIB_EXCLUDE_REGEX "${SCCLASSLIB_EXCLUDE_REGEX}|Ableton")
 endif()
 
+# These are installed differently later for macOS (TODO fix)
 if(NOT APPLE)
     install(DIRECTORY SCClassLibrary HelpSource
         DESTINATION ${auxresourcesdir}
@@ -334,22 +335,15 @@ endif()
 
 install(DIRECTORY examples DESTINATION ${auxresourcesdir})
 
-set(AdditionalInstallFiles
-    README.md
-    CHANGELOG.md
-    COPYING
-    AUTHORS
-)
+install(FILES README.md CHANGELOG.md COPYING AUTHORS DESTINATION ${auxresourcesdir})
 
-if (WIN32)
-    list(APPEND AdditionalInstallFiles README_WINDOWS.md)
+if(WIN32)
+    install(FILES README_WINDOWS.md DESTINATION ${auxresourcesdir})
 elseif(APPLE)
-    list(APPEND AdditionalInstallFiles README_MACOS.md)
+    install(FILES README_MACOS.md DESTINATION ${auxresourcesdir})
 else()
-    list(APPEND AdditionalInstallFiles README_LINUX.md)
+    install(FILES README_LINUX.md DESTINATION ${auxresourcesdir})
 endif()
-
-install(FILES ${AdditionalInstallFiles} DESTINATION ${auxresourcesdir})
 
 #############################################
 #
