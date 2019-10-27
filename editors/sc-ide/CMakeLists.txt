@@ -49,13 +49,6 @@ if(${CMAKE_COMPILER_IS_GNUCXX})
     add_definitions(-Wreorder)
 endif()
 
-if (APPLE)
-  include (${CMAKE_SOURCE_DIR}/cmake_modules/MacAppFolder.cmake)
-  set(ide_name ${scappbundlename})
-else()
-  set(ide_name scide)
-endif()
-
 if(APPLE)
     if(NOT SC_SYMLINK_CLASSLIB)
         foreach(file ${ClassLibrary} ${HelpSource})
@@ -303,11 +296,7 @@ else()
   add_executable( SuperCollider MACOSX_BUNDLE ${ide_sources} ${ide_rc_sources} ${RES_FILES} ${AdditionalBundleSources})
 endif()
 
-if(APPLE)
-    set_target_properties(SuperCollider PROPERTIES OUTPUT_NAME "${ide_name}")
-else()
-    set_target_properties(SuperCollider PROPERTIES OUTPUT_NAME "scide")
-endif()
+set_target_properties(SuperCollider PROPERTIES OUTPUT_NAME "${ide_name}")
 
 target_link_libraries( SuperCollider
     ${QT_IDE_LIBRARIES}

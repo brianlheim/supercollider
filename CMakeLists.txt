@@ -40,9 +40,8 @@ include(FinalFile)
 include(CMakeDependentOption)
 include(CheckCXXCompilerFlag)
 
-include(cmake_modules/MacAppFolder.cmake)
-# TODO need?
 if(APPLE)
+    include(MacAppFolder)
     set(ide_name ${scappbundlename})
 else()
     set(ide_name scide)
