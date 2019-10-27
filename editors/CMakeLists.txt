@@ -1,8 +1,3 @@
-# All 3 disabled by default
-option(SC_EL "Build emacs editor support" OFF)
-option(SC_ED "Build gedit editor support" OFF)
-option(SC_VIM "Build vim editor support" OFF)
-
 if(SC_IDE)
     message(STATUS "Building the SuperCollider IDE")
     add_subdirectory(sc-ide)

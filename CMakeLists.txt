@@ -94,6 +94,9 @@ option(NATIVE "Optimize binary for this architecture; binaries may not run on ot
 option(SC_HIDAPI "Build with HID support" ON)
 option(SSE "Compile with support for SSE instructions; no effect on ARM systems like Raspberry Pi" ON)
 option(SSE2 "Compile with support for SSE2 instructions; no effect on ARM systems like Raspberry Pi" ON)
+option(SC_EL "Build emacs editor support" OFF)
+option(SC_ED "Build gedit editor support" OFF)
+option(SC_VIM "Build vim editor support" OFF)
 
 # Only allow SC_IDE if SC_QT is ON
 cmake_dependent_option(SC_IDE              "Build Qt IDE." ON SC_QT OFF)
