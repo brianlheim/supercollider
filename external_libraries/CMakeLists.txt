@@ -158,3 +158,25 @@ if(WIN32)
   target_link_libraries(portmidi PRIVATE winmm.lib)
   target_compile_definitions(portmidi INTERFACE HAVE_PORTMIDI)
 endif()
+
+# ----------------------------------------------------------------------------------------------------
+# TODO
+# ----------------------------------------------------------------------------------------------------
+
+if(AUDIOAPI STREQUAL jack)
+    # here we check for JACK metadata API
+    check_include_files("jack/metadata.h" JACK_USE_METADATA_API)
+    if(JACK_USE_METADATA_API)
+        # TODO place in main file
+        message(STATUS "Using JACK metadata API")
+        include_directories(jackey)
+    endif()
+endif()
+
+if(WIN32 AND NOT MSYS)
+    # might work with "SHARED" as well.
+    set(PA_LIBRARY_TYPE "STATIC")
+    # TODO set in main file
+    set(PORTAUDIO_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/external_libraries/portaudio_sc_org/include" CACHE PATH "Portaudio include directory" FORCE)
+    add_subdirectory(portaudio_sc_org)
+endif()
