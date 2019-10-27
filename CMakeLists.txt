@@ -281,6 +281,15 @@ endif()
 
 #############################################
 # subdirectories
+
+if(WIN32)
+    set(sc_resources_dir SuperCollider CACHE STRING "Resources directory")
+elseif(APPLE)
+    set(sc_resources_dir ${scappbundlename} CACHE STRING "Resources directory")
+else()
+    set(sc_resources_dir share/SuperCollider CACHE STRING "Resources directory")
+endif()
+
 add_subdirectory(tools)
 add_subdirectory(external_libraries)
 
@@ -305,14 +314,6 @@ if(gnu_style_install)
     )
 endif()
 
-if (WIN32)
-    set(auxresourcesdir SuperCollider CACHE STRING "Resources directory")
-elseif(APPLE)
-    set(auxresourcesdir ${scappbundlename} CACHE STRING "Resources directory")
-else()
-    set(auxresourcesdir share/SuperCollider CACHE STRING "Resources directory")
-endif()
-
 set(classlib_exclude_regex "^$")
 if(NOT SC_QT)
     string(APPEND classlib_exclude_regex "|^GUI$")
@@ -324,25 +325,25 @@ endif()
 # These are installed differently later for macOS (TODO fix)
 if(NOT APPLE)
     install(DIRECTORY SCClassLibrary HelpSource
-        DESTINATION ${auxresourcesdir}
+        DESTINATION ${sc_resources_dir}
         REGEX ${SCCLASSLIB_EXCLUDE_REGEX} EXCLUDE
         PATTERN "*~" EXCLUDE
         PATTERN "*#" EXCLUDE
     )
 
-    install(DIRECTORY sounds DESTINATION ${auxresourcesdir})
+    install(DIRECTORY sounds DESTINATION ${sc_resources_dir})
 endif()
 
-install(DIRECTORY examples DESTINATION ${auxresourcesdir})
+install(DIRECTORY examples DESTINATION ${sc_resources_dir})
 
-install(FILES README.md CHANGELOG.md COPYING AUTHORS DESTINATION ${auxresourcesdir})
+install(FILES README.md CHANGELOG.md COPYING AUTHORS DESTINATION ${sc_resources_dir})
 
 if(WIN32)
-    install(FILES README_WINDOWS.md DESTINATION ${auxresourcesdir})
+    install(FILES README_WINDOWS.md DESTINATION ${sc_resources_dir})
 elseif(APPLE)
-    install(FILES README_MACOS.md DESTINATION ${auxresourcesdir})
+    install(FILES README_MACOS.md DESTINATION ${sc_resources_dir})
 else()
-    install(FILES README_LINUX.md DESTINATION ${auxresourcesdir})
+    install(FILES README_LINUX.md DESTINATION ${sc_resources_dir})
 endif()
 
 #############################################
