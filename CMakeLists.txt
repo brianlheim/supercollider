@@ -300,13 +300,13 @@ add_subdirectory(lang)
 add_subdirectory(platform)
 add_subdirectory(editors)
 
-if(UNIX AND NOT APPLE)
+if(gnu_style_install)
     install(DIRECTORY include/common include/plugin_interface include/server include/lang
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/include/SuperCollider
-	FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/SuperCollider
+        FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
     )
     install(FILES SCVersion.txt
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/include/SuperCollider
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/SuperCollider
     )
 endif()
 
