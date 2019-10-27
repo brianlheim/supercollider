@@ -339,11 +339,11 @@ elseif(WIN32)
 
     install(TARGETS sclang
         PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
-        DESTINATION "${SC_WIN_BUNDLE_NAME}"
+		DESTINATION SuperCollider
     )
 
     if(SC_QT)
-        SET(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION "${CMAKE_INSTALL_PREFIX}/${SC_WIN_BUNDLE_NAME}")
+		SET(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION SuperCollider)
         include(InstallRequiredSystemLibraries)
         if(MSYS)
             SET(QT_PLUGINS_DIR "${QT_BIN_PATH}/../share/qt5/plugins" CACHE PATH "Location of qt plugins for windows as provided by MSYS2")
@@ -358,7 +358,7 @@ elseif(WIN32)
             get_filename_component(_abs ${QT_PLUGINS_DIR} ABSOLUTE)
             string(REPLACE "${_abs}/" "" _dest_dir ${_parent_dir})
             install(FILES "${_parent_dir}/${_name_we}$<$<CONFIG:DEBUG>:d>.dll"
-                DESTINATION "${CMAKE_INSTALL_PREFIX}/${SC_WIN_BUNDLE_NAME}/${_dest_dir}"
+                DESTINATION "SuperCollider/${_dest_dir}"
             )
         endforeach()
     endif(SC_QT)
@@ -367,7 +367,7 @@ elseif(WIN32)
         install(CODE "
             include(BundleUtilities)
             fixup_bundle(
-                \"${CMAKE_INSTALL_PREFIX}/${SC_WIN_BUNDLE_NAME}/sclang.exe\"
+                \"${CMAKE_INSTALL_PREFIX}/SuperCollider/sclang.exe\"
                 \"\"
                 \"${SC_WIN_DLL_DIRS}\" )
             "

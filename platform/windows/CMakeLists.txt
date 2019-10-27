@@ -41,7 +41,7 @@ add_custom_target( installer
         "-DSC_CUBE_PATH=${CMAKE_CURRENT_SOURCE_DIR}/Resources/sc_cube.ico"
         "-DBUILD_DEF=$<CONFIG>-${CMAKE_LIBRARY_ARCHITECTURE}-${BUILD_ENV}-${GIT_COMMIT_HASH}"
         "-DTARGET_ARCH=${CMAKE_LIBRARY_ARCHITECTURE}"
-        "-DSC_WIN_BUNDLE_NAME=${SC_WIN_BUNDLE_NAME}"
+        "-DSC_WIN_BUNDLE_NAME=SuperCollider"
         "-DSC_WIN_INSTALL_SIZE=${SC_WIN_INSTALL_SIZE}"
         -P "${CMAKE_CURRENT_SOURCE_DIR}/package.cmake"
     COMMENT "Building the installer..."

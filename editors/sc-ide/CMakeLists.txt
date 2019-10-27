@@ -385,11 +385,11 @@ elseif(WIN32)
     endforeach()
 
     install(TARGETS SuperCollider
-        DESTINATION "${SC_WIN_BUNDLE_NAME}"
+        DESTINATION SuperCollider
         PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
     )
     install(FILES ${translations}
-        DESTINATION "${SC_WIN_BUNDLE_NAME}/translations"
+        DESTINATION SuperCollider/translations
     )
 
     set(SC_WIN_DLL_DIRS)
@@ -411,7 +411,7 @@ elseif(WIN32)
     install(CODE
         "
             include(BundleUtilities)
-            fixup_bundle(\"${CMAKE_INSTALL_PREFIX}/${SC_WIN_BUNDLE_NAME}/sclang.exe\" \"\" \"${SC_WIN_DLL_DIRS}\")
+            fixup_bundle(\"${CMAKE_INSTALL_PREFIX}/SuperCollider/sclang.exe\" \"\" \"${SC_WIN_DLL_DIRS}\")
         "
     )
 
@@ -451,7 +451,7 @@ if(APPLE OR WIN32)
         find_program(DEPLOY_PROG windeployqt PATHS ${CMAKE_PREFIX_PATH})
         set(DEPLOY_CMD "\"${DEPLOY_PROG}\"
                 --verbose 1 --no-compiler-runtime
-                \"${CMAKE_INSTALL_PREFIX}/${SC_WIN_BUNDLE_NAME}/sclang.exe\"
+                \"${CMAKE_INSTALL_PREFIX}/SuperCollider/sclang.exe\"
             ")
         set(VERIFY_CMD "")
     endif()

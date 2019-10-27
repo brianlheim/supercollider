@@ -303,7 +303,7 @@ if (WIN32)
 
 	install(TARGETS ${plugins} ${supernova_plugins}
 		PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
-		DESTINATION "${SC_WIN_BUNDLE_NAME}/plugins"
+        DESTINATION SuperCollider/plugins
 	)
 
 elseif(APPLE)

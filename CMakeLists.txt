@@ -101,10 +101,7 @@ cmake_dependent_option(SC_IDE              "Build Qt IDE." ON SC_QT OFF)
 
 set(AUDIOAPI default CACHE STRING "Audio API to use (one of {default,coreaudio,jack,portaudio})")
 
-# TODO audit SC_WIN_BUNDLE_NAME
 if(WIN32)
-    set(SC_WIN_BUNDLE_NAME "SuperCollider" CACHE STRING "Folder name of SC install")
-
     if(CMAKE_SIZEOF_VOID_P EQUAL 8)
         set(win_arch x64)
     else()
@@ -311,11 +308,11 @@ if(gnu_style_install)
 endif()
 
 if (WIN32)
-    set(auxresourcesdir "${SC_WIN_BUNDLE_NAME}" CACHE STRING "Resources directory")
+    set(auxresourcesdir SuperCollider CACHE STRING "Resources directory")
 elseif(APPLE)
     set(auxresourcesdir ${scappbundlename} CACHE STRING "Resources directory")
 else()
-    set(auxresourcesdir "share/SuperCollider" CACHE STRING "Resources directory")
+    set(auxresourcesdir share/SuperCollider CACHE STRING "Resources directory")
 endif()
 
 if(NOT SC_QT)
