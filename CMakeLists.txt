@@ -85,7 +85,6 @@ option(NO_GPL3             "Disable GPL3 code, for pure-GPL2 situations. (Not re
 option(SCLANG_SERVER       "Build with internal server." ON)
 # TODO support on clang & msvc /ltcg
 option(LTO                 "Use link time optimization (experimental); currently only supported for gcc" OFF)
-option(SC_SYMLINK_CLASSLIB "Place a symlink of SCCLassLibrary instead of copying" OFF)
 option(SYSTEM_BOOST        "Use boost libraries from system" OFF)
 option(SYSTEM_YAMLCPP      "Use yaml-cpp library from system" OFF)
 option(FORTIFY             "Define -D_FORTIFY_SOURCE=2 to check for programming errors" OFF)
@@ -323,45 +322,18 @@ if(NOT SC_ABLETON_LINK)
 	set(SCCLASSLIB_EXCLUDE_REGEX "${SCCLASSLIB_EXCLUDE_REGEX}|Ableton")
 endif()
 
-if(APPLE)
-	if(SC_SYMLINK_CLASSLIB)
-		#if there are folders inside SCCLassLibrary abort cmake.
-		file(GLOB classlibraryfolders "${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary/[^.]*")
-		foreach(onedirectory ${classlibraryfolders})
-			message( "${onedirectory}" )
-			if(NOT IS_SYMLINK "${onedirectory}")
-				message(FATAL_ERROR "Symlinking will fail ! SCClassLibrary folder already exists and has directories inside, please delete it first." )
-			endif()
-		endforeach(onedirectory)
-
-		message(STATUS "Will create symlink of SCClassLibrary to ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary" )
-		if(NOT EXISTS "{CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary")
-			install( CODE "EXECUTE_PROCESS(COMMAND mkdir ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary)" )
-		endif()
-		#symlink the folders inside SCCLassLibrary. Check if QtCollider folder should be symlinked or not.
-		file(GLOB classlibraryfolders RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/SCClassLibrary" "SCClassLibrary/[^.]*")
-		foreach(onedirectory ${classlibraryfolders})
-			if(NOT "${onedirectory}" MATCHES "${SCCLASSLIB_EXCLUDE_REGEX}")
-				install( CODE
-					"EXECUTE_PROCESS(COMMAND ln -shF ${CMAKE_CURRENT_SOURCE_DIR}/SCClassLibrary/${onedirectory} ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/SCClassLibrary/${onedirectory} )" )
-			endif()
-		endforeach(onedirectory)
-	endif()
-else()
-	install(DIRECTORY SCClassLibrary
-		DESTINATION ${auxresourcesdir}
-		REGEX ${SCCLASSLIB_EXCLUDE_REGEX} EXCLUDE
-		PATTERN "*~" EXCLUDE
-		PATTERN "*#" EXCLUDE
-	)
-endif()
-
 if(NOT APPLE)
-	install(DIRECTORY sounds   DESTINATION ${auxresourcesdir})
-	install(DIRECTORY examples DESTINATION ${auxresourcesdir})
-elseif(APPLE)
-	install(DIRECTORY examples DESTINATION ${auxresourcesdir})
+    install(DIRECTORY SCClassLibrary
+        DESTINATION ${auxresourcesdir}
+        REGEX ${SCCLASSLIB_EXCLUDE_REGEX} EXCLUDE
+        PATTERN "*~" EXCLUDE
+        PATTERN "*#" EXCLUDE
+    )
+
+    install(DIRECTORY sounds DESTINATION ${auxresourcesdir})
 endif()
+
+install(DIRECTORY examples DESTINATION ${auxresourcesdir})
 
 set(AdditionalInstallFiles
     README.md
@@ -380,22 +352,13 @@ endif()
 
 install(FILES ${AdditionalInstallFiles} DESTINATION ${auxresourcesdir})
 
-if(INSTALL_HELP)
-	if(SC_SYMLINK_CLASSLIB AND APPLE)
-		message(STATUS "Will create symlink of HelpSource to ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/HelpSource")
-		if(EXISTS "${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/HelpSource")
-			message(FATAL_ERROR "Symlinking will fail ! HelpSource folder already exists, please delete it first." )
-		endif()
-		install( CODE
-					"EXECUTE_PROCESS(COMMAND ln -shF ${CMAKE_CURRENT_SOURCE_DIR}/HelpSource ${CMAKE_INSTALL_PREFIX}/${auxresourcesdir}/HelpSource )" )
-	elseif(NOT APPLE)
-		install(DIRECTORY HelpSource
-			DESTINATION ${auxresourcesdir}
-			REGEX ${SCCLASSLIB_EXCLUDE_REGEX} EXCLUDE
-			PATTERN "*~" EXCLUDE
-			PATTERN "*#" EXCLUDE
-		)
-	endif()
+if(INSTALL_HELP AND NOT APPLE)
+    install(DIRECTORY HelpSource
+        DESTINATION ${auxresourcesdir}
+        REGEX ${SCCLASSLIB_EXCLUDE_REGEX} EXCLUDE
+        PATTERN "*~" EXCLUDE
+        PATTERN "*#" EXCLUDE
+    )
 endif()
 
 
