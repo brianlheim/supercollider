@@ -357,10 +357,6 @@ endif()
 # Installation
 
 if(APPLE)
-    if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-        set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/Install" CACHE PATH "Install path prefix" FORCE)
-    endif()
-
     # set how it shows up in the Info.plist file
     SET(MACOSX_BUNDLE_ICON_FILE ../../icons/sc_ide.icns)
 
