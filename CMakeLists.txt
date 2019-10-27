@@ -232,55 +232,46 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     elseif(CYGWIN OR NOT WIN32)
         add_definitions(-pthread)
     endif()
+
+    # support for building on Raspberry Pi 1/2/3 and BBB
+    if(CMAKE_SYSTEM_PROCESSOR STREQUAL "armv7l")
+        add_compile_options(-mfloat-abi=hard -mfpu=neon)
+    elseif(CMAKE_SYSTEM_PROCESSOR STREQUAL "armv6l")
+        add_compile_options(-mfloat-abi=hard -mfpu=vfp -march=armv6 -mtune=arm1176jzf-s)
+    endif()
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
-    set(CMAKE_COMPILER_IS_INTEL 1)
-elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
-    set(CMAKE_COMPILER_IS_CLANG 1)
-endif()
-
-# TODO do try_compile with werror?
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANG)
-    check_cxx_compiler_flag(-msse CXX_SUPPORTS_SSE)
-    check_cxx_compiler_flag(-msse2 CXX_SUPPORTS_SSE2)
-
-    if(SSE AND CXX_SUPPORTS_SSE)
-        add_compile_options(-msse)
-        if(NOT APPLE AND NOT CMAKE_COMPILER_IS_CLANG)
-            add_compile_options(-mfpmath=sse)
-        endif()
-    endif()
-    if(SSE2 AND CXX_SUPPORTS_SSE2)
-        add_compile_options(-msse2)
-    endif()
-    if(NATIVE)
-        add_compile_options(-march=native)
-    endif()
-
-    # TODO let users choose or don't use libc++
-    if(CMAKE_COMPILER_IS_CLANG)
-        add_compile_options(-stdlib=libc++)
-    endif()
-
-    # TODO consolidate this a bit
-    if(FORTIFY)
-        add_definitions(-D_FORTIFY_SOURCE=2)
-    endif()
-
-    add_compile_options(-fvisibility=hidden)
-endif()
-
-if(CMAKE_COMPILER_IS_INTEL)
     check_cxx_compiler_flag(-mia32 CXX_SUPPORTS_SSE)
     if(SSE AND CXX_SUPPORTS_SSE)
         add_definitions(-mia32)
     endif()
 endif()
 
-# support for building on Raspberry Pi 1/2/3 and BBB
-if(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_SYSTEM_PROCESSOR STREQUAL "armv7l")
-    add_compile_options(-mfloat-abi=hard -mfpu=neon)
-elseif(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_SYSTEM_PROCESSOR STREQUAL "armv6l")
-    add_compile_options(-mfloat-abi=hard -mfpu=vfp -march=armv6 -mtune=arm1176jzf-s)
+if(CMAKE_CXX_COMPILER_ID MATCHES "^(GNU|Clang|AppleClang)$")
+    check_cxx_compiler_flag(-msse CXX_SUPPORTS_SSE)
+    check_cxx_compiler_flag(-msse2 CXX_SUPPORTS_SSE2)
+
+    if(SSE AND CXX_SUPPORTS_SSE)
+        add_compile_options(-msse)
+        # TODO audit
+        if(NOT APPLE AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+            add_compile_options(-mfpmath=sse)
+        endif()
+    endif()
+
+    if(SSE2 AND CXX_SUPPORTS_SSE2)
+        add_compile_options(-msse2)
+    endif()
+
+    add_compile_options(
+        $<$<BOOL:NATIVE>:-march=native>
+        -fvisibility=hidden
+    )
+    add_definitions($<$<BOOL:FORTIFY>:-D_FORTIFY_SOURCE=2)
+
+    # TODO audit. let users choose or don't use libc++
+    if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        add_compile_options(-stdlib=libc++)
+    endif()
 endif()
 
 #############################################
