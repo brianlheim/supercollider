@@ -341,12 +341,10 @@ if(APPLE)
     # set how it shows up in the Info.plist file
     SET(MACOSX_BUNDLE_ICON_FILE ../../icons/sc_ide.icns)
 
-    install(TARGETS SuperCollider
-          DESTINATION ${scappbundlename})
+    install(TARGETS SuperCollider DESTINATION ${sc_app_bundle_name})
 
     # for processing into the plist:
-    set_property(TARGET SuperCollider
-	    PROPERTY MACOSX_BUNDLE_BUNDLE_NAME ${scappbundlename})
+    set_property(TARGET SuperCollider PROPERTY MACOSX_BUNDLE_BUNDLE_NAME ${sc_app_bundle_name})
 
 elseif(WIN32)
 
