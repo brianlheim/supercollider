@@ -152,14 +152,12 @@ list( APPEND QT_COLLIDER_SRCS
 add_definitions(-DSC_QT -DQT_COLLIDER_EXPORTING -DQT_NO_KEYWORDS)
 
 if(APPLE)
-  list(APPEND QT_COLLIDER_LIBS "-framework Cocoa" )
-  list(APPEND QT_COLLIDER_LIBS "-framework Quartz" )
-  list(APPEND QT_COLLIDER_LIBS "-framework AppKit" )
+  list(APPEND sclang_qt_libs "-framework Cocoa -framework Quartz -framework AppKit")
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -F/Library/Frameworks")
 endif()
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
     find_package(X11 REQUIRED)
     include_directories(X11_INCLUDE_DIR)
-    list(APPEND QT_COLLIDER_LIBS ${X11_X11_LIB})
+    list(APPEND sclang_qt_libs ${X11_X11_LIB})
 endif()

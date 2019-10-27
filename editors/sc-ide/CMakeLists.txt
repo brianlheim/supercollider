@@ -206,6 +206,7 @@ if(APPLE)
 endif()
 
 # This sets up the exe icon for windows.
+# TODO still needed?
 if(WIN32)
     set(RES_FILES ${CMAKE_SOURCE_DIR}/platform/windows/Resources/scide.rc)
     set(CMAKE_RC_COMPILER_INIT windres)
@@ -234,7 +235,7 @@ target_link_libraries(SuperCollider
 )
 
 # TODO make it so that all these paths aren't required
-target_include_directories(SuperCollider
+target_include_directories(SuperCollider PUBLIC
     ${boost_include_dirs}
     ${CMAKE_SOURCE_DIR}/include/common
     ${CMAKE_SOURCE_DIR}/common
@@ -252,11 +253,10 @@ target_include_directories(SuperCollider
 )
 
 if(LTO)
-    set_property(TARGET SuperCollider
-                 APPEND PROPERTY COMPILE_FLAGS "-flto -flto-report")
-
-    set_property(TARGET SuperCollider
-                 APPEND PROPERTY LINK_FLAGS "-flto -flto-report -fwhole-program")
+    set_target_properties(SuperCollider PROPERTIES
+        COMPILE_FLAGS "-flto -flto-report"
+        LINK_FLAGS "-flto -flto-report -fwhole-program"
+    )
 endif()
 
 if(SC_USE_QTWEBENGINE)
@@ -267,18 +267,14 @@ endif()
 
 if(APPLE)
     # set how it shows up in the Info.plist file
-    SET(MACOSX_BUNDLE_ICON_FILE ../../icons/sc_ide.icns)
-
+    set(MACOSX_BUNDLE_ICON_FILE ../../icons/sc_ide.icns)
+    set_target_properties(SuperCollider PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME ${sc_app_bundle_name})
     install(TARGETS SuperCollider DESTINATION ${sc_app_bundle_name})
-
-    # for processing into the plist:
-    set_property(TARGET SuperCollider PROPERTY MACOSX_BUNDLE_BUNDLE_NAME ${sc_app_bundle_name})
-
 elseif(WIN32)
-
+    # TODO remove this and similar code
     if(NOT MSVC)
         set_target_properties(SuperCollider PROPERTIES RUNTIME_OUTPUT_DIRECTORY "$<CONFIG>")
-    endif(NOT MSVC)
+    endif()
 
     if(MSYS)
       add_custom_command(TARGET SuperCollider
