@@ -244,7 +244,8 @@ foreach(plugin ${supernova_plugins})
 endforeach()
 
 if(NOT NO_X11)
-	if (LINUX_OR_BSD)
+    # TODO audit this
+    if(CMAKE_SYSTEM_NAME MATCHES "Linux|FreeBSD|DragonFly|OpenBSD|NetBSD")
 		find_package(X11 REQUIRED)
 
 		if (NOT X11_Xt_FOUND)

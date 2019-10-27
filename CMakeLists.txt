@@ -23,11 +23,6 @@ if (CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
     message(FATAL_ERROR "In-source builds are not supported; build out-of-source or in a subdirectory whose name begins with 'build'")
 endif()
 
-# TODO need?
-if(CMAKE_SYSTEM_NAME MATCHES "Linux|FreeBSD|DragonFly|OpenBSD|NetBSD")
-    set(LINUX_OR_BSD 1)
-endif()
-
 # installation & uninstallation
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT AND (WIN32 OR APPLE))
     message(STATUS "No install prefix set, installing to ${CMAKE_BINARY_DIR}/Install")
@@ -71,7 +66,7 @@ option(SC_QT               "Build SuperCollider with Qt GUI features" ON)
 option(SC_NO_CCACHE "By default, ccache will be used if found; set this to disable it" OFF)
 option(NO_X11              "Disables server plugins requiring the X11 library (for UI-less builds)" OFF)
 option(ENABLE_TESTSUITE    "Compile testsuite." ON)
-option(SUPERNOVA           "Build with supernova as optional audio synthesis server" ${LINUX_OR_BSD})
+option(SUPERNOVA           "Build with supernova as optional audio synthesis server" OFF)
 option(SN_MEMORY_DEBUGGING "Build supernova for memory debugging (disable memory pools).")
 option(SC_MEMORY_DEBUGGING "Build sclang&scsynth for memory debugging (disable memory pools).")
 option(GC_SANITYCHECK      "Enable sanity checks in the sclang garbage collector.")
