@@ -313,12 +313,12 @@ else()
     set(auxresourcesdir share/SuperCollider CACHE STRING "Resources directory")
 endif()
 
+set(classlib_exclude_regex "^$")
 if(NOT SC_QT)
-	set(SCCLASSLIB_EXCLUDE_REGEX "${SCCLASSLIB_EXCLUDE_REGEX}|GUI")
+    string(APPEND classlib_exclude_regex "|^GUI$")
 endif()
-
 if(NOT SC_ABLETON_LINK)
-	set(SCCLASSLIB_EXCLUDE_REGEX "${SCCLASSLIB_EXCLUDE_REGEX}|Ableton")
+    string(APPEND classlib_exclude_regex "|^Ableton$")
 endif()
 
 # These are installed differently later for macOS (TODO fix)
