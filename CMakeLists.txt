@@ -15,6 +15,7 @@ message(STATUS "Building from branch ${GIT_BRANCH}, commit hash is ${GIT_COMMIT_
 
 if(CMAKE_SYSTEM_NAME MATCHES "^(Linux|FreeBSD|DragonFly|OpenBSD|NetBSD)$")
     set(system_is_unixy 1)
+    set(gnu_style_install 1)
 endif()
 
 # disable no build type
@@ -44,7 +45,8 @@ include(FinalFile)
 include(CMakeDependentOption)
 include(CheckCXXCompilerFlag)
 
-if(system_is_unixy)
+# TODO add option for macos
+if(gnu_style_install)
     include(GNUInstallDirs)
 endif()
 
