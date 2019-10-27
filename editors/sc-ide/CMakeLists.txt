@@ -2,49 +2,6 @@
 SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-set(QT_IDE_COMPONENTS
-    Concurrent
-    Core
-    LinguistTools
-    # OpenGL
-    PrintSupport
-    Qml
-    Quick
-    Sql
-    Widgets
-)
-
-set(QT_IDE_LIBRARIES
-    Qt5::Concurrent
-    Qt5::Core
-    # Qt5::OpenGL
-    Qt5::PrintSupport
-    Qt5::Qml
-    Qt5::Quick
-    Qt5::Sql
-)
-
-if(SC_USE_QTWEBENGINE)
-    list(APPEND QT_IDE_COMPONENTS
-        WebChannel
-        WebEngine
-        WebEngineWidgets
-        WebSockets
-    )
-    list(APPEND QT_IDE_LIBRARIES
-        Qt5::WebChannel
-        Qt5::WebEngineWidgets
-        Qt5::WebSockets
-    )
-endif()
-
-find_package(
-    Qt5 ${REQUIRED_QT_VERSION}
-    COMPONENTS
-    ${QT_IDE_COMPONENTS}
-    REQUIRED
-)
-
 if(${CMAKE_COMPILER_IS_GNUCXX})
     add_definitions(-Wreorder)
 endif()
@@ -291,7 +248,7 @@ endif()
 set_target_properties(SuperCollider PROPERTIES OUTPUT_NAME "${ide_name}")
 
 target_link_libraries( SuperCollider
-    ${QT_IDE_LIBRARIES}
+    ${scide_qt_libs}
     ${YAMLCPP_LIBRARY}
     oscpack
 )
@@ -331,7 +288,6 @@ if(LTO)
 endif()
 
 if(SC_USE_QTWEBENGINE)
-    message(STATUS "IDE: Building with QtWebEngine")
     target_compile_definitions(SuperCollider PUBLIC SC_USE_QTWEBENGINE)
 endif()
 

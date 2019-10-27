@@ -4,7 +4,7 @@ option(SC_ED "Build gedit editor support" OFF)
 option(SC_VIM "Build vim editor support" OFF)
 
 if(SC_IDE)
-    message(STATUS "Building the Qt IDE")
+    message(STATUS "Building the SuperCollider IDE")
     add_subdirectory(sc-ide)
 endif()
 

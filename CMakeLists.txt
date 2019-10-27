@@ -77,6 +77,7 @@ option(ENABLE_TESTSUITE    "Compile testsuite." ON)
 option(SUPERNOVA           "Build with supernova as optional audio synthesis server" OFF)
 option(SN_MEMORY_DEBUGGING "Build supernova for memory debugging (disable memory pools).")
 option(SC_MEMORY_DEBUGGING "Build sclang&scsynth for memory debugging (disable memory pools).")
+option(SC_USE_QTWEBENGINE "Build with Qt WebEngine." ON)
 option(GC_SANITYCHECK      "Enable sanity checks in the sclang garbage collector.")
 option(NO_LIBSNDFILE       "Disable soundfile functionality. (Not recommended.)" OFF)
 option(NO_AVAHI            "Disable Avahi support. (Not recommended.)" ${WIN32})
@@ -153,6 +154,9 @@ if(SYSTEM_YAMLCPP)
 else()
     set(YAMLCPP_LIBRARY yaml)
 endif()
+
+# Qt
+include(SC_QtConfig)
 
 # ccache: always use it unless explicitly told not to
 find_program(ccache_program ccache)

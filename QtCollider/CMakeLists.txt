@@ -1,39 +1,6 @@
-set(REQUIRED_QT_VERSION 5.7)
-option(SC_USE_QTWEBENGINE "Build with Qt WebEngine." ON)
 
 ###############################################################################
 # Components and libraries
-
-set(
-  QT_COMPONENTS
-  Core
-  Widgets
-  Network
-  PrintSupport
-  OpenGL
-  Quick
-  Qml
-  Sql
-  Svg
-)
-
-set (QT_COLLIDER_LIBS
-  Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network Qt5::PrintSupport
-  Qt5::Quick Qt5::Qml Qt5::Sql Qt5::OpenGL Qt5::Svg
-  ${MATH_LIBRARY})
-
-if(SC_USE_QTWEBENGINE)
-  list(APPEND QT_COMPONENTS WebEngine WebEngineCore WebEngineWidgets)
-  list(APPEND QT_COLLIDER_LIBS Qt5::WebEngineCore Qt5::WebEngineWidgets)
-endif()
-
-find_package(Qt5 ${REQUIRED_QT_VERSION} COMPONENTS ${QT_COMPONENTS} REQUIRED)
-
-if (APPLE)
-  find_package(Qt5MacExtras)
-  mark_as_advanced(Qt5MacExtras_DIR)
-  list(APPEND QT_COLLIDER_LIBS Qt5::MacExtras)
-endif()
 
 ###############################################################################
 # Debug flags
