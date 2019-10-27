@@ -279,6 +279,7 @@ endif()
 add_subdirectory(tools)
 add_subdirectory(external_libraries)
 
+# TODO audit all four, used in editors
 file(GLOB_RECURSE ClassLibrary SCClassLibrary/*sc)
 file(GLOB_RECURSE HelpSource   HelpSource/*)
 file(GLOB_RECURSE Sounds       sounds/*)
