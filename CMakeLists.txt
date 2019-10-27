@@ -24,11 +24,6 @@ if (CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
 endif()
 
 # TODO need?
-if (CMAKE_SYSTEM_NAME MATCHES "Linux")
-    set(LINUX 1)
-endif()
-
-# TODO need?
 if(CMAKE_SYSTEM_NAME MATCHES "Linux|FreeBSD|DragonFly|OpenBSD|NetBSD")
     set(LINUX_OR_BSD 1)
 endif()

@@ -491,6 +491,6 @@ if(APPLE OR WIN32)
     )
 endif()
 
-if (LINUX)
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   install( PROGRAMS SuperColliderIDE.desktop  DESTINATION "share/applications")
 endif()
