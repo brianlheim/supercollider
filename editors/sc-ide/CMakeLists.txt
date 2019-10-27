@@ -1,6 +1,6 @@
 # This makes sclang/scide work with a Qt installation at a fixed, non-system location.
-SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
-SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 if(APPLE)
     foreach(file ${ClassLibrary} ${HelpSource} ${Sounds})
@@ -9,13 +9,13 @@ if(APPLE)
         set_source_files_properties(${file} PROPERTIES MACOSX_PACKAGE_LOCATION Resources/${PathInBundle})
     endforeach()
 
-    set( Icons ../../icons/sc_ide.icns)
+    set(Icons ../../icons/sc_ide.icns)
     set_source_files_properties(../../icons/sc_ide.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 
     set(AdditionalBundleSources ${ClassLibrary} ${HelpSource} ${BundleResources} ${Examples} ${Sounds} ${Icons})
 endif()
 
-set ( ide_moc_hdr
+set(ide_moc_hdr
     core/main.hpp
     core/sig_mux.hpp
     core/sc_process.hpp
@@ -58,11 +58,13 @@ set ( ide_moc_hdr
     widgets/util/color_widget.hpp
     widgets/util/docklet.hpp
     widgets/util/volume_widget.hpp
+
+    ${CMAKE_SOURCE_DIR}/QtCollider/layouts/stack_layout.hpp
 )
 
-file (GLOB_RECURSE all_hdr *hpp)
+file(GLOB_RECURSE all_hdr *hpp)
 
-set ( ide_src
+set(ide_src
     core/main.cpp
     core/app_palette.cpp
     core/sig_mux.cpp
@@ -116,6 +118,7 @@ set ( ide_src
     ${CMAKE_SOURCE_DIR}/common/SC_Filesystem_win.cpp
     ${CMAKE_SOURCE_DIR}/common/SC_Filesystem_unix.cpp
     ${CMAKE_SOURCE_DIR}/common/SC_Filesystem_iphone.cpp
+    ${CMAKE_SOURCE_DIR}/common/SC_Win32Utils.cpp
 
     ${CMAKE_SOURCE_DIR}/editors/sc-ide/primitives/localsocket_utils.cpp
     ${CMAKE_SOURCE_DIR}/editors/sc-ide/primitives/localsocket_utils.hpp
@@ -123,6 +126,8 @@ set ( ide_src
     ${CMAKE_SOURCE_DIR}/SCDoc/SCDoc.cpp
     ${CMAKE_SOURCE_DIR}/SCDoc/SCDoc.tab.cpp
     ${CMAKE_SOURCE_DIR}/SCDoc/lex.scdoc.cpp
+
+    ${CMAKE_SOURCE_DIR}/QtCollider/layouts/stack_layout.cpp
 )
 
 set(ide_webengine_moc_hdrs
@@ -132,6 +137,7 @@ set(ide_webengine_moc_hdrs
     widgets/util/IDEWebChannelWrapper.hpp
     ${CMAKE_SOURCE_DIR}/QtCollider/widgets/web_page.hpp
 )
+
 set(ide_webengine_src
     widgets/help_browser.cpp
     widgets/util/WebSocketTransport.cpp
@@ -143,7 +149,7 @@ if(SC_USE_QTWEBENGINE)
     list(APPEND ide_src ${ide_webengine_src})
 endif()
 
-set( ide_forms
+set(ide_forms
     forms/settings_dialog.ui
     forms/settings_general.ui
     forms/settings_sclang.ui
@@ -151,41 +157,19 @@ set( ide_forms
     forms/settings_shortcuts.ui
 )
 
-# QtCollider shared sources:
-list(APPEND ide_moc_hdr
-    ${CMAKE_SOURCE_DIR}/QtCollider/layouts/stack_layout.hpp
-)
-list(APPEND ide_src
-    ${CMAKE_SOURCE_DIR}/QtCollider/layouts/stack_layout.cpp
-)
-
 if(APPLE)
-	set_property(SOURCE ${CMAKE_SOURCE_DIR}/common/SC_Filesystem_macos.cpp PROPERTY COMPILE_FLAGS -xobjective-c++)
+    set_property(SOURCE ${CMAKE_SOURCE_DIR}/common/SC_Filesystem_macos.cpp PROPERTY COMPILE_FLAGS -xobjective-c++)
 endif()
 
 if(APPLE)
-	list(APPEND ide_src
-        ${CMAKE_SOURCE_DIR}/QtCollider/hacks/hacks_mac.mm
-    )
-elseif(WIN32)
-    list(APPEND ide_src ${CMAKE_SOURCE_DIR}/common/SC_Win32Utils.cpp)
+    list(APPEND ide_src ${CMAKE_SOURCE_DIR}/QtCollider/hacks/hacks_mac.mm)
 endif()
 
-include_directories(${CMAKE_SOURCE_DIR}/include/common)
-include_directories(${CMAKE_SOURCE_DIR}/common)
-include_directories(${CMAKE_SOURCE_DIR}/include/plugin_interface)
-include_directories(${YAMLCPP_INCLUDE_DIR})
-# For QtCollider headers:
-include_directories(${CMAKE_SOURCE_DIR})
-# Needed for auto-generated forms headers:
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/widgets/util)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/widgets)
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 include(${CMAKE_SOURCE_DIR}/SCDoc/CMakeLists.txt)
 
 # Translation files
-set( translation_src
+set(translation_src
     ${CMAKE_CURRENT_SOURCE_DIR}/translations/scide_de.ts
     ${CMAKE_CURRENT_SOURCE_DIR}/translations/scide_es.ts
     ${CMAKE_CURRENT_SOURCE_DIR}/translations/scide_fr.ts
@@ -198,22 +182,20 @@ set( translation_src
 )
 
 # Translation file for source code native language, used only to handle singular/plural forms
-set( native_translation_src ${CMAKE_CURRENT_SOURCE_DIR}/translations/scide.ts )
+set(native_translation_src ${CMAKE_CURRENT_SOURCE_DIR}/translations/scide.ts)
 
 # A handy target to update translation source files
-add_custom_target( update_ide_translations
-    COMMAND lupdate ${CMAKE_CURRENT_SOURCE_DIR} -ts ${translation_src}
-            -no-obsolete
-    COMMAND lupdate ${CMAKE_CURRENT_SOURCE_DIR} -ts ${native_translation_src}
-            -no-obsolete -pluralonly
+add_custom_target(update_ide_translations
+    COMMAND lupdate ${CMAKE_CURRENT_SOURCE_DIR} -ts ${translation_src} -no-obsolete
+    COMMAND lupdate ${CMAKE_CURRENT_SOURCE_DIR} -ts ${native_translation_src} -no-obsolete -pluralonly
 )
 
-qt5_wrap_cpp( ide_moc_src ${ide_moc_hdr} )
-qt5_wrap_ui( ide_forms_src ${ide_forms} )
-qt5_add_resources( ide_rcc resources.qrc )
-qt5_add_translation( translations ${translation_src} ${native_translation_src} )
+qt5_wrap_cpp(ide_moc_src ${ide_moc_hdr})
+qt5_wrap_ui(ide_forms_src ${ide_forms})
+qt5_add_resources(ide_rcc resources.qrc)
+qt5_add_translation(translations ${translation_src} ${native_translation_src})
 
-set(ide_sources ${ide_src} ${all_hdr} )
+set(ide_sources ${ide_src} ${all_hdr})
 
 set(ide_rc_sources ${ide_moc_src} ${ide_forms_src} ${ide_rcc} ${translations})
 
@@ -225,55 +207,49 @@ endif()
 
 # This sets up the exe icon for windows.
 if(WIN32)
- set(RES_FILES ${CMAKE_SOURCE_DIR}/platform/windows/Resources/scide.rc)
- set(CMAKE_RC_COMPILER_INIT windres)
- ENABLE_LANGUAGE(RC)
- SET(CMAKE_RC_COMPILE_OBJECT
- "<CMAKE_RC_COMPILER> -O coff <DEFINES> -i <SOURCE> -o <OBJECT>")
-endif(WIN32)
-
-
-# final builds of the IDE seem to be broken atm
-if(0 AND FINAL_BUILD)
-  CREATE_FINAL_FILE(scide_final.cpp ${ide_sources})
-  add_executable( SuperCollider MACOSX_BUNDLE scide_final.cpp ${ide_rc_sources} ${RES_FILES} ${AdditionalBundleSources})
-else()
-  add_executable( SuperCollider MACOSX_BUNDLE ${ide_sources} ${ide_rc_sources} ${RES_FILES} ${AdditionalBundleSources})
-endif()
-
-set_target_properties(SuperCollider PROPERTIES OUTPUT_NAME "${ide_name}")
-
-target_link_libraries( SuperCollider
-    ${scide_qt_libs}
-    ${YAMLCPP_LIBRARY}
-    oscpack
-)
-
-target_link_libraries( SuperCollider boost_system_lib boost_filesystem_lib)
-include_directories(${boost_include_dirs})
-
-if(APPLE)
-    target_link_libraries( ${ide_name} "-framework CoreServices -framework Foundation")
-    target_link_libraries( ${ide_name} "-framework Cocoa" )
-elseif(WIN32)
-    target_link_libraries( SuperCollider wsock32 )
-    # The following prevents a Windows console from showing up
-    # when the executable is started:
-    set_target_properties( SuperCollider PROPERTIES WIN32_EXECUTABLE TRUE )
+    set(RES_FILES ${CMAKE_SOURCE_DIR}/platform/windows/Resources/scide.rc)
+    set(CMAKE_RC_COMPILER_INIT windres)
+    enable_language(RC)
+    set(CMAKE_RC_COMPILE_OBJECT "<CMAKE_RC_COMPILER> -O coff <DEFINES> -i <SOURCE> -o <OBJECT>")
 endif()
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    target_link_libraries(SuperCollider rt)
-
     find_package(X11 REQUIRED)
-
-    include_directories(${X11_INCLUDE_DIR})
-    target_link_libraries(SuperCollider ${X11_X11_LIB})
 endif()
 
-if(PTHREADS_FOUND)
-    target_link_libraries(SuperCollider ${PTHREADS_LIBRARIES})
-endif()
+add_executable(SuperCollider WIN32 MACOSX_BUNDLE ${ide_sources} ${ide_rc_sources} ${RES_FILES} ${AdditionalBundleSources})
+
+set_target_properties(SuperCollider PROPERTIES OUTPUT_NAME "${ide_name}")
+target_link_libraries(SuperCollider
+    ${scide_qt_libs}
+    ${YAMLCPP_LIBRARY}
+    oscpack
+    boost_system_lib
+    boost_filesystem_lib
+
+    $<$<BOOL:APPLE>:-framework CoreServices -framework Foundation -framework Cocoa>
+    $<$<BOOL:WIN32>:wsock32>
+    $<$<PLATFORM_ID:Linux>:rt ${X11_X11_LIB}>
+    $<$<BOOL:PTHREADS_FOUND>:${PTHREADS_LIBRARIES}>
+)
+
+# TODO make it so that all these paths aren't required
+target_include_directories(SuperCollider
+    ${boost_include_dirs}
+    ${CMAKE_SOURCE_DIR}/include/common
+    ${CMAKE_SOURCE_DIR}/common
+    ${CMAKE_SOURCE_DIR}/include/plugin_interface
+    ${YAMLCPP_INCLUDE_DIR}
+    # For QtCollider headers:
+    ${CMAKE_SOURCE_DIR}
+    # Needed for auto-generated forms headers:
+    ${CMAKE_CURRENT_SOURCE_DIR}/widgets/util
+    ${CMAKE_CURRENT_SOURCE_DIR}/widgets
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${SCDOC_DIR}
+
+    $<$<PLATFORM_ID:Linux>:rt ${X11_INCLUDE_DIR}>
+)
 
 if(LTO)
     set_property(TARGET SuperCollider

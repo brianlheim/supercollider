@@ -12,6 +12,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include/common
 
                     LangSource
                     LangPrimSource
+                    ${SCDOC_DIR}
 
                     ${CMAKE_SOURCE_DIR}/external_libraries/nova-tt
                     LangSource/Bison

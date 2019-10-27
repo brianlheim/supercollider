@@ -1,3 +1,5 @@
+# TODO change name
+# TODO create library
 set(SCDOC_DIR ${CMAKE_SOURCE_DIR}/SCDoc)
 
 set(SCDOC_SRCS
@@ -14,5 +16,3 @@ if(CMAKE_COMPILER_IS_CLANG)
         ${SCDOC_DIR}/lex.scdoc.cpp
         PROPERTIES COMPILE_FLAGS "-Wno-deprecated-register -Wno-null-conversion")
 endif()
-
-include_directories(${SCDOC_DIR})
