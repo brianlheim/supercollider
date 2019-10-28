@@ -1,6 +1,6 @@
 # This makes sclang/scide work with a Qt installation at a fixed location.
-SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
-SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 include_directories(${CMAKE_SOURCE_DIR}/include/common
                     ${CMAKE_SOURCE_DIR}/include/lang
@@ -22,74 +22,74 @@ include_directories(${CMAKE_SOURCE_DIR}/include/common
 
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-	find_package(ALSA)
+    find_package(ALSA)
 endif()
 
 find_package(Readline 5.0)
 
 find_package(Sndfile)
 
-if (SC_QT OR SC_IDE)
-	set(LOCALSOCK_UTIL_FILE ${CMAKE_SOURCE_DIR}/editors/sc-ide/primitives/localsocket_utils.cpp)
-else ()
-	set(LOCALSOCK_UTIL_FILE)
-endif ()
+if(SC_QT)
+    set(LOCALSOCK_UTIL_FILE ${CMAKE_SOURCE_DIR}/editors/sc-ide/primitives/localsocket_utils.cpp)
+else()
+    set(LOCALSOCK_UTIL_FILE)
+endif()
 
 set(sclang_sources
     LangPrimSource/SC_LinkClock.cpp
-	LangPrimSource/PyrSignalPrim.cpp
-	LangPrimSource/PyrSched.cpp
-	LangPrimSource/PyrPrimitive.cpp
-	LangPrimSource/PyrMathPrim.cpp
-	LangPrimSource/SC_ComPort.cpp
-	LangPrimSource/OSCData.cpp
-	LangPrimSource/PyrArchiver.cpp
-	LangPrimSource/PyrArrayPrimitives.cpp
-	LangPrimSource/PyrBitPrim.cpp
-	LangPrimSource/PyrCharPrim.cpp
-	LangPrimSource/PyrFilePrim.cpp
-	LangPrimSource/PyrListPrim.cpp
-	LangPrimSource/PyrPlatformPrim.cpp
-	LangPrimSource/PyrStringPrim.cpp
-	LangPrimSource/PyrSymbolPrim.cpp
-	LangPrimSource/PyrUnixPrim.cpp
-	LangPrimSource/PyrSerialPrim.cpp
-	LangSource/AdvancingAllocPool.cpp
-	LangSource/ByteCodeArray.cpp
-	LangSource/DumpParseNode.cpp
-	LangSource/GC.cpp
-	LangSource/InitAlloc.cpp
-	LangSource/PyrInterpreter3.cpp
-	LangSource/PyrLexer.cpp
-	LangSource/PyrMathOps.cpp
-	LangSource/PyrMathSupport.cpp
-	LangSource/PyrMessage.cpp
-	LangSource/PyrObject.cpp
-	LangSource/PyrParseNode.cpp
-	LangSource/PyrSignal.cpp
-	LangSource/PyrSymbolTable.cpp
-	LangSource/SC_LanguageClient.cpp
-	LangSource/SC_LanguageConfig.cpp
-	LangSource/SC_TerminalClient.cpp
-	LangSource/SimpleStack.cpp
-	LangSource/VMGlobals.cpp
-	LangSource/dumpByteCodes.cpp
+    LangPrimSource/PyrSignalPrim.cpp
+    LangPrimSource/PyrSched.cpp
+    LangPrimSource/PyrPrimitive.cpp
+    LangPrimSource/PyrMathPrim.cpp
+    LangPrimSource/SC_ComPort.cpp
+    LangPrimSource/OSCData.cpp
+    LangPrimSource/PyrArchiver.cpp
+    LangPrimSource/PyrArrayPrimitives.cpp
+    LangPrimSource/PyrBitPrim.cpp
+    LangPrimSource/PyrCharPrim.cpp
+    LangPrimSource/PyrFilePrim.cpp
+    LangPrimSource/PyrListPrim.cpp
+    LangPrimSource/PyrPlatformPrim.cpp
+    LangPrimSource/PyrStringPrim.cpp
+    LangPrimSource/PyrSymbolPrim.cpp
+    LangPrimSource/PyrUnixPrim.cpp
+    LangPrimSource/PyrSerialPrim.cpp
+    LangSource/AdvancingAllocPool.cpp
+    LangSource/ByteCodeArray.cpp
+    LangSource/DumpParseNode.cpp
+    LangSource/GC.cpp
+    LangSource/InitAlloc.cpp
+    LangSource/PyrInterpreter3.cpp
+    LangSource/PyrLexer.cpp
+    LangSource/PyrMathOps.cpp
+    LangSource/PyrMathSupport.cpp
+    LangSource/PyrMessage.cpp
+    LangSource/PyrObject.cpp
+    LangSource/PyrParseNode.cpp
+    LangSource/PyrSignal.cpp
+    LangSource/PyrSymbolTable.cpp
+    LangSource/SC_LanguageClient.cpp
+    LangSource/SC_LanguageConfig.cpp
+    LangSource/SC_TerminalClient.cpp
+    LangSource/SimpleStack.cpp
+    LangSource/VMGlobals.cpp
+    LangSource/dumpByteCodes.cpp
 
-	${CMAKE_SOURCE_DIR}/common/SC_Filesystem_macos.cpp
-	${CMAKE_SOURCE_DIR}/common/SC_Filesystem_win.cpp
-	${CMAKE_SOURCE_DIR}/common/SC_Filesystem_unix.cpp
-	${CMAKE_SOURCE_DIR}/common/SC_Filesystem_iphone.cpp
+    ${CMAKE_SOURCE_DIR}/common/SC_Filesystem_macos.cpp
+    ${CMAKE_SOURCE_DIR}/common/SC_Filesystem_win.cpp
+    ${CMAKE_SOURCE_DIR}/common/SC_Filesystem_unix.cpp
+    ${CMAKE_SOURCE_DIR}/common/SC_Filesystem_iphone.cpp
 
-	${CMAKE_SOURCE_DIR}/common/fftlib.c
-	${CMAKE_SOURCE_DIR}/common/Samp.cpp
-	${CMAKE_SOURCE_DIR}/common/SC_AllocPool.cpp
-	${CMAKE_SOURCE_DIR}/common/SC_Reply.cpp
-	${CMAKE_SOURCE_DIR}/common/SC_StringBuffer.cpp
-	${CMAKE_SOURCE_DIR}/common/SC_StringParser.cpp
-	${CMAKE_SOURCE_DIR}/common/SC_TextUtils.cpp
-	${LOCALSOCK_UTIL_FILE}
+    ${CMAKE_SOURCE_DIR}/common/fftlib.c
+    ${CMAKE_SOURCE_DIR}/common/Samp.cpp
+    ${CMAKE_SOURCE_DIR}/common/SC_AllocPool.cpp
+    ${CMAKE_SOURCE_DIR}/common/SC_Reply.cpp
+    ${CMAKE_SOURCE_DIR}/common/SC_StringBuffer.cpp
+    ${CMAKE_SOURCE_DIR}/common/SC_StringParser.cpp
+    ${CMAKE_SOURCE_DIR}/common/SC_TextUtils.cpp
+    ${LOCALSOCK_UTIL_FILE}
 
-	${CMAKE_SOURCE_DIR}/common/sc_popen.cpp
+    ${CMAKE_SOURCE_DIR}/common/sc_popen.cpp
 )
 
 if(APPLE)
@@ -169,12 +169,7 @@ endif()
 include(../SCDoc/CMakeLists.txt)
 list(APPEND sclang_sources ${SCDOC_SRCS})
 
-if(0 AND FINAL_BUILD) # sclang final-builds are broken
-	CREATE_FINAL_FILE(libsclang_final.cpp ${sclang_sources})
-	add_library(libsclang STATIC libsclang_final.cpp ${sclang_parser_source})
-else()
-	add_library(libsclang STATIC ${sclang_sources} ${sclang_parser_source})
-endif()
+add_library(libsclang STATIC ${sclang_sources} ${sclang_parser_source})
 
 target_compile_definitions(libsclang PRIVATE YYSTACK_USE_ALLOC)
 target_link_libraries(libsclang tlsf ${PTHREADS_LIBRARIES})
