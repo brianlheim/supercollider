@@ -215,11 +215,8 @@ if (NOT WIN32)
 		PROPERTY OUTPUT_NAME sclang)
 endif()
 
-if (SC_ABLETON_LINK)
-	message(STATUS "Compiling with Ableton Link support")
-	include(../external_libraries/link/AbletonLinkConfig.cmake)
+if(SC_ABLETON_LINK)
 	target_link_libraries(libsclang Ableton::Link)
-
 	add_definitions(-DSC_ABLETON_LINK)
 endif()
 
