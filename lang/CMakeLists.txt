@@ -2,40 +2,38 @@
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-include_directories(${CMAKE_SOURCE_DIR}/include/common
-                    ${CMAKE_SOURCE_DIR}/include/lang
-                    ${CMAKE_SOURCE_DIR}/include/plugin_interface
-                    ${CMAKE_SOURCE_DIR}/include/server
-                    ${CMAKE_SOURCE_DIR}/common
-
-                    ${CMAKE_SOURCE_DIR}/external_libraries/boost_sync/include
-
-                    LangSource
-                    LangPrimSource
-                    ${SCDOC_DIR}
-
-                    ${CMAKE_SOURCE_DIR}/external_libraries/nova-tt
-                    LangSource/Bison
-
-                    ${YAMLCPP_INCLUDE_DIR}
-)
-
-
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
     find_package(ALSA)
+    if(ALSA_FOUND)
+        message(STATUS "Compiling with ALSA midi support")
+    endif()
 endif()
 
 find_package(Readline 5.0)
-
-find_package(Sndfile)
-
-if(SC_QT)
-    set(LOCALSOCK_UTIL_FILE ${CMAKE_SOURCE_DIR}/editors/sc-ide/primitives/localsocket_utils.cpp)
-else()
-    set(LOCALSOCK_UTIL_FILE)
+mark_as_advanced(READLINE_INCLUDE_DIR READLINE_LIBRARY)
+if(READLINE_FOUND)
+    message(STATUS "Compiling with Readline support")
 endif()
 
-set(sclang_sources
+find_package(Sndfile)
+if(NOT SNDFILE_FOUND AND NOT NO_LIBSNDFILE)
+    message(FATAL_ERROR "Cannot find libsndfile")
+endif()
+
+if(SC_IDE)
+    qt5_wrap_cpp(SCLANG_MOC_SRCS ../editors/sc-ide/primitives/sc_ipc_client.hpp)
+endif()
+
+if(SC_QT)
+    set(QT_COLLIDER_LANG_CLIENT ON)
+    include(../QtCollider/CMakeLists.txt)
+endif()
+include(../SCDoc/CMakeLists.txt) # for SCDOC_SRCS
+
+file(GLOB_RECURSE headers ../include/*.h* )
+file(GLOB_RECURSE external_headers ../external_libraries/*.h* )
+
+add_library(libsclang STATIC
     LangPrimSource/SC_LinkClock.cpp
     LangPrimSource/PyrSignalPrim.cpp
     LangPrimSource/PyrSched.cpp
@@ -54,6 +52,7 @@ set(sclang_sources
     LangPrimSource/PyrSymbolPrim.cpp
     LangPrimSource/PyrUnixPrim.cpp
     LangPrimSource/PyrSerialPrim.cpp
+
     LangSource/AdvancingAllocPool.cpp
     LangSource/ByteCodeArray.cpp
     LangSource/DumpParseNode.cpp
@@ -75,6 +74,8 @@ set(sclang_sources
     LangSource/VMGlobals.cpp
     LangSource/dumpByteCodes.cpp
 
+    LangSource/Bison/lang11d_tab.cpp
+
     ${CMAKE_SOURCE_DIR}/common/SC_Filesystem_macos.cpp
     ${CMAKE_SOURCE_DIR}/common/SC_Filesystem_win.cpp
     ${CMAKE_SOURCE_DIR}/common/SC_Filesystem_unix.cpp
@@ -87,198 +88,150 @@ set(sclang_sources
     ${CMAKE_SOURCE_DIR}/common/SC_StringBuffer.cpp
     ${CMAKE_SOURCE_DIR}/common/SC_StringParser.cpp
     ${CMAKE_SOURCE_DIR}/common/SC_TextUtils.cpp
-    ${LOCALSOCK_UTIL_FILE}
-
+    ${CMAKE_SOURCE_DIR}/common/SC_Win32Utils.cpp
     ${CMAKE_SOURCE_DIR}/common/sc_popen.cpp
+
+    $<$<BOOL:APPLE>:
+        ${CMAKE_SOURCE_DIR}/common/SC_Apple.mm
+        LangPrimSource/SC_CoreMIDI.cpp
+        LangPrimSource/SC_CoreAudioPrim.cpp
+    >
+    $<$<BOOL:SC_IDE>:
+        ../editors/sc-ide/primitives/sc_ipc_client.cpp
+        ${SCLANG_MOC_SRCS}
+    >
+    $<$<BOOL:SC_QT>:${CMAKE_SOURCE_DIR}/editors/sc-ide/primitives/localsocket_utils.cpp>
+    $<$<BOOL:WIN32>:LangPrimSource/SC_PortMidi.cpp>
+    $<$<BOOL:SC_HIDAPI>:LangPrimSource/SC_HID_api.cpp>
+    $<$<BOOL:ALSA_FOUND>:LangPrimSource/SC_AlsaMIDI.cpp>
+    $<$<PLATFORM_ID:Linux>:LangPrimSource/SC_LID.cpp>
+
+    # make qt creator happy
+    ${headers}
+    ${external_headers}
+
+    ${QT_COLLIDER_SRCS}
 )
 
 if(APPLE)
-	set_property(SOURCE ${CMAKE_SOURCE_DIR}/common/SC_Filesystem_macos.cpp PROPERTY COMPILE_FLAGS -xobjective-c++)
-
-	list(APPEND sclang_sources ${CMAKE_SOURCE_DIR}/common/SC_Apple.mm)
-	set_source_files_properties(${CMAKE_SOURCE_DIR}/common/SC_Apple.mm PROPERTIES COMPILE_FLAGS "-x objective-c++ -fobjc-exceptions")
+    set_source_files_properties(${CMAKE_SOURCE_DIR}/common/SC_Filesystem_macos.cpp
+        PROPERTIES COMPILE_FLAGS -xobjective-c++)
+    set_source_files_properties(${CMAKE_SOURCE_DIR}/common/SC_Apple.mm
+        PROPERTIES COMPILE_FLAGS "-x objective-c++ -fobjc-exceptions")
 endif()
 
-file(GLOB_RECURSE headers ../include/*.h* )
-file(GLOB_RECURSE external_headers ../external_libraries/*.h* )
-list(APPEND sclang_sources ${headers} ${external_headers}) # make qt creator happy
+target_compile_definitions(libsclang PUBLIC
+    $<$<PLATFORM_ID:Linux>:HAVE_LID>
+    $<$<BOOL:SC_IDE>:SC_IDE QT_NO_KEYWORDS>
+    $<$<BOOL:SC_HIDAPI>:SC_HIDAPI HAVE_HIDAPI>
+    $<$<BOOL:SC_ABLETON_LINK>:SC_ABLETON_LINK>
+    $<$<NOT:$<BOOL:SCLANG_SERVER>>:NO_INTERNAL_SERVER>
+    $<$<BOOL:READLINE_FOUND>:HAVE_READLINE>
+    $<$<BOOL:ALSA_FOUND>:HAVE_ALSA=1>
+    $<$<BOOL:GC_SANITYCHECK>:GC_SANITYCHECK>
 
-set(sclang_parser_source LangSource/Bison/lang11d_tab.cpp)
+    PRIVATE
+    YYSTACK_USE_ALLOC
+)
 
-if(UNIX)
-	if(APPLE)
-		list(APPEND sclang_sources
-			LangPrimSource/SC_CoreMIDI.cpp
-			LangPrimSource/SC_CoreAudioPrim.cpp
-			)
-	else(APPLE)
-		if(ALSA_FOUND)
-			list(APPEND sclang_sources LangPrimSource/SC_AlsaMIDI.cpp)
-		endif()
-		if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-			list(APPEND sclang_sources LangPrimSource/SC_LID.cpp)
-			add_definitions(-DHAVE_LID)
-		endif()
-	endif(APPLE)
-endif(UNIX)
-
-if(WIN32)
-        list(APPEND sclang_sources ${CMAKE_SOURCE_DIR}/common/SC_Win32Utils.cpp)
-	include_directories (../platform/windows/compat_stuff)
-        if(NOT MINGW)
-                # mingw-w64 provides getopt
-                list(APPEND sclang_sources ../platform/windows/compat_stuff/getopt/getopt.c)
-                include_directories(../platform/windows/compat_stuff/getopt)
-        endif()
-
-        list(APPEND sclang_sources LangPrimSource/SC_PortMidi.cpp)
-endif()
-
-# This sets up the exe icon for windows.
-if(WIN32)
- set(RES_FILES ${CMAKE_SOURCE_DIR}/platform/windows/Resources/sclang.rc)
- set(CMAKE_RC_COMPILER_INIT windres)
- ENABLE_LANGUAGE(RC)
- SET(CMAKE_RC_COMPILE_OBJECT
- "<CMAKE_RC_COMPILER> -O coff <DEFINES> -i <SOURCE> -o <OBJECT>")
-endif(WIN32)
-
-if(SC_HIDAPI)
-    list(APPEND sclang_sources LangPrimSource/SC_HID_api.cpp)
-    include_directories(
+target_include_directories(libsclang PUBLIC
+    $<$<BOOL:WIN32>: ../platform/windows/compat_stuff>
+    $<$<BOOL:SC_HIDAPI>:
         ${CMAKE_SOURCE_DIR}/external_libraries/hidapi/hidapi
         ${CMAKE_SOURCE_DIR}/external_libraries/hidapi/hidapi_parser
-    )
-    add_definitions(-DSC_HIDAPI)
-endif(SC_HIDAPI)
+    >
 
-if(SC_QT)
-	set(QT_COLLIDER_LANG_CLIENT ON)
-	include(../QtCollider/CMakeLists.txt)
-	list(APPEND sclang_sources ${QT_COLLIDER_SRCS})
-endif()
+    ${CMAKE_SOURCE_DIR}/include/common
+    ${CMAKE_SOURCE_DIR}/include/lang
+    ${CMAKE_SOURCE_DIR}/include/plugin_interface
+    ${CMAKE_SOURCE_DIR}/include/server
+    ${CMAKE_SOURCE_DIR}/common
+    ${CMAKE_SOURCE_DIR}/external_libraries/boost_sync/include
+    ${CMAKE_SOURCE_DIR}/external_libraries/nova-tt
+    LangPrimSource
+    LangSource
+    LangSource/Bison
+    ${SCDOC_DIR}
 
-if(SC_IDE)
-	add_definitions(-DSC_IDE -DQT_NO_KEYWORDS)
+    ${YAMLCPP_INCLUDE_DIR}
+    ${boost_include_dirs}
+)
 
-	qt5_wrap_cpp( SCLANG_MOC_SRCS ../editors/sc-ide/primitives/sc_ipc_client.hpp )
-	list(APPEND sclang_sources ../editors/sc-ide/primitives/sc_ipc_client.cpp)
-	list(APPEND sclang_sources ${SCLANG_MOC_SRCS})
-endif()
+target_link_libraries(libsclang PUBLIC
+    tlsf
+    ${sclang_qt_libs}
+    ${PTHREADS_LIBRARIES}
+    ${YAMLCPP_LIBRARY}
+    ${ICU_LIBRARIES}
+    boost_thread_lib
+    boost_system_lib
+    boost_regex_lib
+    boost_filesystem_lib
+    $<$<BOOL:SC_ABLETON_LINK>:Ableton::Link>
+    $<$<BOOL:SC_HIDAPI>:hidapi hidapi_parser>
+    $<$<BOOL:SCLANG_SERVER>:libscsynth>
+    $<$<BOOL:READLINE_FOUND>:${READLINE_LIBRARY}>
+    $<$<BOOL:APPLE>:"-framework Carbon" "-framework CoreAudio" "-framework CoreMIDI"
+        "-framework CoreServices" "-framework IOKit" "-framework CoreFoundation"
+    >
+    $<$<BOOL:ALSA_FOUND>:${ALSA_LIBRARY}>
+    $<$<BOOL:FFTW3F_FOUND>:${FFTW3F_LIBRARY}>
+    $<$<BOOL:SNDFILE_FOUND>:${SNDFILE_LIBRARIES}>
+    $<$<BOOL:WIN32>:wsock32 ws2_32 portmidi iphlpapi>
+    $<$<PLATFORM_ID:Linux>:rt>
+    $<$<BOOL:LTO>:-flto -flto-report -fwhole-program>
+)
 
-include(../SCDoc/CMakeLists.txt)
-list(APPEND sclang_sources ${SCDOC_SRCS})
-
-add_library(libsclang STATIC ${sclang_sources} ${sclang_parser_source})
-
-target_compile_definitions(libsclang PRIVATE YYSTACK_USE_ALLOC)
-target_link_libraries(libsclang tlsf ${PTHREADS_LIBRARIES})
+target_compile_options(libsclang PUBLIC
+    $<$<BOOL:LTO>:-flto -flto-report>
+)
 
 if(SC_QT)
     get_target_property(QtCore_location Qt5::Core LOCATION)
-    get_filename_component(QT_BIN_PATH ${QtCore_location} DIRECTORY CACHE)
+    get_filename_component(QT_BIN_PATH ${QtCore_location} DIRECTORY)
 
     if(SC_USE_QTWEBENGINE)
         target_compile_definitions(libsclang PUBLIC SC_USE_QTWEBENGINE)
     endif()
-    target_link_libraries(libsclang ${sclang_qt_libs})
 endif()
 
 if(SC_HIDAPI)
-  target_compile_definitions(libsclang PRIVATE HAVE_HIDAPI)
-  target_link_libraries( libsclang hidapi hidapi_parser )
-
-  if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND HID_HIDRAW)
-    target_link_libraries( libsclang ${UDEV_LIBRARIES})
-  endif()
-  if(HID_LIBUSB)
-    target_link_libraries( libsclang ${LIBUSB_1_LIBRARIES})
-  endif()
+    if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" AND HID_HIDRAW)
+        target_link_libraries(libsclang ${UDEV_LIBRARIES})
+    endif()
+    if(HID_LIBUSB)
+        target_link_libraries(libsclang ${LIBUSB_1_LIBRARIES})
+    endif()
 endif()
 
-target_link_libraries(libsclang boost_thread_lib boost_system_lib boost_regex_lib boost_filesystem_lib)
-target_include_directories(libsclang PUBLIC ${boost_include_dirs})
-
-if (SCLANG_SERVER)
-	target_link_libraries(libsclang libscsynth)
-else()
-	target_compile_definitions(libsclang PUBLIC NO_INTERNAL_SERVER)
-endif()
-
-if (NOT WIN32)
-	set_property(TARGET libsclang
-		PROPERTY OUTPUT_NAME sclang)
-endif()
-
-if(SC_ABLETON_LINK)
-	target_link_libraries(libsclang Ableton::Link)
-	add_definitions(-DSC_ABLETON_LINK)
+if(NOT WIN32)
+    set_property(TARGET libsclang PROPERTY OUTPUT_NAME sclang)
 endif()
 
 ## external libraries
-if(READLINE_FOUND)
-	message(STATUS "Compiling with Readline support")
-	target_compile_definitions(libsclang PUBLIC HAVE_READLINE)
-	target_include_directories(libsclang PUBLIC ${READLINE_INCLUDE_DIR})
-	target_link_libraries(libsclang ${READLINE_LIBRARY})
-endif(READLINE_FOUND)
-mark_as_advanced(READLINE_INCLUDE_DIR READLINE_LIBRARY)
 
-if (APPLE)
-	target_link_libraries(libsclang "-framework Carbon")
-	target_link_libraries(libsclang "-framework CoreAudio")
-	target_link_libraries(libsclang "-framework CoreMIDI")
-	target_link_libraries(libsclang "-framework CoreServices")
-	target_link_libraries(libsclang "-framework IOKit")
-	target_link_libraries(libsclang "-framework CoreFoundation")
+if(WIN32 AND SC_HIDAPI)
+    target_link_libraries(libsclang hid)
 endif()
 
-if(ALSA_FOUND)
-	message(STATUS "Compiling with ALSA midi support")
-	target_compile_definitions(libsclang PUBLIC HAVE_ALSA=1)
-	target_link_libraries(libsclang ${ALSA_LIBRARY})
-endif(ALSA_FOUND)
-
-if(SNDFILE_FOUND)
-	target_include_directories(libsclang PUBLIC ${SNDFILE_INCLUDE_DIR})
-	target_link_libraries(libsclang ${SNDFILE_LIBRARIES})
-elseif(NOT NO_LIBSNDFILE)
-	message(SEND_ERROR "Cannot find libsndfile")
-endif(SNDFILE_FOUND)
-
-if (FFTW3F_FOUND)
-	target_include_directories (libsclang ${FFTW3F_INCLUDE_DIR})
-	target_link_libraries(libsclang ${FFTW3F_LIBRARY})
+if(WIN32 AND NOT MINGW)
+    # mingw-w64 provides getopt
+    target_sources(libsclang PRIVATE ../platform/windows/compat_stuff/getopt/getopt.c)
+    target_include_directories(libsclang PUBLIC ../platform/windows/compat_stuff/getopt)
 endif()
 
-if (WIN32 AND SC_HIDAPI)
-	target_link_libraries(libsclang wsock32 ws2_32 portmidi iphlpapi hid)
-elseif(WIN32)
-	target_link_libraries(libsclang wsock32 ws2_32 portmidi iphlpapi)
+# This sets up the exe icon for windows.
+if(WIN32)
+    set(RES_FILES ${CMAKE_SOURCE_DIR}/platform/windows/Resources/sclang.rc)
+    set(CMAKE_RC_COMPILER_INIT windres)
+    enable_language(RC)
+    set(CMAKE_RC_COMPILE_OBJECT "<CMAKE_RC_COMPILER> -O coff <DEFINES> -i <SOURCE> -o <OBJECT>")
 endif()
-
-if (GC_SANITYCHECK)
-	target_compile_definitions(libsclang PUBLIC GC_SANITYCHECK)
-endif()
-
-if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-	target_link_libraries(libsclang rt)
-endif()
-
-target_link_libraries(libsclang ${YAMLCPP_LIBRARY})
 
 add_executable(sclang LangSource/cmdLineFuncs.cpp ${RES_FILES})
-target_link_libraries(sclang libsclang)
-target_link_libraries(sclang ${ICU_LIBRARIES})
-
 target_compile_definitions(sclang PUBLIC USE_SC_TERMINAL_CLIENT)
 
-if(LTO)
-  target_compile_definitions(libsclang PUBLIC -flto -flto-report)
-
-  set_property(TARGET sclang libsclang
-        APPEND PROPERTY LINK_FLAGS "-flto -flto-report -fwhole-program")
-endif()
+# Installation
 
 if(APPLE)
     add_custom_command(TARGET sclang POST_BUILD
