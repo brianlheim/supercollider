@@ -4,6 +4,11 @@
 #include <cstring>
 #include <cstdio>
 
+#ifdef __APPLE__
+#    include <pa_mac_core.h>
+PaMacCoreStreamInfo macInfo;
+#endif
+
 using PaSupportCheckFunc = PaError (*)(PaStreamParameters&, double);
 PaError CheckDeviceSampleRateOrGetDefault(int* device, double sampleRate, int maxChannels, int defaultDevice,
                                           const char* deviceType, PaSupportCheckFunc isSupportedFunc) {
@@ -156,6 +161,11 @@ PaStreamParameters MakePaStreamParameters(int device, int channelCount, double s
     streamParams.channelCount = channelCount;
     streamParams.sampleFormat = fmt;
     streamParams.suggestedLatency = suggestedLatency;
+#ifdef __APPLE__
+    PaMacCore_SetupStreamInfo(&macInfo, paMacCorePro);
+    streamParams.hostApiSpecificStreamInfo = &macInfo;
+#else
     streamParams.hostApiSpecificStreamInfo = nullptr;
+#endif
     return streamParams;
 }
