@@ -490,8 +490,8 @@ QuarkDetailView {
 
 		isDirty = model.git.isDirty;
 		if(isDirty, {
-			currentRefspec = "DIRTY";
-			versions.insert(0, ["DIRTY", "DIRTY"]);
+			currentRefspec = "Dirty";
+			versions.insert(0, ["Dirty", "Dirty"]);
 		});
 
 		tree = TreeView()
@@ -506,7 +506,7 @@ QuarkDetailView {
 			// if installed then you can switch versions
 			// else you can install any including current
 			if(model.isInstalled, {
-				btnText = if(isCurrent, "INSTALLED", "Install");
+				btnText = if(isCurrent, "Installed", "Install");
 				enabled = isCurrent.not;
 			}, {
 				btnText = "Install";
