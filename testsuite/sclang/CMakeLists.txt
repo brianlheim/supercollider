@@ -1,4 +1,9 @@
-file(GLOB tests *.scd)
+set(tests
+    sclang_crash_1.scd
+    sclang_crash_2.scd
+    sclang_crash_3.scd
+    sclang_crash_deprecated.scd
+)
 
 foreach(test ${tests})
     get_filename_component(test_name ${test} NAME_WE)
