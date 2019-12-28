@@ -30,4 +30,5 @@ foreach(test ${simple_tests})
   target_link_libraries(${test_name} libsupernova boost_test boost_thread_lib)
 
   add_test(${test_name}_run ${EXECUTABLE_OUTPUT_PATH}/${test_name})
+  set_tests_properties(${test_name}_run PROPERTIES LABELS supernova)
 endforeach(test)
