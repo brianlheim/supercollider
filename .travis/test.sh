@@ -7,7 +7,7 @@ else
 fi
 
 # runs tests in testsuite/sclang, testsuite/supernova, and testsuite/scsynth
-ctest -C Release || exit 1
+ctest -C Release --verbose --output-on-failure || exit 1
 
 # runs tests in testsuite/classlibrary
 if [[ $QT == true ]]; then $TRAVIS_BUILD_DIR/.travis/qpm-test.sh; fi
