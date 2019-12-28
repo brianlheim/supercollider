@@ -105,6 +105,7 @@ public:
     }
 
     void join() {
+        assert(joinable() && "thread must be joinable");
         stop.store(true, std::memory_order_relaxed);
         wake_thread();
 
@@ -119,6 +120,8 @@ public:
     }
 
     void wake_thread(void) { cycle_sem.post(); }
+
+    bool joinable() const noexcept { return !stop; }
 
 private:
     /** thread function
@@ -144,7 +147,7 @@ private:
 private:
     boost::sync::semaphore cycle_sem;
     dsp_queue_interpreter& interpreter;
-    std::atomic<bool> stop = { false };
+    std::atomic<bool> stop = { true };
     uint16_t index;
 
 #ifdef SUPERNOVA_USE_PTHREAD
@@ -209,7 +212,8 @@ public:
 
     void terminate_threads(void) {
         for (auto& thread : threads)
-            thread->join();
+            if (thread->joinable())
+                thread->join();
     }
     /* @} */
 
