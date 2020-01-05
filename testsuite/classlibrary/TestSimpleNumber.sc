@@ -124,8 +124,8 @@ TestSimpleNumber : UnitTest {
 	}
 
 	test_asTimeString_smallNumberScientificNotation {
-		var expected = "00:00:00.0000010";
-		var totalTime = 1e-06;
+		var expected = "00:00:00.0000001";
+		var totalTime = 1e-7;
 		var actual = totalTime.asTimeString(precision: 0.0000001, decimalPlaces: 7);
 		this.assertEquals(actual, expected, "%.asTimeString".format(totalTime));
 	}
