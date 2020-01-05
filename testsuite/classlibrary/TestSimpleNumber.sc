@@ -113,21 +113,28 @@ TestSimpleNumber : UnitTest {
 		var expected = "00:00:00.0200";
 		var totalTime = 0.015;
 		var actual = totalTime.asTimeString(precision: 0.01, decimalPlaces: 4);
-		this.assertEquals(actual, expected, "%.asTimeString".format(totalTime));
+		this.assertEquals(actual, expected, "%.asTimeString(precision: 0.01, decimalPlaces: 4)".format(totalTime));
 	}
 
 	test_asTimeString_precisionSmallerThanDecimalPlaces {
 		var expected = "00:00:00.0150";
 		var totalTime = 0.015;
 		var actual = totalTime.asTimeString(precision: 0.00001, decimalPlaces: 4);
-		this.assertEquals(actual, expected, "%.asTimeString".format(totalTime));
+		this.assertEquals(actual, expected, "%.asTimeString(precision: 0.00001, decimalPlaces: 4)".format(totalTime));
 	}
 
 	test_asTimeString_smallNumberScientificNotation {
 		var expected = "00:00:00.0000001";
 		var totalTime = 1e-7;
 		var actual = totalTime.asTimeString(precision: 0.0000001, decimalPlaces: 7);
-		this.assertEquals(actual, expected, "%.asTimeString".format(totalTime));
+		this.assertEquals(actual, expected, "%.asTimeString(precision: 0.0000001, decimalPlaces: 7)".format(totalTime));
+	}
+
+	test_asTimeString_lotsaZeroes {
+		var expected = "00:00:00.1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+		var totalTime = 0.1;
+		var actual = totalTime.asTimeString(decimalPlaces: 100);
+		this.assertEquals(actual, expected, "%.asTimeString(decimalPlaces: 100)".format(totalTime));
 	}
 
 	test_softRound {
