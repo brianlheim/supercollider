@@ -248,11 +248,11 @@ code::
 ::
 
 method::asSecs
-Return a link::Classes/Float:: based on converting a time string in format (ddd:)hh:mm:ss(.z), where z is any number of digits. This is the inverse method to link::Classes/SimpleNumber#-asTimeString::.
+Return a link::Classes/Float:: based on converting a time string in format code::(ddd:)hh:mm:ss(.z)::, where code::z:: is any sequence of digits. This is the inverse method to link::Classes/SimpleNumber#-asTimeString::.
 code::
-"00:00:59.900".asSecs; //hh:mm:ss.zzz
-"1:1:1.1".asSecs; //h:m:s.z
-"001:00:00:00.001".asSecs; //ddd:hh:mm:ss.zzz
+"00:00:59.900".asSecs; // hh:mm:ss.zzz
+"1:1:1.1".asSecs; // h:m:s.z
+"001:00:00:00.001".asSecs; // ddd:hh:mm:ss.zzz
 "32.1".asSecs;
 "32.".asSecs; // trailing period
 "32.12345678".asSecs; // any number of decimal places
@@ -262,7 +262,7 @@ code::
 "-23:12.346".asSecs;
 "-1:00:00:00".asSecs; // neg with days
 "12:-34:56".asSecs; // warns
-(45296.789.asTimeString).asSecs; //inverse of aNumber.asTimeString
+(45296.789.asTimeString).asSecs; // inverse of aNumber.asTimeString
 ::
 
 subsection:: Concatenate strings
