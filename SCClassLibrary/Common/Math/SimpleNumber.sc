@@ -712,12 +712,23 @@ SimpleNumber : Number {
 		hours = (decimal.div(3600) % 24).asString.padLeft(2, "0").add($:);
 		minutes = (decimal.div(60) % 60).asString.padLeft(2, "0").add($:);
 		seconds = (decimal % 60).asString.padLeft(2, "0");
-		if(decimalPlaces > 0, {
+		mseconds = if(decimalPlaces > 0) {
+			var curPrec = precision;
+			var curFrac = number.frac;
+			var curDecimalPlaces = decimalPlaces;
+			var str = ".";
 			// this could be simplified once sclang gains sprintf functionality, see issue #3570
-			mseconds = "." ++ (number.frac.round(precision) * pow(10, decimalPlaces)).asInteger.asString.padLeft(decimalPlaces, "0");
-		}, {
-			mseconds = "";
-		});
+			while { curDecimalPlaces > 0 } {
+				var curInt;
+				curPrec = curPrec * 10;
+				curFrac = (curFrac * 10).round(curPrec);
+				curInt = curFrac.asInteger;
+				str = str ++ curInt.asString;
+				curFrac = curFrac - curInt;
+				curDecimalPlaces = curDecimalPlaces - 1;
+			};
+			str;
+		} { "" };
 		^days ++ hours ++ minutes ++ seconds ++ mseconds
 	}
 
