@@ -695,13 +695,14 @@ SimpleNumber : Number {
 	// see String:asSecs for complement
 
 	asTimeString { |precision = 0.001, maxDays = 365, dropDaysIfPossible = true, decimalPlaces = 3|
-		var number, decimal, days, hours, minutes, seconds, mseconds;
+		var number, decimal, days, hours, minutes, seconds, mseconds, msecstr;
 
 		// min value of precision depends on decimalPlaces
 		decimalPlaces = decimalPlaces.asInteger.max(0);
 		precision = max(precision, 10.pow(decimalPlaces.neg));
 
 		number = this.round(precision);
+		if(number == inf) {number = this}; //revert rounding if it produces inf
 		decimal = number.asInteger;
 		days = decimal.div(86400).min(maxDays);
 		days = if(dropDaysIfPossible and: { days == 0 }) {
@@ -713,21 +714,8 @@ SimpleNumber : Number {
 		minutes = (decimal.div(60) % 60).asString.padLeft(2, "0").add($:);
 		seconds = (decimal % 60).asString.padLeft(2, "0");
 		mseconds = if(decimalPlaces > 0) {
-			var curPrec = precision;
-			var curFrac = number.frac;
-			var curDecimalPlaces = decimalPlaces;
-			var str = ".";
-			// this could be simplified once sclang gains sprintf functionality, see issue #3570
-			while { curDecimalPlaces > 0 } {
-				var curInt;
-				curPrec = curPrec * 10;
-				curFrac = (curFrac * 10).round(curPrec);
-				curInt = curFrac.asInteger;
-				str = str ++ curInt.asString;
-				curFrac = curFrac - curInt;
-				curDecimalPlaces = curDecimalPlaces - 1;
-			};
-			str;
+			msecstr = number.frac.round(precision).asString;
+			"." ++ if(msecstr.includes($e)) { msecstr.split($e).first.replace(".", "").padLeft(decimalPlaces, "0") } { msecstr.split($.).last.padRight(decimalPlaces, "0") };
 		} { "" };
 		^days ++ hours ++ minutes ++ seconds ++ mseconds
 	}
