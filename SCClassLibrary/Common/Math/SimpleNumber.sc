@@ -714,8 +714,16 @@ SimpleNumber : Number {
 		minutes = (decimal.div(60) % 60).asString.padLeft(2, "0").add($:);
 		seconds = (decimal % 60).asString.padLeft(2, "0");
 		mseconds = if(decimalPlaces > 0) {
-			msecstr = number.frac.round(precision).asString;
-			"." ++ if(msecstr.includes($e)) { msecstr.split($e).first.replace(".", "").padLeft(decimalPlaces, "0") } { msecstr.split($.).last.padRight(decimalPlaces, "0") };
+			msecstr = number.asString;
+			"." ++ if(msecstr.includes($e)) {
+				if(msecstr.includes($.)) {
+					msecstr.postln.split($e).first.postln.replace(".", "").padLeft(msecstr.split($e).last.asInteger.neg + 1, "0").padRight(decimalPlaces, "0")
+				} {
+					msecstr.postln.split($e).first.postln.replace(".", "").padLeft(msecstr.split($e).last.asInteger.neg, "0").padRight(decimalPlaces, "0")
+				}
+			} {
+				msecstr.split($.).last.padRight(decimalPlaces, "0")
+			};
 		} { "" };
 		^days ++ hours ++ minutes ++ seconds ++ mseconds
 	}
