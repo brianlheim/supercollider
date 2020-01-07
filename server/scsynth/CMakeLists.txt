@@ -216,7 +216,6 @@ if (LIBSCSYNTH)
 endif()
 
 if (FFTW3F_FOUND)
-	message(STATUS "scsynth: including and linking FFTW library")
 	target_include_directories(libscsynth PUBLIC ${FFTW3F_INCLUDE_DIR})
 	target_link_libraries(libscsynth ${FFTW3F_LIBRARY})
 endif()
