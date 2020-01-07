@@ -3,7 +3,7 @@ find_package(Sndfile)
 # here we choose who provides us with the FFT lib
 # this is done independently for scsynth and supernova
 # on macOS scsynth uses vDSP implementation for FFT
- # which is not thread-safe
+# which is not thread-safe
 
 if (APPLE)
     add_definitions("-DSC_FFT_VDSP")
