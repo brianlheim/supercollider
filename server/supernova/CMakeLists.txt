@@ -32,7 +32,7 @@ if (NOT FFTW3F_FOUND OR FFT_GREEN)
 else()
     message(STATUS "Found fftw3f: ${FFTW3F_LIBRARY}")
     message(STATUS "FFT library (supernova): FFTW")
-		add_definitions("-DSC_FFT_FFTW")
+    add_definitions("-DSC_FFT_FFTW")
 endif()
 
 set(libsupernova_src
