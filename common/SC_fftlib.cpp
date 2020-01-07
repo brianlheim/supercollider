@@ -197,6 +197,7 @@ static bool scfft_global_initialization(void) {
     // vec_malloc used in API docs, but apparently that's deprecated and malloc is sufficient for aligned memory on OSX.
     splitBuf.realp = (float*)malloc(SC_FFT_MAXSIZE * sizeof(float) / 2);
     splitBuf.imagp = (float*)malloc(SC_FFT_MAXSIZE * sizeof(float) / 2);
+    // printf("SC FFT global init: vDSP initialised.\n");
 #elif SC_FFT_FFTW
     size_t maxSize = 1 << SC_FFT_LOG2_MAXSIZE;
     float* buffer1 = (float*)fftwf_malloc((maxSize + 1) * sizeof(float));
