@@ -15,6 +15,26 @@ if(APPLE)
     include_directories(${CMAKE_SOURCE_DIR}/external_libraries/libsndfile)
 endif()
 
+# here we choose who provides us with the FFT lib
+# this is done independently for scsynth and supernova
+# scsynth uses vDSP implementation for FFT on macOS
+# however current implementation of vDSP is not thread-safe
+# so we use FFTW with supernova on macOS
+# once vDSP implementation becomes thread-safe
+# this logic can be reworked to use vDSP on macOS
+
+find_package(FFTW3f 3.3)
+
+if (NOT FFTW3F_FOUND OR FFT_GREEN)
+    message(STATUS "FFT library (supernova): Green")
+    set(FFT_GREEN 1)
+    add_definitions("-DSC_FFT_GREEN")
+else()
+    message(STATUS "Found fftw3f: ${FFTW3F_LIBRARY}")
+    message(STATUS "FFT library (supernova): FFTW")
+		add_definitions("-DSC_FFT_FFTW")
+endif()
+
 set(libsupernova_src
     sc/sc_synth_definition.cpp
     sc/sc_osc_handler.cpp
@@ -138,6 +158,7 @@ else()
 endif()
 
 if (FFTW3F_FOUND)
+    message(STATUS "supernova: including and linking FFTW library")
     target_include_directories(libsupernova PUBLIC ${FFTW3F_INCLUDE_DIR})
     target_link_libraries(libsupernova ${FFTW3F_LIBRARY})
 endif()
@@ -226,14 +247,14 @@ if (APPLE)
     target_link_libraries(libsupernova "-framework Accelerate -framework CoreAudio -framework CoreServices"
                                         "-framework Foundation -framework ApplicationServices -framework AppKit")
     # FFT
-    if ((NOT FFT_GREEN) AND FFTW3F_FOUND)
-      message(STATUS "supernova using FFTW")
-  		add_definitions("-DSC_FFT_FFTW") # supernova uses FFTW
-  		remove_definitions("-DSC_FFT_VDSP") 
-    else()
-      message(STATUS "supernova using green fft")
-      add_definitions("-DSC_FFT_GREEN")
-    endif()
+    # if ((NOT FFT_GREEN) AND FFTW3F_FOUND)
+      # message(STATUS "supernova using FFTW")
+  		# add_definitions("-DSC_FFT_FFTW") # supernova uses FFTW
+  		# remove_definitions("-DSC_FFT_VDSP") 
+    # else()
+      # message(STATUS "supernova using green fft")
+      # add_definitions("-DSC_FFT_GREEN")
+    # endif()
 endif()
 
 if(${JACK_USE_METADATA_API})

@@ -1,5 +1,27 @@
 find_package(Sndfile)
 
+# here we choose who provides us with the FFT lib
+# this is done independently for scsynth and supernova
+# on macOS scsynth uses vDSP implementation for FFT
+ # which is not thread-safe
+
+if (APPLE)
+    add_definitions("-DSC_FFT_VDSP")
+		message(STATUS "FFT library (scsynth): vDSP")
+else()
+    find_package(FFTW3f 3.3)
+
+    if (NOT FFTW3F_FOUND OR FFT_GREEN)
+				message(STATUS "FFT library (scsynth): Green")
+        set(FFT_GREEN 1)
+        add_definitions("-DSC_FFT_GREEN")
+    else()
+        message(STATUS "Found fftw3f: ${FFTW3F_LIBRARY}")
+				message(STATUS "FFT library (scsynth): FFTW")
+        add_definitions("-DSC_FFT_FFTW")
+    endif()
+endif()
+
 # Here we work out which audio API to use, from system type and/or user option.
 if(AUDIOAPI STREQUAL "default")
 	if(APPLE)
@@ -193,7 +215,8 @@ if (LIBSCSYNTH)
 	set_property(TARGET libscsynth PROPERTY SOVERSION   1)
 endif()
 
-if (FFTW3F_FOUND AND NOT APPLE)
+if (FFTW3F_FOUND)
+	message(STATUS "scsynth: including and linking FFTW library")
 	target_include_directories(libscsynth PUBLIC ${FFTW3F_INCLUDE_DIR})
 	target_link_libraries(libscsynth ${FFTW3F_LIBRARY})
 endif()
@@ -232,10 +255,6 @@ else()
 endif()
 
 if(APPLE)
-	if (NOT FFT_GREEN)
-		add_definitions("-DSC_FFT_VDSP") # scsynth uses vDSP
-		remove_definitions("-DSC_FFT_FFTW")
-	endif()
 	add_custom_command(TARGET scsynth POST_BUILD
 		COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:SuperCollider>/../Resources/
 		COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:scsynth> $<TARGET_FILE_DIR:SuperCollider>/../Resources)
