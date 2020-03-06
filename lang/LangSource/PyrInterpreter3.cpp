@@ -34,6 +34,7 @@
 #include "SC_InlineBinaryOp.h"
 #include "PyrKernelProto.h"
 #include "PyrSymbolTable.h"
+#include "Debugger/Debugger.h"
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
@@ -514,12 +515,14 @@ static inline void checkStackDepth(VMGlobals* g, PyrSlot* sp) {
 #    define LABELS_AS_VALUES
 #endif
 
+// TODO(Brian) is this right always?
 #ifdef LABELS_AS_VALUES
 #    define dispatch_opcode                                                                                            \
         op1 = ip[1];                                                                                                   \
         ++ip;                                                                                                          \
         checkStackDepth(g, sp);                                                                                        \
         assert(checkStackOverflow(g, sp));                                                                             \
+        checkPauseInterpreterForDebugger(g);                                                                           \
         goto* opcode_labels[op1]
 #else
 #    define dispatch_opcode break
@@ -540,6 +543,13 @@ static inline void checkStackDepth(VMGlobals* g, PyrSlot* sp) {
 #    pragma GCC push_options
 #    pragma GCC optimize("-fno-gcse")
 #endif
+
+// TODO(Brian) check inlining of this stuff for best performance
+static void checkPauseInterpreterForDebugger(const VMGlobals* g) {
+    if (Debugger::shouldPause()) {
+        Debugger::pause(g);
+    }
+}
 
 HOT void Interpret(VMGlobals* g) {
     // byte code values
@@ -689,6 +699,8 @@ HOT void Interpret(VMGlobals* g) {
             slotRawInt(&g->method->byteMeter)++;
         }
 #endif
+
+        checkPauseInterpreterForDebugger(g);
 
         switch (op1) {
         case 0: //	push class
