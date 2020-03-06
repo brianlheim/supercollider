@@ -61,6 +61,8 @@
 #include "SC_LanguageConfig.hpp"
 #include "SC_Version.hpp"
 
+#include "Debugger/Debugger.h"
+
 #include <boost/filesystem/operations.hpp>
 
 static FILE* gPostDest = stdout;
@@ -125,12 +127,13 @@ void SC_TerminalClient::printUsage() {
         "   -u <network-port-number>       Set UDP listening port (default %d)\n"
         "   -i <ide-name>                  Specify IDE name (for enabling IDE-specific class code, default \"%s\")\n"
         "   -a                             Standalone mode (exclude SCClassLibrary and user and system Extensions "
-        "folders from search path)\n",
+        "folders from search path)\n"
+        "   -b                             Enable debugging\n",
         memGrowBuf, memSpaceBuf, opt.mPort, SC_Filesystem::instance().getIdeName().c_str());
 }
 
 bool SC_TerminalClient::parseOptions(int& argc, char**& argv, Options& opt) {
-    const char* optstr = ":d:Dg:hl:m:rsu:i:av";
+    const char* optstr = ":d:Dg:hl:m:rsu:i:avb";
     int c;
 
     // inhibit error reporting
@@ -189,6 +192,9 @@ bool SC_TerminalClient::parseOptions(int& argc, char**& argv, Options& opt) {
             break;
         case 'a':
             opt.mStandalone = true;
+            break;
+        case 'b':
+            opt.mEnableDebugging = true;
             break;
         default:
             ::post("%s: unknown error (getopt)\n", getName());
@@ -256,6 +262,10 @@ int SC_TerminalClient::run(int argc, char** argv) {
         boost::filesystem::create_directories(
             SC_Filesystem::instance().getDirectory(SC_Filesystem::DirName::UserConfig));
 
+    // TODO(Brian) is this the right ordering?
+    if (opt.mEnableDebugging)
+        Debugger::initialize();
+
     // startup library
     compileLibrary(opt.mStandalone);
 
@@ -280,6 +290,11 @@ int SC_TerminalClient::run(int argc, char** argv) {
 
     // shutdown library
     shutdownLibrary();
+
+    // TODO(Brian) is this the right ordering?
+    if (opt.mEnableDebugging)
+        Debugger::finalize();
+
     flush();
 
     shutdownRuntime();

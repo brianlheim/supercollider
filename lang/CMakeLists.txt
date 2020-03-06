@@ -12,6 +12,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include/common
 
                     LangSource
                     LangPrimSource
+                    ${CMAKE_CURRENT_SOURCE_DIR} # for Debugger
 
                     ${CMAKE_SOURCE_DIR}/external_libraries/nova-tt
                     LangSource/Bison
@@ -75,6 +76,8 @@ set(sclang_sources
 	LangSource/SimpleStack.cpp
 	LangSource/VMGlobals.cpp
 	LangSource/dumpByteCodes.cpp
+
+    Debugger/Debugger.cpp
 
 	${CMAKE_SOURCE_DIR}/common/SC_Filesystem_macos.cpp
 	${CMAKE_SOURCE_DIR}/common/SC_Filesystem_win.cpp

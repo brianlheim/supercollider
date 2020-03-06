@@ -61,6 +61,7 @@ public:
             mCallRun(false),
             mCallStop(false),
             mStandalone(false),
+            mEnableDebugging(false),
             mArgc(0),
             mArgv(0) {}
 
@@ -69,6 +70,7 @@ public:
         bool mCallRun;
         bool mCallStop;
         bool mStandalone;
+        bool mEnableDebugging;
         int mArgc;
         char** mArgv;
     };
