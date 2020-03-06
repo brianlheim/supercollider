@@ -2,12 +2,10 @@
 
 #include "Debugger/Debugger.h"
 
-#include <iostream>
-
 namespace Debugger {
 
-void initialize() noexcept { std::cout << "HELLO WORLD -- debugger" << std::endl; }
+void initialize() noexcept { DEBUG_DEBUGGER("hello"); }
 
-void finalize() noexcept { std::cout << "GOODBYE WORLD -- debugger" << std::endl; }
+void finalize() noexcept { DEBUG_DEBUGGER("goodbye"); }
 
 } // namespace Debugger

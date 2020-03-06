@@ -317,6 +317,11 @@ if (GC_SANITYCHECK)
 	target_compile_definitions(libsclang PUBLIC GC_SANITYCHECK)
 endif()
 
+# TODO(Brian) should be on sclang or libsclang?
+if(DEBUG_SCLANG_DEBUGGER)
+    target_compile_definitions(libsclang PUBLIC DEBUG_SCLANG_DEBUGGER)
+endif()
+
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
 	target_link_libraries(libsclang rt)
 endif()
