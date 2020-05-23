@@ -1,0 +1,34 @@
+missing from supernova options
+
+    uint32 mMaxLogins = 64;
+    int mNumSharedControls = 0;
+    float* mSharedControls = nullptr;
+    const char* mInputStreamsEnabled = nullptr;
+    const char* mOutputStreamsEnabled = nullptr;
+    bool mRendezvous = true;
+    int mSharedMemoryID = 0;
+
+missing from SC_WorldOptions.h
+
+    bool dump_version;
+    uint16_t threads;
+    uint32_t udp_port, tcp_port;
+    uint16_t use_system_clock;
+
+remaining usage:
+    set_realtime_priority
+    needs blocksize & sample rate (ns per block) on apple
+
+    set_realtime_priority is in thread_init_functor::operator()
+    server uses it in scheduler<thread_init_functor>
+
+    set_realtime_priority is in realtime_engine_functor::init_thread() (static!!)
+    realtime_engine_functor is used as templ param to audio_backend's
+    this is fine, just add a new arg to init_thread and fill in w appropriate value from args
+    may need new args to open_stream/open_client
+
+    should the new arg go in ctor or op() for thread_init_functor
+
+    is this a problem for intialization order? when is SR mutated?
+
+    jack_thread_init_callback is static but requires nsPerBlock...
