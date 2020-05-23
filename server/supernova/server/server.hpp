@@ -45,7 +45,7 @@ namespace nova {
 
 struct realtime_engine_functor {
     static inline void sync_clock(void);
-    static void init_thread(void);
+    static void init_thread(double nsPerBlock);
     static inline void run_tick(void);
     static void log_(const char*);
     static void log_printf_(const char*, ...);
@@ -88,12 +88,13 @@ private:
  *
  * */
 struct thread_init_functor {
-    thread_init_functor(bool real_time): rt(real_time) {}
+    thread_init_functor(bool isRealTime, double nsPerBlock): m_isRealTime(isRealTime), m_nsPerBlock(nsPerBlock) {}
 
     void operator()(int thread_index);
 
 private:
-    const bool rt;
+    bool m_isRealTime;
+    double m_nsPerBlock; // only used on Apple
 };
 
 struct io_thread_init_functor {

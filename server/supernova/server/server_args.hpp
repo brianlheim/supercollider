@@ -36,6 +36,8 @@ public:
             return tcp_port;
     }
 
+    double nsPerBlock() const { return 0.; /*TODO*/ }
+
     uint32_t udp_port, tcp_port;
     uint32_t control_busses, audio_busses;
     uint32_t blocksize, samplerate;

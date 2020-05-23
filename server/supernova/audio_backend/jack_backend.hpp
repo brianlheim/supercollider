@@ -239,7 +239,7 @@ private:
         std::atomic_thread_fence(std::memory_order_acquire);
         jack_backend* self = static_cast<jack_backend*>(arg);
         if (jack_client_thread_id(self->client) == pthread_self())
-            engine_functor::init_thread();
+            engine_functor::init_thread(self->nsPerBlock_);
         else
             name_thread("Jack Helper");
     }
@@ -341,6 +341,7 @@ private:
     cpu_time_info cpu_time_accumulator;
 
     uint32_t latency_;
+    double nsPerBlock_; // TODO set this appropriately
 };
 
 } /* namespace nova */

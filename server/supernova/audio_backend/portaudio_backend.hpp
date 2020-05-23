@@ -193,6 +193,7 @@ public:
         engine_initalised = false;
         blocksize_ = pa_blocksize;
 
+
         PaError opened = Pa_OpenStream(&stream, in_stream_parameters, out_stream_parameters, samplerate, pa_blocksize,
                                        paNoFlag, &portaudio_backend::pa_process, this);
 
@@ -305,6 +306,7 @@ private:
     cpu_time_info cpu_time_accumulator;
 
     uint32_t latency_ = 0;
+    double nsPerBlock_ = 0; // TODO set this appropriately
 };
 
 } /* namespace nova */

@@ -46,7 +46,7 @@ class nova_server* instance = nullptr;
 
 nova_server::nova_server(server_arguments const& args):
     server_shared_memory_creator(args.port(), args.control_busses),
-    scheduler<thread_init_functor>(args.threads, !args.non_rt),
+    scheduler<thread_init_functor>(args.threads, !args.non_rt, args.nsPerBlock()),
     buffer_manager(args.buffers),
     sc_osc_handler(args) {
     assert(instance == 0);
@@ -218,14 +218,10 @@ static void set_daz_ftz(void) {
 #endif
 }
 
-static bool set_realtime_priority(int thread_index) {
+static bool set_realtime_priority(int thread_index, double nsPerBlock) {
     bool success = false;
 
 #ifdef NOVA_TT_PRIORITY_PERIOD_COMPUTATION_CONSTRAINT
-    double blocksize = server_arguments::instance().blocksize;
-    double samplerate = server_arguments::instance().samplerate ? server_arguments::instance().samplerate : 44100;
-
-    double ns_per_block = 1e9 / samplerate * blocksize;
 
 #    ifdef __APPLE__
 
@@ -276,8 +272,8 @@ void thread_init_functor::operator()(int thread_index) {
     set_daz_ftz();
     name_current_thread(thread_index);
 
-    if (rt)
-        set_realtime_priority(thread_index);
+    if (m_isRealTime)
+        set_realtime_priority(thread_index, m_nsPerBlock);
 
 #ifndef __APPLE__
     if (!thread_set_affinity(thread_index))
@@ -304,7 +300,7 @@ void synth_definition_deleter::dispose(synth_definition* ptr) {
         delete ptr;
 }
 
-void realtime_engine_functor::init_thread(void) {
+void realtime_engine_functor::init_thread(double nsPerBlock) {
     set_daz_ftz();
 
 #ifndef __APPLE__
@@ -313,7 +309,7 @@ void realtime_engine_functor::init_thread(void) {
 #endif
 
 #ifdef JACK_BACKEND
-    set_realtime_priority(0);
+    set_realtime_priority(0, nsPerBlock);
 #endif
     if (instance->use_system_clock) {
         double nows = (uint64)(OSCTime(std::chrono::system_clock::now())) * kOSCtoSecs;

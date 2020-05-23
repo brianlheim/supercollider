@@ -34,10 +34,9 @@ namespace nova {
 
 using std::uint16_t;
 
+// Supports same interface as thread_init_functor
 struct nop_thread_init {
-    nop_thread_init(void) {}
-
-    template <typename Arg> nop_thread_init(Arg const&) {}
+    nop_thread_init(bool isRealTime, double nsPerBlock) {}
 
     void operator()(int thread_index) {}
 };
