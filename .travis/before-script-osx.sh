@@ -10,7 +10,7 @@ if $SHARED_LIBSCSYNTH; then
     EXTRA_CMAKE_FLAGS="-DLIBSCSYNTH=ON $EXTRA_CMAKE_FLAGS"
 fi
 
-cmake -G"Xcode" \
+cmake -G"Ninja" \
     -DRULE_LAUNCH_COMPILE=ccache \
     -DCMAKE_PREFIX_PATH=`brew --prefix qt5` \
     -DCMAKE_OSX_DEPLOYMENT_TARGET=10.10 \

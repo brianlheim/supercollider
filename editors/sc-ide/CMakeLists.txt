@@ -538,7 +538,8 @@ if(APPLE OR WIN32)
                 # copied process is not writable at first. Other copied files in the bundle also are not writable
                 # (plist file for example), but this doesn't seem to create an issue.
                 execute_process(COMMAND chmod +w ${QT_WEBENGINE_PROCESS})
-                execute_process(COMMAND ${QT_WEBENGINE_FIXUP_COMMAND})
+                execute_process(COMMAND ${QT_WEBENGINE_FIXUP_COMMAND} OUTPUT_VARIABLE fixup_out ERROR_VARIABLE fixup_out)
+                message(STATUS \"fixup_out: \${fixup_out}\")
                 ")
         endif()
 
