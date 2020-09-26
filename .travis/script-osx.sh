@@ -17,8 +17,8 @@ fi
 
 echo "SUPERCOLLIDER OTOOL -L"
 otool -L $TRAVIS_BUILD_DIR/BUILD/Install/SuperCollider/SuperCollider.app/Contents/MacOS/SuperCollider
-echo "SUPERCOLLIDER RUN"
-$TRAVIS_BUILD_DIR/BUILD/Install/SuperCollider/SuperCollider.app/Contents/MacOS/SuperCollider
+echo "WEBENGINEPROC OTOOL -L"
+otool -L $TRAVIS_BUILD_DIR/BUILD/Install/SuperCollider/SuperCollider.app/Contents/Frameworks/QtWebEngineCore.framework/Versions/5/Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
 echo "SCLANG RUN"
 $TRAVIS_BUILD_DIR/BUILD/Install/SuperCollider/SuperCollider.app/Contents/MacOS/sclang
 
