@@ -15,4 +15,11 @@ if [[ $CMAKE_EXIT != 0 ]]; then
     cat $BUILD_LOG
 fi
 
+echo "SUPERCOLLIDER OTOOL -L"
+otool -L $TRAVIS_BUILD_DIR/BUILD/Install/SuperCollider/SuperCollider.app/Contents/MacOS/SuperCollider
+echo "SUPERCOLLIDER RUN"
+$TRAVIS_BUILD_DIR/BUILD/Install/SuperCollider/SuperCollider.app/Contents/MacOS/SuperCollider
+echo "SCLANG RUN"
+$TRAVIS_BUILD_DIR/BUILD/Install/SuperCollider/SuperCollider.app/Contents/MacOS/sclang
+
 exit $CMAKE_EXIT
