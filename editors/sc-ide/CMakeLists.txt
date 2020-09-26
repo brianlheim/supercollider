@@ -532,7 +532,7 @@ if(APPLE OR WIN32)
 
             string(APPEND VERIFY_CMD "
                 message(STATUS \"Fixing up bad deployment of QtWebEngineProcess with Qt 5.15.1\")
-                execute_process(COMMAND \"${CMAKE_COMMAND}\" -E rm -rf \"${QT_WEBENGINECORE_COPY_TO}\")
+                execute_process(COMMAND \"${CMAKE_COMMAND}\" -E remove_directory \"${QT_WEBENGINECORE_COPY_TO}\")
                 execute_process(COMMAND \"${CMAKE_COMMAND}\" -E copy_directory \"${QT_WEBENGINECORE_COPY_FROM}\"
                     \"${QT_WEBENGINECORE_COPY_TO}\")
                 # copied process is not writable at first. Other copied files in the bundle also are not writable
