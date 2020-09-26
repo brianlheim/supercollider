@@ -20,6 +20,7 @@ otool -L $TRAVIS_BUILD_DIR/BUILD/Install/SuperCollider/SuperCollider.app/Content
 echo "WEBENGINEPROC OTOOL -L"
 otool -L $TRAVIS_BUILD_DIR/BUILD/Install/SuperCollider/SuperCollider.app/Contents/Frameworks/QtWebEngineCore.framework/Versions/5/Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
 echo "SCLANG RUN"
-$TRAVIS_BUILD_DIR/BUILD/Install/SuperCollider/SuperCollider.app/Contents/MacOS/sclang
+echo '0.exit' >'test.scd'
+$TRAVIS_BUILD_DIR/BUILD/Install/SuperCollider/SuperCollider.app/Contents/MacOS/sclang 'test.scd'
 
 exit $CMAKE_EXIT
