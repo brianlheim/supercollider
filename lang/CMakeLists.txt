@@ -189,7 +189,7 @@ endif()
 if(SC_IDE)
 	add_definitions(-DSC_IDE -DQT_NO_KEYWORDS)
 
-	qt5_wrap_cpp( SCLANG_MOC_SRCS ../editors/sc-ide/primitives/sc_ipc_client.hpp )
+	qt6_wrap_cpp( SCLANG_MOC_SRCS ../editors/sc-ide/primitives/sc_ipc_client.hpp )
 	list(APPEND sclang_sources ../editors/sc-ide/primitives/sc_ipc_client.cpp)
 	list(APPEND sclang_sources ${SCLANG_MOC_SRCS})
 endif()
@@ -208,7 +208,7 @@ target_compile_definitions(libsclang PRIVATE YYSTACK_USE_ALLOC)
 target_link_libraries(libsclang tlsf ${PTHREADS_LIBRARIES})
 
 if(SC_QT OR SC_IDE)
-	get_target_property(QtCore_location Qt5::Core LOCATION)
+	get_target_property(QtCore_location Qt6::Core LOCATION)
 	message(STATUS "Found Qt: " ${QtCore_location} )
     get_filename_component(QT_BIN_PATH ${QtCore_location} DIRECTORY CACHE)
 

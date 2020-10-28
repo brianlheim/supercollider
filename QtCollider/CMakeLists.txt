@@ -1,4 +1,4 @@
-set(REQUIRED_QT_VERSION 5.7)
+set(REQUIRED_QT_VERSION 6.0)
 option(SC_USE_QTWEBENGINE "Build with Qt WebEngine." ON)
 
 ###############################################################################
@@ -18,22 +18,16 @@ set(
 )
 
 set (QT_COLLIDER_LIBS
-  Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network Qt5::PrintSupport
-  Qt5::Quick Qt5::Qml Qt5::Sql Qt5::OpenGL Qt5::Svg
+  Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::PrintSupport
+  Qt6::Quick Qt6::Qml Qt6::Sql Qt6::OpenGL Qt6::Svg
   ${MATH_LIBRARY})
 
 if(SC_USE_QTWEBENGINE)
   list(APPEND QT_COMPONENTS WebEngine WebEngineCore WebEngineWidgets)
-  list(APPEND QT_COLLIDER_LIBS Qt5::WebEngineCore Qt5::WebEngineWidgets)
+  list(APPEND QT_COLLIDER_LIBS Qt6::WebEngineCore Qt6::WebEngineWidgets)
 endif()
 
-find_package(Qt5 ${REQUIRED_QT_VERSION} COMPONENTS ${QT_COMPONENTS} REQUIRED)
-
-if (APPLE)
-  find_package(Qt5MacExtras)
-  mark_as_advanced(Qt5MacExtras_DIR)
-  list(APPEND QT_COLLIDER_LIBS Qt5::MacExtras)
-endif()
+find_package(Qt6 ${REQUIRED_QT_VERSION} COMPONENTS ${QT_COMPONENTS} REQUIRED)
 
 ###############################################################################
 # Debug flags
@@ -157,11 +151,11 @@ endif()
 
 ###############################################################################
 
-qt5_wrap_cpp( QT_COLLIDER_MOC_SRCS ${QT_COLLIDER_HDRS} )
-qt5_add_resources( QT_COLLIDER_RCC ${QT_COLLIDER_DIR}/resources.qrc )
+qt6_wrap_cpp( QT_COLLIDER_MOC_SRCS ${QT_COLLIDER_HDRS} )
+qt6_add_resources( QT_COLLIDER_RCC ${QT_COLLIDER_DIR}/resources.qrc )
 
 if(APPLE)
-	qt5_wrap_cpp( QT_COLLIDER_OBJ_MOC_SRCS ${QT_COLLIDER_DIR}/widgets/QcQuartzComposerView.h )
+	qt6_wrap_cpp( QT_COLLIDER_OBJ_MOC_SRCS ${QT_COLLIDER_DIR}/widgets/QcQuartzComposerView.h )
 	list(APPEND QT_COLLIDER_HDRS ${QT_COLLIDER_DIR}/widgets/QcQuartzComposerView.h )
   	set( QT_COLLIDER_OBJCPP_SRCS
   		${QT_COLLIDER_OBJ_MOC_SRCS}

@@ -15,13 +15,13 @@ set(QT_IDE_COMPONENTS
 )
 
 set(QT_IDE_LIBRARIES
-    Qt5::Concurrent
-    Qt5::Core
-    # Qt5::OpenGL
-    Qt5::PrintSupport
-    Qt5::Qml
-    Qt5::Quick
-    Qt5::Sql
+    Qt6::Concurrent
+    Qt6::Core
+    # Qt6::OpenGL
+    Qt6::PrintSupport
+    Qt6::Qml
+    Qt6::Quick
+    Qt6::Sql
 )
 
 if(SC_USE_QTWEBENGINE)
@@ -32,14 +32,14 @@ if(SC_USE_QTWEBENGINE)
         WebSockets
     )
     list(APPEND QT_IDE_LIBRARIES
-        Qt5::WebChannel
-        Qt5::WebEngineWidgets
-        Qt5::WebSockets
+        Qt6::WebChannel
+        Qt6::WebEngineWidgets
+        Qt6::WebSockets
     )
 endif()
 
 find_package(
-    Qt5 ${REQUIRED_QT_VERSION}
+    Qt6 ${REQUIRED_QT_VERSION}
     COMPONENTS
     ${QT_IDE_COMPONENTS}
     REQUIRED
@@ -270,10 +270,10 @@ add_custom_target( update_ide_translations
             -no-obsolete -pluralonly
 )
 
-qt5_wrap_cpp( ide_moc_src ${ide_moc_hdr} )
-qt5_wrap_ui( ide_forms_src ${ide_forms} )
-qt5_add_resources( ide_rcc resources.qrc )
-qt5_add_translation( translations ${translation_src} ${native_translation_src} )
+qt6_wrap_cpp( ide_moc_src ${ide_moc_hdr} )
+qt6_wrap_ui( ide_forms_src ${ide_forms} )
+qt6_add_resources( ide_rcc resources.qrc )
+#qt6_add_translation( translations ${translation_src} ${native_translation_src} ) TODO
 
 set(ide_sources ${ide_src} ${all_hdr} )
 
@@ -506,13 +506,13 @@ if(APPLE OR WIN32)
             endif()
         endif()
 
-        if(SC_USE_QTWEBENGINE AND ${Qt5_VERSION} VERSION_EQUAL 5.15.1)
+        if(SC_USE_QTWEBENGINE AND ${Qt6_VERSION} VERSION_EQUAL 5.15.1)
             # QTBUG-86759 / #5175 -- macdeployqt fails to copy part of QtWebEngineCore that contains QtWebEngineProcess.app.
             message(STATUS "macdeployqt: will fix deploying QtWebEngineProcess.app for Qt 5.15.1")
 
             # Assume that QtWebEngine and QtWebEngineCore frameworks live in the same directory. Using
-            # Qt5::WebEngineCore doesn't work here; even requesting that component explicitly above doesn't fix it.
-            get_target_property(QT_WEBENGINE_LOCATION Qt5::WebEngine LOCATION)
+            # Qt6::WebEngineCore doesn't work here; even requesting that component explicitly above doesn't fix it.
+            get_target_property(QT_WEBENGINE_LOCATION Qt6::WebEngine LOCATION)
             get_filename_component(QT_WEBENGINE_DIR "${QT_WEBENGINE_LOCATION}" DIRECTORY)
             get_filename_component(QT_WEBENGINECORE_COPY_FROM ../QtWebEngineCore.framework/Versions/5/Helpers ABSOLUTE BASE_DIR "${QT_WEBENGINE_DIR}")
             set(QT_WEBENGINECORE_COPY_TO "${CONTENTS_DIR}/Frameworks/QtWebEngineCore.framework/Versions/5/Helpers")
@@ -521,7 +521,7 @@ if(APPLE OR WIN32)
             # this because it copies all the dependencies (~200MB) into this nested bundle.
             set(QT_WEBENGINE_FIXUP_COMMAND "install_name_tool ${QT_WEBENGINE_PROCESS}")
             foreach(component Gui Core WebEngineCore Quick QmlModels WebChannel Qml Network Positioning)
-                get_target_property(component_location Qt5::${component} LOCATION)
+                get_target_property(component_location Qt6::${component} LOCATION)
                 get_filename_component(component_location "${component_location}" DIRECTORY)
                 get_filename_component(component_location Versions/5/Qt${component} REALPATH BASE_DIR "${component_location}")
                 # If qt is installed through homebrew, `component_location` will look like
