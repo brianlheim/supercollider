@@ -39,8 +39,8 @@ public:
 
     ~QcPenPrinter() { delete dialog; }
 
-    QRect pageRect() const { return printer.pageRect(); }
-    QRect paperRect() const { return printer.paperRect(); }
+    QRect pageRect() const { return {}; /*printer.pageRect()*/; }
+    QRect paperRect() const { return {}; /*printer.paperRect()*/; }
     int fromPage() const { return printer.fromPage(); }
     int toPage() const { return printer.toPage(); }
 

@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include <QRegExp>
 #include <QWidget>
 #include <QPushButton>
 #include <QLabel>

@@ -75,7 +75,7 @@ QcTreeWidget::ItemPtr QcTreeWidget::currentItem() const {
 
 void QcTreeWidget::setCurrentItem(const ItemPtr& item) {
     _emitAction = false;
-    QTreeWidget::setCurrentItem(item);
+    QTreeWidget::setCurrentItem(item.get());
     _emitAction = true;
 }
 
@@ -96,9 +96,9 @@ int QcTreeWidget::indexOfItem(const QcTreeWidget::ItemPtr& item) {
         return -1;
     QTreeWidgetItem* parent = item->parent();
     if (parent)
-        return parent->indexOfChild(item);
+        return parent->indexOfChild(item.get());
     else
-        return indexOfTopLevelItem(item);
+        return indexOfTopLevelItem(item.get());
 }
 
 QcTreeWidget::ItemPtr QcTreeWidget::addItem(const QcTreeWidget::ItemPtr& parent, const QVariantList& varList) {
@@ -139,7 +139,7 @@ QcTreeWidget::ItemPtr QcTreeWidget::insertItem(const QcTreeWidget::ItemPtr& pare
     return item->safePtr();
 }
 
-void QcTreeWidget::removeItem(const QcTreeWidget::ItemPtr& item) { delete item.ptr(); }
+void QcTreeWidget::removeItem(const QcTreeWidget::ItemPtr& item) { delete item.get(); }
 
 QVariantList QcTreeWidget::strings(const QcTreeWidget::ItemPtr& item) {
     QVariantList varList;
@@ -167,7 +167,7 @@ void QcTreeWidget::setTextColor(const QcTreeWidget::ItemPtr& item, int column, c
 }
 
 QWidget* QcTreeWidget::itemWidget(const QcTreeWidget::ItemPtr& item, int column) {
-    return item ? QTreeWidget::itemWidget(item, column) : 0;
+    return item ? QTreeWidget::itemWidget(item.get(), column) : 0;
 }
 
 void QcTreeWidget::setItemWidget(const QcTreeWidget::ItemPtr& item, int column, QWidget* o) {
@@ -177,12 +177,12 @@ void QcTreeWidget::setItemWidget(const QcTreeWidget::ItemPtr& item, int column, 
     if (!o)
         return;
 
-    QTreeWidget::setItemWidget(item, column, o);
+    QTreeWidget::setItemWidget(item.get(), column, o);
 }
 
 void QcTreeWidget::removeItemWidget(const QcTreeWidget::ItemPtr& item, int column) {
     if (item)
-        QTreeWidget::removeItemWidget(item, column);
+        QTreeWidget::removeItemWidget(item.get(), column);
 }
 
 void QcTreeWidget::sort(int column, bool descending) {
@@ -228,12 +228,12 @@ QcTreeWidget::ItemPtr QcTreeWidget::Item::safePtr(QTreeWidgetItem* item) {
 
 void QcTreeWidget::Item::initialize(VMGlobals* g, PyrObject* obj, const QcTreeWidget::ItemPtr& ptr) {
     Q_ASSERT(isKindOf(obj, SC_CLASS(TreeViewItem)));
-    if (ptr.id()) {
+    if (ptr.get()) {
         // store the SafePtr
         QcTreeWidget::ItemPtr* newPtr = new QcTreeWidget::ItemPtr(ptr);
         SetPtr(obj->slots + 0, newPtr);
         // store the id for equality comparison
-        SetPtr(obj->slots + 1, ptr.id());
+        //SetPtr(obj->slots + 1, ptr.get()); TODO
         // install finalizer
     } else {
         SetNil(obj->slots + 0);

@@ -39,7 +39,6 @@
 #    include <QStyle>
 #    include <QShortcut>
 #    include <QApplication>
-#    include <QDesktopWidget>
 #    include <QDebug>
 #    include <QKeyEvent>
 
@@ -56,7 +55,7 @@ HelpWebPage::HelpWebPage(HelpBrowser* browser): WebPage(browser), mBrowser(brows
 }
 
 HelpBrowser::HelpBrowser(QWidget* parent): QWidget(parent) {
-    QRect availableScreenRect = qApp->desktop()->availableGeometry(this);
+    QRect availableScreenRect = this->screen()->availableGeometry();
     mSizeHint = QSize(availableScreenRect.width() * 0.4, availableScreenRect.height() * 0.7);
 
     HelpWebPage* webPage = new HelpWebPage(this);

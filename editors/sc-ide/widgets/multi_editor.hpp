@@ -32,11 +32,11 @@
 #include <QTextDocument>
 #include <QSplitter>
 
+#include "../doc_manager.hpp" // maybe can declare in cpp
+
 namespace ScIDE {
 
 class CodeEditorBox;
-class Document;
-class DocumentManager;
 class GenericCodeEditor;
 class Main;
 class MultiSplitter;

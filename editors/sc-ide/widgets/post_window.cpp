@@ -27,7 +27,6 @@
 #include "../core/util/overriding_action.hpp"
 
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPointer>
@@ -45,9 +44,9 @@ PostWindow::PostWindow(QWidget* parent): QPlainTextEdit(parent) {
     setFrameShape(QFrame::NoFrame);
     previousChar = QChar('\n');
 
-    viewport()->setAttribute(Qt::WA_MacNoClickThrough, true);
+    //viewport()->setAttribute(Qt::WA_MacNoClickThrough, true);
 
-    QRect availableScreenRect = qApp->desktop()->availableGeometry(this);
+    QRect availableScreenRect = screen()->availableGeometry();
     mSizeHint = QSize(availableScreenRect.width() * 0.4, availableScreenRect.height() * 0.3);
 
     createActions(Main::settings());
@@ -293,8 +292,8 @@ void PostWindow::wheelEvent(QWheelEvent* e) {
 
     // So rather just forward the event without modifiers.
 
-    QWheelEvent modifiedEvent(e->pos(), e->globalPos(), e->delta(), e->buttons(), 0, e->orientation());
-    QPlainTextEdit::wheelEvent(&modifiedEvent);
+    // QWheelEvent modifiedEvent(e->pos(), e->globalPos(), e->delta(), e->buttons(), 0, e->orientation());
+    // QPlainTextEdit::wheelEvent(&modifiedEvent);
     return;
 
 #if 0

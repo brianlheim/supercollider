@@ -126,7 +126,7 @@ void Document::setIndentWidth(int numSpaces) {
     mIndentWidth = numSpaces;
 
     QFontMetricsF fontMetrics(mDoc->defaultFont());
-    qreal tabStop = fontMetrics.width(' ') * numSpaces;
+    qreal tabStop{}; // = fontMetrics.width(' ') * numSpaces;
 
     QTextOption options = mDoc->defaultTextOption();
 
@@ -434,7 +434,7 @@ Document* DocumentManager::documentForId(const QByteArray docID) {
 
 QString DocumentManager::decodeDocument(const QByteArray& bytes) {
     QTextStream stream(bytes);
-    stream.setCodec("UTF-8");
+    //stream.setCodec("UTF-8");
     stream.setAutoDetectUnicode(true);
     return stream.readAll();
 }
@@ -748,7 +748,7 @@ void DocumentManager::handleOpenFileScRequest(const QString& data) {
             open(QString(path.c_str()), position, selectionLength, true, id.c_str(), false);
         }
     } catch (std::exception const& e) {
-        qWarning() << "DocumentManager::" << __FUNCTION__ << ": could not handle request:" << e.what() << endl;
+        qWarning() << "DocumentManager::" << __FUNCTION__ << ": could not handle request:" << e.what() << Qt::endl;
         return;
     }
 }
@@ -776,7 +776,7 @@ void DocumentManager::handleGetDocTextScRequest(const QString& data) {
             }
         }
     } catch (std::exception const& e) {
-        qWarning() << "DocumentManager::" << __FUNCTION__ << ": could not handle request:" << e.what() << endl;
+        qWarning() << "DocumentManager::" << __FUNCTION__ << ": could not handle request:" << e.what() << Qt::endl;
         return;
     }
 }

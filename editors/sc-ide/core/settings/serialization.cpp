@@ -24,6 +24,7 @@
 
 #include <QDebug>
 #include <QStringList>
+#include <QIODevice>
 #include <QKeySequence>
 #include <boost/iostreams/concepts.hpp>
 #include <boost/iostreams/stream.hpp>

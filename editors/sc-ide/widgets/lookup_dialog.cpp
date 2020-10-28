@@ -26,7 +26,6 @@
 #include <QVBoxLayout>
 #include <QHeaderView>
 #include <QKeyEvent>
-#include <QDesktopWidget>
 #include <QApplication>
 #include <QPainter>
 #include <QFileInfo>
@@ -74,7 +73,7 @@ GenericLookupDialog::GenericLookupDialog(QWidget* parent): QDialog(parent) {
         QRect parentRect = parent->rect();
         bounds.moveCenter(parent->mapToGlobal(parentRect.center()));
     } else {
-        QRect availableBounds = QApplication::desktop()->availableGeometry(this);
+        QRect availableBounds = screen()->availableGeometry();
         bounds.moveCenter(availableBounds.center());
     }
 
@@ -124,7 +123,7 @@ void GenericLookupDialog::currentChanged(const QModelIndex& item, const QModelIn
     file.close();
 
     QTextStream stream(bytes);
-    stream.setCodec("UTF-8");
+    // stream.setCodec("UTF-8"); utf8 by default now?
     stream.setAutoDetectUnicode(true);
 
     mPreviewDocument->setTextInRange(stream.readAll(), 0, -1);

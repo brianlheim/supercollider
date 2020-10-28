@@ -5,6 +5,7 @@ SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 set(QT_IDE_COMPONENTS
     Concurrent
     Core
+    Core5Compat
     LinguistTools
     # OpenGL
     PrintSupport
@@ -17,6 +18,7 @@ set(QT_IDE_COMPONENTS
 set(QT_IDE_LIBRARIES
     Qt6::Concurrent
     Qt6::Core
+    Qt6::Core5Compat
     # Qt6::OpenGL
     Qt6::PrintSupport
     Qt6::Qml

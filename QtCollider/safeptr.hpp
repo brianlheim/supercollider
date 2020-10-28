@@ -28,66 +28,11 @@
 #include <QAtomicInt>
 #include <QMutex>
 
+#include <memory>
+
 namespace QtCollider {
 
-template <typename T> class SafePtr {
-public:
-    SafePtr(): d(0) {}
-
-    SafePtr(const SafePtr& other): d(other.d) { ref(); }
-
-    SafePtr(T* ptr): d(new Data(ptr)) {}
-
-    SafePtr& operator=(const SafePtr& other) {
-        deref();
-        d = other.d;
-        ref();
-        return *this;
-    }
-
-    ~SafePtr() { deref(); }
-
-    T* operator->() const { return d->ptr.load(); }
-
-    T& operator*() const { return *d->ptr.load(); }
-
-    operator T*() const { return (d ? d->ptr.load() : 0); }
-
-    T* ptr() const { return (d ? d->ptr.load() : 0); }
-
-    void* id() const { return (void*)d; } // useful for checking internal pointer identity
-
-    void invalidate() {
-        qcDebugMsg(2, "SafePtr: invalidating");
-        if (d)
-            d->ptr = 0;
-    }
-
-private:
-    struct Data {
-        Data(T* ptr_): ptr(ptr_), refCount(1) {}
-        QAtomicPointer<T> ptr;
-        QAtomicInt refCount;
-    };
-
-    void ref() {
-        if (d) {
-            d->refCount.ref();
-            qcDebugMsg(2, QString("SafePtr: +refcount = %1").arg(d->refCount.load()));
-        }
-    }
-    void deref() {
-        if (d) {
-            bool ref = d->refCount.deref();
-            qcDebugMsg(2, QString("SafePtr: -refcount = %1").arg(d->refCount.load()));
-            if (!ref) {
-                qcDebugMsg(2, "SafePtr: unreferenced!");
-                delete d;
-            }
-        }
-    }
-
-    Data* d;
-};
+template <typename T>
+using SafePtr = std::shared_ptr<T>;
 
 } // namespace QtCollider

@@ -22,6 +22,8 @@
 #include <QUuid>
 #include <QBuffer>
 #include <QMutex>
+#include <QVariant>
+#include <QStringRef>
 
 #include <cstdlib>
 
@@ -74,7 +76,7 @@ void SCIpcClient::readIDEData() {
             if (in.status() != QDataStream::Ok)
                 return;
 
-            in >> argList;
+            // in >> argList; what to do - stream each separately?
             if (in.status() != QDataStream::Ok)
                 return;
 
@@ -128,7 +130,7 @@ QString SCIpcClient::getTextMirrorForDocument(QByteArray& id, int pos, int range
             QString existingText = mDocumentTextMirrors[id];
             if (range == -1)
                 range = existingText.size() - pos;
-            QStringRef returnTextRef = QStringRef(&existingText, pos, range);
+            auto returnTextRef = QStringRef(&existingText, pos, range);
             returnText = returnTextRef.toString();
             mTextMirrorHashMutex.unlock();
         }

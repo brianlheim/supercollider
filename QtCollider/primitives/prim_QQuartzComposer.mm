@@ -33,8 +33,6 @@
 #include <GC.h>
 #include <SCBase.h>
 
-#include <QtMacExtras>
-
 #define QOBJECT_FROM_SLOT(s) ((QObjectProxy*)slotRawPtr(slotRawObject(s)->slots))
 
 extern PyrSymbol *s_proto, *s_parent;
@@ -148,7 +146,7 @@ static int getNSObjectForSCObject(PyrSlot* scobject, id* returnID, VMGlobals* g)
             return errFailed;
         }
         QPixmap pixmap = (*img)->pixmap();
-        CGImageRef cgImage = QtMac::toCGImageRef(pixmap);
+        CGImageRef cgImage{}; // = QtMac::toCGImageRef(pixmap);
         returnObject = [[NSImage alloc] initWithCGImage:cgImage size:NSZeroSize];
         CGImageRelease(cgImage);
     } else {
@@ -251,7 +249,7 @@ static int getSCObjectForNSObject(PyrSlot* slot, id nsObject, NSString* type, VM
     } else if ([type isEqualToString:QCPortTypeImage]) { // QImage
         NSImage* nsimage = (NSImage*)nsObject;
         CGImageRef cgImage = [nsimage CGImageForProposedRect:NULL context:NULL hints:NULL];
-        QPixmap pixmap = QtMac::fromCGImageRef(cgImage);
+        QPixmap pixmap{}; // = QtMac::fromCGImageRef(cgImage);
 
         PyrObject* imageObj = instantiateObject(g->gc, SC_CLASS(Image), 0, false, true);
 
@@ -265,6 +263,7 @@ static int getSCObjectForNSObject(PyrSlot* slot, id nsObject, NSString* type, VM
     return errWrongType; // it's something else
 }
 
+/*
 // primitives
 QC_LANG_PRIMITIVE(QQuartzComposer_SetInputPort, 2, PyrSlot* r, PyrSlot* a, VMGlobals* g) {
     QObjectProxy* proxy = QOBJECT_FROM_SLOT(r);
@@ -348,12 +347,15 @@ QC_LANG_PRIMITIVE(QQuartzComposer_GetOutputPort, 1, PyrSlot* r, PyrSlot* a, VMGl
     return errNone;
 }
 
+*/
 
 void defineQcQuartzComposerPrimitives() {
+    /*
     LangPrimitiveDefiner definer;
     definer.define<QQuartzComposer_SetInputPort>();
     definer.define<QQuartzComposer_GetInputPort>();
     definer.define<QQuartzComposer_GetOutputPort>();
+    */
 }
 
 } // namespace QtCollider

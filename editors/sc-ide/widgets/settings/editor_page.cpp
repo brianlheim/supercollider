@@ -358,7 +358,7 @@ void EditorPage::updateTextFormatDisplay(QTreeWidgetItem* item) {
     if (format.hasProperty(QTextFormat::FontItalic))
         f.setItalic(format.fontItalic());
     if (format.hasProperty(QTextFormat::FontWeight))
-        f.setWeight(format.fontWeight());
+        f.setWeight(QFont::Weight(format.fontWeight())); // TODO right?
 
     item->setFont(0, f);
 }

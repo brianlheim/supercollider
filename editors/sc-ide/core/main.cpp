@@ -173,7 +173,7 @@ bool Main::eventFilter(QObject* object, QEvent* event) {
     return QObject::eventFilter(object, event);
 }
 
-bool Main::nativeEventFilter(const QByteArray&, void* message, long*) {
+bool Main::nativeEventFilter(const QByteArray&, void* message, qintptr*) {
     bool result = false;
 
 #ifdef Q_OS_MAC

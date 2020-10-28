@@ -19,6 +19,7 @@
  *
  ************************************************************************/
 
+/*
 #include "QcQuartzComposerView.h"
 #include "../QcWidgetFactory.h"
 #include <QMouseEvent>
@@ -109,3 +110,4 @@ NSString* QcQuartzComposerView::getTypeForKey(NSString* key) {
     NSString* type = [attributes objectForKey:QCPortAttributeTypeKey];
     return type;
 }
+*/

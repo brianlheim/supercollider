@@ -107,12 +107,14 @@ void AudioStatusBox::onServerRunningChanged(bool running, const QString&, int, b
 }
 
 void AudioStatusBox::wheelEvent(QWheelEvent* event) {
+    /*
     if (event->orientation() == Qt::Vertical) {
         if (event->delta() > 0)
             emit increaseVolume();
         else
             emit decreaseVolume();
     }
+    */
     StatusBox::wheelEvent(event);
 }
 

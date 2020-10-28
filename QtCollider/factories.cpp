@@ -69,9 +69,6 @@ static void doLoadFactories() {
 #ifdef SC_USE_QTWEBENGINE
     QC_ADD_FACTORY(WebView);
 #endif
-#ifdef __APPLE__
-    QC_ADD_FACTORY(QcQuartzComposerView);
-#endif
 }
 
 namespace QtCollider {

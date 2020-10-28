@@ -114,7 +114,7 @@ void QcSlider::mouseMoveEvent(QMouseEvent* e) {
 void QcSlider::wheelEvent(QWheelEvent* e) {
     double step = qMax(_step, pixelStep());
     modifyStep(&step);
-    double dval = e->delta() / 120.0 * step;
+    double dval = 0; // e->delta() / 120.0 * step; XXX angle or pixel? see qt5 deprecation
     setValue(_value + dval);
     Q_EMIT(action());
 }

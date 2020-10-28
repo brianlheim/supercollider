@@ -78,12 +78,15 @@ public:
     IconListWidget(QWidget* parent = 0): QListWidget(parent) { setItemDelegate(new ItemDelegate(this)); }
 
     virtual QStyleOptionViewItem viewOptions() const {
+        /*
         QStyleOptionViewItem opt(QListWidget::viewOptions());
         opt.displayAlignment = Qt::AlignCenter;
         opt.decorationAlignment = Qt::AlignCenter;
         opt.decorationPosition = QStyleOptionViewItem::Top;
         opt.font.setBold(true);
-        return opt;
+        */
+        QStyleOptionViewItem* opt{};
+        return *opt;
     }
 };
 

@@ -37,10 +37,10 @@
 #include <yaml-cpp/parser.h>
 
 #include <QDebug>
+#include <QFile>
 #include <QLabel>
 #include <QScrollBar>
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QProxyStyle>
 
 namespace ScIDE {
@@ -157,7 +157,7 @@ private:
         QWidget* parentWid = parentWidget();
         QWidget* referenceWidget = parentWid ? parentWid : this;
 
-        QRect screen = QApplication::desktop()->availableGeometry(referenceWidget);
+        QRect screen = referenceWidget->screen()->availableGeometry();
         if (!screen.contains(rect)) {
             if (rect.right() > screen.right())
                 rect.moveRight(screen.right());
@@ -702,9 +702,9 @@ void AutoCompleter::updateCompletionMenu(bool forceShow) {
     if (!mCompletion.text.isEmpty()) {
         QString pattern = mCompletion.text;
         pattern.prepend("^");
-        menu->model()->setFilterRegExp(pattern);
+        //menu->model()->setFilterRegExp(pattern); regexp port
     } else
-        menu->model()->setFilterRegExp(QString());
+        //menu->model()->setFilterRegExp(QString()); regexp port
 
     if (menu->model()->hasChildren()) {
         menu->view()->setCurrentIndex(menu->model()->index(0, 0));
@@ -1157,7 +1157,7 @@ QRect AutoCompleter::globalCursorRect(int cursorPosition) {
 
 QString AutoCompleter::findHelpClass(QString klass) {
     QString file = standardDirectory(ScResourceDir).append("/HelpSource/Classes/").append(klass).append(".schelp");
-    if (QFile::exists(file))
+    if (QFile(file).exists())
         return file;
 
     return QString();

@@ -7,6 +7,7 @@ option(SC_USE_QTWEBENGINE "Build with Qt WebEngine." ON)
 set(
   QT_COMPONENTS
   Core
+  Core5Compat
   Widgets
   Network
   PrintSupport
@@ -18,7 +19,7 @@ set(
 )
 
 set (QT_COLLIDER_LIBS
-  Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::PrintSupport
+  Qt6::Core Qt6::Core5Compat Qt6::Gui Qt6::Widgets Qt6::Network Qt6::PrintSupport
   Qt6::Quick Qt6::Qml Qt6::Sql Qt6::OpenGL Qt6::Svg
   ${MATH_LIBRARY})
 

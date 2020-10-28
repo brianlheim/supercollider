@@ -114,7 +114,7 @@ Q_SIGNALS:
 private:
     Main(void);
     bool eventFilter(QObject* obj, QEvent* event);
-    bool nativeEventFilter(const QByteArray&, void* message, long*);
+    bool nativeEventFilter(const QByteArray&, void* message, qintptr*);
 
     Settings::Manager* mSettings;
     ScProcess* mScProcess;

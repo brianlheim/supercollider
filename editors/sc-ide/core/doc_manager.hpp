@@ -163,7 +163,7 @@ public:
 
     DocumentManager(Main*, Settings::Manager*);
     QList<Document*> documents() { return mDocHash.values(); }
-    QList<QByteArray> documentIDs() { return mDocHash.uniqueKeys(); }
+    QList<QByteArray> documentIDs() { return {}; /*mDocHash.uniqueKeys();*/ }
 
     void create();
     void close(Document*);
@@ -182,6 +182,7 @@ public:
     bool globalKeyDownActionEnabled() { return mGlobalKeyDownEnabled; }
     bool globalKeyUpActionEnabled() { return mGlobalKeyUpEnabled; }
     QStandardItemModel* docModel() { return mDocumentModel; }
+
 
 public slots:
     // initialCursorPosition -1 means "don't change position if already open"

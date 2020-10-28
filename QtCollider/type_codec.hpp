@@ -336,6 +336,8 @@ template <typename ContainedT> struct TypeCodec<QVector<ContainedT>> {
     }
 };
 
+/*
+ * QList and QVector are the same now?
 template <typename ContainedT> struct TypeCodec<QList<ContainedT>> {
     static QList<ContainedT> read(PyrSlot* slot) {
         qWarning("WARNING: TypeCodec<PyrObject*>::read(PyrSlot*) = NO-OP");
@@ -346,6 +348,7 @@ template <typename ContainedT> struct TypeCodec<QList<ContainedT>> {
         setObjectList(slot, vec.size(), vec.begin(), vec.end());
     }
 };
+*/
 
 template <> struct TypeCodec<QVariantList> {
     static QVariantList read(PyrSlot* slot);

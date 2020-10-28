@@ -21,6 +21,7 @@
 
 #pragma once
 
+/*
 #include <QVariantList>
 
 #include <QMacCocoaViewContainer>
@@ -67,3 +68,4 @@ private:
     id nsObjectForQVariant(const QVariantList& data);
     QCView* mQCView;
 };
+*/

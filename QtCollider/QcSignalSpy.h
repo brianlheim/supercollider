@@ -90,8 +90,10 @@ public:
             args.reserve(_argTypes.count());
 
             for (int i = 0; i < _argTypes.count(); ++i) {
+                /* QVariant ctor takes QMetaType instead of QMetaType::Type now
                 QMetaType::Type type = static_cast<QMetaType::Type>(_argTypes.at(i));
                 args << QVariant(type, argData[i + 1]);
+                */
             }
 
             react(args);
