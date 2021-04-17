@@ -164,7 +164,9 @@ target_include_directories(libscsynth PUBLIC
     ${CMAKE_SOURCE_DIR}/common
     ${CMAKE_SOURCE_DIR}/include/server
     ${CMAKE_SOURCE_DIR}/include/plugin_interface
-    ${CMAKE_SOURCE_DIR}/external_libraries/boost_sync/include)
+    ${CMAKE_SOURCE_DIR}/external_libraries/boost_sync/include
+    .
+    )
 
 if (AUDIOAPI STREQUAL jack)
     list(APPEND scsynth_sources SC_Jack.cpp)

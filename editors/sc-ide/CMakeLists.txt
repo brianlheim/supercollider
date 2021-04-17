@@ -228,10 +228,10 @@ target_link_libraries(SuperCollider
     boost_system_lib
     boost_filesystem_lib
 
-    $<$<BOOL:APPLE>:-framework CoreServices -framework Foundation -framework Cocoa>
-    $<$<BOOL:WIN32>:wsock32>
-    $<$<PLATFORM_ID:Linux>:rt ${X11_X11_LIB}>
-    $<$<BOOL:PTHREADS_FOUND>:${PTHREADS_LIBRARIES}>
+    "$<$<BOOL:${APPLE}>:-framework CoreServices -framework Foundation -framework Cocoa>"
+    $<$<BOOL:${WIN32}>:wsock32>
+    "$<$<PLATFORM_ID:Linux>:rt ${X11_X11_LIB}>"
+    $<$<BOOL:${PTHREADS_FOUND}>:${PTHREADS_LIBRARIES}>
 )
 
 # TODO make it so that all these paths aren't required

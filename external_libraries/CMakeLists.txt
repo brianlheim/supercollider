@@ -95,12 +95,6 @@ if(LTO)
 				 APPEND PROPERTY LINK_FLAGS "-flto -flto-report")
 endif()
 
-# Ableton Link
-if(SC_ABLETON_LINK)
-    message(STATUS "Compiling with Ableton Link support")
-    include(link/AbletonLinkConfig.cmake)
-endif()
-
 # yamlcpp
 if(NOT SYSTEM_YAMLCPP)
   message(STATUS "Using bundled yaml-cpp")

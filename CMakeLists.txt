@@ -148,7 +148,7 @@ if(SYSTEM_BOOST)
 
     set(boost_include_dirs ${Boost_INCLUDE_DIRS})
 else()
-    set(boost_include_dirs external_libraries/boost)
+    get_filename_component(boost_include_dirs external_libraries/boost ABSOLUTE)
 endif()
 
 # yamlcpp
@@ -204,39 +204,32 @@ set(CMAKE_CXX_STANDARD 11)
 # Compile options and definitions
 add_compile_options(
     $<$<CXX_COMPILER_ID:GNU>:-fno-math-errno>
-    $<$<CXX_COMPILER_ID:Intel>:
-        -simd
-        -diag-disable 170 # pointer points outside of underlying object ... used heavily in sclang
-        -diag-disable 279 # controlling expression is constant
-    >
+    "$<$<CXX_COMPILER_ID:Intel>: -simd -diag-disable 170 -diag-disable 279>"
 
-    $<$<CXX_COMPILER_ID:MSVC>:
-        /wd4018 # signed/unsigned mismatch
-        /wd4102 # unreferenced label
-        /wd4267 # conversion from 'size_t' to 'int', possible loss of data
-        /wd4244 # conversion from '__int64' to 'int', possible loss of data
-        /wd4305 # '=' : truncation from 'double' to 'float'
-        /wd4309 # '=' : truncation of constant value
-        /wd4800 # forcing value to bool 'true' or 'false' (performance warning)
-        /wd4996 # The POSIX name for this item is deprecated.
+    $<$<CXX_COMPILER_ID:MSVC>:/wd4018> # signed/unsigned mismatch
+    $<$<CXX_COMPILER_ID:MSVC>:/wd4102> # unreferenced label
+    $<$<CXX_COMPILER_ID:MSVC>:/wd4267> # conversion from 'size_t' to 'int', possible loss of data
+    $<$<CXX_COMPILER_ID:MSVC>:/wd4244> # conversion from '__int64' to 'int', possible loss of data
+    $<$<CXX_COMPILER_ID:MSVC>:/wd4305> # '=' : truncation from 'double' to 'float'
+    $<$<CXX_COMPILER_ID:MSVC>:/wd4309> # '=' : truncation of constant value
+    $<$<CXX_COMPILER_ID:MSVC>:/wd4800> # forcing value to bool 'true' or 'false' (performance warning)
+    $<$<CXX_COMPILER_ID:MSVC>:/wd4996> # The POSIX name for this item is deprecated.
 
-        /w15038 # same as gcc -Wreorder
-    >
+    $<$<CXX_COMPILER_ID:MSVC>:/w15038> # same as gcc -Wreorder
 
     $<$<BOOL:MINGW>:-mstackrealign>
 )
 
-add_definitions(
-    $<$<BOOL:UNIX>:-DSC_DATA_DIR="${CMAKE_INSTALL_PREFIX}/share/SuperCollider">
-    $<$<BOOL:WIN32>:-DWIN32_LEAN_AND_MEAN -DNOMINMAX -D_WIN32_WINNT=0x0600
-        -DBOOST_DATE_TIME_NO_LIB -DBOOST_ALL_NO_LIB>
+add_compile_definitions(
+    $<$<BOOL:${UNIX}>:SC_DATA_DIR="${CMAKE_INSTALL_PREFIX}/share/SuperCollider">
+    "$<$<BOOL:${WIN32}>:WIN32_LEAN_AND_MEAN NOMINMAX _WIN32_WINNT=0x0600 BOOST_DATE_TIME_NO_LIB BOOST_ALL_NO_LIB>"
     # _ENABLE_ATOMIC_ALIGNMENT_FIX prevents the build from breaking when VS2015 update 2 upwards are used
     # see http://boost.2283326.n4.nabble.com/lockfree-ENABLE-ATOMIC-ALIGNMENT-FIX-for-VS-2015-Update-2-td4685955.html
-    $<$<BOOL:MSVC>:-D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_WARNINGS -D_ENABLE_ATOMIC_ALIGNMENT_FIX>
-    $<$<BOOL:SC_MEMORY_DEBUGGING>:-DDISABLE_MEMORY_POOLS -DENABLE_MEMORY_CHECKS>
-    $<$<BOOL:NO_GPL3>:-DNO_GPL3>
+    "$<$<BOOL:${MSVC}>:_CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS _ENABLE_ATOMIC_ALIGNMENT_FIX>"
+    "$<$<BOOL:${SC_MEMORY_DEBUGGING}>:DISABLE_MEMORY_POOLS ENABLE_MEMORY_CHECKS>"
+    $<$<BOOL:${NO_GPL3}>:NO_GPL3>
 
-    -DBOOST_CHRONO_HEADER_ONLY -DBOOST_NO_AUTO_PTR
+    BOOST_CHRONO_HEADER_ONLY BOOST_NO_AUTO_PTR
 )
 
 # More complex specifics
@@ -281,7 +274,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "^(GNU|Clang|AppleClang)$")
         -fvisibility=hidden
         -Wreorder
     )
-    add_definitions($<$<BOOL:FORTIFY>:-D_FORTIFY_SOURCE=2)
+    add_compile_definitions($<$<BOOL:${FORTIFY}>:-D_FORTIFY_SOURCE=2>)
 
     # TODO audit. let users choose or don't use libc++
     if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
@@ -302,6 +295,12 @@ endif()
 
 add_subdirectory(tools)
 add_subdirectory(external_libraries)
+
+# Ableton Link
+if(SC_ABLETON_LINK)
+    message(STATUS "Compiling with Ableton Link support")
+    include(external_libraries/link/AbletonLinkConfig.cmake)
+endif()
 
 # TODO audit all four, used in editors
 file(GLOB_RECURSE ClassLibrary SCClassLibrary/*sc)

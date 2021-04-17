@@ -7,6 +7,7 @@ brew install ccache
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
 
 brew install libsndfile || true
+brew install ccache
 brew install portaudio || true
 brew install qt5 || true
 brew link qt5 --force
